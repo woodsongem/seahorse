@@ -3,13 +3,15 @@
  */
 package seahorse.internal.business.applicationservice.api.datacontracts;
 
+import java.util.UUID;
+
 /**
  * @author admin
  *
  */
 public class Phone extends  Base {
 	
-	private String _id;
+	private String id;
 	private String _phoneNumber;
 	private String _phoneType;
 	private String _status;
@@ -20,13 +22,17 @@ public class Phone extends  Base {
 	 * @return the _id
 	 */
 	public String getid() {
-		return _id;
+		return id;
 	}
 	/**
 	 * @param _id the _id to set
 	 */
-	public void setid(String _id) {
-		this._id = _id;
+	public void setid(UUID id) {
+		
+		if(id != null)
+		{
+			this.id =id.toString();
+		}	
 	}
 	/**
 	 * @return the _phoneNumber

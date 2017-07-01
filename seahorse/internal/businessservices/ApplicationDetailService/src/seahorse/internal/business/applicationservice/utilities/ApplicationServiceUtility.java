@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 
-import seahorse.internal.business.applicationservice.constants.ApplicationServiceErrorCode;
+import org.apache.commons.lang3.tuple.Pair;
+
+import seahorse.internal.business.applicationservice.common.datacontracts.PhoneType;
 import seahorse.internal.business.applicationservice.datacontracts.ApplicationDetailMessageEntity;
 import seahorse.internal.business.applicationservice.datacontracts.ResultMessage;
 import seahorse.internal.business.applicationservice.datacontracts.ResultMessageEntity;
@@ -67,4 +69,19 @@ public class ApplicationServiceUtility {
 		return applicationDetailMessageEntity;
 
 	}
+
+    public static Boolean TryPhoneTypeParse(String value)
+    {    	
+		try {
+			if (value == null) {
+				return false;
+			}
+
+			PhoneType fPhoneType = PhoneType.valueOf(value);
+
+		} catch (Exception ex) {
+			return false;
+		}
+		return true;
+    }
 }

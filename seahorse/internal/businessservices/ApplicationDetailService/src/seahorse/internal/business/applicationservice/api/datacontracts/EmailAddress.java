@@ -3,50 +3,55 @@
  */
 package seahorse.internal.business.applicationservice.api.datacontracts;
 
+import java.util.UUID;
+
 /**
  * @author admin
  *
  */
 public class EmailAddress extends Base {
 	
-	private String _id;
-	private String _emailAddress;
-	private String _status;
+	private String id;
+	private String emailId;
+	private String status;
 	/**
 	 * @return the _id
 	 */
 	public String getid() {
-		return _id;
+		return id;
 	}
 	/**
 	 * @param _id the _id to set
 	 */
-	public void setid(String _id) {
-		this._id = _id;
+	public void setid(UUID _id) {
+		if(_id != null)
+		{
+			this.id = _id.toString();
+		}		
 	}
 	/**
 	 * @return the _emailAddress
 	 */
 	public String getemailAddress() {
-		return _emailAddress;
+		return emailId;
 	}
 	/**
 	 * @param _emailAddress the _emailAddress to set
 	 */
 	public void setemailAddress(String _emailAddress) {
-		this._emailAddress = _emailAddress;
+		this.emailId = _emailAddress;
 	}
 	/**
 	 * @return the _status
 	 */
 	public String getstatus() {
-		return _status;
+		return status;
 	}
 	/**
 	 * @param _status the _status to set
 	 */
 	public void setstatus(String _status) {
-		this._status = _status;
+		this.status = _status;
 	}
 	
 

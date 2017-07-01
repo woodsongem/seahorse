@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.applicationservice.common.datacontracts.PhoneType;
 import seahorse.internal.business.applicationservice.dal.datacontracts.AddressDAO;
 import seahorse.internal.business.applicationservice.dal.datacontracts.ApplicationDetailDAO;
 import seahorse.internal.business.applicationservice.dal.datacontracts.EmailAddressDAO;
@@ -21,6 +22,7 @@ import seahorse.internal.business.applicationservice.datacontracts.EmailAddressM
 import seahorse.internal.business.applicationservice.datacontracts.NameMessageEntity;
 import seahorse.internal.business.applicationservice.datacontracts.NationalIdentifierMessageEntity;
 import seahorse.internal.business.applicationservice.datacontracts.PhoneMessageEntity;
+import seahorse.internal.business.applicationservice.utilities.ApplicationServiceUtility;
 
 /**
  * @author admin
@@ -78,7 +80,9 @@ public class ApplicationDetailServiceMapper implements IApplicationDetailService
 			phoneMessageEntity.setPhoneNumber(phoneDAO.getPhoneNumber());
 			phoneMessageEntity.setAreaCode(phoneDAO.getAreaCode());
 			phoneMessageEntity.setNumber(phoneDAO.getNumber());
-			phoneMessageEntity.setPhoneType(phoneDAO.getPhoneType());
+			if (ApplicationServiceUtility.TryPhoneTypeParse(phoneDAO.getPhoneType())) {
+				phoneMessageEntity.setPhoneType(PhoneType.valueOf(phoneDAO.getPhoneType()));
+			}
 			phoneMessageEntity.setStatus(phoneDAO.getStatus());
 			phoneMessageEntities.add(phoneMessageEntity);
 		}
@@ -135,7 +139,9 @@ public class ApplicationDetailServiceMapper implements IApplicationDetailService
 			addressMessageEntity.setCountryName(addressDAO.getCountryName());
 			addressMessageEntity.setCreatedBy(addressDAO.getCreatedBy());
 			addressMessageEntity.setCreatedDate(addressDAO.getCreatedDate());
-			addressMessageEntity.setId(addressDAO.getId());
+			if (addressDAO.getId() != null) {
+				addressMessageEntity.setId(addressDAO.getId().toString());
+			}			
 			addressMessageEntity.setStateId(addressDAO.getStateId());
 			addressMessageEntity.setStateName(addressDAO.getStateName());
 			addressMessageEntity.setstatus(addressDAO.getStatus());

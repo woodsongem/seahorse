@@ -9,23 +9,23 @@ package seahorse.internal.business.applicationservice.datacontracts;
  */
 public class AddressMessageEntity extends BaseMessageEntity {
 
-	private String _id;
-	private String _addressLine1;
-	private String _addressLine2;
-	private String _cityId;
-	private String _cityName;
-	private String _stateId;
-	private String _stateName;
-	private String _countryId;
-	private String _countryName;
-	private String _zipCode;
-	private String _status;
+	private String id;
+	private String addressLine1;
+	private String addressLine2;
+	private String cityId;
+	private String cityName;
+	private String stateId;
+	private String stateName;
+	private String countryId;
+	private String countryName;
+	private String zipCode;
+	private String status;
 
 	/**
 	 * @return the _id
 	 */
 	public String getId() {
-		return _id;
+		return id;
 	}
 
 	/**
@@ -33,14 +33,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _id to set
 	 */
 	public void setId(String _id) {
-		this._id = _id;
+		this.id = _id;
 	}
 
 	/**
 	 * @return the _addressLine1
 	 */
 	public String getAddressLine1() {
-		return _addressLine1;
+		return addressLine1;
 	}
 
 	/**
@@ -48,14 +48,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _addressLine1 to set
 	 */
 	public void setAddressLine1(String _addressLine1) {
-		this._addressLine1 = _addressLine1;
+		this.addressLine1 = _addressLine1;
 	}
 
 	/**
 	 * @return the _addressLine2
 	 */
 	public String getAddressLine2() {
-		return _addressLine2;
+		return addressLine2;
 	}
 
 	/**
@@ -63,14 +63,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _addressLine2 to set
 	 */
 	public void setAddressLine2(String _addressLine2) {
-		this._addressLine2 = _addressLine2;
+		this.addressLine2 = _addressLine2;
 	}
 
 	/**
 	 * @return the _cityId
 	 */
 	public String getCityId() {
-		return _cityId;
+		return cityId;
 	}
 
 	/**
@@ -78,14 +78,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _cityId to set
 	 */
 	public void setCityId(String _cityId) {
-		this._cityId = _cityId;
+		this.cityId = _cityId;
 	}
 
 	/**
 	 * @return the _cityName
 	 */
 	public String getCityName() {
-		return _cityName;
+		return cityName;
 	}
 
 	/**
@@ -93,14 +93,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _cityName to set
 	 */
 	public void setcityName(String _cityName) {
-		this._cityName = _cityName;
+		this.cityName = _cityName;
 	}
 
 	/**
 	 * @return the _stateId
 	 */
 	public String getstateId() {
-		return _stateId;
+		return stateId;
 	}
 
 	/**
@@ -108,14 +108,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _stateId to set
 	 */
 	public void setStateId(String _stateId) {
-		this._stateId = _stateId;
+		this.stateId = _stateId;
 	}
 
 	/**
 	 * @return the _stateName
 	 */
 	public String getStateName() {
-		return _stateName;
+		return stateName;
 	}
 
 	/**
@@ -123,14 +123,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _stateName to set
 	 */
 	public void setStateName(String _stateName) {
-		this._stateName = _stateName;
+		this.stateName = _stateName;
 	}
 
 	/**
 	 * @return the _countryId
 	 */
 	public String getCountryId() {
-		return _countryId;
+		return countryId;
 	}
 
 	/**
@@ -138,14 +138,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _countryId to set
 	 */
 	public void setCountryId(String _countryId) {
-		this._countryId = _countryId;
+		this.countryId = _countryId;
 	}
 
 	/**
 	 * @return the _countryName
 	 */
 	public String getCountryName() {
-		return _countryName;
+		return countryName;
 	}
 
 	/**
@@ -153,14 +153,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _countryName to set
 	 */
 	public void setCountryName(String _countryName) {
-		this._countryName = _countryName;
+		this.countryName = _countryName;
 	}
 
 	/**
 	 * @return the _zipCode
 	 */
 	public String getZipCode() {
-		return _zipCode;
+		return zipCode;
 	}
 
 	/**
@@ -168,14 +168,14 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _zipCode to set
 	 */
 	public void setZipCode(String _zipCode) {
-		this._zipCode = _zipCode;
+		this.zipCode = _zipCode;
 	}
 
 	/**
 	 * @return the _status
 	 */
 	public String getstatus() {
-		return _status;
+		return status;
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class AddressMessageEntity extends BaseMessageEntity {
 	 *            the _status to set
 	 */
 	public void setstatus(String _status) {
-		this._status = _status;
+		this.status = _status;
 	}
 
 }
