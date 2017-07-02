@@ -3,7 +3,11 @@
  */
 package seahorse.internal.business.applicationservice.dal;
 
+import java.util.UUID;
+
 import seahorse.internal.business.applicationservice.dal.datacontracts.ApplicationDetailDAO;
+import seahorse.internal.business.applicationservice.dal.datacontracts.EmailAddressDAO;
+import seahorse.internal.business.applicationservice.dal.datacontracts.PhoneDAO;
 import seahorse.internal.business.applicationservice.datacontracts.ApplicationDetailResponseMessageEntity;
 
 /**
@@ -17,5 +21,9 @@ public interface IApplicationDetailRepository {
 	ApplicationDetailResponseMessageEntity CreateApplication(ApplicationDetailDAO _applicationDetailDAO);
 
 	ApplicationDetailResponseMessageEntity UpdateApplication(ApplicationDetailDAO _applicationDetailDAO);
+	
+	EmailAddressDAO GetEmailAddressById(UUID emailid) ;
+	
+	PhoneDAO GetPhoneById(UUID phoneid);
 
 }

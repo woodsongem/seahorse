@@ -30,5 +30,8 @@ public class DataBaseColumn {
 	public static final String ZipCode = "zipcode";
 	public static final String CityName = null;
 	public static final String CountryName = null;
+	public static final String ApplicationId = "application_id";
+	public static final String SecurityAnswer = "security_answer";
+	public static final String SecurityQuestion = "security_question";
 
 }

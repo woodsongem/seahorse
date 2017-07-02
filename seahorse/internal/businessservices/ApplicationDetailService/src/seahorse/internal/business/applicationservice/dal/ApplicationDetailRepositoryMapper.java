@@ -6,6 +6,7 @@ package seahorse.internal.business.applicationservice.dal;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -17,6 +18,7 @@ import seahorse.internal.business.applicationservice.dal.datacontracts.AddressDA
 import seahorse.internal.business.applicationservice.dal.datacontracts.ApplicationDetailDAO;
 import seahorse.internal.business.applicationservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.applicationservice.dal.datacontracts.PhoneDAO;
+import seahorse.internal.business.applicationservice.dal.datacontracts.UserSecurityQuestionDAO;
 
 /**
  * @author admin
@@ -77,6 +79,34 @@ public class ApplicationDetailRepositoryMapper implements IApplicationDetailRepo
 		addressDAO.setCityName(addressResult.getString(DataBaseColumn.CityName));
 		addressDAO.setCountryName(addressResult.getString(DataBaseColumn.CountryName));
 		return addressDAO;
+	}
+
+	@Override
+	public String getEmailAddressByIdQuery(UUID emailid) {
+		Object[] args = { emailid };
+		return new MessageFormat(QueryConstants.getEmailAddressByIdQuery).format(args);
+	}
+
+	@Override
+	public String getPhoneByIdQuery(UUID phoneid) {
+		Object[] args = { phoneid };
+		return new MessageFormat(QueryConstants.getPhoneByIdQuery).format(args);
+	}
+
+	@Override
+	public String getUserSecurityQuestionQuery(UUID userSecurityQuestionId) {
+		Object[] args = { userSecurityQuestionId };
+		return new MessageFormat(QueryConstants.getUserSecurityQuestionQuery).format(args);
+	}
+
+	@Override
+	public UserSecurityQuestionDAO mapUserSecurityQuestionDAO(Row userSecurityResult) {
+		UserSecurityQuestionDAO userSecurityQuestionDAO=new UserSecurityQuestionDAO();
+		userSecurityQuestionDAO.setApplicationId(userSecurityResult.getUUID(DataBaseColumn.ApplicationId));
+		userSecurityQuestionDAO.setSecurityAnswer(userSecurityResult.getString(DataBaseColumn.SecurityAnswer));
+		userSecurityQuestionDAO.setSecurityQuestion(userSecurityResult.getString(DataBaseColumn.SecurityQuestion));
+		userSecurityQuestionDAO.setStatus(userSecurityResult.getString(DataBaseColumn.Status));
+		return userSecurityQuestionDAO;
 	}
 
 }
