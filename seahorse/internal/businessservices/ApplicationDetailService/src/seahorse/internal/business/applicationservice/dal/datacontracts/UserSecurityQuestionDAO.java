@@ -55,7 +55,7 @@ public class UserSecurityQuestionDAO extends BaseDAO {
 	 * @param securityAnswer the securityAnswer to set
 	 */
 	public void setSecurityAnswer(String securityAnswer) {
-		securityAnswer = securityAnswer;
+		this.securityAnswer = securityAnswer;
 	}
 	/**
 	 * @return the securityQuestion
