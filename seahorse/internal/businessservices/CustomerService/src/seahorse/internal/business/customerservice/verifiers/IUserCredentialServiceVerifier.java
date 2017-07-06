@@ -13,5 +13,7 @@ import seahorse.internal.business.customerservice.datacontracts.ResultMessageEnt
 public interface IUserCredentialServiceVerifier {
 
 	ResultMessageEntity VerifyLogin(LoginDetailMessageEntity loginDetailMessageEntity);
+	
+	ResultMessageEntity IsCredentialServiceValid(LoginDetailMessageEntity loginDetailMessageEntity);
 
 }

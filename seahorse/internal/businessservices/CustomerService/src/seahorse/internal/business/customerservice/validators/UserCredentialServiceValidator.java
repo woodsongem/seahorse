@@ -6,6 +6,8 @@ package seahorse.internal.business.customerservice.validators;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import seahorse.internal.business.applicationservice.utilities.CustomerServiceUtility;
 import seahorse.internal.business.customerservice.common.IReadPropertiesFile;
 import seahorse.internal.business.customerservice.common.SeahorseUtilities;
@@ -72,6 +74,14 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 			return CustomerServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
 		}
 		return CustomerServiceUtility.GetResultMessageEntity(customerServiceErrorCode.InValidPasswordErrorCode(), "Password",ResultStatus.Error);
+	}
+	
+	public ResultMessageEntity IsPasswordEncryptionValid(LoginDetailMessageEntity loginDetailMessageEntity)
+	{
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();	
+		loginDetailMessageEntity.setEncryptedpassword(passwordEncryptor.encryptPassword(loginDetailMessageEntity.getEncryptedpassword()));
+		
+		return CustomerServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
 	}
 
 }

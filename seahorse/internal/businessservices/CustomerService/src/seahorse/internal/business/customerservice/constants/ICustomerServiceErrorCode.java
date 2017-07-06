@@ -19,5 +19,6 @@ public interface ICustomerServiceErrorCode {
 	String InValidUserNameErrorCode();
 
 	String InValidPasswordErrorCode();
-
+	
+	String InValidUsernameAndPassword(); 
 }

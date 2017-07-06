@@ -7,7 +7,6 @@ package seahorse.internal.business.customerservice.constants;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -16,43 +15,42 @@ import com.google.inject.Singleton;
  *
  */
 @Singleton
-public class CustomerServiceErrorCode  implements ICustomerServiceErrorCode{
-	
-	 // @Context
-	 //private final HttpServletRequest httpRequest;
-	  
-/*	@Inject
-	public ApplicationServiceErrorCode(@Context HttpServletRequest httpRequest)
-	{
-		this.httpRequest=httpRequest;
-	}*/
-	
+public class CustomerServiceErrorCode implements ICustomerServiceErrorCode {
 
-	public String EmptyPasswordErrorCode()
-	{
-		return GetErrorCodeMapping("Password.Empty");
-	}
-	
-	public String EmptyUserNameErrorCode()
-	{
-		return GetErrorCodeMapping("Username.Empty");
-	}
-	
-	public String InValidLoginDetailMessageEntityErrorCode()
-	{
-	/*	String httpMethod=httpRequest.getMethod();
-		if(httpMethod == null)
-		{
-			
-		}*/
-		return GetErrorCodeMapping("LoginDetailMessageEntity.Empty");
+	// @Context
+	// private final HttpServletRequest httpRequest;
+
+	/*
+	 * @Inject public ApplicationServiceErrorCode(@Context HttpServletRequest
+	 * httpRequest) { this.httpRequest=httpRequest; }
+	 */
+
+	public String InValidUsernameAndPassword() {
+		return GetErrorCodeMapping("InValid.UsernameAndPassword");
 	}
 
-	private static String GetErrorCodeMapping(String errorCode) {
+	public String EmptyPasswordErrorCode() {
+		return GetErrorCodeMapping("Empty.Password");
+	}
+
+	public String EmptyUserNameErrorCode() {
+		return GetErrorCodeMapping("Empty.Username");
+	}
+
+	public String InValidLoginDetailMessageEntityErrorCode() {
+		/*
+		 * String httpMethod=httpRequest.getMethod(); if(httpMethod == null) {
+		 * 
+		 * }
+		 */
+		return GetErrorCodeMapping("Empty.LoginDetailMessageEntity");
+	}
+
+	private String GetErrorCodeMapping(String errorCode) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Seahorse.CustomerService.API");
-		//sb.append("." + httpRequest.);
+		// sb.append("." + httpRequest.);
 		sb.append("." + errorCode);
 		return sb.toString();
 	}
@@ -65,6 +63,6 @@ public class CustomerServiceErrorCode  implements ICustomerServiceErrorCode{
 	@Override
 	public String InValidPasswordErrorCode() {
 		return GetErrorCodeMapping("InValidPassword");
-	}	
+	}
 
 }

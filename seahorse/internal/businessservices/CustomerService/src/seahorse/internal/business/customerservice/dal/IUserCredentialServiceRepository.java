@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.customerservice.dal;
 
-import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialServiceDAO;
+import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.customerservice.datacontracts.LoginResponseMessageEntity;
 
@@ -13,5 +13,5 @@ import seahorse.internal.business.customerservice.datacontracts.LoginResponseMes
  */
 public interface IUserCredentialServiceRepository {	
 
-	UserCredentialServiceDAO GetUserCredential(LoginDetailMessageEntity loginDetailMessageEntity);
+	UserCredentialDAO GetUserCredential(LoginDetailMessageEntity loginDetailMessageEntity);
 }

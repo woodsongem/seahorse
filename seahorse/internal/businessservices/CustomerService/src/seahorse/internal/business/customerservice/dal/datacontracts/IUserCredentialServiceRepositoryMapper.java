@@ -15,6 +15,6 @@ public interface IUserCredentialServiceRepositoryMapper {
 
 	String getUserCredentialbyUserNameQuery(LoginDetailMessageEntity loginDetailMessageEntity);
 
-	UserCredentialServiceDAO mapUserCredentialServiceDAO(Row userCredentialResult);
+	UserCredentialDAO mapUserCredentialServiceDAO(Row userCredentialResult);
 
 }

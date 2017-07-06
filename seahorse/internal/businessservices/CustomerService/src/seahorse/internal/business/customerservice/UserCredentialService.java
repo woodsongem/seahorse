@@ -6,8 +6,6 @@ package seahorse.internal.business.customerservice;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.applicationservice.utilities.CustomerServiceUtility;
-import seahorse.internal.business.customerservice.dal.IUserCredentialServiceRepository;
-import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialServiceDAO;
 import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.customerservice.datacontracts.LoginResponseMessageEntity;
 import seahorse.internal.business.customerservice.datacontracts.ResultMessageEntity;
@@ -21,16 +19,13 @@ import seahorse.internal.business.customerservice.verifiers.IUserCredentialServi
  */
 public class UserCredentialService implements IUserCredentialService {
 
-	private IUserCredentialServiceRepository userCredentialServiceRepository;
 	private IUserCredentialServiceValidator userCredentialServiceValidator;
 	private IUserCredentialServiceVerifier userCredentialServiceVerifier;
 	private IUserCredentialServiceMapper userCredentialServiceMapper;
 
-	public UserCredentialService(IUserCredentialServiceRepository userCredentialServiceRepository,
-			IUserCredentialServiceValidator userCredentialServiceValidator,
+	public UserCredentialService(IUserCredentialServiceValidator userCredentialServiceValidator,
 			IUserCredentialServiceVerifier userCredentialServiceVerifier,
 			IUserCredentialServiceMapper userCredentialServiceMapper) {
-		this.userCredentialServiceRepository = userCredentialServiceRepository;
 		this.userCredentialServiceValidator = userCredentialServiceValidator;
 		this.userCredentialServiceVerifier = userCredentialServiceVerifier;
 		this.userCredentialServiceMapper = userCredentialServiceMapper;
@@ -44,16 +39,16 @@ public class UserCredentialService implements IUserCredentialService {
 		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
 			return CustomerServiceUtility.GetApplicationDetailMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}
-		
-		resultMessageEntity=userCredentialServiceVerifier.VerifyLogin(loginDetailMessageEntity);
-		
+
+		resultMessageEntity = userCredentialServiceVerifier.VerifyLogin(loginDetailMessageEntity);
+
 		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
 			return CustomerServiceUtility.GetApplicationDetailMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}
 
-		LoginResponseMessageEntity loginResponseMessageEntity = userCredentialServiceMapper.MapApplicationDetailMessageEntity(loginDetailMessageEntity);
-		loginResponseMessageEntity.SetResultStatus(ResultStatus.Success);
-		loginResponseMessageEntity.SetHttpStatus(Status.OK);
+		LoginResponseMessageEntity loginResponseMessageEntity = userCredentialServiceMapper.MapLoginResponseMessageEntity(resultMessageEntity, loginDetailMessageEntity);
+		// loginResponseMessageEntity.SetResultStatus(ResultStatus.Success);
+		// loginResponseMessageEntity.SetHttpStatus(Status.OK);
 		return loginResponseMessageEntity;
 	}
 

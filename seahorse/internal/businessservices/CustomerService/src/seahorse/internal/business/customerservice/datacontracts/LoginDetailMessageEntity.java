@@ -11,6 +11,8 @@ public class LoginDetailMessageEntity {
 	private String username;
 	private String password;
 	private String productitem;
+	private String encryptedpassword;
+	private UserCredentialMessageEntity usercredentialmessageEntity;
 	/**
 	 * @return the username
 	 */
@@ -46,5 +48,29 @@ public class LoginDetailMessageEntity {
 	 */
 	public void setProductitem(String productitem) {
 		this.productitem = productitem;
+	}
+	/**
+	 * @return the encryptedpassword
+	 */
+	public String getEncryptedpassword() {
+		return encryptedpassword;
+	}
+	/**
+	 * @param encryptedpassword the encryptedpassword to set
+	 */
+	public void setEncryptedpassword(String encryptedpassword) {
+		this.encryptedpassword = encryptedpassword;
+	}
+	/**
+	 * @return the usercredentialmessageEntity
+	 */
+	public UserCredentialMessageEntity getUsercredentialmessageEntity() {
+		return usercredentialmessageEntity;
+	}
+	/**
+	 * @param usercredentialmessageEntity the usercredentialmessageEntity to set
+	 */
+	public void setUsercredentialmessageEntity(UserCredentialMessageEntity usercredentialmessageEntity) {
+		this.usercredentialmessageEntity = usercredentialmessageEntity;
 	}
 }

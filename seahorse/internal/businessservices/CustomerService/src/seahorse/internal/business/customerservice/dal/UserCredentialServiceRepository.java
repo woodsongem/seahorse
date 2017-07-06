@@ -10,7 +10,7 @@ import com.datastax.driver.core.Row;
 import seahorse.internal.business.customerservice.common.ICassandraConnector;
 import seahorse.internal.business.customerservice.common.IReadPropertiesFile;
 import seahorse.internal.business.customerservice.dal.datacontracts.IUserCredentialServiceRepositoryMapper;
-import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialServiceDAO;
+import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessageEntity;
 
 /**
@@ -32,17 +32,17 @@ public class UserCredentialServiceRepository  implements IUserCredentialServiceR
 	}
 	
 	@Override
-	public UserCredentialServiceDAO GetUserCredential(LoginDetailMessageEntity loginDetailMessageEntity) {
-		UserCredentialServiceDAO userCredentialServiceDAO=new UserCredentialServiceDAO();
+	public UserCredentialDAO GetUserCredential(LoginDetailMessageEntity loginDetailMessageEntity) {
+		UserCredentialDAO userCredentialDAO=new UserCredentialDAO();
 		cassandraConnector.connect(null, 0);
 		String applicationQuery=userCredentialServiceRepositoryMapper.getUserCredentialbyUserNameQuery(loginDetailMessageEntity);
 		final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);		
 		cassandraConnector.close();	
 		while (!resultSet.isExhausted()) {
 			final Row userCredentialResult = resultSet.one();
-			userCredentialServiceDAO=userCredentialServiceRepositoryMapper.mapUserCredentialServiceDAO(userCredentialResult);
+			userCredentialDAO=userCredentialServiceRepositoryMapper.mapUserCredentialServiceDAO(userCredentialResult);
 		}
-		return userCredentialServiceDAO;
+		return userCredentialDAO;
 	}
 
 }
