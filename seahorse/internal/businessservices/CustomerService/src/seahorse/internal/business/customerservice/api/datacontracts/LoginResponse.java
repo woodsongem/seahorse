@@ -7,6 +7,6 @@ package seahorse.internal.business.customerservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class LoginResponse {
+public class LoginResponse  extends Base{
 
 }

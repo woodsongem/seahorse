@@ -25,6 +25,10 @@ public class CustomerServiceErrorCode implements ICustomerServiceErrorCode {
 	 * httpRequest) { this.httpRequest=httpRequest; }
 	 */
 
+	public String InternalError() {
+		return GetErrorCodeMapping("InternalError");
+	}
+	
 	public String InValidUsernameAndPassword() {
 		return GetErrorCodeMapping("InValid.UsernameAndPassword");
 	}

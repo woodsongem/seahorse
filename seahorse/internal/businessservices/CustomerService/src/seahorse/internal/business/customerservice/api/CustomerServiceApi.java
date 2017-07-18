@@ -18,8 +18,12 @@ import seahorse.internal.business.customerservice.IUserCredentialService;
 import seahorse.internal.business.customerservice.Factories.CustomerServiceFactory;
 import seahorse.internal.business.customerservice.api.datacontracts.LoginRequest;
 import seahorse.internal.business.customerservice.api.datacontracts.LoginResponse;
+import seahorse.internal.business.customerservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.customerservice.constants.CustomerServiceErrorCode;
+import seahorse.internal.business.customerservice.constants.ICustomerServiceErrorCode;
 import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.customerservice.datacontracts.LoginResponseMessageEntity;
+import seahorse.internal.business.customerservice.datacontracts.ResultStatus;
 
 /**
  * @author sajanmje
@@ -36,7 +40,7 @@ public class CustomerServiceApi {
 	@Path("/{login}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response Login(LoginRequest loginRequest) {
-		LoginResponse loginResponse = new LoginResponse();
+		LoginResponse loginResponse = GetLoginResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
 			IUserCredentialService userCredentialService = CustomerServiceFactory.GetUserCredentialService();
@@ -46,11 +50,21 @@ public class CustomerServiceApi {
 			loginResponse = customerServiceApiServiceMapper.MapLoginResponse(loginResponseMessageEntity);
 		} catch (Exception ex) {
 			if (loginResponse == null) {
-				loginResponse = new LoginResponse();
+				loginResponse =GetLoginResponse();
 			}
 			logger.error(ex);
 		}
 		return Response.status(httpStatus).entity(loginResponse).build();
+	}
+	private LoginResponse GetLoginResponse()
+	{
+		ICustomerServiceErrorCode customerServiceErrorCode=new CustomerServiceErrorCode();
+		LoginResponse loginResponse = new LoginResponse();		
+		loginResponse.setResultStatus(ResultStatus.Error.toString());
+		ResultMessage resultMessage=new ResultMessage();
+		resultMessage.setErrorCode(customerServiceErrorCode.InternalError());		
+		loginResponse.setresultMessage(resultMessage);
+		return loginResponse;
 	}
 
 }
