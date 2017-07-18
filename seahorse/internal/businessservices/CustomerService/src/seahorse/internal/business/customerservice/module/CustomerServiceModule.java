@@ -13,8 +13,12 @@ import seahorse.internal.business.customerservice.IAddressService;
 import seahorse.internal.business.customerservice.IEmailAddressService;
 import seahorse.internal.business.customerservice.IPhoneService;
 import seahorse.internal.business.customerservice.IUserCredentialService;
+import seahorse.internal.business.customerservice.IUserCredentialServiceMapper;
 import seahorse.internal.business.customerservice.PhoneService;
 import seahorse.internal.business.customerservice.UserCredentialService;
+import seahorse.internal.business.customerservice.UserCredentialServiceMapper;
+import seahorse.internal.business.customerservice.constants.CustomerServiceErrorCode;
+import seahorse.internal.business.customerservice.constants.ICustomerServiceErrorCode;
 import seahorse.internal.business.customerservice.dal.AddressServiceRepository;
 import seahorse.internal.business.customerservice.dal.EmailAddressServiceRepository;
 import seahorse.internal.business.customerservice.dal.IAddressServiceRepository;
@@ -23,6 +27,8 @@ import seahorse.internal.business.customerservice.dal.IPhoneServiceRepository;
 import seahorse.internal.business.customerservice.dal.IUserCredentialServiceRepository;
 import seahorse.internal.business.customerservice.dal.PhoneServiceRepository;
 import seahorse.internal.business.customerservice.dal.UserCredentialServiceRepository;
+import seahorse.internal.business.customerservice.dal.datacontracts.IUserCredentialServiceRepositoryMapper;
+import seahorse.internal.business.customerservice.dal.datacontracts.UserCredentialServiceRepositoryMapper;
 import seahorse.internal.business.customerservice.helpers.IUserCredentialServiceHelper;
 import seahorse.internal.business.customerservice.helpers.UserCredentialServiceHelper;
 import seahorse.internal.business.customerservice.validators.AddressServiceValidator;
@@ -41,6 +47,8 @@ import seahorse.internal.business.customerservice.verifiers.IPhoneServiceVerifie
 import seahorse.internal.business.customerservice.verifiers.IUserCredentialServiceVerifier;
 import seahorse.internal.business.customerservice.verifiers.PhoneServiceVerifier;
 import seahorse.internal.business.customerservice.verifiers.UserCredentialServiceVerifier;
+import seahorse.internal.business.shared.framework.ChainofResponsiblity;
+import seahorse.internal.business.shared.framework.IChainofResponsiblity;
 
 /**
  * @author admin
@@ -77,6 +85,11 @@ public class CustomerServiceModule extends AbstractModule
 		bind(IUserCredentialServiceVerifier.class).to(UserCredentialServiceVerifier.class);
 		bind(IUserCredentialServiceRepository.class).to(UserCredentialServiceRepository.class);
 		bind(IUserCredentialServiceHelper.class).to(UserCredentialServiceHelper.class);
+		bind(IUserCredentialServiceMapper.class).to(UserCredentialServiceMapper.class);
+		bind(IUserCredentialServiceRepositoryMapper.class).to(UserCredentialServiceRepositoryMapper.class);
+		
+		bind(ICustomerServiceErrorCode.class).to(CustomerServiceErrorCode.class);
+		bind(IChainofResponsiblity.class).to(ChainofResponsiblity.class);
 		
 	}
 

@@ -14,31 +14,31 @@ import javax.ws.rs.core.Response;
  */
 public class ResultMessageEntity  {
 
-	private ResultStatus _resultStatus;
-	private List<ResultMessage> _resultMessages;
-	private Response.Status _httpstatus;
+	private ResultStatus resultStatus;
+	private List<ResultMessage> resultMessages;
+	private Response.Status httpstatus;
 
 	public Response.Status GetHttpStatus() {
-		return _httpstatus;
+		return httpstatus;
 	}
 
 	public void SetHttpStatus(Response.Status _httpstatus) {
-		this._httpstatus = _httpstatus;
+		this.httpstatus = _httpstatus;
 	}
 
 	public ResultStatus GetResultStatus() {
-		return _resultStatus;
+		return resultStatus;
 	}
 
 	public void SetResultStatus(ResultStatus _resultStatus) {
-		this._resultStatus = _resultStatus;
+		this.resultStatus = _resultStatus;
 	}
 
 	/**
 	 * @return the _resultMessages
 	 */
 	public List<ResultMessage> GetResultMessages() {
-		return _resultMessages;
+		return resultMessages;
 	}
 
 	/**
@@ -46,18 +46,18 @@ public class ResultMessageEntity  {
 	 *            the _resultMessages to set
 	 */
 	public void SetResultMessages(List<ResultMessage> _resultMessages) {
-		this._resultMessages = _resultMessages;
+		this.resultMessages = _resultMessages;
 	}
 
 	/**
-	 * @param _resultMessages
+	 * @param resultMessages
 	 *            the _resultMessages to set
 	 */
 	public void SetResultMessages(ResultMessage _resultMessage) {
-		if (this._resultMessages == null) {
-			this._resultMessages = new ArrayList<>();
+		if (this.resultMessages == null) {
+			this.resultMessages = new ArrayList<>();
 		}
-		this._resultMessages.add(_resultMessage);
+		this.resultMessages.add(_resultMessage);
 	}
 
 }
