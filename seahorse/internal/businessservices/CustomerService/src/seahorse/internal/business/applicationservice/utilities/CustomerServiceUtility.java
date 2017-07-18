@@ -3,6 +3,9 @@
  */
 package seahorse.internal.business.applicationservice.utilities;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
@@ -77,5 +80,9 @@ public class CustomerServiceUtility {
 		return loginResponseMessageEntity;
 	}
 	
-	
+	public static String GetCurrentDateTimeUTC()
+	{
+		ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
+		return utc.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+	}
 }

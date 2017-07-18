@@ -7,11 +7,12 @@ package seahorse.internal.business.customerservice.datacontracts;
  * @author sajanmje
  *
  */
-public class LoginDetailMessageEntity {
+public class LoginDetailMessageEntity extends BaseMessageEntity {
 	private String username;
 	private String password;
 	private String productitem;
 	private String encryptedpassword;
+	private String type;
 	private UserCredentialMessageEntity usercredentialmessageEntity;
 	/**
 	 * @return the username
@@ -72,5 +73,17 @@ public class LoginDetailMessageEntity {
 	 */
 	public void setUsercredentialmessageEntity(UserCredentialMessageEntity usercredentialmessageEntity) {
 		this.usercredentialmessageEntity = usercredentialmessageEntity;
+	}
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 }

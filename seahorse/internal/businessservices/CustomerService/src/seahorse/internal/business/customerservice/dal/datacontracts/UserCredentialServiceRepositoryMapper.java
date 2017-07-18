@@ -4,10 +4,9 @@
 package seahorse.internal.business.customerservice.dal.datacontracts;
 
 import java.text.MessageFormat;
-
 import com.datastax.driver.core.Row;
 
-import seahorse.internal.business.customerservice.constants.Constant;
+import seahorse.internal.business.applicationservice.utilities.CustomerServiceUtility;
 import seahorse.internal.business.customerservice.constants.DataBaseColumn;
 import seahorse.internal.business.customerservice.constants.QueryConstants;
 import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessageEntity;
@@ -31,6 +30,27 @@ public class UserCredentialServiceRepositoryMapper implements IUserCredentialSer
 		userCredentialDAO.setUsername(userCredentialResult.getString(DataBaseColumn.UserName));
 		userCredentialDAO.setStatus(userCredentialResult.getString(DataBaseColumn.Status));
 		return userCredentialDAO;
+	}
+
+	@Override
+	public String getInsertLoginAttemptHistoryQuery(LoginHistoryDAO loginHistoryDAO) {
+		
+		Object[] args = { loginHistoryDAO.getCreatedBy(),CustomerServiceUtility.GetCurrentDateTimeUTC(),
+				loginHistoryDAO.getIpAddress(),CustomerServiceUtility.GetCurrentDateTimeUTC(),
+				loginHistoryDAO.getLogType(),loginHistoryDAO.getId() };
+		return new MessageFormat(QueryConstants.getInsertLoginAttemptHistoryQuery).format(args);
+	}
+
+	@Override
+	public LoginHistoryDAO mapLoginHistoryDAO(Row loginHistoryResult) {
+		
+		return null;
+	}
+
+	@Override
+	public String getInsertLoginAttemptQuery(LoginAttemptDAO loginAttemptDAO) {
+		Object[] args = { loginAttemptDAO.getUserName(),CustomerServiceUtility.GetCurrentDateTimeUTC(),loginAttemptDAO.getLoginAttempts(),loginAttemptDAO.getId() };
+		return new MessageFormat(QueryConstants.getInsertLoginAttemptQuery).format(args);
 	}
 
 }

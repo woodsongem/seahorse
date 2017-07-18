@@ -17,4 +17,10 @@ public interface IUserCredentialServiceRepositoryMapper {
 
 	UserCredentialDAO mapUserCredentialServiceDAO(Row userCredentialResult);
 
+	String getInsertLoginAttemptHistoryQuery(LoginHistoryDAO loginHistoryDAO);
+
+	LoginHistoryDAO mapLoginHistoryDAO(Row loginHistoryResult);
+
+	String getInsertLoginAttemptQuery(LoginAttemptDAO loginAttemptDAO);
+
 }

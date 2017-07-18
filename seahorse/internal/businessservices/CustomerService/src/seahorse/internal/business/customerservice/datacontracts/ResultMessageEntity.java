@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
  * @author sajanmje
  *
  */
-public class ResultMessageEntity {
+public class ResultMessageEntity  {
 
 	private ResultStatus _resultStatus;
 	private List<ResultMessage> _resultMessages;

@@ -23,6 +23,8 @@ import seahorse.internal.business.customerservice.dal.IPhoneServiceRepository;
 import seahorse.internal.business.customerservice.dal.IUserCredentialServiceRepository;
 import seahorse.internal.business.customerservice.dal.PhoneServiceRepository;
 import seahorse.internal.business.customerservice.dal.UserCredentialServiceRepository;
+import seahorse.internal.business.customerservice.helpers.IUserCredentialServiceHelper;
+import seahorse.internal.business.customerservice.helpers.UserCredentialServiceHelper;
 import seahorse.internal.business.customerservice.validators.AddressServiceValidator;
 import seahorse.internal.business.customerservice.validators.EmailAddressServiceValidator;
 import seahorse.internal.business.customerservice.validators.IAddressServiceValidator;
@@ -74,6 +76,7 @@ public class CustomerServiceModule extends AbstractModule
 		bind(IUserCredentialServiceValidator.class).to(UserCredentialServiceValidator.class);
 		bind(IUserCredentialServiceVerifier.class).to(UserCredentialServiceVerifier.class);
 		bind(IUserCredentialServiceRepository.class).to(UserCredentialServiceRepository.class);
+		bind(IUserCredentialServiceHelper.class).to(UserCredentialServiceHelper.class);
 		
 	}
 
