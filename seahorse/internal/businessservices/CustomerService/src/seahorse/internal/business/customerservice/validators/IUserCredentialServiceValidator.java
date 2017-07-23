@@ -21,5 +21,7 @@ public interface IUserCredentialServiceValidator {
 	ResultMessageEntity IsPasswordEncryptionValid(LoginDetailMessageEntity loginDetailMessageEntity);
 	
 	ResultMessageEntity IsProductItemValid(LoginDetailMessageEntity loginDetailMessageEntity);
+	
+	ResultMessageEntity IsLoginDetailMessageEntityValid(LoginDetailMessageEntity loginDetailMessageEntity) ;
 
 }

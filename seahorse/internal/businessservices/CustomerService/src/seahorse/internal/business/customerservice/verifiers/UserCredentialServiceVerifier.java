@@ -51,13 +51,21 @@ public class UserCredentialServiceVerifier implements IUserCredentialServiceVeri
 
 	@Report
 	public ResultMessageEntity VerifyLogin(LoginDetailMessageEntity loginDetailMessageEntity) {
-		List<Responsibility> responsibilities = new ArrayList<>();
+		ResultMessageEntity resultMessageEntity=new ResultMessageEntity();
+		resultMessageEntity=IsCredentialServiceValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		return resultMessageEntity;
+		
+		/*List<Responsibility> responsibilities = new ArrayList<>();
 		Responsibility responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialVerifiersClassName);
 		responsiblity.setPackageName(Constant.UserCredentialVerifiersPackage);
 		responsiblity.setMethodName("IsCredentialServiceValid");
 		responsibilities.add(responsiblity);
-		return chainofResponsiblity.ExecuteResponsibilities(loginDetailMessageEntity, responsibilities);
+		return chainofResponsiblity.ExecuteResponsibilities(loginDetailMessageEntity, responsibilities);*/
 	}
 	
 	@Report

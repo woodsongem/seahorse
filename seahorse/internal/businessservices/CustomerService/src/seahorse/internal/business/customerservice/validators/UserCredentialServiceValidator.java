@@ -22,6 +22,7 @@ import seahorse.internal.business.customerservice.datacontracts.LoginDetailMessa
 import seahorse.internal.business.customerservice.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.customerservice.datacontracts.ResultStatus;
 import seahorse.internal.business.shared.aop.InjectLogger;
+import seahorse.internal.business.shared.aop.Report;
 import seahorse.internal.business.shared.framework.IChainofResponsiblity;
 import seahorse.internal.business.shared.framework.Responsibility;
 
@@ -46,42 +47,82 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 	}
 
 	@Override
+	@Report
 	public ResultMessageEntity ValidateLogin(LoginDetailMessageEntity loginDetailMessageEntity) {
+		
+		ResultMessageEntity resultMessageEntity;
+		
+		resultMessageEntity=IsLoginDetailMessageEntityValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity=IsUserNameValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity=IsPasswordValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity=IsPasswordEncryptionValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity=IsProductItemValid(loginDetailMessageEntity);
+		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			return resultMessageEntity;
+		}
+		
+		return resultMessageEntity;
 
-		List<Responsibility> responsibilities = new ArrayList<>();
+	/*	List<Responsibility> responsibilities = new ArrayList<>();
 		Responsibility responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialValidatorsClassName);
 		responsiblity.setPackageName(Constant.UserCredentialValidatorsPackage);
 		responsiblity.setMethodName("IsLoginDetailMessageEntityValid");
+		responsiblity.setIsapplicableforparallel(false);
 		responsibilities.add(responsiblity);
 
 		responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialValidatorsClassName);
 		responsiblity.setPackageName(Constant.UserCredentialValidatorsPackage);
 		responsiblity.setMethodName("IsProductItemValid");
+		responsiblity.setIsapplicableforparallel(false);
 		responsibilities.add(responsiblity);
 
 		responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialValidatorsClassName);
 		responsiblity.setPackageName(Constant.UserCredentialValidatorsPackage);
 		responsiblity.setMethodName("IsUserNameValid");
+		responsiblity.setIsapplicableforparallel(false);
 		responsibilities.add(responsiblity);
 
 		responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialValidatorsClassName);
 		responsiblity.setPackageName(Constant.UserCredentialValidatorsPackage);
 		responsiblity.setMethodName("IsPasswordValid");
+		responsiblity.setIsapplicableforparallel(false);
 		responsibilities.add(responsiblity);
 
 		responsiblity = new Responsibility();
 		responsiblity.setClassName(Constant.UserCredentialValidatorsClassName);
 		responsiblity.setPackageName(Constant.UserCredentialValidatorsPackage);
 		responsiblity.setMethodName("IsPasswordEncryptionValid");
+		responsiblity.setIsapplicableforparallel(false);
 		responsibilities.add(responsiblity);
 
-		return chainofResponsiblity.ExecuteResponsibilities(loginDetailMessageEntity, responsibilities);
+		return chainofResponsiblity.ExecuteResponsibilities(loginDetailMessageEntity, responsibilities);*/
 	}
-
+	@Report
 	public ResultMessageEntity IsLoginDetailMessageEntityValid(LoginDetailMessageEntity loginDetailMessageEntity) {
 
 		if (loginDetailMessageEntity == null) {
@@ -92,7 +133,7 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 
 		return CustomerServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
 	}
-
+	@Report
 	public ResultMessageEntity IsUserNameValid(LoginDetailMessageEntity loginDetailMessageEntity) {
 
 		if (SeahorseUtilities.isNullOrWhitespace(loginDetailMessageEntity.getUsername())) {
@@ -109,7 +150,7 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 		return CustomerServiceUtility.GetResultMessageEntity(customerServiceErrorCode.InValidUserNameErrorCode(),
 				"UserName", ResultStatus.Error);
 	}
-
+	@Report
 	public ResultMessageEntity IsPasswordValid(LoginDetailMessageEntity loginDetailMessageEntity) {
 		if (SeahorseUtilities.isNullOrWhitespace(loginDetailMessageEntity.getPassword())) {
 			return CustomerServiceUtility.GetResultMessageEntity(customerServiceErrorCode.EmptyPasswordErrorCode(),
@@ -124,7 +165,7 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 		return CustomerServiceUtility.GetResultMessageEntity(customerServiceErrorCode.InValidPasswordErrorCode(),
 				"Password", ResultStatus.Error);
 	}
-
+	@Report
 	public ResultMessageEntity IsPasswordEncryptionValid(LoginDetailMessageEntity loginDetailMessageEntity) {
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 		loginDetailMessageEntity
@@ -132,7 +173,7 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 
 		return CustomerServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
 	}
-
+	@Report
 	public ResultMessageEntity IsProductItemValid(LoginDetailMessageEntity loginDetailMessageEntity) {
 		if (loginDetailMessageEntity.getProductitem() != null && loginDetailMessageEntity.getProductitem().isEmpty()) {
 			loginDetailMessageEntity.setProductitem(Constant.DefaultProductItem);
