@@ -16,6 +16,7 @@ CREATE TABLE seahorse_dev.ch_application (
     modifieddate timestamp,
     nationalidentifier set<frozen<seahorse_dev.nationalidentifier>>,
     phone set<frozen<seahorse_dev.phone>>,
+    userid uuid,
     PRIMARY KEY ((lastname,dateofbirth),id)
 ) WITH read_repair_chance = 0.0
    AND dclocal_read_repair_chance = 0.1
@@ -36,3 +37,4 @@ CREATE TABLE seahorse_dev.ch_application (
 CREATE INDEX ch_application_firstname ON seahorse_dev.ch_application (firstname);
 CREATE INDEX ch_application_decision ON seahorse_dev.ch_application (decision);
 CREATE INDEX ch_application_dateofbirth ON seahorse_dev.ch_application (dateofbirth);
+create index ch_application_userid on seahorse_dev.ch_application(userid);
