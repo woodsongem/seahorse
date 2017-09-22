@@ -53,7 +53,7 @@ public class CustomerServiceErrorCode implements ICustomerServiceErrorCode {
 	private String GetErrorCodeMapping(String errorCode) {
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Seahorse.CustomerService.API");
+		sb.append("Seahorse.CustomerServiceAPI._httpmethod");
 		// sb.append("." + httpRequest.);
 		sb.append("." + errorCode);
 		return sb.toString();

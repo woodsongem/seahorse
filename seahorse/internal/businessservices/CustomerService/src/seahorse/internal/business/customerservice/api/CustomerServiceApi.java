@@ -37,7 +37,7 @@ public class CustomerServiceApi {
 	private HttpServletRequest httpRequest;
 
 	@POST
-	@Path("/{login}")
+	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response Login(LoginRequest loginRequest) {
 		LoginResponse loginResponse = GetLoginResponse();
@@ -48,6 +48,7 @@ public class CustomerServiceApi {
 			LoginDetailMessageEntity loginDetailMessageEntity = customerServiceApiServiceMapper.MapLoginDetailMessageEntity(loginRequest);
 			LoginResponseMessageEntity loginResponseMessageEntity = userCredentialService.Login(loginDetailMessageEntity);
 			loginResponse = customerServiceApiServiceMapper.MapLoginResponse(loginResponseMessageEntity);
+			httpStatus=loginResponseMessageEntity.GetHttpStatus();
 		} catch (Exception ex) {
 			if (loginResponse == null) {
 				loginResponse =GetLoginResponse();

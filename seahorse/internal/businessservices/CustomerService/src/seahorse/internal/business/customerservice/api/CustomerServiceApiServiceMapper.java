@@ -40,8 +40,15 @@ public class CustomerServiceApiServiceMapper implements ICustomerServiceApiServi
 	public LoginResponse MapLoginResponse(LoginResponseMessageEntity loginResponseMessageEntity) {
 		LoginResponse loginResponse = new LoginResponse();
 		if (loginResponseMessageEntity == null) {
-			loginResponse = GetLoginResponse();
+			return loginResponse = GetLoginResponse();
 		}
+		if(loginResponseMessageEntity.GetResultStatus() != ResultStatus.Success)
+		{
+			loginResponse.setResultStatus(loginResponseMessageEntity.GetResultStatus().toString());
+			loginResponse.setresultMessage(GetResultMessage(loginResponseMessageEntity.GetResultMessages()));
+			return loginResponse;
+		}
+		
 
 		return loginResponse;
 	}
@@ -54,6 +61,18 @@ public class CustomerServiceApiServiceMapper implements ICustomerServiceApiServi
 		resultMessage.setErrorCode(customerServiceErrorCode.InternalError());
 		loginResponse.setresultMessage(resultMessage);
 		return loginResponse;
+	}
+	
+	private List<ResultMessage>  GetResultMessage(List<seahorse.internal.business.customerservice.datacontracts.ResultMessage> resultMessageEntity)
+	{
+		List<ResultMessage>  resultMessages=new ArrayList<>();
+		for (seahorse.internal.business.customerservice.datacontracts.ResultMessage resultMessage : resultMessageEntity) {
+			ResultMessage resultMessageApi=new ResultMessage();
+			resultMessageApi.setErrorCode(resultMessage.getErrorCode());
+			resultMessageApi.setParameter(resultMessage.getParameter());
+			resultMessages.add(resultMessageApi);
+		}
+		return resultMessages;
 	}
 
 }
