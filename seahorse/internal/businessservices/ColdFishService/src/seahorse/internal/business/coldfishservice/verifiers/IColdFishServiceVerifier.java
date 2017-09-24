@@ -13,5 +13,9 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
 public interface IColdFishServiceVerifier {
 
 	ResultMessageEntity VerifyCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	
+	ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	
+	ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

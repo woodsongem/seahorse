@@ -14,6 +14,12 @@ public interface IColdFishServiceValidator {
 
 	ResultMessageEntity ValidateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
+	ResultMessageEntity IsIncomeTypeMessageEntityValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
+	ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	
+	ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	
+	ResultMessageEntity IsDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

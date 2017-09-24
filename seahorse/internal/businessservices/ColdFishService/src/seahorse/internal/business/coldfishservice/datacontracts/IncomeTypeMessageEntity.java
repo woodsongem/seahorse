@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.datacontracts;
 
+import java.util.UUID;
+
 import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -16,4 +18,6 @@ public class IncomeTypeMessageEntity extends BaseMessageEntity {
 	public String UserId;
 	
 	public String Description;
+	
+	public UUID ParsedUserId;
 }

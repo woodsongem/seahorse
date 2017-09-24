@@ -17,5 +17,14 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity)
+	{
+		
+	}
+	
+	public ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity)
+	{
+		
+	}
 }

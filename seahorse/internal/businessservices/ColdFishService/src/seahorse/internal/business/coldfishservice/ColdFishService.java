@@ -11,6 +11,8 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.postprocessors.IColdFishServicePostProcessor;
+import seahorse.internal.business.coldfishservice.processors.IColdFishServiceProcessor;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 import seahorse.internal.business.coldfishservice.validators.IColdFishServiceValidator;
 import seahorse.internal.business.coldfishservice.verifiers.IColdFishServiceVerifier;
@@ -25,16 +27,22 @@ public class ColdFishService implements IColdFishService {
 	private IColdFishServiceMapper coldFishServiceMapper;
 	private IColdFishServiceVerifier coldFishServiceVerifier;
 	private IColdFishServiceValidator coldFishServiceValidator;
+	private IColdFishServiceProcessor coldFishServiceProcessor;
+	private IColdFishServicePostProcessor coldFishServicePostProcessor;
 	
 	@InjectLogger  Logger logger;
 
 	public ColdFishService(IColdFishServiceMapper coldFishServiceMapper,
 			IColdFishServiceVerifier coldFishServiceVerifier,
-			IColdFishServiceValidator coldFishServiceValidator)
+			IColdFishServiceValidator coldFishServiceValidator,
+			IColdFishServiceProcessor coldFishServiceProcessor,
+			IColdFishServicePostProcessor coldFishServicePostProcessor)
 	{
 		this.coldFishServiceMapper=coldFishServiceMapper;
 		this.coldFishServiceVerifier=coldFishServiceVerifier;
 		this.coldFishServiceValidator=coldFishServiceValidator;
+		this.coldFishServiceProcessor=coldFishServiceProcessor;
+		this.coldFishServicePostProcessor=coldFishServicePostProcessor;
 	}
 	
 	public IncomeTypeResponseMessageEntity CreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
@@ -49,19 +57,19 @@ public class ColdFishService implements IColdFishService {
 		
 		//Verifier
 	    resultMessageEntity = coldFishServiceVerifier.VerifyCreateIncomeType(incomeTypeMessageEntity);
-
 		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
 			return ColdFishServiceUtility.GetIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
-		}
+		}		
 		
 		//Processor
-		//resultMessageEntity=userCredentialServiceHelper.LoginProcessor(incomeTypeMessageEntity);
+		resultMessageEntity=coldFishServiceProcessor.CreateIncomeTypeProcessor(incomeTypeMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
 			return ColdFishServiceUtility.GetIncomeTypeResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 		}
 		
-		//Post Process
-		//userCredentialServiceHelper.LoginPostProcessor(incomeTypeMessageEntity);		
+		//Post Processor
+		resultMessageEntity=coldFishServicePostProcessor.CreateIncomeTypePostProcessor(incomeTypeMessageEntity);
+				
 		
 		return coldFishServiceMapper.MapIncomeTypeResponseMessageEntity(resultMessageEntity, incomeTypeMessageEntity);	
 	}
