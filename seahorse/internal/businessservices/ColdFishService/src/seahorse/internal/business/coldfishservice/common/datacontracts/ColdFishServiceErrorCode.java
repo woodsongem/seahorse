@@ -44,4 +44,14 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String EmptyDescriptionErrorCode() {
 		return GetErrorCodeMapping("Description.Empty");
 	}
+
+	@Override
+	public String DuplicateIncomeTypeInDefault() {
+		return GetErrorCodeMapping("Name.AlreadyExist.Default");
+	}
+
+	@Override
+	public String DuplicateIncomeType() {
+		return GetErrorCodeMapping("Name.AlreadyExist");
+	}
 }
