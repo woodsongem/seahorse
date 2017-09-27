@@ -6,6 +6,8 @@ package seahorse.internal.business.coldfishservice.dal.datacontracts;
 import java.util.Date;
 import java.util.UUID;
 
+import com.datastax.driver.core.LocalDate;
+
 /**
  * @author sajanmje
  *
@@ -16,10 +18,10 @@ public class IncometypeDAO {
 	public String Status;
 	public UUID Id;
 	public String CreatedBy;
-	public Date CreatedDate;
+	public LocalDate CreatedDate;
 	public String Description;
 	public String ModifiedBy;
-	public Date ModifiedDate;
+	public LocalDate ModifiedDate;
 	public UUID UserId;
 	public String Category;	
 }

@@ -41,7 +41,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0);
-			String applicationQuery = coldFishServiceRepositoryMapper.getIncometypeByUserIdQuery();
+			String applicationQuery = coldFishServiceRepositoryMapper.getIncometypeByUserIdQuery(userId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
