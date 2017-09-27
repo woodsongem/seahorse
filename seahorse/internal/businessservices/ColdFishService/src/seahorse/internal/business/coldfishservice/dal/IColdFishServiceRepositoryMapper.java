@@ -17,4 +17,6 @@ public interface IColdFishServiceRepositoryMapper {
 
 	IncometypeDAO mapIncometypeDAO(Row incometypeDAOResult);
 
+	String getIncometypeByUserIdQuery();
+
 }

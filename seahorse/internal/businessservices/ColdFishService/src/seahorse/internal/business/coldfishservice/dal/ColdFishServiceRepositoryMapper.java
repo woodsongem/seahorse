@@ -25,4 +25,10 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		return null;
 	}
 
+	@Override
+	public String getIncometypeByUserIdQuery() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
