@@ -6,6 +6,9 @@ package seahorse.internal.business.coldfishservice.dal;
 import java.util.List;
 
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 
 /**
  * @author sajanmje
@@ -13,7 +16,11 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDA
  */
 public interface IColdFishServiceRepository {
 
-	 List<IncometypeDAO> GetIncometypeByUserId(String userId);
-	 
-	 List<IncometypeDAO> GetDefaultIncometype();
+	List<IncometypeDAO> getIncometypeByUserId(String userId);
+
+	List<IncometypeDAO> getDefaultIncometype();
+
+	UserCredentialMessageEntity getUserCredential(LoginDetailMessageEntity loginDetailMessageEntity);
+
+	IncometypeDAO createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
 }

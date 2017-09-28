@@ -5,6 +5,8 @@ package seahorse.internal.business.coldfishservice.validators;
 
 import java.util.UUID;
 
+import com.google.inject.Inject;
+
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
@@ -19,16 +21,16 @@ import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtili
 public class ColdFishServiceValidator implements IColdFishServiceValidator {
 
 	private final IColdFishServiceErrorCode coldFishServiceErrorCode;
-	private final IReadPropertiesFile readPropertiesFile;
-	// private final IChainofResponsiblity chainofResponsiblity;
+	//private final IReadPropertiesFile readPropertiesFile;
 
+	@Inject
 	public ColdFishServiceValidator(IColdFishServiceErrorCode coldFishServiceErrorCode,
 			IReadPropertiesFile readPropertiesFile) {
 		this.coldFishServiceErrorCode = coldFishServiceErrorCode;
-		this.readPropertiesFile = readPropertiesFile;
+		//this.readPropertiesFile = readPropertiesFile;
 	}
 
-	@Override
+	
 	public ResultMessageEntity ValidateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 
 		ResultMessageEntity resultMessageEntity;

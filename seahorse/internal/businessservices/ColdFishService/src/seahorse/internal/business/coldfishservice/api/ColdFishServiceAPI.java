@@ -42,9 +42,9 @@ public class ColdFishServiceAPI {
 	@POST
 	@Path("/IncomeType")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response CreateIncomeType(IncomeTypeRequest incomeTypeRequest) {
+	public Response createIncomeType(IncomeTypeRequest incomeTypeRequest) {
 	
-		IncomeTypeResponse loginResponse = GetIncomeTypeResponse();
+		IncomeTypeResponse loginResponse = getIncomeTypeResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
 			IColdFishService coldFishService = ColdFishServiceFactory.GetColdFishService();
@@ -55,13 +55,14 @@ public class ColdFishServiceAPI {
 			httpStatus=incomeTypeResponseMessageEntity.GetHttpStatus();
 		} catch (Exception ex) {
 			if (loginResponse == null) {
-				loginResponse =GetIncomeTypeResponse();
+				loginResponse =getIncomeTypeResponse();
 			}
 			logger.error(ex);
 		}
 		return Response.status(httpStatus).entity(loginResponse).build();
 	}
-	private IncomeTypeResponse GetIncomeTypeResponse()
+	
+	private IncomeTypeResponse getIncomeTypeResponse()
 	{
 		IColdFishServiceErrorCode coldFishServiceErrorCode=new ColdFishServiceErrorCode();
 		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();		

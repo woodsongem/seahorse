@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
 /**
  * @author sajanmje
@@ -40,5 +41,16 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	public String getIncometypeByUserIdQuery(String userId) {
 		Object[] args = { userId };
 		return new MessageFormat(QueryConstants.GETINCOMETYPEBYUSERIDQUERY).format(args);
+	}
+
+	@Override
+	public String createIncomeTypeQuery(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		
+		return null;
+	}
+
+	@Override
+	public IncometypeDAO mapcreateIncomeType(Row incometypeDAOResult) {
+		return null;
 	}
 }

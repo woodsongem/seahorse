@@ -15,6 +15,9 @@ import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -37,7 +40,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		this.readPropertiesFile = readPropertiesFile;
 	}
 
-	public List<IncometypeDAO> GetIncometypeByUserId(String userId) {
+	public List<IncometypeDAO> getIncometypeByUserId(String userId) {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0);
@@ -55,7 +58,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		return incometypeDAOs;
 	}
 
-	public List<IncometypeDAO> GetDefaultIncometype() {
+	public List<IncometypeDAO> getDefaultIncometype() {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0);
@@ -71,5 +74,28 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			logger.error("");
 		}
 		return incometypeDAOs;
+	}
+
+	public UserCredentialMessageEntity getUserCredential(LoginDetailMessageEntity loginDetailMessageEntity) {
+		
+		return null;
+	}
+
+	@Override
+	public IncometypeDAO createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		IncometypeDAO incometypeDAO = new IncometypeDAO();
+		try {
+			cassandraConnector.connect(null, 0);
+			String applicationQuery = coldFishServiceRepositoryMapper.createIncomeTypeQuery(incomeTypeMessageEntity);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incometypeDAOResult = resultSet.one();
+				incometypeDAO = coldFishServiceRepositoryMapper.mapcreateIncomeType(incometypeDAOResult);				
+			}
+		} catch (Exception exception) {
+			logger.error("");
+		}
+		return incometypeDAO;
 	}
 }

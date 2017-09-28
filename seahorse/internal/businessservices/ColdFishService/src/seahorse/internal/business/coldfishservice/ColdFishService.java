@@ -7,6 +7,8 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.Logger;
 
+import com.google.inject.Inject;
+
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -32,6 +34,7 @@ public class ColdFishService implements IColdFishService {
 	
 	@InjectLogger  Logger logger;
 
+	@Inject
 	public ColdFishService(IColdFishServiceMapper coldFishServiceMapper,
 			IColdFishServiceVerifier coldFishServiceVerifier,
 			IColdFishServiceValidator coldFishServiceValidator,
@@ -45,10 +48,8 @@ public class ColdFishService implements IColdFishService {
 		this.coldFishServicePostProcessor=coldFishServicePostProcessor;
 	}
 	
-	public IncomeTypeResponseMessageEntity CreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		
-		//Set
-		
+	public IncomeTypeResponseMessageEntity CreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {		
+		//Set		
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.ValidateCreateIncomeType(incomeTypeMessageEntity);
 	    if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
