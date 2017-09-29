@@ -12,22 +12,20 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeRespon
  * @author sajanmje
  *
  */
-public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper{
+public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 
-	
-	public IncomeTypeMessageEntity MapIncomeTypeMessageEntity(IncomeTypeRequest incomeTypeRequest) {
-		IncomeTypeMessageEntity incomeTypeMessageEntity=new IncomeTypeMessageEntity();
-		incomeTypeMessageEntity.name=incomeTypeRequest.name;
-		incomeTypeMessageEntity.Description=incomeTypeRequest.Description;
-		incomeTypeMessageEntity.UserId=incomeTypeRequest.UserId;
-		incomeTypeMessageEntity.CreatedBy=incomeTypeRequest.CreatedBy;		
+	public IncomeTypeMessageEntity mapIncomeTypeMessageEntity(IncomeTypeRequest incomeTypeRequest) {
+		IncomeTypeMessageEntity incomeTypeMessageEntity = new IncomeTypeMessageEntity();
+		incomeTypeMessageEntity.setName(incomeTypeRequest.getName());
+		incomeTypeMessageEntity.setDescription(incomeTypeRequest.getDescription());
+		incomeTypeMessageEntity.setUserId(incomeTypeRequest.getUserId());
+		incomeTypeMessageEntity.setCreatedBy(incomeTypeRequest.getCreatedBy());
 		return incomeTypeMessageEntity;
 	}
 
-	
-	public IncomeTypeResponse MapIncomeTypeResponse(IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity) {
-		IncomeTypeResponse incomeTypeResponse=new IncomeTypeResponse();
-		incomeTypeResponse.Id=incomeTypeResponseMessageEntity.toString();
+	public IncomeTypeResponse mapIncomeTypeResponse(IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity) {
+		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();
+		incomeTypeResponse.setId(incomeTypeResponseMessageEntity.toString());
 		return incomeTypeResponse;
 	}
 

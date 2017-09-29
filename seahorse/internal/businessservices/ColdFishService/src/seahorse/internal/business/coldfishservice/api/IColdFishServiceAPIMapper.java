@@ -14,8 +14,8 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeRespon
  */
 public interface IColdFishServiceAPIMapper {
 
-	IncomeTypeMessageEntity MapIncomeTypeMessageEntity(IncomeTypeRequest incomeTypeRequest);
+	IncomeTypeMessageEntity mapIncomeTypeMessageEntity(IncomeTypeRequest incomeTypeRequest);
 
-	IncomeTypeResponse MapIncomeTypeResponse(IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity);
+	IncomeTypeResponse mapIncomeTypeResponse(IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity);
 
 }

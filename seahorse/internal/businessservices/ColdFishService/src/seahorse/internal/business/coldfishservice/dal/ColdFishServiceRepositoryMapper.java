@@ -23,17 +23,17 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public IncometypeDAO mapIncometypeDAO(Row incometypeDAOResult) {
-		IncometypeDAO incometypeDAO = new IncometypeDAO();		
-		incometypeDAO.Id=incometypeDAOResult.getUUID(DataBaseColumn.ID);
-		incometypeDAO.Category=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CATEGORY);
-		incometypeDAO.CreatedBy=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CREATEDBY);
-		incometypeDAO.CreatedDate=incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_CREATEDDATE);
-		incometypeDAO.Description=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_DESCRIPTION);
-		incometypeDAO.ModifiedBy=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_MODIFIEDBY);
-		incometypeDAO.ModifiedDate=incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_MODIFIEDDATE);
-		incometypeDAO.Name=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_NAME);
-		incometypeDAO.Status=incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_STATUS);
-		incometypeDAO.UserId=incometypeDAOResult.getUUID(DataBaseColumn.INCOMETYPE_USERID);
+		IncometypeDAO incometypeDAO = new IncometypeDAO();
+		incometypeDAO.setId(incometypeDAOResult.getUUID(DataBaseColumn.ID));
+		incometypeDAO.setCategory(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CATEGORY));
+		incometypeDAO.setCreatedBy(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CREATEDBY));
+		incometypeDAO.setCreatedDate(incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_CREATEDDATE));
+		incometypeDAO.setDescription(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_DESCRIPTION));
+		incometypeDAO.setModifiedBy(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_MODIFIEDBY));
+		incometypeDAO.setModifiedDate(incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_MODIFIEDDATE));
+		incometypeDAO.setName(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_NAME));
+		incometypeDAO.setStatus(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_STATUS));
+		incometypeDAO.setUserId(incometypeDAOResult.getUUID(DataBaseColumn.INCOMETYPE_USERID));
 		return incometypeDAO;
 	}
 
@@ -45,8 +45,11 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public String createIncomeTypeQuery(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		
-		return null;
+		Object[] args = { incomeTypeMessageEntity.getUserId(), "ACTIVE", incomeTypeMessageEntity.getId(),
+				incomeTypeMessageEntity.getCategory(), incomeTypeMessageEntity.getCreatedBy(),
+				incomeTypeMessageEntity.getCreatedDate(), incomeTypeMessageEntity.getDescription(),
+				incomeTypeMessageEntity.getName() };
+		return new MessageFormat(QueryConstants.CREATEINCOMETYPEQUERY).format(args);
 	}
 
 	@Override

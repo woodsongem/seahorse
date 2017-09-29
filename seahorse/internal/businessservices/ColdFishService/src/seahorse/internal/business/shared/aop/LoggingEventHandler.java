@@ -26,18 +26,18 @@ public class LoggingEventHandler implements MethodInterceptor {
 		String methodName = invocation.getMethod().getName();
 		String className = invocation.getMethod().getDeclaringClass().getName();
 		StringBuilder sb = new StringBuilder();			
-		sb.append(AopConstant.CallStatus + "=" + AopConstant.CallStarted);
-		sb.append(" " + AopConstant.MethodName + "=" + methodName);
-		sb.append(" " + AopConstant.ClassName + "=" + className);		
+		sb.append(AopConstant.CALLSTATUS + "=" + AopConstant.CALLSTARTED);
+		sb.append(" " + AopConstant.METHODNAME + "=" + methodName);
+		sb.append(" " + AopConstant.CLASSNAME + "=" + className);		
 		logger.info(sb.toString());
 		Stopwatch stopwatch = new Stopwatch();	
 		Object resObject = invocation.proceed();		
 		sb = new StringBuilder();
-		sb.append(AopConstant.CallStatus + "=" + AopConstant.CallEnded);
-		sb.append(" " + AopConstant.MethodName + "=" + methodName);
+		sb.append(AopConstant.CALLSTATUS + "=" + AopConstant.CALLENDED);
+		sb.append(" " + AopConstant.METHODNAME + "=" + methodName);
 		long dutation = stopwatch.reset();
-		sb.append(" " + AopConstant.Duration + "=" + Long.toString(dutation));
-		sb.append(" " + AopConstant.ClassName + "=" + className);
+		sb.append(" " + AopConstant.DURATION + "=" + Long.toString(dutation));
+		sb.append(" " + AopConstant.CLASSNAME + "=" + className);
 		logger.info(sb.toString());
 		return resObject;
 	}

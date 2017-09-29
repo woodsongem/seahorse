@@ -10,6 +10,6 @@ package seahorse.internal.business.coldfishservice.common;
  */
 public interface IReadPropertiesFile {
 	
-	String GetProperties(String key);
+	String getProperties(String key);
 
 }

@@ -29,7 +29,7 @@ public class AopLoggingRequestFilter implements ContainerRequestFilter {
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		
-		String applicationTrackingDetail = requestContext.getHeaderString(AopConstant.ApplicationTracking);
+		String applicationTrackingDetail = requestContext.getHeaderString(AopConstant.APPLICATIONTRACKING);
 		if (applicationTrackingDetail == null)
 			return;
 		ObjectMapper mapper = new ObjectMapper();
@@ -50,6 +50,6 @@ public class AopLoggingRequestFilter implements ContainerRequestFilter {
 		else
 			aopApplicationTracking.setTrackingid(applicationTracking.getTrackingId());
 		
-		requestContext.setProperty(AopConstant.AopApplicationTracking, aopApplicationTracking);
+		requestContext.setProperty(AopConstant.AOPAPPLICATIONTRACKING, aopApplicationTracking);
 	}
 }

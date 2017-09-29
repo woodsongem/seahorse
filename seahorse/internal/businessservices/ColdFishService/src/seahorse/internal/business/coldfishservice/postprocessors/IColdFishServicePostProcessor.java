@@ -12,6 +12,6 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
  */
 public interface IColdFishServicePostProcessor {
 
-	ResultMessageEntity CreateIncomeTypePostProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity createIncomeTypePostProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

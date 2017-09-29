@@ -12,6 +12,6 @@ import seahorse.internal.business.coldfishservice.processors.datacontracts.Login
  */
 public interface IColdFishServiceVerifierMapper {
 
-	LoginDetailMessageEntity MapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	LoginDetailMessageEntity mapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

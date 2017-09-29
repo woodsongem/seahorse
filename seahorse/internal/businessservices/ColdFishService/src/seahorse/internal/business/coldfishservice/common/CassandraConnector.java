@@ -12,7 +12,7 @@ import com.datastax.driver.core.Metadata;
 import com.datastax.driver.core.Session;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.coldfishservice.Constants.Constant;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 
 /**
  * @author sajanmje
@@ -96,11 +96,11 @@ public class CassandraConnector implements ICassandraConnector {
 	}
 
 	private String getNode() {
-		return _readPropertiesFile.GetProperties(Constant.CassandraServe);
+		return _readPropertiesFile.getProperties(Constant.CASSANDRASERVE);
 	}
 
 	private int getPort() {
-		String port = _readPropertiesFile.GetProperties(Constant.CassandraPort);
+		String port = _readPropertiesFile.getProperties(Constant.CASSANDRAPORT);
 		if (StringUtils.isNumeric(port)) {
 			return Integer.parseInt(port);
 		}

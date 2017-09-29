@@ -9,11 +9,11 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
  */
 public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 
-	public String InternalError() {
-		return GetErrorCodeMapping("InternalError");
+	public String internalError() {
+		return getErrorCodeMapping("InternalError");
 	}
 	
-	private String GetErrorCodeMapping(String errorCode) {
+	private String getErrorCodeMapping(String errorCode) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Seahorse.ColdFishAPI._httpmethod");
 		sb.append("." + errorCode);
@@ -21,37 +21,37 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	}
 
 	@Override
-	public String EmptyIncomeTypeMessageEntityErrorCode() {		
-		return GetErrorCodeMapping("IncomeTypeMessageEntity.Empty");
+	public String emptyIncomeTypeMessageEntityErrorCode() {		
+		return getErrorCodeMapping("IncomeTypeMessageEntity.Empty");
 	}
 
 	@Override
-	public String EmptyNameErrorCode() {
-		return GetErrorCodeMapping("Name.Empty");
+	public String emptyNameErrorCode() {
+		return getErrorCodeMapping("Name.Empty");
 	}
 
 	@Override
-	public String EmptyUseridErrorCode() {
-		return GetErrorCodeMapping("UserId.Empty");
+	public String emptyUseridErrorCode() {
+		return getErrorCodeMapping("UserId.Empty");
 	}
 
 	@Override
-	public String InValidUserIdErrorCode() {
-		return GetErrorCodeMapping("UserId.InValid");
+	public String inValidUserIdErrorCode() {
+		return getErrorCodeMapping("UserId.InValid");
 	}
 
 	@Override
-	public String EmptyDescriptionErrorCode() {
-		return GetErrorCodeMapping("Description.Empty");
+	public String emptyDescriptionErrorCode() {
+		return getErrorCodeMapping("Description.Empty");
 	}
 
 	@Override
-	public String DuplicateIncomeTypeInDefault() {
-		return GetErrorCodeMapping("Name.AlreadyExist.Default");
+	public String duplicateIncomeTypeInDefault() {
+		return getErrorCodeMapping("Name.AlreadyExist.Default");
 	}
 
 	@Override
-	public String DuplicateIncomeType() {
-		return GetErrorCodeMapping("Name.AlreadyExist");
+	public String duplicateIncomeType() {
+		return getErrorCodeMapping("Name.AlreadyExist");
 	}
 }

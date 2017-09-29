@@ -12,14 +12,14 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
  */
 public interface IColdFishServiceValidator {
 
-	ResultMessageEntity ValidateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity validateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
-	ResultMessageEntity IsIncomeTypeMessageEntityValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isIncomeTypeMessageEntityValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
-	ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
-	ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
-	ResultMessageEntity IsDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

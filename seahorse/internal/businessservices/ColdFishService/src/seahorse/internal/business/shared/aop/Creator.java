@@ -13,24 +13,28 @@ import com.google.inject.Injector;
  */
 public class Creator {
 
+	private Creator() {
+		throw new IllegalStateException("Creator class");
+	}
+
 	private static Injector injector = null;
 
-	public static Injector Init() {
+	public static Injector init() {
 		Guice.createInjector(new ReportModule());
-		injector = AddNewExtension(new ShardModules());
+		injector = addNewExtension(new ShardModules());
 		return injector;
 	}
 
-	public static Injector AddNewExtension(AbstractModule abstractModule) {
+	public static Injector addNewExtension(AbstractModule abstractModule) {
 		if (injector == null) {
-			Init();
+			init();
 		}
 
 		injector = injector.createChildInjector(abstractModule);
 		return injector;
 	}
 
-	public static <T> T GetInstance(Class<T> type) {
+	public static <T> T getInstance(Class<T> type) {
 		return injector.getInstance(type);
 	}
 

@@ -23,8 +23,8 @@ public class ResultMessage {
 	 * @param _parameter
 	 *            the _parameter to set
 	 */
-	public void setParameter(String _parameter) {
-		this.parameter = _parameter;
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
 	}
 
 	/**
@@ -38,8 +38,8 @@ public class ResultMessage {
 	 * @param _errorCode
 	 *            the _errorCode to set
 	 */
-	public void setErrorCode(String _errorCode) {
-		this.errorCode = _errorCode;
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
 	}
 
 }

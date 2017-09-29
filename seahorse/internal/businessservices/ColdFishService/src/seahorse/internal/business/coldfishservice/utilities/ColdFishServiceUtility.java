@@ -26,13 +26,13 @@ public class ColdFishServiceUtility {
 
 	}
 
-	public static String GetResultMessageEntityLogString(ResultMessageEntity result) {
+	public static String getResultMessageEntityLogString(ResultMessageEntity result) {
 		if (result == null)
 			return null;
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("ResultStatus=" + result.GetResultStatus() + " ");
-		List<ResultMessage> resultMessages = result.GetResultMessages();
+		sb.append("ResultStatus=" + result.getResultStatus() + " ");
+		List<ResultMessage> resultMessages = result.getResultMessages();
 		if (resultMessages == null)
 			return sb.toString();
 		sb.append(" ResultMessages=[ ");
@@ -46,7 +46,7 @@ public class ColdFishServiceUtility {
 		return sb.toString();
 	}
 
-	public static ResultMessage GetResultMessage(String errorCode, String parameter) {
+	public static ResultMessage getResultMessage(String errorCode, String parameter) {
 		ResultMessage resultMessage = new ResultMessage();
 		if (errorCode != null)
 			resultMessage.setErrorCode(errorCode);
@@ -55,29 +55,29 @@ public class ColdFishServiceUtility {
 		return resultMessage;
 	}
 
-	public static ResultMessageEntity GetResultMessageEntity(String errorCode, String parameter,ResultStatus resultStatus) {
+	public static ResultMessageEntity getResultMessageEntity(String errorCode, String parameter,ResultStatus resultStatus) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		resultMessageEntity.SetResultStatus(resultStatus);
+		resultMessageEntity.setResultStatus(resultStatus);
 		if(errorCode != null || parameter != null ){
 			ResultMessage resultMessage = new ResultMessage();
 			resultMessage.setErrorCode(errorCode);
 			resultMessage.setParameter(parameter);
-			resultMessageEntity.SetResultMessages(resultMessage);
+			resultMessageEntity.setResultMessages(resultMessage);
 		}		
 		return resultMessageEntity;
 	}
 
 
 	
-	public static String GetCurrentDateTimeUTC()
+	public static String getCurrentDateTimeUTC()
 	{
 		ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
 		return utc.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 	}
 
-	public static IncomeTypeResponseMessageEntity GetIncomeTypeResponseMessageEntity(
+	public static IncomeTypeResponseMessageEntity getIncomeTypeResponseMessageEntity(
 			ResultMessageEntity resultMessageEntity, Status badRequest) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 }

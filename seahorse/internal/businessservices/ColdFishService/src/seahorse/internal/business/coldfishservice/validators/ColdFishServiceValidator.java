@@ -21,88 +21,82 @@ import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtili
 public class ColdFishServiceValidator implements IColdFishServiceValidator {
 
 	private final IColdFishServiceErrorCode coldFishServiceErrorCode;
-	//private final IReadPropertiesFile readPropertiesFile;
 
 	@Inject
 	public ColdFishServiceValidator(IColdFishServiceErrorCode coldFishServiceErrorCode,
 			IReadPropertiesFile readPropertiesFile) {
 		this.coldFishServiceErrorCode = coldFishServiceErrorCode;
-		//this.readPropertiesFile = readPropertiesFile;
+
 	}
 
-	
-	public ResultMessageEntity ValidateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public ResultMessageEntity validateCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 
 		ResultMessageEntity resultMessageEntity;
-		
-		resultMessageEntity=IsIncomeTypeMessageEntityValid(incomeTypeMessageEntity);
-		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
-		{
+
+		resultMessageEntity = isIncomeTypeMessageEntityValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		
-		resultMessageEntity=IsNameValid(incomeTypeMessageEntity);
-		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
-		{
+
+		resultMessageEntity = isNameValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		
-		resultMessageEntity=IsUserIdValid(incomeTypeMessageEntity);
-		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
-		{
+
+		resultMessageEntity = isUserIdValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		
-		resultMessageEntity=IsDescriptionValid(incomeTypeMessageEntity);
-		if(resultMessageEntity.GetResultStatus() != ResultStatus.Success)
-		{
+
+		resultMessageEntity = isDescriptionValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		
-		return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity IsIncomeTypeMessageEntityValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public ResultMessageEntity isIncomeTypeMessageEntityValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		if (incomeTypeMessageEntity != null) {
-			return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 
-		return ColdFishServiceUtility.GetResultMessageEntity(
-				coldFishServiceErrorCode.EmptyIncomeTypeMessageEntityErrorCode(), "IncomeTypeMessageEntity",
-				ResultStatus.Error);
+		return ColdFishServiceUtility.getResultMessageEntity(
+				coldFishServiceErrorCode.emptyIncomeTypeMessageEntityErrorCode(), "IncomeTypeMessageEntity",
+				ResultStatus.ERROR);
 	}
 
-	public ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		if (incomeTypeMessageEntity.name != null) {
-			return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+	public ResultMessageEntity isNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		if (incomeTypeMessageEntity.getName() != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 
-		return ColdFishServiceUtility.GetResultMessageEntity(coldFishServiceErrorCode.EmptyNameErrorCode(), "Name",
-				ResultStatus.Error);
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyNameErrorCode(), "Name",
+				ResultStatus.ERROR);
 	}
 
-	public ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		if (incomeTypeMessageEntity.UserId == null) {
-			return ColdFishServiceUtility.GetResultMessageEntity(coldFishServiceErrorCode.EmptyUseridErrorCode(),
-					"Name", ResultStatus.Error);
+	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		if (incomeTypeMessageEntity.getUserId() == null) {
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),
+					"Name", ResultStatus.ERROR);
 		}
 
 		try {
-			incomeTypeMessageEntity.ParsedUserId = UUID.fromString(incomeTypeMessageEntity.UserId);
+			incomeTypeMessageEntity.setParsedUserId(UUID.fromString(incomeTypeMessageEntity.getUserId()));
 		} catch (Exception e) {
-			return ColdFishServiceUtility.GetResultMessageEntity(coldFishServiceErrorCode.InValidUserIdErrorCode(),
-					"Name", ResultStatus.Error);
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidUserIdErrorCode(),
+					"Name", ResultStatus.ERROR);
 		}
 
-		return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity IsDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		if (incomeTypeMessageEntity.Description != null) {
-			return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+	public ResultMessageEntity isDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		if (incomeTypeMessageEntity.getDescription() != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 
-		return ColdFishServiceUtility.GetResultMessageEntity(coldFishServiceErrorCode.EmptyDescriptionErrorCode(),
-				"Name", ResultStatus.Error);
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyDescriptionErrorCode(),
+				"Name", ResultStatus.ERROR);
 	}
 }

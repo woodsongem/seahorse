@@ -13,11 +13,63 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessa
  */
 public class IncomeTypeMessageEntity extends BaseMessageEntity {
 	
-	public String name;
+	private String category;
+
+	private UUID id;
+
+	private String name;
 	
-	public String UserId;
+	private String userId;
 	
-	public String Description;
+	private String description;
 	
-	public UUID ParsedUserId;
+	private UUID parsedUserId;
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public UUID getParsedUserId() {
+		return parsedUserId;
+	}
+
+	public void setParsedUserId(UUID parsedUserId) {
+		this.parsedUserId = parsedUserId;
+	}
 }

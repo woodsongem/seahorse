@@ -47,12 +47,12 @@ public class ColdFishServiceAPI {
 		IncomeTypeResponse loginResponse = getIncomeTypeResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			IColdFishService coldFishService = ColdFishServiceFactory.GetColdFishService();
+			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
 			IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
-			IncomeTypeMessageEntity incomeTypeMessageEntity = coldFishServiceAPIMapper.MapIncomeTypeMessageEntity(incomeTypeRequest);
-			IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = coldFishService.CreateIncomeType(incomeTypeMessageEntity);
-			loginResponse = coldFishServiceAPIMapper.MapIncomeTypeResponse(incomeTypeResponseMessageEntity);
-			httpStatus=incomeTypeResponseMessageEntity.GetHttpStatus();
+			IncomeTypeMessageEntity incomeTypeMessageEntity = coldFishServiceAPIMapper.mapIncomeTypeMessageEntity(incomeTypeRequest);
+			IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = coldFishService.createIncomeType(incomeTypeMessageEntity);
+			loginResponse = coldFishServiceAPIMapper.mapIncomeTypeResponse(incomeTypeResponseMessageEntity);
+			httpStatus=incomeTypeResponseMessageEntity.getHttpStatus();
 		} catch (Exception ex) {
 			if (loginResponse == null) {
 				loginResponse =getIncomeTypeResponse();
@@ -66,9 +66,9 @@ public class ColdFishServiceAPI {
 	{
 		IColdFishServiceErrorCode coldFishServiceErrorCode=new ColdFishServiceErrorCode();
 		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();		
-		incomeTypeResponse.setResultStatus(ResultStatus.Error.toString());
+		incomeTypeResponse.setResultStatus(ResultStatus.ERROR.toString());
 		ResultMessage resultMessage=new ResultMessage();
-		resultMessage.setErrorCode(coldFishServiceErrorCode.InternalError());		
+		resultMessage.setErrorCode(coldFishServiceErrorCode.internalError());		
 		incomeTypeResponse.setresultMessage(resultMessage);
 		return incomeTypeResponse;
 	}

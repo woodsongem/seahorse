@@ -9,19 +9,19 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
  */
 public interface IColdFishServiceErrorCode {
 	
-	String DuplicateIncomeTypeInDefault();;
+	String duplicateIncomeTypeInDefault();
 
-	String InternalError() ;
+	String internalError() ;
 
-	String EmptyIncomeTypeMessageEntityErrorCode();
+	String emptyIncomeTypeMessageEntityErrorCode();
 
-	String EmptyNameErrorCode();
+	String emptyNameErrorCode();
 
-	String EmptyUseridErrorCode();
+	String emptyUseridErrorCode();
 
-	String InValidUserIdErrorCode();
+	String inValidUserIdErrorCode();
 
-	String EmptyDescriptionErrorCode();
+	String emptyDescriptionErrorCode();
 
-	String DuplicateIncomeType();
+	String duplicateIncomeType();
 }

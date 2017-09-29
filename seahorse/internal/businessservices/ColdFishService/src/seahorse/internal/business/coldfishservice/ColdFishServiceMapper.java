@@ -14,9 +14,8 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeRespon
 public class ColdFishServiceMapper implements IColdFishServiceMapper {
 
 	@Override
-	public IncomeTypeResponseMessageEntity MapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
+	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
 			IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

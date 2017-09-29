@@ -16,17 +16,16 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
-
 /**
  * @author sajanmje
  *
  */
-public class ColdFishServiceProcessor implements IColdFishServiceProcessor{
-	
+public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
+
 	private final IColdFishServiceProcessorMapper coldFishServiceProcessorMapper;
 	private final IColdFishServiceErrorCode coldFishServiceErrorCode;
 	private final IColdFishServiceRepository coldFishServiceRepository;
-	
+
 	@InjectLogger
 	Logger logger;
 
@@ -38,23 +37,26 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor{
 		this.coldFishServiceRepository = coldFishServiceRepository;
 
 	}
-	
 
 	@Override
-	public ResultMessageEntity CreateIncomeTypeProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessageEntity createIncomeTypeProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = createIncomeType(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity)
-	{
+	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 
 		IncometypeDAO incometypeDAO = coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
 		if (incometypeDAO == null) {
-			resultMessageEntity.SetResultStatus(ResultStatus.Error);
-			resultMessageEntity.SetResultMessages(
-					ColdFishServiceUtility.GetResultMessage(coldFishServiceErrorCode.InValidUserIdErrorCode(), null));
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
 		return resultMessageEntity;

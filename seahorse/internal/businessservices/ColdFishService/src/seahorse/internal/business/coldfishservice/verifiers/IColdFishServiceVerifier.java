@@ -12,10 +12,10 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
  */
 public interface IColdFishServiceVerifier {
 
-	ResultMessageEntity VerifyCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity verifyCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
-	ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
-	ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity isNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 }

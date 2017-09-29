@@ -40,57 +40,57 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	}
 
 	@Override
-	public ResultMessageEntity VerifyCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public ResultMessageEntity verifyCreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
 
-		resultMessageEntity = IsUserIdValid(incomeTypeMessageEntity);
-		if (resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
+		resultMessageEntity = isUserIdValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 
-		resultMessageEntity = IsNameValid(incomeTypeMessageEntity);
-		if (resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
+		resultMessageEntity = isNameValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 
-		return ColdFishServiceUtility.GetResultMessageEntity("", "", ResultStatus.Success);
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity IsUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper
-				.MapLoginDetailMessageEntity(incomeTypeMessageEntity);
+				.mapLoginDetailMessageEntity(incomeTypeMessageEntity);
 		UserCredentialMessageEntity userCredentialMessageEntity = coldFishServiceRepository
 				.getUserCredential(loginDetailMessageEntity);
 		if (userCredentialMessageEntity == null) {
-			resultMessageEntity.SetResultStatus(ResultStatus.Error);
-			resultMessageEntity.SetResultMessages(
-					ColdFishServiceUtility.GetResultMessage(coldFishServiceErrorCode.InValidUserIdErrorCode(), null));
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
 		return resultMessageEntity;
 	}
 
-	public ResultMessageEntity IsNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public ResultMessageEntity isNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		resultMessageEntity.SetResultStatus(ResultStatus.Success);
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		List<IncometypeDAO> incometypeDAOs = coldFishServiceRepository.getDefaultIncometype();
 
 		if (incometypeDAOs != null && incometypeDAOs.stream()
-				.anyMatch(x -> x.Name.equals(incomeTypeMessageEntity.name) && x.Status.equals("ACTIVE"))) {
-			
-			return ColdFishServiceUtility.GetResultMessageEntity(
-					coldFishServiceErrorCode.DuplicateIncomeTypeInDefault(), "IncomeTypeMessageEntity.Name",
-					ResultStatus.Error);
+				.anyMatch(x -> x.getName().equals(incomeTypeMessageEntity.getName()) && x.getStatus().equals("ACTIVE"))) {
+
+			return ColdFishServiceUtility.getResultMessageEntity(
+					coldFishServiceErrorCode.duplicateIncomeTypeInDefault(), "IncomeTypeMessageEntity.Name",
+					ResultStatus.ERROR);
 		}
-		incometypeDAOs = coldFishServiceRepository.getIncometypeByUserId(incomeTypeMessageEntity.UserId);
+		incometypeDAOs = coldFishServiceRepository.getIncometypeByUserId(incomeTypeMessageEntity.getUserId());
 
 		if (incometypeDAOs != null && incometypeDAOs.stream()
-				.anyMatch(x -> x.Name.equals(incomeTypeMessageEntity.name) && x.Status.equals("ACTIVE"))) {
-			
-			return ColdFishServiceUtility.GetResultMessageEntity(coldFishServiceErrorCode.DuplicateIncomeType(),
-					"IncomeTypeMessageEntity.Name", ResultStatus.Error);
+				.anyMatch(x -> x.getName().equals(incomeTypeMessageEntity.getName()) && x.getStatus().equals("ACTIVE"))) {
+
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeType(),
+					"IncomeTypeMessageEntity.Name", ResultStatus.ERROR);
 		}
 		return resultMessageEntity;
 	}

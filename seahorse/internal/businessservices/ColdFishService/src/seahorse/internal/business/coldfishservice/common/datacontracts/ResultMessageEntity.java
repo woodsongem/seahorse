@@ -18,26 +18,26 @@ public class ResultMessageEntity  {
 	private List<ResultMessage> resultMessages;
 	private Response.Status httpstatus;
 
-	public Response.Status GetHttpStatus() {
+	public Response.Status getHttpStatus() {
 		return httpstatus;
 	}
 
-	public void SetHttpStatus(Response.Status _httpstatus) {
-		this.httpstatus = _httpstatus;
+	public void setHttpStatus(Response.Status httpstatus) {
+		this.httpstatus = httpstatus;
 	}
 
-	public ResultStatus GetResultStatus() {
+	public ResultStatus getResultStatus() {
 		return resultStatus;
 	}
 
-	public void SetResultStatus(ResultStatus _resultStatus) {
-		this.resultStatus = _resultStatus;
+	public void setResultStatus(ResultStatus resultStatus) {
+		this.resultStatus = resultStatus;
 	}
 
 	/**
 	 * @return the _resultMessages
 	 */
-	public List<ResultMessage> GetResultMessages() {
+	public List<ResultMessage> getResultMessages() {
 		return resultMessages;
 	}
 
@@ -45,19 +45,19 @@ public class ResultMessageEntity  {
 	 * @param _resultMessages
 	 *            the _resultMessages to set
 	 */
-	public void SetResultMessages(List<ResultMessage> _resultMessages) {
-		this.resultMessages = _resultMessages;
+	public void setResultMessages(List<ResultMessage> resultMessages) {
+		this.resultMessages = resultMessages;
 	}
 
 	/**
 	 * @param resultMessages
 	 *            the _resultMessages to set
 	 */
-	public void SetResultMessages(ResultMessage _resultMessage) {
+	public void setResultMessages(ResultMessage resultMessage) {
 		if (this.resultMessages == null) {
 			this.resultMessages = new ArrayList<>();
 		}
-		this.resultMessages.add(_resultMessage);
+		this.resultMessages.add(resultMessage);
 	}
 
 }

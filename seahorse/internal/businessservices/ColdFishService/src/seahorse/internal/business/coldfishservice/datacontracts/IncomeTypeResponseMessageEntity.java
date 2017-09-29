@@ -13,5 +13,19 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessa
  */
 public class IncomeTypeResponseMessageEntity  extends BaseMessageEntity{
 	
-	public UUID Id;
+	private UUID id;
+
+	/**
+	 * @return the id
+	 */
+	public UUID getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(UUID id) {
+		this.id = id;
+	}
 }

@@ -24,13 +24,13 @@ public class ReadPropertiesFile implements IReadPropertiesFile {
 	@Inject
 	public ReadPropertiesFile()
 	{
-		
+		// Do nothing because of any object is not required
 	}
 
 	@InjectLogger
 	Logger logger;
 	
-	public  String GetProperties(String key ) {
+	public  String getProperties(String key ) {
 		Properties properties = new Properties();
 		 // Get the inputStream
         InputStream inputStream = this.getClass().getClassLoader()

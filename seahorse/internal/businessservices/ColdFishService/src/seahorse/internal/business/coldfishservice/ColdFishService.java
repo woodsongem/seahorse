@@ -48,31 +48,31 @@ public class ColdFishService implements IColdFishService {
 		this.coldFishServicePostProcessor=coldFishServicePostProcessor;
 	}
 	
-	public IncomeTypeResponseMessageEntity CreateIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {		
+	public IncomeTypeResponseMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {		
 		//Set		
 		//Validator	    
-	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.ValidateCreateIncomeType(incomeTypeMessageEntity);
-	    if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
-			return ColdFishServiceUtility.GetIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeType(incomeTypeMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}
 		
 		//Verifier
-	    resultMessageEntity = coldFishServiceVerifier.VerifyCreateIncomeType(incomeTypeMessageEntity);
-		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
-			return ColdFishServiceUtility.GetIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+	    resultMessageEntity = coldFishServiceVerifier.verifyCreateIncomeType(incomeTypeMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}		
 		
 		//Processor
-		resultMessageEntity=coldFishServiceProcessor.CreateIncomeTypeProcessor(incomeTypeMessageEntity);
-		if (resultMessageEntity == null || resultMessageEntity.GetResultStatus() != ResultStatus.Success) {
-			return ColdFishServiceUtility.GetIncomeTypeResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+		resultMessageEntity=coldFishServiceProcessor.createIncomeTypeProcessor(incomeTypeMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		resultMessageEntity=coldFishServicePostProcessor.CreateIncomeTypePostProcessor(incomeTypeMessageEntity);
+		resultMessageEntity=coldFishServicePostProcessor.createIncomeTypePostProcessor(incomeTypeMessageEntity);
 				
 		
-		return coldFishServiceMapper.MapIncomeTypeResponseMessageEntity(resultMessageEntity, incomeTypeMessageEntity);	
+		return coldFishServiceMapper.mapIncomeTypeResponseMessageEntity(resultMessageEntity, incomeTypeMessageEntity);	
 	}
 
 }

@@ -9,5 +9,13 @@ package seahorse.internal.business.coldfishservice.api.datacontracts;
  */
 public class IncomeTypeResponse  extends Base{
 
-	public String Id;
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 }

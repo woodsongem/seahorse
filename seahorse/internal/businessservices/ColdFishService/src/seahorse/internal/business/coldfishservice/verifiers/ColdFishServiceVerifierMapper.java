@@ -13,9 +13,9 @@ import seahorse.internal.business.coldfishservice.processors.datacontracts.Login
 public class ColdFishServiceVerifierMapper  implements IColdFishServiceVerifierMapper{
 
 	@Override
-	public LoginDetailMessageEntity MapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public LoginDetailMessageEntity mapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		LoginDetailMessageEntity loginDetailMessageEntity=new LoginDetailMessageEntity();
-		loginDetailMessageEntity.UserId=incomeTypeMessageEntity.UserId;
+		loginDetailMessageEntity.setUserId(incomeTypeMessageEntity.getUserId());
 		return loginDetailMessageEntity;
 	}
 

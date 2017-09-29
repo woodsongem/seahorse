@@ -13,8 +13,8 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
 public class ColdFishServicePostProcessor  implements IColdFishServicePostProcessor{
 
 	@Override
-	public ResultMessageEntity CreateIncomeTypePostProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
+	public ResultMessageEntity createIncomeTypePostProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		
 		return null;
 	}
 

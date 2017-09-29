@@ -8,6 +8,6 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
  *
  */
 public enum ResultStatus {
-	  Success,
-	  Error
+	  SUCCESS,
+	  ERROR
 }

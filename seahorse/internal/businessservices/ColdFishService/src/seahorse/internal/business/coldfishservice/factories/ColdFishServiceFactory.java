@@ -10,9 +10,13 @@ import seahorse.internal.business.coldfishservice.IColdFishService;
  *
  */
 public class ColdFishServiceFactory {
+	
+	 private ColdFishServiceFactory() {
+		    throw new IllegalStateException("ColdFishServiceFactory class");
+		  }
 
-	public static IColdFishService GetColdFishService() {
-		// TODO Auto-generated method stub
+	public static IColdFishService getColdFishService() {
+		
 		return null;
 	}
 
