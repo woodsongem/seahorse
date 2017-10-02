@@ -59,8 +59,10 @@ public class ColdFishServiceAPI {
 			}
 			logger.error(ex);
 		}
-		
-		loginResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(loginResponse.getresultMessage(),httpRequest.getMethod()));
+		if(loginResponse.getResultStatus() != ResultStatus.SUCCESS.toString())
+		{
+			loginResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(loginResponse.getresultMessage(),httpRequest.getMethod()));
+		}
 		return Response.status(httpStatus).entity(loginResponse).build();
 	}
 	

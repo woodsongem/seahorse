@@ -75,9 +75,5 @@ public class ColdFishServiceUtility {
 		return utc.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
 	}
 
-	public static IncomeTypeResponseMessageEntity getIncomeTypeResponseMessageEntity(
-			ResultMessageEntity resultMessageEntity, Status badRequest) {
-
-		return null;
-	}
+	
 }

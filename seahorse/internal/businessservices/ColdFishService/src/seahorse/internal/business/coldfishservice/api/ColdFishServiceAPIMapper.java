@@ -35,8 +35,9 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	}
 
 	@Override
-	public List<ResultMessage> mapResultMessages(List<ResultMessage> resultMessages,String httpmethod) {
-
+	public List<ResultMessage> mapResultMessages(List<ResultMessage> resultMessages, String httpmethod) {
+		if (resultMessages == null)
+			return resultMessages;
 		for (ResultMessage resultMessage : resultMessages) {
 			resultMessage.setErrorCode(resultMessage.getErrorCode().replaceAll("_httpmethod", httpmethod));
 		}

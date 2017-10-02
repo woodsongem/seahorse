@@ -53,19 +53,19 @@ public class ColdFishService implements IColdFishService {
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeType(incomeTypeMessageEntity);
 	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
-			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+			return coldFishServiceMapper.mapIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}
 		
 		//Verifier
 	    resultMessageEntity = coldFishServiceVerifier.verifyCreateIncomeType(incomeTypeMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
-			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+			return coldFishServiceMapper.mapIncomeTypeResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
 		}		
 		
 		//Processor
 		resultMessageEntity=coldFishServiceProcessor.createIncomeTypeProcessor(incomeTypeMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
-			return ColdFishServiceUtility.getIncomeTypeResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+			return coldFishServiceMapper.mapIncomeTypeResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
