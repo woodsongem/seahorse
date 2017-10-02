@@ -29,6 +29,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	private final IColdFishServiceRepositoryMapper coldFishServiceRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
+	
 	@InjectLogger
 	Logger logger;
 

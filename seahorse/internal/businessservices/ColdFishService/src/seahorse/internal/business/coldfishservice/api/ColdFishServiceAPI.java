@@ -33,7 +33,7 @@ import seahorse.internal.business.coldfishservice.factories.ColdFishServiceFacto
  * @author sajanmje
  *
  */
-@Path("/ColdFishService")
+@Path("/")
 public class ColdFishServiceAPI {
 	private static final Logger logger = LogManager.getLogger(ColdFishServiceAPI.class);
 	@Context
@@ -46,9 +46,9 @@ public class ColdFishServiceAPI {
 	
 		IncomeTypeResponse loginResponse = getIncomeTypeResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
 		try {
-			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
-			IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
+			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();			
 			IncomeTypeMessageEntity incomeTypeMessageEntity = coldFishServiceAPIMapper.mapIncomeTypeMessageEntity(incomeTypeRequest);
 			IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = coldFishService.createIncomeType(incomeTypeMessageEntity);
 			loginResponse = coldFishServiceAPIMapper.mapIncomeTypeResponse(incomeTypeResponseMessageEntity);
@@ -59,6 +59,8 @@ public class ColdFishServiceAPI {
 			}
 			logger.error(ex);
 		}
+		
+		loginResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(loginResponse.getresultMessage(),httpRequest.getMethod()));
 		return Response.status(httpStatus).entity(loginResponse).build();
 	}
 	

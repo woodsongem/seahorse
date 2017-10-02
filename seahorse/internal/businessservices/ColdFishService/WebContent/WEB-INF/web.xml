@@ -2,7 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
+	version="3.1" id="WebApp_ID">
+
 	<display-name>ColdFishService</display-name>
 
 	<!-- Define ServletContainer of Jersey -->
@@ -12,13 +13,13 @@
 		<!-- Define the ResourceConfig class -->
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>seahorse.internal.business.coldfishservice.app.ColdFishServiceApplication</param-value>			
-		</init-param>		
-		    <!-- Enable Tracing support. -->
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>seahorse.internal.business.shared.aop.ColdFishFilters</param-value>
-        </init-param>
+			<param-value>seahorse.internal.business.coldfishservice.app.ColdFishServiceApplication</param-value>
+		</init-param>
+		<!-- Enable Tracing support. -->
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>seahorse.internal.business.shared.aop.ColdFishFilters</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
