@@ -11,6 +11,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
@@ -58,16 +59,15 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 
 	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper
-				.mapLoginDetailMessageEntity(incomeTypeMessageEntity);
-		UserCredentialMessageEntity userCredentialMessageEntity = coldFishServiceRepository
-				.getUserCredential(loginDetailMessageEntity);
-		if (userCredentialMessageEntity == null) {
+		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper.mapLoginDetailMessageEntity(incomeTypeMessageEntity);
+		UserCredentialDAO userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);
+		if (userCredentialDAO == null) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
-			resultMessageEntity.setResultMessages(
-					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
+			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
+		UserCredentialMessageEntity userCredentialMessageEntity=coldFishServiceVerifierMapper.MapUserCredentialMessageEntity(userCredentialDAO);
+		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntity);
 		return resultMessageEntity;
 	}
 

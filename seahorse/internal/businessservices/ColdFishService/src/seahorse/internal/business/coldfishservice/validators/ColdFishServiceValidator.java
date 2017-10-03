@@ -78,7 +78,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		if (incomeTypeMessageEntity.getUserId() == null) {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),
-					"Name", ResultStatus.ERROR);
+					"UserId", ResultStatus.ERROR);
 		}
 
 		try {

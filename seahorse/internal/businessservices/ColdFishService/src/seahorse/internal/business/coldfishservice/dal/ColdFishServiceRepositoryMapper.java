@@ -8,7 +8,9 @@ import java.text.MessageFormat;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 
 /**
  * @author sajanmje
@@ -54,6 +56,18 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public IncometypeDAO mapcreateIncomeType(Row incometypeDAOResult) {
+		return null;
+	}
+
+	@Override
+	public String getUserCredentialQuery(LoginDetailMessageEntity loginDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserCredentialDAO mapUserCredentialDAO(Row userCredentialDAOResult) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

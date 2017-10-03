@@ -15,6 +15,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
@@ -77,9 +78,22 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		return incometypeDAOs;
 	}
 
-	public UserCredentialMessageEntity getUserCredential(LoginDetailMessageEntity loginDetailMessageEntity) {
+	public UserCredentialDAO getUserCredential(LoginDetailMessageEntity loginDetailMessageEntity) {
 		
-		return null;
+		UserCredentialDAO userCredentialDAO = new UserCredentialDAO();
+		try {
+			cassandraConnector.connect(null, 0);
+			String applicationQuery = coldFishServiceRepositoryMapper.getUserCredentialQuery(loginDetailMessageEntity);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row userCredentialDAOResult = resultSet.one();
+				userCredentialDAO = coldFishServiceRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);				
+			}
+		} catch (Exception exception) {
+			logger.error("");
+		}
+		return userCredentialDAO;
 	}
 
 	@Override

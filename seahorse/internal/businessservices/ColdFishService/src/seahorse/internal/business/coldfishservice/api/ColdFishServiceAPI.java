@@ -59,7 +59,11 @@ public class ColdFishServiceAPI {
 			}
 			logger.error(ex);
 		}
-		if(loginResponse.getResultStatus() != ResultStatus.SUCCESS.toString())
+		if(loginResponse==null)
+		{
+			loginResponse =getIncomeTypeResponse();
+		}		
+		else if(loginResponse.getResultStatus() != ResultStatus.SUCCESS.toString())
 		{
 			loginResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(loginResponse.getresultMessage(),httpRequest.getMethod()));
 		}

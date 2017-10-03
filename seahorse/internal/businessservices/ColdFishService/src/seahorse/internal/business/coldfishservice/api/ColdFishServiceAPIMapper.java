@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.coldfishservice.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
@@ -23,14 +24,28 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		IncomeTypeMessageEntity incomeTypeMessageEntity = new IncomeTypeMessageEntity();
 		incomeTypeMessageEntity.setName(incomeTypeRequest.getName());
 		incomeTypeMessageEntity.setDescription(incomeTypeRequest.getDescription());
-		incomeTypeMessageEntity.setUserId(incomeTypeRequest.getUserId());
-		incomeTypeMessageEntity.setCreatedBy(incomeTypeRequest.getCreatedBy());
+		incomeTypeMessageEntity.setUserId(incomeTypeRequest.getUserId());		
 		return incomeTypeMessageEntity;
 	}
 
 	public IncomeTypeResponse mapIncomeTypeResponse(IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity) {
 		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();
-		incomeTypeResponse.setId(incomeTypeResponseMessageEntity.toString());
+		if (incomeTypeResponseMessageEntity.getId() != null) {
+			incomeTypeResponse.setId(incomeTypeResponseMessageEntity.getId().toString());
+		}
+		incomeTypeResponse.setResultStatus(incomeTypeResponseMessageEntity.getResultStatus().toString());
+		if (incomeTypeResponseMessageEntity.getResultMessages() == null) {
+			return incomeTypeResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessage resultMessageMS : incomeTypeResponseMessageEntity
+				.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(resultMessageMS.getErrorCode());
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		incomeTypeResponse.setresultMessage(resultMessages);
 		return incomeTypeResponse;
 	}
 
