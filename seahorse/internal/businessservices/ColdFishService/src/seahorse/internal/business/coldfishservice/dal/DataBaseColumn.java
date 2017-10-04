@@ -13,6 +13,10 @@ public class DataBaseColumn {
 		throw new IllegalStateException("DataBaseColumn class");
 	}
 
+	//common
+	public static final String STATUS = "status";
+	
+	//income type
 	public static final String ID = "id";
 	public static final String INCOMETYPE_USERID="userid";
 	public static final String INCOMETYPE_STATUS="status";
@@ -23,6 +27,10 @@ public class DataBaseColumn {
 	public static final String INCOMETYPE_MODIFIEDBY="modifiedby";
 	public static final String INCOMETYPE_MODIFIEDDATE="modifieddate";
 	public static final String INCOMETYPE_NAME="name";
+	
+	//user credential
+	public static final String USERCREDENTIAL_USERNAME = "username";
+	
 	
 	
 	

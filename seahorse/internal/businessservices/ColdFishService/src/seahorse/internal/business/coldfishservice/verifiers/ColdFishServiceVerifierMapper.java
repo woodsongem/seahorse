@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.verifiers;
 
+import java.util.List;
+
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
@@ -22,7 +24,7 @@ public class ColdFishServiceVerifierMapper  implements IColdFishServiceVerifierM
 	}
 
 	@Override
-	public UserCredentialMessageEntity MapUserCredentialMessageEntity(UserCredentialDAO userCredentialDAO) {
+	public UserCredentialMessageEntity MapUserCredentialMessageEntity(List<UserCredentialDAO> userCredentialDAO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

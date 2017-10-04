@@ -61,13 +61,16 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public String getUserCredentialQuery(LoginDetailMessageEntity loginDetailMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] args = { loginDetailMessageEntity.getUserId() };
+		return new MessageFormat(QueryConstants.GETUSERCREDENTIALQUERY).format(args);
 	}
 
 	@Override
 	public UserCredentialDAO mapUserCredentialDAO(Row userCredentialDAOResult) {
-		// TODO Auto-generated method stub
-		return null;
+		UserCredentialDAO userCredentialDAO = new UserCredentialDAO();
+		userCredentialDAO.setId(userCredentialDAOResult.getUUID(DataBaseColumn.ID));
+		userCredentialDAO.setUsername(userCredentialDAOResult.getString(DataBaseColumn.USERCREDENTIAL_USERNAME));
+		userCredentialDAO.setStatus(userCredentialDAOResult.getString(DataBaseColumn.STATUS));
+		return userCredentialDAO;
 	}
 }

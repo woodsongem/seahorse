@@ -60,7 +60,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper.mapLoginDetailMessageEntity(incomeTypeMessageEntity);
-		UserCredentialDAO userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);
+		List<UserCredentialDAO> userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);
 		if (userCredentialDAO == null) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));

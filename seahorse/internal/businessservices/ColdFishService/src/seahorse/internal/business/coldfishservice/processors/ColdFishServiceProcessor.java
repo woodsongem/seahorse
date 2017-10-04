@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.processors;
 
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -52,7 +54,7 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 
-		IncometypeDAO incometypeDAO = coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
+		List<IncometypeDAO> incometypeDAO = coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
 		if (incometypeDAO == null) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
