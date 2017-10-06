@@ -9,7 +9,7 @@ import java.util.UUID;
  * @author sajanmje
  *
  */
-public class UserCredentialDAO {
+public class UserCredentialDAO extends BaseDAO {
 	private UUID id;
 	private String username;
 	private String status;

@@ -18,6 +18,6 @@ public interface IColdFishServiceVerifierMapper {
 
 	LoginDetailMessageEntity mapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
-	UserCredentialMessageEntity MapUserCredentialMessageEntity(List<UserCredentialDAO> userCredentialDAO);
+	List<UserCredentialMessageEntity> mapUserCredentialMessageEntity(List<UserCredentialDAO> userCredentialDAO);
 
 }

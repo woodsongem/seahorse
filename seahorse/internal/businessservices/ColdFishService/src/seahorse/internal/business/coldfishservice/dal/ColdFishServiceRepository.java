@@ -93,7 +93,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				userCredentialDAOs.add(userCredentialDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("");
+			logger.error("Exception in getUserCredential error="+exception);
 		}
 		return userCredentialDAOs;
 	}

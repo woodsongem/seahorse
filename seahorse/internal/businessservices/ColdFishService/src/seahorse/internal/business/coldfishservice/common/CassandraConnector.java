@@ -26,11 +26,11 @@ import seahorse.internal.business.coldfishservice.constants.Constant;
  */
 public class CassandraConnector implements ICassandraConnector {
 
-	final IReadPropertiesFile _readPropertiesFile;
+	final IReadPropertiesFile readPropertiesFile;
 
 	@Inject
 	public CassandraConnector(ReadPropertiesFile readPropertiesFile) {
-		this._readPropertiesFile = readPropertiesFile;
+		this.readPropertiesFile = readPropertiesFile;
 	}
 
 	/** Cassandra Cluster. */
@@ -66,12 +66,7 @@ public class CassandraConnector implements ICassandraConnector {
 			port = getPort();
 		}
 
-		this.cluster = Cluster.builder().addContactPoint(node).withPort(port).build();
-		final Metadata metadata = cluster.getMetadata();
-		out.printf("Connected to cluster: %s\n", metadata.getClusterName());
-		for (final Host host : metadata.getAllHosts()) {
-			out.printf("Datacenter: %s; Host: %s; Rack: %s\n", host.getDatacenter(), host.getAddress(), host.getRack());
-		}
+		this.cluster = Cluster.builder().addContactPoint(node).withPort(port).build();				
 		session = cluster.connect();
 	}
 
@@ -96,11 +91,11 @@ public class CassandraConnector implements ICassandraConnector {
 	}
 
 	private String getNode() {
-		return _readPropertiesFile.getProperties(Constant.CASSANDRASERVE);
+		return readPropertiesFile.getProperties(Constant.CASSANDRASERVE);
 	}
 
 	private int getPort() {
-		String port = _readPropertiesFile.getProperties(Constant.CASSANDRAPORT);
+		String port = readPropertiesFile.getProperties(Constant.CASSANDRAPORT);
 		if (StringUtils.isNumeric(port)) {
 			return Integer.parseInt(port);
 		}

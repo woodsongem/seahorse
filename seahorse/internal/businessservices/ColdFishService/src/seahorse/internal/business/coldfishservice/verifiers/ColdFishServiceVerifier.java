@@ -4,11 +4,14 @@
 package seahorse.internal.business.coldfishservice.verifiers;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.Logger;
 import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
@@ -61,13 +64,25 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper.mapLoginDetailMessageEntity(incomeTypeMessageEntity);
 		List<UserCredentialDAO> userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);
-		if (userCredentialDAO == null) {
+		
+		if (userCredentialDAO == null || userCredentialDAO.isEmpty()||
+				!userCredentialDAO.stream().anyMatch(user->user.getStatus() != Constant.INACTIVESTATUS)) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
-		UserCredentialMessageEntity userCredentialMessageEntity=coldFishServiceVerifierMapper.MapUserCredentialMessageEntity(userCredentialDAO);
-		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntity);
+		List<UserCredentialDAO> filteredUserCredentialDAO=userCredentialDAO.stream().filter(user->user.getStatus() != Constant.INACTIVESTATUS).collect(Collectors.toList());
+		if(filteredUserCredentialDAO.size()>1)
+		{
+			logger.error("Mulitple active user id found for given userid="+incomeTypeMessageEntity.getUserId());
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
+			return resultMessageEntity;
+		}
+		
+		List<UserCredentialMessageEntity> userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);		
+		
+		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntitys.get(0));
 		return resultMessageEntity;
 	}
 
