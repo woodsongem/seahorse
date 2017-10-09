@@ -7,6 +7,7 @@ import java.text.MessageFormat;
 
 import com.datastax.driver.core.Row;
 
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -20,7 +21,8 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public String getDefaultIncometypeQuery() {
-		return new MessageFormat(QueryConstants.GETINCOMETYPEQUERY).toString();
+		Object[] args= {Constant.DEFAULT};
+		return new MessageFormat(QueryConstants.GETINCOMETYPEQUERY).format(args);
 	}
 
 	@Override
@@ -29,10 +31,10 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		incometypeDAO.setId(incometypeDAOResult.getUUID(DataBaseColumn.ID));
 		incometypeDAO.setCategory(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CATEGORY));
 		incometypeDAO.setCreatedBy(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_CREATEDBY));
-		incometypeDAO.setCreatedDate(incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_CREATEDDATE));
+		incometypeDAO.setCreatedDate(incometypeDAOResult.getTimestamp(DataBaseColumn.INCOMETYPE_CREATEDDATE));
 		incometypeDAO.setDescription(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_DESCRIPTION));
 		incometypeDAO.setModifiedBy(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_MODIFIEDBY));
-		incometypeDAO.setModifiedDate(incometypeDAOResult.getDate(DataBaseColumn.INCOMETYPE_MODIFIEDDATE));
+		incometypeDAO.setModifiedDate(incometypeDAOResult.getTimestamp(DataBaseColumn.INCOMETYPE_MODIFIEDDATE));
 		incometypeDAO.setName(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_NAME));
 		incometypeDAO.setStatus(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_STATUS));
 		incometypeDAO.setUserId(incometypeDAOResult.getUUID(DataBaseColumn.INCOMETYPE_USERID));

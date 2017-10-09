@@ -82,9 +82,9 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 			return resultMessageEntity;
 		}
 		
-		List<UserCredentialMessageEntity> userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);		
-		
+		List<UserCredentialMessageEntity> userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);	
 		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntitys.get(0));
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
 
@@ -94,7 +94,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		List<IncometypeDAO> incometypeDAOs = coldFishServiceRepository.getDefaultIncometype();
 
-		if (incometypeDAOs != null && incometypeDAOs.stream()
+		if (incometypeDAOs != null && !incometypeDAOs.stream()
 				.anyMatch(x -> x.getName().equals(incomeTypeMessageEntity.getName()) && x.getStatus().equals("ACTIVE"))) {
 
 			return ColdFishServiceUtility.getResultMessageEntity(

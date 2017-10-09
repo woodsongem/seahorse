@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.coldfishservice.dal.datacontracts;
 
+import java.util.Date;
 import java.util.UUID;
 
 import com.datastax.driver.core.LocalDate;
@@ -17,10 +18,10 @@ public class IncometypeDAO {
 	private String status;
 	private UUID id;
 	private String createdBy;
-	private LocalDate createdDate;
+	private Date createdDate;
 	private String description;
 	private String modifiedBy;
-	private LocalDate modifiedDate;
+	private Date modifiedDate;
 	private UUID userId;
 	private String category;
 	/**
@@ -74,13 +75,13 @@ public class IncometypeDAO {
 	/**
 	 * @return the createdDate
 	 */
-	public LocalDate getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 	/**
@@ -110,14 +111,14 @@ public class IncometypeDAO {
 	/**
 	 * @return the modifiedDate
 	 */
-	public LocalDate getModifiedDate() {
+	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 	/**
-	 * @param modifiedDate the modifiedDate to set
+	 * @param date the modifiedDate to set
 	 */
-	public void setModifiedDate(LocalDate modifiedDate) {
-		this.modifiedDate = modifiedDate;
+	public void setModifiedDate(Date date) {
+		this.modifiedDate = date;
 	}
 	/**
 	 * @return the userId

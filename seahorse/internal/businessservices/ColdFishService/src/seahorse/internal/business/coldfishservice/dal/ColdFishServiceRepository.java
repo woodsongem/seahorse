@@ -55,7 +55,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				incometypeDAOs.add(incometypeDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("");
+			logger.error("Exception in ColdFishServiceRepository::getIncometypeByUserId"+exception);
 		}
 		return incometypeDAOs;
 	}
@@ -73,7 +73,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				incometypeDAOs.add(incometypeDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("");
+			logger.error("Exception in ColdFishServiceRepository::getDefaultIncometype"+exception);
 		}
 		return incometypeDAOs;
 	}
@@ -112,7 +112,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				incometypeDAOs.add(incometypeDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("");
+			logger.error("Exception in ColdFishServiceRepository::createIncomeType"+exception);
 		}
 		return incometypeDAOs;
 	}
