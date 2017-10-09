@@ -74,7 +74,9 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		List<UserCredentialDAO> filteredUserCredentialDAO=userCredentialDAO.stream().filter(user->user.getStatus() != Constant.INACTIVESTATUS).collect(Collectors.toList());
 		if(filteredUserCredentialDAO.size()>1)
 		{
-			logger.error("Mulitple active user id found for given userid="+incomeTypeMessageEntity.getUserId());
+			String userId=	filteredUserCredentialDAO.stream().map(e->e.getId().toString()).collect(Collectors.joining(","));
+			logger.error("Mulitple active user id found for given userid="+incomeTypeMessageEntity.getUserId() +" and founded user id="+userId);
+			
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
