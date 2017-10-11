@@ -84,6 +84,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		
 		List<UserCredentialMessageEntity> userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);	
 		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntitys.get(0));
+		incomeTypeMessageEntity.setCreatedBy(userCredentialMessageEntitys.get(0).getUsername());		
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
@@ -94,8 +95,8 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		List<IncometypeDAO> incometypeDAOs = coldFishServiceRepository.getDefaultIncometype();
 
-		if (incometypeDAOs != null && !incometypeDAOs.stream()
-				.anyMatch(x -> x.getName().equals(incomeTypeMessageEntity.getName()) && x.getStatus().equals("ACTIVE"))) {
+		if (incometypeDAOs != null && incometypeDAOs.stream()
+				.anyMatch(x -> x.getName().equalsIgnoreCase(incomeTypeMessageEntity.getName()) && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS))) {
 
 			return ColdFishServiceUtility.getResultMessageEntity(
 					coldFishServiceErrorCode.duplicateIncomeTypeInDefault(), "IncomeTypeMessageEntity.Name",
@@ -103,9 +104,10 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		}
 		incometypeDAOs = coldFishServiceRepository.getIncometypeByUserId(incomeTypeMessageEntity.getUserId());
 
-		if (incometypeDAOs != null && incometypeDAOs.stream()
-				.anyMatch(x -> x.getName().equals(incomeTypeMessageEntity.getName()) && x.getStatus().equals("ACTIVE"))) {
+		if (incometypeDAOs != null && incometypeDAOs.isEmpty() && incometypeDAOs.stream()
+				.anyMatch(x -> x.getName().equalsIgnoreCase(incomeTypeMessageEntity.getName()) && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS))) {
 
+			
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeType(),
 					"IncomeTypeMessageEntity.Name", ResultStatus.ERROR);
 		}

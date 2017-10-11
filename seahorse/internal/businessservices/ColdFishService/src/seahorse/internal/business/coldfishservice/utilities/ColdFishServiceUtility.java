@@ -6,15 +6,12 @@ package seahorse.internal.business.coldfishservice.utilities;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
-
-import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 
 /**
  * @author sajanmje
@@ -67,13 +64,16 @@ public class ColdFishServiceUtility {
 		return resultMessageEntity;
 	}
 
-
+	public static <E extends Enum<E>> boolean isInEnum(String value, Class<E> enumClass) {
+		  for (E e : enumClass.getEnumConstants()) {
+		    if(e.name().equalsIgnoreCase(value)) { return true; }
+		  }
+		  return false;
+		}
 	
-	public static String getCurrentDateTimeUTC()
+	public static Date getCurrentDateTimeUTC()
 	{
 		ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
-		return utc.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
-	}
-
-	
+		return Date.from(utc.toInstant());		
+	}	
 }

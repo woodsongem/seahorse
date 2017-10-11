@@ -24,4 +24,8 @@ public interface IColdFishServiceErrorCode {
 	String emptyDescriptionErrorCode();
 
 	String duplicateIncomeType();
+
+	String emptyCategoryErrorCode();
+
+	String inValidCategoryErrorCode();
 }

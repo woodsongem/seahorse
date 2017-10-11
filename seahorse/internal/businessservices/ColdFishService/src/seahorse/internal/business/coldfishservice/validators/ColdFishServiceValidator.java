@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
+import seahorse.internal.business.coldfishservice.common.datacontracts.IncomeTypes;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -49,6 +50,11 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		}
 
 		resultMessageEntity = isDescriptionValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isCategoryValid(incomeTypeMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
@@ -98,5 +104,21 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyDescriptionErrorCode(),
 				"Name", ResultStatus.ERROR);
+	}
+
+	public ResultMessageEntity isCategoryValid(IncomeTypeMessageEntity incomeTypeMessageEntity)
+	{
+		if (incomeTypeMessageEntity.getCategory() == null || incomeTypeMessageEntity.getCategory().trim() == null) {
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyCategoryErrorCode(),
+					"Category", ResultStatus.ERROR);
+		}
+		
+		if(!ColdFishServiceUtility.isInEnum(incomeTypeMessageEntity.getCategory(),IncomeTypes.class))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidCategoryErrorCode(),
+					"Category", ResultStatus.ERROR);
+		}
+				
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 }

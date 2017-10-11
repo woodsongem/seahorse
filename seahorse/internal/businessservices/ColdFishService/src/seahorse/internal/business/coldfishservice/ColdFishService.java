@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice;
 
+import java.util.UUID;
+
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.Logger;
@@ -50,6 +52,9 @@ public class ColdFishService implements IColdFishService {
 	
 	public IncomeTypeResponseMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {		
 		//Set		
+		
+		incomeTypeMessageEntity.setId(UUID.randomUUID());
+		
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeType(incomeTypeMessageEntity);
 	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {

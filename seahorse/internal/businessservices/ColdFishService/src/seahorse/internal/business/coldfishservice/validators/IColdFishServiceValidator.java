@@ -22,4 +22,5 @@ public interface IColdFishServiceValidator {
 	
 	ResultMessageEntity isDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
+	ResultMessageEntity isCategoryValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 }

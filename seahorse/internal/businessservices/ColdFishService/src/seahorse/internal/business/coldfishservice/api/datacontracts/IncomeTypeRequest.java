@@ -14,6 +14,8 @@ public class IncomeTypeRequest extends RequestBase {
 	private String userId;
 
 	private String description;
+	
+	private String category;
 
 	public String getName() {
 		return name;
@@ -37,5 +39,19 @@ public class IncomeTypeRequest extends RequestBase {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

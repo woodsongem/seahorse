@@ -25,6 +25,7 @@ public class Constant {
 	public static final String USERCREDENTIALSERVICEHELPERPACKAGE = "seahorse.internal.business.customerservice.helpers";
 	public static final String USERCREDENTIALSERVICEHELPERCLASSNAME = "UserCredentialServiceHelper";
 	public static final String INACTIVESTATUS = "INACTIVE";
+	public static final String ACTIVESTATUS = "ACTIVE";
 	
 
 }

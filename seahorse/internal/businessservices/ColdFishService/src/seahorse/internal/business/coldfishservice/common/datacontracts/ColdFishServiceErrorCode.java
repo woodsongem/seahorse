@@ -54,4 +54,14 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String duplicateIncomeType() {
 		return getErrorCodeMapping("Name.AlreadyExist");
 	}
+
+	@Override
+	public String emptyCategoryErrorCode() {
+		return getErrorCodeMapping("Category.Empty");
+	}
+
+	@Override
+	public String inValidCategoryErrorCode() {
+		return getErrorCodeMapping("Category.InValid");
+	}
 }

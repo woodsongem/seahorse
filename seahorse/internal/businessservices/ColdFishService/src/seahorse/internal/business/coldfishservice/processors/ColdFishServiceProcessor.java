@@ -3,7 +3,11 @@
  */
 package seahorse.internal.business.coldfishservice.processors;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.apache.logging.log4j.Logger;
 
@@ -53,9 +57,9 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 
 	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-
+		incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDateTimeUTC());		
 		List<IncometypeDAO> incometypeDAO = coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
-		if (incometypeDAO == null) {
+		if (incometypeDAO == null || incometypeDAO.isEmpty()) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
 					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
