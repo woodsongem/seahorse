@@ -17,7 +17,6 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.postprocessors.IColdFishServicePostProcessor;
 import seahorse.internal.business.coldfishservice.processors.IColdFishServiceProcessor;
-import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 import seahorse.internal.business.coldfishservice.validators.IColdFishServiceValidator;
 import seahorse.internal.business.coldfishservice.verifiers.IColdFishServiceVerifier;
 import seahorse.internal.business.shared.aop.InjectLogger;

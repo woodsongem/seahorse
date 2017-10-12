@@ -6,8 +6,6 @@ package seahorse.internal.business.coldfishservice.dal.datacontracts;
 import java.util.Date;
 import java.util.UUID;
 
-import com.datastax.driver.core.LocalDate;
-
 /**
  * @author sajanmje
  *

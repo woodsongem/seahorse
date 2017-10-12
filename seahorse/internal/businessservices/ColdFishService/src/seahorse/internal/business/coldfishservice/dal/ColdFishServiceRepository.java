@@ -18,7 +18,6 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDA
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
-import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**

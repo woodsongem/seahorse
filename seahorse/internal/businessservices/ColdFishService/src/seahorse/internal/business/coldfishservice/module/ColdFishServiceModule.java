@@ -9,9 +9,6 @@ import seahorse.internal.business.coldfishservice.ColdFishService;
 import seahorse.internal.business.coldfishservice.ColdFishServiceMapper;
 import seahorse.internal.business.coldfishservice.IColdFishService;
 import seahorse.internal.business.coldfishservice.IColdFishServiceMapper;
-import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
-import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
-import seahorse.internal.business.coldfishservice.common.ReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.dal.ColdFishServiceRepository;
@@ -30,7 +27,6 @@ import seahorse.internal.business.coldfishservice.verifiers.ColdFishServiceVerif
 import seahorse.internal.business.coldfishservice.verifiers.ColdFishServiceVerifierMapper;
 import seahorse.internal.business.coldfishservice.verifiers.IColdFishServiceVerifier;
 import seahorse.internal.business.coldfishservice.verifiers.IColdFishServiceVerifierMapper;
-import seahorse.internal.business.coldfishservice.common.CassandraConnector;
 
 /**
  * @author sajanmje
