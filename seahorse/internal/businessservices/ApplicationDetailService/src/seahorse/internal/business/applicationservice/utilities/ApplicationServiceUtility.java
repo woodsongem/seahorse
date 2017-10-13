@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import seahorse.internal.business.applicationservice.common.datacontracts.PhoneType;
 import seahorse.internal.business.applicationservice.datacontracts.ApplicationDetailMessageEntity;
 import seahorse.internal.business.applicationservice.datacontracts.ResultMessage;

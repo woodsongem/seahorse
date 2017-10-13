@@ -3,11 +3,6 @@
  */
 package seahorse.internal.business.applicationservice.constants;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
-
-
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**

@@ -11,7 +11,6 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.applicationservice.api.datacontracts.UserSecurityQuestion;
 import seahorse.internal.business.applicationservice.common.ICassandraConnector;
 import seahorse.internal.business.applicationservice.common.IReadPropertiesFile;
 import seahorse.internal.business.applicationservice.dal.datacontracts.ApplicationDetailDAO;
