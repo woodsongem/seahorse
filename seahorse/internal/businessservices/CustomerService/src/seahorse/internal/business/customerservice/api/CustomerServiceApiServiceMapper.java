@@ -6,8 +6,6 @@ package seahorse.internal.business.customerservice.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.core.Response.Status;
-
 import seahorse.internal.business.customerservice.api.datacontracts.LoginRequest;
 import seahorse.internal.business.customerservice.api.datacontracts.LoginResponse;
 import seahorse.internal.business.customerservice.api.datacontracts.ResultMessage;

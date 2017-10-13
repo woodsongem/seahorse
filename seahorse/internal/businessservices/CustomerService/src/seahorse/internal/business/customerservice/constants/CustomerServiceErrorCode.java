@@ -4,10 +4,6 @@
 
 package seahorse.internal.business.customerservice.constants;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
-
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**

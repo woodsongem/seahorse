@@ -3,15 +3,11 @@
  */
 package seahorse.internal.business.customerservice.helpers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
 
 import seahorse.internal.business.customerservice.IUserCredentialServiceMapper;
-import seahorse.internal.business.customerservice.constants.Constant;
 import seahorse.internal.business.customerservice.constants.ICustomerServiceErrorCode;
 import seahorse.internal.business.customerservice.dal.IUserCredentialServiceRepository;
 import seahorse.internal.business.customerservice.dal.datacontracts.LoginAttemptDAO;
@@ -22,7 +18,6 @@ import seahorse.internal.business.customerservice.datacontracts.ResultStatus;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.aop.Report;
 import seahorse.internal.business.shared.framework.IChainofResponsiblity;
-import seahorse.internal.business.shared.framework.Responsibility;
 
 /**
  * @author sajanmje

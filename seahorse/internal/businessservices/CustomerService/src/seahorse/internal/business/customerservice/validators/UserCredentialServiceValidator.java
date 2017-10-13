@@ -3,8 +3,6 @@
  */
 package seahorse.internal.business.customerservice.validators;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +22,6 @@ import seahorse.internal.business.customerservice.datacontracts.ResultStatus;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.aop.Report;
 import seahorse.internal.business.shared.framework.IChainofResponsiblity;
-import seahorse.internal.business.shared.framework.Responsibility;
 
 /**
  * @author sajanmje

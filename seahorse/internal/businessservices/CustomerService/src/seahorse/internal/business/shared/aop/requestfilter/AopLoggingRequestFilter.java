@@ -11,7 +11,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.ThreadContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
