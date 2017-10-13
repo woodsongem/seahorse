@@ -4,10 +4,15 @@
 
 package seahorse.internal.business.coldfishservice.utilities;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
+
+import com.datastax.driver.core.LocalDate;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
@@ -52,28 +57,35 @@ public class ColdFishServiceUtility {
 		return resultMessage;
 	}
 
-	public static ResultMessageEntity getResultMessageEntity(String errorCode, String parameter,ResultStatus resultStatus) {
+	public static ResultMessageEntity getResultMessageEntity(String errorCode, String parameter,
+			ResultStatus resultStatus) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		resultMessageEntity.setResultStatus(resultStatus);
-		if(errorCode != null || parameter != null ){
+		if (errorCode != null || parameter != null) {
 			ResultMessage resultMessage = new ResultMessage();
 			resultMessage.setErrorCode(errorCode);
 			resultMessage.setParameter(parameter);
 			resultMessageEntity.setResultMessages(resultMessage);
-		}		
+		}
 		return resultMessageEntity;
 	}
 
 	public static <E extends Enum<E>> boolean isInEnum(String value, Class<E> enumClass) {
-		  for (E e : enumClass.getEnumConstants()) {
-		    if(e.name().equalsIgnoreCase(value)) { return true; }
-		  }
-		  return false;
+		for (E e : enumClass.getEnumConstants()) {
+			if (e.name().equalsIgnoreCase(value)) {
+				return true;
+			}
 		}
-	
-	public static Date getCurrentDateTimeUTC()
-	{
+		return false;
+	}
+
+	public static Date getCurrentDateTimeUTC() {
 		ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
-		return Date.from(utc.toInstant());		
-	}	
+		return Date.from(utc.toInstant());
+	}
+
+	public static LocalDate getCurrentDate() {
+		Date date = new Date();
+		return LocalDate.fromMillisSinceEpoch(date.getTime());
+	}
 }

@@ -5,6 +5,8 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
 
 import java.util.Date;
 
+import com.datastax.driver.core.LocalDate;
+
 /**
  * @author admin
  *
@@ -13,8 +15,8 @@ public class BaseMessageEntity extends ResultMessageEntity {
 
 	private String createdBy;
 	private String modifiedBy;
-	private Date createdDate;
-	private Date modifiedDate;
+	private LocalDate createdDate;
+	private LocalDate modifiedDate;
 	private String httpMethod;
 	private String ipAddress;
 
@@ -34,19 +36,19 @@ public class BaseMessageEntity extends ResultMessageEntity {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Date getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Date getModifiedDate() {
+	public LocalDate getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(LocalDate modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 

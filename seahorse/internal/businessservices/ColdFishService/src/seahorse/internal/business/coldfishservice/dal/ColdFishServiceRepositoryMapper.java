@@ -50,7 +50,7 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	@Override
 	public String createIncomeTypeQuery(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		Object[] args = { incomeTypeMessageEntity.getUserId(), "ACTIVE", incomeTypeMessageEntity.getId(),
-				incomeTypeMessageEntity.getCategory(), incomeTypeMessageEntity.getCreatedBy(),
+				incomeTypeMessageEntity.getCategory().toUpperCase(), incomeTypeMessageEntity.getCreatedBy(),
 				incomeTypeMessageEntity.getCreatedDate(), incomeTypeMessageEntity.getDescription(),
 				incomeTypeMessageEntity.getName() };
 		return new MessageFormat(QueryConstants.CREATEINCOMETYPEQUERY).format(args);

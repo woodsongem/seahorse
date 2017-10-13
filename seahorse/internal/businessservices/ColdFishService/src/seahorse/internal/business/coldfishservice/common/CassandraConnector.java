@@ -4,11 +4,9 @@
 
 package seahorse.internal.business.coldfishservice.common;
 
-import static java.lang.System.out;
 import org.apache.commons.lang3.StringUtils;
+
 import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.Host;
-import com.datastax.driver.core.Metadata;
 import com.datastax.driver.core.Session;
 import com.google.inject.Inject;
 

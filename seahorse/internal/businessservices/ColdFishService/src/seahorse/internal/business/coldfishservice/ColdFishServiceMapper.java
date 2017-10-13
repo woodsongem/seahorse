@@ -6,6 +6,7 @@ package seahorse.internal.business.coldfishservice;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 
@@ -18,16 +19,30 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	@Override
 	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
 			IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		return null;
+		IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = new IncomeTypeResponseMessageEntity();
+		incomeTypeResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
+		incomeTypeResponseMessageEntity.setId(incomeTypeMessageEntity.getId());
+		incomeTypeResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
+		if (resultMessageEntity.getHttpStatus() == null) {
+			if (resultMessageEntity.getResultStatus() == ResultStatus.SUCCESS)
+				incomeTypeResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				incomeTypeResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			incomeTypeResponseMessageEntity.setHttpStatus(resultMessageEntity.getHttpStatus());
+		}
+		return incomeTypeResponseMessageEntity;
 	}
 
 	@Override
 	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
 			Status badRequest) {
-		IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity=new IncomeTypeResponseMessageEntity();
+		IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = new IncomeTypeResponseMessageEntity();
 		incomeTypeResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
 		incomeTypeResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
-		incomeTypeResponseMessageEntity.setHttpStatus(badRequest);		
+		incomeTypeResponseMessageEntity.setHttpStatus(badRequest);
 		return incomeTypeResponseMessageEntity;
 	}
 

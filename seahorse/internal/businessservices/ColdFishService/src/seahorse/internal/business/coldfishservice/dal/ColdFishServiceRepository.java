@@ -54,7 +54,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				incometypeDAOs.add(incometypeDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in ColdFishServiceRepository::getIncometypeByUserId"+exception);
+			logger.error("Exception in ColdFishServiceRepository::getIncometypeByUserId" + exception);
 		}
 		return incometypeDAOs;
 	}
@@ -72,7 +72,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 				incometypeDAOs.add(incometypeDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in ColdFishServiceRepository::getDefaultIncometype"+exception);
+			logger.error("Exception in ColdFishServiceRepository::getDefaultIncometype" + exception);
 		}
 		return incometypeDAOs;
 	}
@@ -88,31 +88,24 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row userCredentialDAOResult = resultSet.one();
-				UserCredentialDAO userCredentialDAO = coldFishServiceRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);
+				UserCredentialDAO userCredentialDAO = coldFishServiceRepositoryMapper
+						.mapUserCredentialDAO(userCredentialDAOResult);
 				userCredentialDAOs.add(userCredentialDAO);
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in getUserCredential error="+exception);
+			logger.error("Exception in getUserCredential error=" + exception);
 		}
 		return userCredentialDAOs;
 	}
 
 	@Override
-	public List<IncometypeDAO> createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
-		try {
-			cassandraConnector.connect(null, 0);
-			String applicationQuery = coldFishServiceRepositoryMapper.createIncomeTypeQuery(incomeTypeMessageEntity);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
-			cassandraConnector.close();
-			while (!resultSet.isExhausted()) {
-				final Row incometypeDAOResult = resultSet.one();
-				IncometypeDAO incometypeDAO = coldFishServiceRepositoryMapper.mapcreateIncomeType(incometypeDAOResult);
-				incometypeDAOs.add(incometypeDAO);
-			}
-		} catch (Exception exception) {
-			logger.error("Exception in ColdFishServiceRepository::createIncomeType"+exception);
-		}
-		return incometypeDAOs;
+	public IncometypeDAO createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		IncometypeDAO incometypeDAO = new IncometypeDAO();
+		cassandraConnector.connect(null, 0);
+		String applicationQuery = coldFishServiceRepositoryMapper.createIncomeTypeQuery(incomeTypeMessageEntity);
+		cassandraConnector.getSession().execute(applicationQuery);
+		cassandraConnector.close();
+		incometypeDAO.setId(incomeTypeMessageEntity.getId());
+		return incometypeDAO;
 	}
 }

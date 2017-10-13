@@ -73,7 +73,8 @@ public class ColdFishService implements IColdFishService {
 		}
 		
 		//Post Processor
-		resultMessageEntity=coldFishServicePostProcessor.createIncomeTypePostProcessor(incomeTypeMessageEntity);
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.createIncomeTypePostProcessor(incomeTypeMessageEntity);
+		
 				
 		
 		return coldFishServiceMapper.mapIncomeTypeResponseMessageEntity(resultMessageEntity, incomeTypeMessageEntity);	

@@ -3,8 +3,6 @@
  */
 package seahorse.internal.business.coldfishservice.processors;
 
-import java.util.List;
-
 import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -52,15 +50,18 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	}
 
 	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDateTimeUTC());		
-		List<IncometypeDAO> incometypeDAO = coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
-		if (incometypeDAO == null || incometypeDAO.isEmpty()) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();		
+		incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDate());		
+		try {
+			coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error="+e);
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
-					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
 			return resultMessageEntity;
 		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
 }
