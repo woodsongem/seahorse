@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.verifiers;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
 /**
@@ -17,5 +18,7 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 	
 	ResultMessageEntity isNameValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
+
+	ResultMessageEntity verifygetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
 
 }

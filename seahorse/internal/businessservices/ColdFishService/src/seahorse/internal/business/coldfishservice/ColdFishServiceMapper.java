@@ -3,10 +3,14 @@
  */
 package seahorse.internal.business.coldfishservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 
@@ -44,6 +48,20 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 		incomeTypeResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
 		incomeTypeResponseMessageEntity.setHttpStatus(badRequest);
 		return incomeTypeResponseMessageEntity;
+	}
+
+	@Override
+	public List<IncomeTypeMessageEntity> mapIncomeTypeMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		List <IncomeTypeMessageEntity> incomeTypeMessageEntitys=new ArrayList<>();
+		
+		
+		return incomeTypeMessageEntitys;
+	}
+
+	@Override
+	public List<IncomeTypeMessageEntity> mapIncomeTypeMessageEntity(ResultMessageEntity resultMessageEntity,Status badRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

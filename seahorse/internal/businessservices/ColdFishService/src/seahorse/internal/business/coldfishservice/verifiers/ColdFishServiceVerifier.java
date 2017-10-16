@@ -15,6 +15,7 @@ import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
@@ -112,5 +113,11 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 					"IncomeTypeMessageEntity.Name", ResultStatus.ERROR);
 		}
 		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity verifygetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

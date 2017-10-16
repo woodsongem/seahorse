@@ -6,9 +6,11 @@ package seahorse.internal.business.coldfishservice.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 
@@ -58,6 +60,25 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 			resultMessage.setErrorCode(resultMessage.getErrorCode().replaceAll("_httpmethod", httpmethod));
 		}
 		return resultMessages;
+	}
+
+	@Override
+	public GetIncomeTypeMessageEntity mapGetIncomeTypeMessageEntity(String userid) {
+		GetIncomeTypeMessageEntity getIncomeTypeMessageEntity=new GetIncomeTypeMessageEntity();
+		getIncomeTypeMessageEntity.setUserId(userid);
+		return getIncomeTypeMessageEntity;
+	}
+
+	@Override
+	public IncomeTypeResponse mapIncomeTypeMessageEntity(List<IncomeTypeMessageEntity> incomeTypeMessageEntitys) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IncomeType> mapIncomeTypes(List<IncomeTypeMessageEntity> incomeTypeMessageEntitys) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

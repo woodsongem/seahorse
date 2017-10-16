@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.processors;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
 /**
@@ -13,5 +14,7 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
 public interface IColdFishServiceProcessor {
 
 	ResultMessageEntity createIncomeTypeProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity);
+
+	ResultMessageEntity creategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
 
 }

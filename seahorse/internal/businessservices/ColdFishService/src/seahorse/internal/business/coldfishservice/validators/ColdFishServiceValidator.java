@@ -12,6 +12,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFish
 import seahorse.internal.business.coldfishservice.common.datacontracts.IncomeTypes;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 
@@ -120,5 +121,11 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		}
 				
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public ResultMessageEntity validategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
