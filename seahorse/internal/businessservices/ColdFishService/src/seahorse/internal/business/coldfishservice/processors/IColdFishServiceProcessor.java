@@ -13,8 +13,8 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessag
  */
 public interface IColdFishServiceProcessor {
 
-	ResultMessageEntity createIncomeTypeProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	ResultMessageEntity createIncomeTypeProcessor(IncomeTypeMessageEntity incomeTypeMessageEntity);	
 
-	ResultMessageEntity creategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
+	ResultMessageEntity getIncomeTypeByUserIdProcessor(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
 
 }

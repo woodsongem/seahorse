@@ -25,6 +25,9 @@ public class IncomeTypeMessageEntity extends BaseMessageEntity {
 	private String description;
 
 	private UUID parsedUserId;
+	
+	private String status;
+	
 
 	private UserCredentialMessageEntity userCredentialMessageEntity;
 
@@ -81,5 +84,19 @@ public class IncomeTypeMessageEntity extends BaseMessageEntity {
 	}
 	public UserCredentialMessageEntity getUserCredentialDetails() {
 		return this.userCredentialMessageEntity;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

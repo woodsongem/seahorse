@@ -75,29 +75,32 @@ public class ColdFishServiceAPI {
 	@GET
 	@Path("/IncomeType/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getIncomeType(String userid) {
-		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
+	public Response getIncomeTypeByUserId(String userid) {
 		List<IncomeType> incomeTypes=null;
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
+		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
+		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();		
 		try {
 			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
 			GetIncomeTypeMessageEntity getIncomeTypeMessageEntity = coldFishServiceAPIMapper.mapGetIncomeTypeMessageEntity(userid);
 			List<IncomeTypeMessageEntity> incomeTypeMessageEntitys = coldFishService.getIncomeTypeByUserId(getIncomeTypeMessageEntity);
-			incomeTypes = coldFishServiceAPIMapper.mapIncomeTypes(incomeTypeMessageEntitys);
-			httpStatus = Status.NOT_FOUND;
+			incomeTypes = coldFishServiceAPIMapper.mapIncomeTypes(incomeTypeMessageEntitys);	
+			httpStatus=Status.OK;
 		} catch (Exception ex) {
 			logger.error(ex);
+			httpStatus=Status.INTERNAL_SERVER_ERROR;
 		}
 		Response response;
-		if (incomeTypes.isEmpty()) {
-			response = Response.status(httpStatus).entity(incomeTypes).build();
-		} else {
+		if (incomeTypes == null || incomeTypes.isEmpty()) {			
 			response = Response.status(httpStatus).entity(getResultMessage(coldFishServiceErrorCode.internalError())).build();
+		} 
+		else {
+			response = Response.status(httpStatus).entity(incomeTypes).build();
 		}
-
 		return response;
 	}
+	
+	
 
 	private IncomeTypeResponse getIncomeTypeResponse() {
 		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();

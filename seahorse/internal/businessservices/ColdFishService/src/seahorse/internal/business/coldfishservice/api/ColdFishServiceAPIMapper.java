@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.api;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
@@ -26,7 +27,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		IncomeTypeMessageEntity incomeTypeMessageEntity = new IncomeTypeMessageEntity();
 		incomeTypeMessageEntity.setName(incomeTypeRequest.getName());
 		incomeTypeMessageEntity.setDescription(incomeTypeRequest.getDescription());
-		incomeTypeMessageEntity.setUserId(incomeTypeRequest.getUserId());	
+		incomeTypeMessageEntity.setUserId(incomeTypeRequest.getUserId());
 		incomeTypeMessageEntity.setCategory(incomeTypeRequest.getCategory());
 		return incomeTypeMessageEntity;
 	}
@@ -64,7 +65,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 
 	@Override
 	public GetIncomeTypeMessageEntity mapGetIncomeTypeMessageEntity(String userid) {
-		GetIncomeTypeMessageEntity getIncomeTypeMessageEntity=new GetIncomeTypeMessageEntity();
+		GetIncomeTypeMessageEntity getIncomeTypeMessageEntity = new GetIncomeTypeMessageEntity();
 		getIncomeTypeMessageEntity.setUserId(userid);
 		return getIncomeTypeMessageEntity;
 	}
@@ -77,8 +78,26 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 
 	@Override
 	public List<IncomeType> mapIncomeTypes(List<IncomeTypeMessageEntity> incomeTypeMessageEntitys) {
-		// TODO Auto-generated method stub
-		return null;
+		if (incomeTypeMessageEntitys == null || incomeTypeMessageEntitys.isEmpty()) {
+			return Collections.emptyList();
+		}
+		List<IncomeType> incomeTypes = new ArrayList<>();
+		for (IncomeTypeMessageEntity incomeTypeMessageEntity : incomeTypeMessageEntitys) {
+			IncomeType incomeType = new IncomeType();
+			incomeType.setCategory(incomeTypeMessageEntity.getCategory());
+			incomeType.setCreatedBy(incomeTypeMessageEntity.getCreatedBy());
+			incomeType.setCreatedDate(incomeTypeMessageEntity.getCreatedDate());
+			incomeType.setDescription(incomeTypeMessageEntity.getDescription());
+			if (incomeTypeMessageEntity.getId() != null) {
+				incomeType.setId(incomeTypeMessageEntity.getId().toString());
+			}
+			incomeType.setName(incomeTypeMessageEntity.getName());
+			incomeType.setStatus(incomeTypeMessageEntity.getStatus());
+			incomeType.setUserId(incomeTypeMessageEntity.getUserId());
+			incomeTypes.add(incomeType);
+		}
+
+		return incomeTypes;
 	}
 
 }

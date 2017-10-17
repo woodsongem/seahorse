@@ -64,4 +64,9 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String inValidCategoryErrorCode() {
 		return getErrorCodeMapping("Category.InValid");
 	}
+
+	@Override
+	public String emptyGetIncomeTypeMessageEntityErrorCode() {
+		return getErrorCodeMapping("GetIncomeTypeMessageEntity.Empty");
+	}
 }

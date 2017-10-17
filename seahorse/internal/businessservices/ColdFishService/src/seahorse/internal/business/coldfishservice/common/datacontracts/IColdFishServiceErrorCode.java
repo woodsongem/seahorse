@@ -28,4 +28,6 @@ public interface IColdFishServiceErrorCode {
 	String emptyCategoryErrorCode();
 
 	String inValidCategoryErrorCode();
+
+	String emptyGetIncomeTypeMessageEntityErrorCode();
 }

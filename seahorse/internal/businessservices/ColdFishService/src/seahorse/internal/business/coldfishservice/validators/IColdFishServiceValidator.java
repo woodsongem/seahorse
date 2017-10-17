@@ -26,4 +26,6 @@ public interface IColdFishServiceValidator {
 	ResultMessageEntity isCategoryValid(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
 	ResultMessageEntity validategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
+	
+	ResultMessageEntity isGetIncomeTypeMessageEntityValid(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
 }

@@ -54,7 +54,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		
+
 		resultMessageEntity = isCategoryValid(incomeTypeMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
@@ -107,25 +107,48 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 				"Name", ResultStatus.ERROR);
 	}
 
-	public ResultMessageEntity isCategoryValid(IncomeTypeMessageEntity incomeTypeMessageEntity)
-	{
+	public ResultMessageEntity isCategoryValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		if (incomeTypeMessageEntity.getCategory() == null || incomeTypeMessageEntity.getCategory().trim() == null) {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyCategoryErrorCode(),
 					"Category", ResultStatus.ERROR);
 		}
-		
-		if(!ColdFishServiceUtility.isInEnum(incomeTypeMessageEntity.getCategory(),IncomeTypes.class))
-		{
+
+		if (!ColdFishServiceUtility.isInEnum(incomeTypeMessageEntity.getCategory(), IncomeTypes.class)) {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidCategoryErrorCode(),
 					"Category", ResultStatus.ERROR);
 		}
-				
+
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
 	@Override
 	public ResultMessageEntity validategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isGetIncomeTypeMessageEntityValid(getIncomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+
+		IncomeTypeMessageEntity incomeTypeMessageEntity = new IncomeTypeMessageEntity();
+		incomeTypeMessageEntity.setUserId(getIncomeTypeMessageEntity.getUserId());
+		resultMessageEntity = isUserIdValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+
+		return resultMessageEntity;
 	}
+
+	public ResultMessageEntity isGetIncomeTypeMessageEntityValid(
+			GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		if (getIncomeTypeMessageEntity != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+
+		return ColdFishServiceUtility.getResultMessageEntity(
+				coldFishServiceErrorCode.emptyGetIncomeTypeMessageEntityErrorCode(), "GetIncomeTypeMessageEntity",
+				ResultStatus.ERROR);
+	}
+
 }

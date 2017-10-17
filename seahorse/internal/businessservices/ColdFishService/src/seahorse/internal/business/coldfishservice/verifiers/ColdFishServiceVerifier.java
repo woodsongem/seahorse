@@ -117,7 +117,14 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 
 	@Override
 	public ResultMessageEntity verifygetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultMessageEntity resultMessageEntity;
+		IncomeTypeMessageEntity incomeTypeMessageEntity=new IncomeTypeMessageEntity();
+		incomeTypeMessageEntity.setUserId(getIncomeTypeMessageEntity.getUserId());
+		
+		resultMessageEntity = isUserIdValid(incomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return resultMessageEntity;		
 	}
 }

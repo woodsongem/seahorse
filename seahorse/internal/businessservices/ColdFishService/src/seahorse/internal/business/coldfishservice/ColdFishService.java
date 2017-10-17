@@ -80,8 +80,7 @@ public class ColdFishService implements IColdFishService {
 	}
 	
 	public	List<IncomeTypeMessageEntity> getIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {		
-			//Set
-			
+			//Set			
 			
 		 	//Validator	    
 		    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validategetIncomeTypeByUserId(getIncomeTypeMessageEntity);
@@ -96,13 +95,13 @@ public class ColdFishService implements IColdFishService {
 			}		
 			
 			//Processor
-			resultMessageEntity=coldFishServiceProcessor.creategetIncomeTypeByUserId(getIncomeTypeMessageEntity);
+			resultMessageEntity=coldFishServiceProcessor.getIncomeTypeByUserIdProcessor(getIncomeTypeMessageEntity);
 			if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 				return coldFishServiceMapper.mapIncomeTypeMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 			}
 			
 			//Post Processor
-			ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.creategetIncomeTypeByUserId(getIncomeTypeMessageEntity);
+			ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getIncomeTypeByUserIdPostProcessor(getIncomeTypeMessageEntity);
 			
 					
 			

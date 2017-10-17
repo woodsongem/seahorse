@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.processors;
 
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -11,6 +13,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFish
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
@@ -51,7 +54,7 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 
 	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();		
-		incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDate());		
+		//incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDate());		
 		try {
 			coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
 		} catch (Exception e) {
@@ -66,8 +69,18 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	}
 
 	@Override
-	public ResultMessageEntity creategetIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultMessageEntity getIncomeTypeByUserIdProcessor(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();		
+		try {
+			List<IncometypeDAO> incometypeDAO =coldFishServiceRepository.getIncometypeByUserId(getIncomeTypeMessageEntity.getUserId());
+			getIncomeTypeMessageEntity.setIncomeTypeMessageEntity(coldFishServiceProcessorMapper.mapIncomeTypeMessageEntity(incometypeDAO));
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error="+e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
 	}
 }

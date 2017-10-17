@@ -15,8 +15,8 @@ public class BaseMessageEntity extends ResultMessageEntity {
 
 	private String createdBy;
 	private String modifiedBy;
-	private LocalDate createdDate;
-	private LocalDate modifiedDate;
+	private Date createdDate;
+	private Date modifiedDate;
 	private String httpMethod;
 	private String ipAddress;
 
@@ -36,19 +36,19 @@ public class BaseMessageEntity extends ResultMessageEntity {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalDate getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public LocalDate getModifiedDate() {
+	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(LocalDate modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 
