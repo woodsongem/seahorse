@@ -52,10 +52,7 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 
 	@Override
 	public List<IncomeTypeMessageEntity> mapIncomeTypeMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
-		List <IncomeTypeMessageEntity> incomeTypeMessageEntitys=new ArrayList<>();
-		
-		
-		return incomeTypeMessageEntitys;
+		return getIncomeTypeMessageEntity.getIncomeTypeMessageEntity();
 	}
 
 	@Override

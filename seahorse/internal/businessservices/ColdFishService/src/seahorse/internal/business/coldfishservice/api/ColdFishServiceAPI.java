@@ -79,8 +79,7 @@ public class ColdFishServiceAPI {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getIncomeTypeByUserId(@QueryParam("userid") String userid) {
 		List<IncomeType> incomeTypes=null;
-		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
 		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();		
 		try {
 			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
@@ -95,7 +94,7 @@ public class ColdFishServiceAPI {
 		Response response;
 		if (incomeTypes == null || incomeTypes.isEmpty()) {		
 			httpStatus=Status.NOT_FOUND;
-			response = Response.status(httpStatus).entity(getResultMessage(coldFishServiceErrorCode.internalError(),httpRequest.getMethod())).build();
+			response = Response.status(httpStatus).entity("").build();
 		} 
 		else {
 			response = Response.status(httpStatus).entity(incomeTypes).build();
