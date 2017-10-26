@@ -53,12 +53,58 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	}
 
 	public ResultMessageEntity createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();		
-		//incomeTypeMessageEntity.setCreatedDate(ColdFishServiceUtility.getCurrentDate());		
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		try {
 			coldFishServiceRepository.createIncomeType(incomeTypeMessageEntity);
 		} catch (Exception e) {
-			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error="+e);
+			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity getIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			List<IncometypeDAO> incometypeDAO = coldFishServiceRepository
+					.getIncometypeByUserId(getIncomeTypeMessageEntity.getUserId());
+			getIncomeTypeMessageEntity.setIncomeTypeMessageEntity(
+					coldFishServiceProcessorMapper.mapIncomeTypeMessageEntity(incometypeDAO));
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity getDefaultIncomeType(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			List<IncometypeDAO> incometypeDAOs = coldFishServiceRepository.getDefaultIncometype();
+			if(incometypeDAOs.isEmpty())
+			{
+				resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+				return resultMessageEntity;
+			}
+			if (getIncomeTypeMessageEntity.getIncomeTypeMessageEntity().isEmpty()) {
+				getIncomeTypeMessageEntity.setIncomeTypeMessageEntity(coldFishServiceProcessorMapper.mapIncomeTypeMessageEntity(incometypeDAOs));
+			}
+			else
+			{	
+				getIncomeTypeMessageEntity.getIncomeTypeMessageEntity().addAll(coldFishServiceProcessorMapper.mapIncomeTypeMessageEntity(incometypeDAOs));	
+			}
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error=" + e);
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
 					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
@@ -70,17 +116,17 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 
 	@Override
 	public ResultMessageEntity getIncomeTypeByUserIdProcessor(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
-		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();		
-		try {
-			List<IncometypeDAO> incometypeDAO =coldFishServiceRepository.getIncometypeByUserId(getIncomeTypeMessageEntity.getUserId());
-			getIncomeTypeMessageEntity.setIncomeTypeMessageEntity(coldFishServiceProcessorMapper.mapIncomeTypeMessageEntity(incometypeDAO));
-		} catch (Exception e) {
-			logger.error("Error in IColdFishServiceProcessor::CreateIncomeType error="+e);
-			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
-			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+		
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = getIncomeTypeByUserId(getIncomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
-		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
-		return resultMessageEntity;
+		resultMessageEntity = getDefaultIncomeType(getIncomeTypeMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 }
