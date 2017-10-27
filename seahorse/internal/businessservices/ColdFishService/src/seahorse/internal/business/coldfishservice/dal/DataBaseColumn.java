@@ -27,6 +27,7 @@ public class DataBaseColumn {
 	public static final String INCOMETYPE_MODIFIEDBY="modifiedby";
 	public static final String INCOMETYPE_MODIFIEDDATE="modifieddate";
 	public static final String INCOMETYPE_NAME="name";
+	public static final String INCOMETYPE_INCOMETYPECATEGORY="incometypecategory";
 	
 	//user credential
 	public static final String USERCREDENTIAL_USERNAME = "username";

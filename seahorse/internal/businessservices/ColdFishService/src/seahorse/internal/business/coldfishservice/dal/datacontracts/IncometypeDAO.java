@@ -22,6 +22,7 @@ public class IncometypeDAO {
 	private Date modifiedDate;
 	private UUID userId;
 	private String category;
+	private String incometypecategory;
 	/**
 	 * @return the name
 	 */
@@ -141,5 +142,18 @@ public class IncometypeDAO {
 	 */
 	public void setCategory(String category) {
 		this.category = category;
-	}	
+	}
+	/**
+	 * @return the income type category
+	 */
+	public String getIncometypecategory() {
+		return incometypecategory;
+	}
+	/**
+	 * @param incometypecategory the income type category to set
+	 */
+	public void setIncometypecategory(String incometypecategory) {
+		this.incometypecategory = incometypecategory;
+	}
+
 }

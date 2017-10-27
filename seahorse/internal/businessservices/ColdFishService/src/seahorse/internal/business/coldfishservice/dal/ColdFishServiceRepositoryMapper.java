@@ -38,6 +38,7 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		incometypeDAO.setName(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_NAME));
 		incometypeDAO.setStatus(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_STATUS));
 		incometypeDAO.setUserId(incometypeDAOResult.getUUID(DataBaseColumn.INCOMETYPE_USERID));
+		incometypeDAO.setIncometypecategory(incometypeDAOResult.getString(DataBaseColumn.INCOMETYPE_INCOMETYPECATEGORY));
 		return incometypeDAO;
 	}
 

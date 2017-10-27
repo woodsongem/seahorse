@@ -14,7 +14,8 @@ public class IncomeType extends Base {
 	private String userId;
 	private String description;
 	private String category;
-	private String Status;
+	private String status;
+	private String incometypecategory;
 
 	/**
 	 * @return the name
@@ -95,14 +96,28 @@ public class IncomeType extends Base {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
+	}
+
+	/**
+	 * @return the income type category
+	 */
+	public String getIncometypecategory() {
+		return incometypecategory;
+	}
+
+	/**
+	 * @param incometypecategory the income type category to set
+	 */
+	public void setIncometypecategory(String incometypecategory) {
+		this.incometypecategory = incometypecategory;
 	}
 
 }

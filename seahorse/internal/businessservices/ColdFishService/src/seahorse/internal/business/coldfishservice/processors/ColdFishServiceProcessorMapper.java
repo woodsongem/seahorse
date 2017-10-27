@@ -33,7 +33,8 @@ public class ColdFishServiceProcessorMapper implements IColdFishServiceProcessor
 			incomeTypeMessageEntity.setName(incometypeDAO.getName());
 			incomeTypeMessageEntity.setStatus(incometypeDAO.getStatus());
 			incomeTypeMessageEntity.setParsedUserId(incometypeDAO.getUserId());
-			incomeTypeMessageEntity.setUserId(incometypeDAO.getUserId().toString());		
+			incomeTypeMessageEntity.setUserId(incometypeDAO.getUserId().toString());	
+			incomeTypeMessageEntity.setIncometypecategory(incometypeDAO.getIncometypecategory());
 			incomeTypeMessageEntitys.add(incomeTypeMessageEntity);
 		}
 		return incomeTypeMessageEntitys;
