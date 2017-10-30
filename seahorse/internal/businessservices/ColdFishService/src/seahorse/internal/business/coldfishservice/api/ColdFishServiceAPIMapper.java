@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 
@@ -99,6 +103,30 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		}
 
 		return incomeTypes;
+	}
+
+	@Override
+	public IncomeDetailMessageEntity mapIncomeDetailMessageEntity(IncomeDetailRequest incomeDetailRequest) {
+		if(incomeDetailRequest==null)
+		{
+			return null;
+		}
+		IncomeDetailMessageEntity incomeDetailMessageEntity=new IncomeDetailMessageEntity();
+		incomeDetailMessageEntity.setAmount(incomeDetailRequest.getAmount());
+		incomeDetailMessageEntity.setCategory(incomeDetailRequest.getCategory());
+		incomeDetailMessageEntity.setDescription(incomeDetailRequest.getDescription());
+		incomeDetailMessageEntity.setIncomeTypeId(incomeDetailRequest.getIncomeTypeId());
+		incomeDetailMessageEntity.setUserId(incomeDetailRequest.getUserId());
+		incomeDetailMessageEntity.setName(incomeDetailRequest.getName());
+		incomeDetailMessageEntity.setName(incomeDetailRequest.getName());
+		return incomeDetailMessageEntity;		
+	}
+
+	@Override
+	public IncomeDetailsResponse mapIncomeDetailsResponse(
+			IncomeDetailResponseMessageEntity incomeDetailResponseMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

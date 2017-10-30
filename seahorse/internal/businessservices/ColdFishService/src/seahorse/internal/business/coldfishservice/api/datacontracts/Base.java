@@ -9,7 +9,7 @@ import java.util.Date;
  * @author admin
  *
  */
-public class Base extends ResponseBase {
+public class Base {
 
 	private String createdBy;
 	private String modifiedBy;

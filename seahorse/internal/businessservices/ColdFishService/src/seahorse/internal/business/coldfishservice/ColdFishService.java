@@ -9,9 +9,12 @@ import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 import com.google.inject.Inject;
+
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.postprocessors.IColdFishServicePostProcessor;
@@ -107,5 +110,11 @@ public class ColdFishService implements IColdFishService {
 			
 			return coldFishServiceMapper.mapIncomeTypeMessageEntity(resultMessageEntity, getIncomeTypeMessageEntity);	
 		}
+
+	@Override
+	public IncomeDetailResponseMessageEntity createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

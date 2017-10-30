@@ -18,6 +18,8 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.coldfishservice.IColdFishService;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
@@ -26,6 +28,8 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ColdFishS
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.factories.ColdFishServiceFactory;
@@ -41,7 +45,7 @@ public class ColdFishServiceAPI {
 	private HttpServletRequest httpRequest;
 
 	@POST
-	@Path("/IncomeType")
+	@Path("/Income/IncomeType")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createIncomeType(IncomeTypeRequest incomeTypeRequest) {
 
@@ -50,10 +54,8 @@ public class ColdFishServiceAPI {
 		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
 		try {
 			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
-			IncomeTypeMessageEntity incomeTypeMessageEntity = coldFishServiceAPIMapper
-					.mapIncomeTypeMessageEntity(incomeTypeRequest);
-			IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = coldFishService
-					.createIncomeType(incomeTypeMessageEntity);
+			IncomeTypeMessageEntity incomeTypeMessageEntity = coldFishServiceAPIMapper.mapIncomeTypeMessageEntity(incomeTypeRequest);
+			IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = coldFishService.createIncomeType(incomeTypeMessageEntity);
 			incomeTypeResponse = coldFishServiceAPIMapper.mapIncomeTypeResponse(incomeTypeResponseMessageEntity);
 			httpStatus = incomeTypeResponseMessageEntity.getHttpStatus();
 		} catch (Exception ex) {
@@ -99,6 +101,35 @@ public class ColdFishServiceAPI {
 		return response;
 	}	
 
+	@POST
+	@Path("/Income")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createIncomeDetails(IncomeDetailRequest incomeDetailRequest)
+	{
+		IncomeDetailsResponse incomeDetailsResponse = getIncomeDetailsResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
+		try {
+			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
+			IncomeDetailMessageEntity incomeDetailMessageEntity = coldFishServiceAPIMapper.mapIncomeDetailMessageEntity(incomeDetailRequest);
+			IncomeDetailResponseMessageEntity incomeDetailResponseMessageEntity = coldFishService.createIncomeDetail(incomeDetailMessageEntity);
+			incomeDetailsResponse= coldFishServiceAPIMapper.mapIncomeDetailsResponse(incomeDetailResponseMessageEntity);
+			httpStatus = incomeDetailResponseMessageEntity.getHttpStatus();
+		} catch (Exception ex) {
+			if (incomeDetailsResponse == null) {
+				incomeDetailsResponse = getIncomeDetailsResponse();
+			}
+			logger.error(ex);
+		}
+		if (incomeDetailsResponse == null) {
+			incomeDetailsResponse = getIncomeDetailsResponse();
+		} else if (incomeDetailsResponse.getResultStatus() != ResultStatus.SUCCESS.toString()) {
+			incomeDetailsResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeDetailsResponse.getresultMessage(),
+					httpRequest.getMethod()));
+		}
+		return Response.status(httpStatus).entity(incomeDetailsResponse).build();
+	}
+
 	private IncomeTypeResponse getIncomeTypeResponse() {
 		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
 		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();
@@ -107,6 +138,16 @@ public class ColdFishServiceAPI {
 		resultMessage.setErrorCode(coldFishServiceErrorCode.internalError());
 		incomeTypeResponse.setresultMessage(resultMessage);
 		return incomeTypeResponse;
+	}
+	
+	private IncomeDetailsResponse getIncomeDetailsResponse() {
+		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
+		IncomeDetailsResponse incomeDetailsResponse = new IncomeDetailsResponse();
+		incomeDetailsResponse.setResultStatus(ResultStatus.ERROR.toString());
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(coldFishServiceErrorCode.internalError());
+		incomeDetailsResponse.setresultMessage(resultMessage);
+		return incomeDetailsResponse;
 	}
 
 	private ResultMessage getResultMessage(String errorCode, String httpmethod) {

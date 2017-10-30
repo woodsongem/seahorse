@@ -7,7 +7,7 @@ package seahorse.internal.business.coldfishservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class IncomeTypeResponse  extends Base{
+public class IncomeTypeResponse  extends ResponseBase{
 
 	private String id;
 

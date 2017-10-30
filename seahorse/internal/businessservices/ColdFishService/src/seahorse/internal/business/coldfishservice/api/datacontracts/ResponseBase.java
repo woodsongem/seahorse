@@ -10,7 +10,7 @@ import java.util.List;
  * @author admin
  *
  */
-public class ResponseBase {
+public class ResponseBase extends Base {
 
 	private  List<ResultMessage> messages;
 	private String status;
