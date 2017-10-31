@@ -9,6 +9,8 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
  */
 public interface IColdFishServiceErrorCode {
 	
+	String emptyIncomeTypeId();
+
 	String duplicateIncomeTypeInDefault();
 
 	String internalError() ;
@@ -30,4 +32,12 @@ public interface IColdFishServiceErrorCode {
 	String inValidCategoryErrorCode();
 
 	String emptyGetIncomeTypeMessageEntityErrorCode();
+
+	String emptyIncomeDetailMessageEntityErrorCode();
+
+	String inValidIncomeTypeIdErrorCode();
+
+	String zeroAmountErrorCode();
+
+	String negativeAmountErrorCode();
 }

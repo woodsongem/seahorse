@@ -6,6 +6,7 @@ package seahorse.internal.business.coldfishservice.postprocessors;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
 /**
@@ -26,6 +27,12 @@ public class ColdFishServicePostProcessor  implements IColdFishServicePostProces
 		ResultMessageEntity resultMessageEntity=new ResultMessageEntity();
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity createIncomeDetailProcessor(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

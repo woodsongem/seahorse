@@ -102,7 +102,7 @@ public class ColdFishServiceAPI {
 	}	
 
 	@POST
-	@Path("/Income")
+	@Path("/income")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createIncomeDetails(IncomeDetailRequest incomeDetailRequest)
 	{

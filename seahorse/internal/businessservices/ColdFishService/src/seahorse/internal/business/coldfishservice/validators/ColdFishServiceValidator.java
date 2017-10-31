@@ -13,6 +13,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.IncomeTyp
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 
@@ -83,19 +84,12 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	}
 
 	public ResultMessageEntity isUserIdValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		if (incomeTypeMessageEntity.getUserId() == null) {
-			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),
-					"UserId", ResultStatus.ERROR);
-		}
-
-		try {
+		ResultMessageEntity resultMessageEntity= isUserIdValid(incomeTypeMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
 			incomeTypeMessageEntity.setParsedUserId(UUID.fromString(incomeTypeMessageEntity.getUserId()));
-		} catch (Exception e) {
-			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidUserIdErrorCode(),
-					"Name", ResultStatus.ERROR);
 		}
-
-		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		return resultMessageEntity;
 	}
 
 	public ResultMessageEntity isDescriptionValid(IncomeTypeMessageEntity incomeTypeMessageEntity) {
@@ -140,8 +134,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		return resultMessageEntity;
 	}
 
-	public ResultMessageEntity isGetIncomeTypeMessageEntityValid(
-			GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
+	public ResultMessageEntity isGetIncomeTypeMessageEntityValid(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity) {
 		if (getIncomeTypeMessageEntity != null) {
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -151,4 +144,120 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 				ResultStatus.ERROR);
 	}
 
+	@Override
+	public ResultMessageEntity validateCreateIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isIncomeDetailMessageEntityValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isUserIdValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeTypeIdValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isAmountValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+	
+		return resultMessageEntity;
+	}
+	
+	public ResultMessageEntity isIncomeDetailMessageEntityValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
+	{
+		if (incomeDetailMessageEntity != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+
+		return ColdFishServiceUtility.getResultMessageEntity(
+				coldFishServiceErrorCode.emptyIncomeDetailMessageEntityErrorCode(), "incomeDetailMessageEntity",
+				ResultStatus.ERROR);
+	}
+
+	public ResultMessageEntity isUserIdValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity= isUserIdValid(incomeDetailMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			incomeDetailMessageEntity.setParsedUserId(UUID.fromString(incomeDetailMessageEntity.getUserId()));
+		}
+		return resultMessageEntity;
+	}
+	
+	public ResultMessageEntity isIncomeTypeIdValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity= isIncomeTypeIdValid(incomeDetailMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			incomeDetailMessageEntity.setParsedUserId(UUID.fromString(incomeDetailMessageEntity.getUserId()));
+		}
+		return resultMessageEntity;
+	}
+	
+	public ResultMessageEntity isAmountValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
+	{		
+		if(incomeDetailMessageEntity.getAmount()==0)
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.zeroAmountErrorCode(),"Amount", ResultStatus.ERROR);
+		}
+		if(isAmountValid(incomeDetailMessageEntity.getAmount()))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.negativeAmountErrorCode(),"Amount", ResultStatus.ERROR);
+	}
+	
+	public Boolean isAmountValid(double amount)
+	{
+		return true;
+	}
+	
+	public ResultMessageEntity isIncomeTypeIdValid(String incomeTypeId)
+	{
+		if (incomeTypeId == null) {
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeTypeId(),"IncomeTypeId", ResultStatus.ERROR);
+		}
+		
+		if(isUUIDValid(incomeTypeId))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidIncomeTypeIdErrorCode(),"IncomeTypeId", ResultStatus.ERROR);
+	}
+	
+	public ResultMessageEntity isUserIdValid(String userId)
+	{
+		if (userId == null) {
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),"UserId", ResultStatus.ERROR);
+		}
+		
+		if(isUUIDValid(userId))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidUserIdErrorCode(),"Name", ResultStatus.ERROR);
+	}
+	
+	private Boolean isUUIDValid(String uuid)
+	{
+		if (uuid == null) {
+		 return false;
+		}
+		try {
+			UUID.fromString(uuid);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

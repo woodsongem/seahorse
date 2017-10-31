@@ -15,6 +15,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultSta
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
@@ -128,5 +129,11 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 			return resultMessageEntity;
 		}
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public ResultMessageEntity createIncomeDetailProcessor(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
