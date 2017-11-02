@@ -76,4 +76,16 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		userCredentialDAO.setStatus(userCredentialDAOResult.getString(DataBaseColumn.STATUS));
 		return userCredentialDAO;
 	}
+
+	@Override
+	public String getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IncometypeDAO mapIncometypeDAOResult(Row incometypeDAOResult) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

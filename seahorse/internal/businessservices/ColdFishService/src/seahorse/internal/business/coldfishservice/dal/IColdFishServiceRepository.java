@@ -23,4 +23,6 @@ public interface IColdFishServiceRepository {
 	List<UserCredentialDAO> getUserCredential(LoginDetailMessageEntity loginDetailMessageEntity);
 
 	IncometypeDAO createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity);
+	
+	IncometypeDAO getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity);
 }

@@ -6,6 +6,7 @@ package seahorse.internal.business.coldfishservice.datacontracts;
 import java.util.UUID;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
+import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 
 /**
  * @author sajanmje
@@ -20,6 +21,9 @@ public class IncomeDetailMessageEntity extends BaseMessageEntity {
 	private String incomeTypeId;
 	private double amount;
 	private UUID parsedUserId;
+	private UUID parsedIncomeTypeId;
+	private UserCredentialMessageEntity userCredentialMessageEntity;
+	private IncomeTypeMessageEntity incomeTypeMessageEntity; 
 
 	/**
 	 * @return the name
@@ -133,6 +137,46 @@ public class IncomeDetailMessageEntity extends BaseMessageEntity {
 		this.parsedUserId = parsedUserId;
 	}
 
+	/**
+	 * @return the userCredentialMessageEntity
+	 */
+	public UserCredentialMessageEntity getUserCredentialMessageEntity() {
+		return userCredentialMessageEntity;
+	}
 
+	/**
+	 * @param userCredentialMessageEntity the userCredentialMessageEntity to set
+	 */
+	public void setUserCredentialMessageEntity(UserCredentialMessageEntity userCredentialMessageEntity) {
+		this.userCredentialMessageEntity = userCredentialMessageEntity;
+	}
+
+	/**
+	 * @return the parsedIncomeTypeId
+	 */
+	public UUID getParsedIncomeTypeId() {
+		return parsedIncomeTypeId;
+	}
+
+	/**
+	 * @param parsedIncomeTypeId the parsedIncomeTypeId to set
+	 */
+	public void setParsedIncomeTypeId(UUID parsedIncomeTypeId) {
+		this.parsedIncomeTypeId = parsedIncomeTypeId;
+	}
+
+	/**
+	 * @return the incomeTypeMessageEntity
+	 */
+	public IncomeTypeMessageEntity getIncomeTypeMessageEntity() {
+		return incomeTypeMessageEntity;
+	}
+
+	/**
+	 * @param incomeTypeMessageEntity the incomeTypeMessageEntity to set
+	 */
+	public void setIncomeTypeMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity) {
+		this.incomeTypeMessageEntity = incomeTypeMessageEntity;
+	}
 
 }

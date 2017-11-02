@@ -30,4 +30,8 @@ public interface IColdFishServiceRepositoryMapper {
 
 	UserCredentialDAO mapUserCredentialDAO(Row userCredentialDAOResult);
 
+	String getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity);
+
+	IncometypeDAO mapIncometypeDAOResult(Row incometypeDAOResult);
+
 }

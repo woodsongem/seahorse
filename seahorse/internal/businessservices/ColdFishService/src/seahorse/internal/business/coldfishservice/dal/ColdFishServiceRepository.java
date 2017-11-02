@@ -108,4 +108,22 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		incometypeDAO.setId(incomeTypeMessageEntity.getId());
 		return incometypeDAO;
 	}
+
+	public IncometypeDAO getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity)
+	{
+		IncometypeDAO incometypeDAO = new IncometypeDAO();
+		try {
+			cassandraConnector.connect(null, 0);
+			String incomeTypeQuery = coldFishServiceRepositoryMapper.getIncomeTypeById(incomeTypeMessageEntity);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeTypeQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incometypeDAOResult = resultSet.one();
+				incometypeDAO = coldFishServiceRepositoryMapper.mapIncometypeDAOResult(incometypeDAOResult);				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getUserCredential error=" + exception);
+		}
+		return incometypeDAO;
+	}
 }

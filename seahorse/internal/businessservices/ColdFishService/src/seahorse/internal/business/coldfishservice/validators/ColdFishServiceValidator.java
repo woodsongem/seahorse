@@ -203,12 +203,12 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	}
 	
 	public ResultMessageEntity isAmountValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
-	{		
+	{			
 		if(incomeDetailMessageEntity.getAmount()==0)
 		{
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.zeroAmountErrorCode(),"Amount", ResultStatus.ERROR);
 		}
-		if(isAmountValid(incomeDetailMessageEntity.getAmount()))
+		if(!isAmountValid(incomeDetailMessageEntity.getAmount()))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -217,7 +217,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	
 	public Boolean isAmountValid(double amount)
 	{
-		return true;
+		return amount<0;
 	}
 	
 	public ResultMessageEntity isIncomeTypeIdValid(String incomeTypeId)
