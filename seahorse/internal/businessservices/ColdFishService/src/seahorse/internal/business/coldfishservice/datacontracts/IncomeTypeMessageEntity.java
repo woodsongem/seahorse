@@ -15,21 +15,13 @@ import seahorse.internal.business.coldfishservice.processors.datacontracts.UserC
 public class IncomeTypeMessageEntity extends BaseMessageEntity {
 
 	private String category;
-
 	private UUID id;
-
 	private String name;
-
 	private String userId;
-
 	private String description;
-
-	private UUID parsedUserId;
-	
+	private UUID parsedUserId;	
 	private String status;
 	private String incometypecategory;
-	
-
 	private UserCredentialMessageEntity userCredentialMessageEntity;
 
 	public String getCategory() {

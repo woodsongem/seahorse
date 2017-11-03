@@ -10,6 +10,7 @@ import com.datastax.driver.core.Row;
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 
@@ -79,13 +80,14 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 
 	@Override
 	public String getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] args = { incomeTypeMessageEntity.getId() };
+		return new MessageFormat(QueryConstants.GETINCOMEDETAILBYIDQUERY).format(args);
 	}
 
 	@Override
-	public IncometypeDAO mapIncometypeDAOResult(Row incometypeDAOResult) {
-		// TODO Auto-generated method stub
-		return null;
+	public String createIncomeDetailQuery(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		Object[] args = {  incomeDetailMessageEntity.getId(),incomeDetailMessageEntity.getAmount(),incomeDetailMessageEntity.getCreatedBy(),incomeDetailMessageEntity.getCreatedDate(),
+				incomeDetailMessageEntity.getDescription(),incomeDetailMessageEntity.getIncomeTypeId(), "ACTIVE",incomeDetailMessageEntity.getParsedUserId()};
+		return new MessageFormat(QueryConstants.CREATEINCOMEDETAILQUERY).format(args);
 	}
 }

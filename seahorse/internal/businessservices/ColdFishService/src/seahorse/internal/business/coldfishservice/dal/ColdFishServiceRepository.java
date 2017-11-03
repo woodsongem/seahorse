@@ -14,8 +14,10 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
@@ -119,11 +121,22 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row incometypeDAOResult = resultSet.one();
-				incometypeDAO = coldFishServiceRepositoryMapper.mapIncometypeDAOResult(incometypeDAOResult);				
+				incometypeDAO = coldFishServiceRepositoryMapper.mapIncometypeDAO(incometypeDAOResult);				
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getUserCredential error=" + exception);
 		}
 		return incometypeDAO;
+	}
+
+	@Override
+	public IncomeDetailDAO createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		IncomeDetailDAO incomeDetailDAO = new IncomeDetailDAO();
+		cassandraConnector.connect(null, 0);
+		String incomeDetailDAOQuery = coldFishServiceRepositoryMapper.createIncomeDetailQuery(incomeDetailMessageEntity);
+		cassandraConnector.getSession().execute(incomeDetailDAOQuery);
+		cassandraConnector.close();
+		incomeDetailDAO.setId(incomeDetailMessageEntity.getId());
+		return incomeDetailDAO;
 	}
 }

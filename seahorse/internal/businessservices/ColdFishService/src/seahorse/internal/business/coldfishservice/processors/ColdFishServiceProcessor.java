@@ -133,7 +133,28 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 
 	@Override
 	public ResultMessageEntity createIncomeDetailProcessor(IncomeDetailMessageEntity incomeDetailMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = createIncomeDetail(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+	
+	@Override
+	public ResultMessageEntity createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			coldFishServiceRepository.createIncomeDetail(incomeDetailMessageEntity);
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::createIncomeDetail error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
 	}
 }

@@ -10,7 +10,7 @@ import java.util.UUID;
  * @author sajanmje
  *
  */
-public class IncometypeDAO {
+public class IncometypeDAO  {
 
 	private String name;
 	private String status;
