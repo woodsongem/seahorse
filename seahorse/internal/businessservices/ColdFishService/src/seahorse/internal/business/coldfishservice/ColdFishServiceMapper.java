@@ -20,8 +20,7 @@ import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeRespon
 public class ColdFishServiceMapper implements IColdFishServiceMapper {
 
 	@Override
-	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
-			IncomeTypeMessageEntity incomeTypeMessageEntity) {
+	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = new IncomeTypeResponseMessageEntity();
 		incomeTypeResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
 		incomeTypeResponseMessageEntity.setId(incomeTypeMessageEntity.getId());
@@ -40,8 +39,7 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	}
 
 	@Override
-	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,
-			Status badRequest) {
+	public IncomeTypeResponseMessageEntity mapIncomeTypeResponseMessageEntity(ResultMessageEntity resultMessageEntity,Status badRequest) {
 		IncomeTypeResponseMessageEntity incomeTypeResponseMessageEntity = new IncomeTypeResponseMessageEntity();
 		incomeTypeResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
 		incomeTypeResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
@@ -61,15 +59,16 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	}
 
 	@Override
-	public IncomeDetailResponseMessageEntity mapIncomeDetailResponseMessageEntity(
-			ResultMessageEntity resultMessageEntity, Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public IncomeDetailResponseMessageEntity mapIncomeDetailResponseMessageEntity(ResultMessageEntity resultMessageEntity, Status badRequest) {
+		IncomeDetailResponseMessageEntity incomeDetailResponseMessageEntity = new IncomeDetailResponseMessageEntity();
+		incomeDetailResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
+		incomeDetailResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
+		incomeDetailResponseMessageEntity.setHttpStatus(badRequest);
+		return incomeDetailResponseMessageEntity;
 	}
 
 	@Override
-	public IncomeDetailResponseMessageEntity mapIncomeDetailResponseMessageEntity(
-			ResultMessageEntity resultMessageEntity, IncomeDetailMessageEntity incomeDetailMessageEntity) {
+	public IncomeDetailResponseMessageEntity mapIncomeDetailResponseMessageEntity(ResultMessageEntity resultMessageEntity, IncomeDetailMessageEntity incomeDetailMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.datacontracts;
 
+import java.util.UUID;
+
 import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -11,6 +13,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessa
  */
 public class IncomeDetailResponseMessageEntity extends BaseMessageEntity {
 
+	private UUID id;
 	private String name;
 	private String userId;
 	private String description;	
@@ -100,6 +103,20 @@ public class IncomeDetailResponseMessageEntity extends BaseMessageEntity {
 	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public UUID getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(UUID id) {
+		this.id = id;
 	}
 	
 }

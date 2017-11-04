@@ -18,7 +18,7 @@ public class ResponseBase extends Base {
 	/**
 	 * @return the _resultMessage
 	 */
-	public List<ResultMessage> getresultMessage() {
+	public List<ResultMessage> getResultMessage() {
 		return messages;
 	}
 
@@ -46,7 +46,7 @@ public class ResponseBase extends Base {
 	/**
 	 * @param _resultMessage the _resultMessage to set
 	 */
-	public void setresultMessage(ResultMessage resultMessage) {
+	public void setResultMessage(ResultMessage resultMessage) {
 		if (this.messages == null) {
 			this.messages = new ArrayList<>();
 		}

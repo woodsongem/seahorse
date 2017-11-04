@@ -67,7 +67,7 @@ public class ColdFishServiceAPI {
 		if (incomeTypeResponse == null) {
 			incomeTypeResponse = getIncomeTypeResponse();
 		} else if (incomeTypeResponse.getResultStatus() != ResultStatus.SUCCESS.toString()) {
-			incomeTypeResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeTypeResponse.getresultMessage(),
+			incomeTypeResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeTypeResponse.getResultMessage(),
 					httpRequest.getMethod()));
 		}
 		return Response.status(httpStatus).entity(incomeTypeResponse).build();
@@ -124,7 +124,7 @@ public class ColdFishServiceAPI {
 		if (incomeDetailsResponse == null) {
 			incomeDetailsResponse = getIncomeDetailsResponse();
 		} else if (incomeDetailsResponse.getResultStatus() != ResultStatus.SUCCESS.toString()) {
-			incomeDetailsResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeDetailsResponse.getresultMessage(),
+			incomeDetailsResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeDetailsResponse.getResultMessage(),
 					httpRequest.getMethod()));
 		}
 		return Response.status(httpStatus).entity(incomeDetailsResponse).build();
@@ -136,7 +136,7 @@ public class ColdFishServiceAPI {
 		incomeTypeResponse.setResultStatus(ResultStatus.ERROR.toString());
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(coldFishServiceErrorCode.internalError());
-		incomeTypeResponse.setresultMessage(resultMessage);
+		incomeTypeResponse.setResultMessage(resultMessage);
 		return incomeTypeResponse;
 	}
 	
@@ -146,7 +146,7 @@ public class ColdFishServiceAPI {
 		incomeDetailsResponse.setResultStatus(ResultStatus.ERROR.toString());
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(coldFishServiceErrorCode.internalError());
-		incomeDetailsResponse.setresultMessage(resultMessage);
+		incomeDetailsResponse.setResultMessage(resultMessage);
 		return incomeDetailsResponse;
 	}
 
