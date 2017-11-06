@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.dal;
 
 import com.datastax.driver.core.Row;
 
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -33,6 +34,10 @@ public interface IColdFishServiceRepositoryMapper {
 
 	String getIncomeTypeById(IncomeTypeMessageEntity incomeTypeMessageEntity);
 
-	String createIncomeDetailQuery(IncomeDetailMessageEntity incomeDetailMessageEntity);	
+	String createIncomeDetailQuery(IncomeDetailMessageEntity incomeDetailMessageEntity);
+
+	String getIncomeDetailByUserIdQuery(String userId);
+
+	IncomeDetailDAO mapIncomeDetailDAO(Row incomeDetailResult);	
 
 }

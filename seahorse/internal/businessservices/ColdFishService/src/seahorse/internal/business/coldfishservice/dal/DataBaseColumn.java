@@ -14,10 +14,14 @@ public class DataBaseColumn {
 	}
 
 	//common
-	public static final String STATUS = "status";
-	
-	//income type
 	public static final String ID = "id";
+	public static final String STATUS = "status";
+	public static final String CREATEDDATE="createddate";
+	public static final String CREATEDBY="createdby";
+	public static final String MODIFIEDBY="modifiedby";
+	public static final String MODIFIEDDATE="modifieddate";
+	
+	//income type	
 	public static final String INCOMETYPE_USERID="userid";
 	public static final String INCOMETYPE_STATUS="status";
 	public static final String INCOMETYPE_CATEGORY="category";
@@ -32,8 +36,11 @@ public class DataBaseColumn {
 	//user credential
 	public static final String USERCREDENTIAL_USERNAME = "username";
 	
+	//Income Details
 	
-	
-	
+	public static final String INCOMEDETAIL_USERID="userid";
+	public static final String INCOMEDETAIL_AMOUNT="amount";		
+	public static final String INCOMEDETAIL_DESCRIPTION="description";
+	public static final String INCOMEDETAIL_INCOMETYPEID="incometypeid";
 	
 }

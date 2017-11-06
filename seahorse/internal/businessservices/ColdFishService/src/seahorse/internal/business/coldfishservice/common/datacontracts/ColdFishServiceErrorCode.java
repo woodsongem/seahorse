@@ -94,4 +94,9 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String negativeAmountErrorCode() {
 		return getErrorCodeMapping("Amount.Negative");
 	}
+
+	@Override
+	public String emptyGetincomeDetailMessageEntityErrorCode() {
+		return getErrorCodeMapping("GetincomeDetailMessageEntity.Empty");
+	}
 }

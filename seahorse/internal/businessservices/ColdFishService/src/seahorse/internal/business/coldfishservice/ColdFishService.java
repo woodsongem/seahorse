@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
@@ -144,6 +145,34 @@ public class ColdFishService implements IColdFishService {
 				
 		
 		return coldFishServiceMapper.mapIncomeDetailResponseMessageEntity(resultMessageEntity, incomeDetailMessageEntity);	
+	}
+
+	@Override
+	public List<IncomeDetailMessageEntity> getIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+
+	 	//Validator	    
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateGetIncomeDetailByUserId(getincomeDetailMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeDetailMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}
+		
+		//Verifier
+	    resultMessageEntity = coldFishServiceVerifier.verifyGetIncomeDetailByUserId(getincomeDetailMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeDetailMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}		
+		
+		//Processor
+		resultMessageEntity=coldFishServiceProcessor.getIncomeDetailByUserIdProcessor(getincomeDetailMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeDetailMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getIncomeDetailByUserIdProcessor(getincomeDetailMessageEntity);		
+				
+		
+		return coldFishServiceMapper.mapIncomeDetailMessageEntity(resultMessageEntity, getincomeDetailMessageEntity);	
 	}
 
 }

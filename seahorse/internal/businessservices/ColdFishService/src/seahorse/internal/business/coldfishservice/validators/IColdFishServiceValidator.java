@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.validators;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -43,4 +44,10 @@ public interface IColdFishServiceValidator {
 	 ResultMessageEntity isAmountValid(IncomeDetailMessageEntity incomeDetailMessageEntity);
 	 
 	 Boolean isAmountValid(double amount);
+
+	ResultMessageEntity validateGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
+	
+	ResultMessageEntity isGetincomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
+	
+	ResultMessageEntity isUserIdValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
 }

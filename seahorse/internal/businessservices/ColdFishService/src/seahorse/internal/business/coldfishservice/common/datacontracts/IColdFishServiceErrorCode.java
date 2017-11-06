@@ -40,4 +40,6 @@ public interface IColdFishServiceErrorCode {
 	String zeroAmountErrorCode();
 
 	String negativeAmountErrorCode();
+
+	String emptyGetincomeDetailMessageEntityErrorCode();
 }

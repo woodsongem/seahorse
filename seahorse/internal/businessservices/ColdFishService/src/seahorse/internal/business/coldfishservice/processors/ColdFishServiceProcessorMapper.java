@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
 /**
@@ -38,6 +40,12 @@ public class ColdFishServiceProcessorMapper implements IColdFishServiceProcessor
 			incomeTypeMessageEntitys.add(incomeTypeMessageEntity);
 		}
 		return incomeTypeMessageEntitys;
+	}
+
+	@Override
+	public List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(List<IncomeDetailDAO> incomeDetailDAOs) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

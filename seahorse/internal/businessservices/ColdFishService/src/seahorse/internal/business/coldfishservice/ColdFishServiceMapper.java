@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ws.rs.core.Response.Status;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
@@ -69,6 +70,18 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 
 	@Override
 	public IncomeDetailResponseMessageEntity mapIncomeDetailResponseMessageEntity(ResultMessageEntity resultMessageEntity, IncomeDetailMessageEntity incomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(ResultMessageEntity resultMessageEntity,Status badRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

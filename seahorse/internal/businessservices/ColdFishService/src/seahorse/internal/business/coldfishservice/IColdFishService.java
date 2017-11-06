@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice;
 
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
@@ -22,5 +23,7 @@ public interface IColdFishService {
 	List<IncomeTypeMessageEntity> getIncomeTypeByUserId(GetIncomeTypeMessageEntity getIncomeTypeMessageEntity);
 
 	IncomeDetailResponseMessageEntity createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity);
+
+	List<IncomeDetailMessageEntity> getIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
 
 }

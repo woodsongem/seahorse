@@ -13,7 +13,9 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFish
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -149,6 +151,74 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 			coldFishServiceRepository.createIncomeDetail(incomeDetailMessageEntity);
 		} catch (Exception e) {
 			logger.error("Error in IColdFishServiceProcessor::createIncomeDetail error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity getIncomeDetailByUserIdProcessor(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = getIncomeDetailByUserId(getincomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+	
+	public ResultMessageEntity getIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			List<IncomeDetailDAO> incomeDetailDAOs = coldFishServiceRepository.getIncomeDetailByUserId(getincomeDetailMessageEntity.getUserId());
+			if(incomeDetailDAOs.isEmpty())
+			{
+				resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+				return resultMessageEntity;
+			}
+			if (getincomeDetailMessageEntity.getIncomeDetails().isEmpty()) {
+				getincomeDetailMessageEntity.setIncomeDetails(coldFishServiceProcessorMapper.mapIncomeDetailMessageEntity(incomeDetailDAOs));
+			}
+			else
+			{	
+				getincomeDetailMessageEntity.getIncomeDetails().addAll(coldFishServiceProcessorMapper.mapIncomeDetailMessageEntity(incomeDetailDAOs));	
+			}
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::getIncomeDetailByUserId error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
+	}
+
+
+	public ResultMessageEntity GetIncomeTypeByIds(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			List<IncomeDetailDAO> incomeDetailDAOs = coldFishServiceRepository.getIncomeDetailByUserId(getIncomeDetailMessageEntity.getUserId());
+			if(incomeDetailDAOs.isEmpty())
+			{
+				resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+				return resultMessageEntity;
+			}
+			if (getIncomeDetailMessageEntity.getIncomeDetails().isEmpty()) {
+				getIncomeDetailMessageEntity.setIncomeDetails(coldFishServiceProcessorMapper.mapIncomeDetailMessageEntity(incomeDetailDAOs));
+			}
+			else
+			{	
+				getIncomeDetailMessageEntity.getIncomeDetails().addAll(coldFishServiceProcessorMapper.mapIncomeDetailMessageEntity(incomeDetailDAOs));	
+			}
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::getIncomeDetailByUserId error=" + e);
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
 					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));

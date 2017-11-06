@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -35,4 +36,6 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity isUserIdValid(UUID userId,List<UserCredentialMessageEntity> userCredentialMessageEntitys);	 
 	
 	ResultMessageEntity isIncomeTypeIdValid(UUID incomeTypeId,IncomeTypeMessageEntity incomeTypeMessageEntity);
+
+	ResultMessageEntity verifyGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
 }

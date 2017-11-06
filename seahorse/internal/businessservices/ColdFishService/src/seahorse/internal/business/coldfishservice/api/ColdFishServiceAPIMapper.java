@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
@@ -147,6 +149,33 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		incomeDetailsResponse.setresultMessage(resultMessages);
 		
 		return incomeDetailsResponse;
+	}
+
+	@Override
+	public GetIncomeDetailMessageEntity mapGetincomeDetailMessageEntity(String userid) {
+		GetIncomeDetailMessageEntity getIncomeDetailMessageEntity=new GetIncomeDetailMessageEntity();
+		getIncomeDetailMessageEntity.setUserId(userid);
+		return getIncomeDetailMessageEntity;		
+	}
+
+	@Override
+	public List<IncomeDetail> mapIncomeDetail(List<IncomeDetailMessageEntity> incomeDetailMessageEntitys) {
+		List<IncomeDetail> incomeDetails=new ArrayList<>();
+		if(incomeDetailMessageEntitys== null)
+		{
+			return incomeDetails;
+		}
+		for (IncomeDetailMessageEntity incomeDetailMessageEntity : incomeDetailMessageEntitys) {
+			IncomeDetail incomeDetail=new IncomeDetail();
+			incomeDetail.setAmount(incomeDetailMessageEntity.getAmount());
+			incomeDetail.setCategory(incomeDetailMessageEntity.getCategory());
+			incomeDetail.setDescription(incomeDetailMessageEntity.getDescription());
+			incomeDetail.setId(incomeDetailMessageEntity.getId().toString());
+			incomeDetail.setStatus(incomeDetailMessageEntity.getStatus());
+			incomeDetail.setIncomeTypeName(incomeDetailMessageEntity.getIncomeTypeName());			
+			incomeDetails.add(incomeDetail);
+		}		
+		return incomeDetails;
 	}
 
 }

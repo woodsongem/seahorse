@@ -20,8 +20,10 @@ public class IncomeDetailMessageEntity extends BaseMessageEntity {
 	private String category;
 	private String incomeTypeId;
 	private double amount;
+	private String status;
 	private UUID parsedUserId;
 	private UUID parsedIncomeTypeId;
+	private String incomeTypeName;
 	private UserCredentialMessageEntity userCredentialMessageEntity;
 	private IncomeTypeMessageEntity incomeTypeMessageEntity; 
 
@@ -177,6 +179,34 @@ public class IncomeDetailMessageEntity extends BaseMessageEntity {
 	 */
 	public void setIncomeTypeMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		this.incomeTypeMessageEntity = incomeTypeMessageEntity;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the incomeTypeName
+	 */
+	public String getIncomeTypeName() {
+		return incomeTypeName;
+	}
+
+	/**
+	 * @param incomeTypeName the incomeTypeName to set
+	 */
+	public void setIncomeTypeName(String incomeTypeName) {
+		this.incomeTypeName = incomeTypeName;
 	}
 
 }

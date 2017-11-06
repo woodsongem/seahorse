@@ -12,6 +12,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFish
 import seahorse.internal.business.coldfishservice.common.datacontracts.IncomeTypes;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -259,5 +260,40 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public ResultMessageEntity validateGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isGetincomeDetailMessageEntityValid(getincomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isUserIdValid(getincomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isUserIdValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity= isUserIdValid(getincomeDetailMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			getincomeDetailMessageEntity.setParsedUserId(UUID.fromString(getincomeDetailMessageEntity.getUserId()));
+		}
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isGetincomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		if (getincomeDetailMessageEntity != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+
+		return ColdFishServiceUtility.getResultMessageEntity(
+				coldFishServiceErrorCode.emptyGetincomeDetailMessageEntityErrorCode(), "getincomeDetailMessageEntity",	ResultStatus.ERROR);
 	}
 }

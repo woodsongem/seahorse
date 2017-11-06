@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.constants.Constant;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -89,5 +90,27 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		Object[] args = {  incomeDetailMessageEntity.getId(),incomeDetailMessageEntity.getAmount(),incomeDetailMessageEntity.getCreatedBy(),incomeDetailMessageEntity.getCreatedDate(),
 				incomeDetailMessageEntity.getDescription(),incomeDetailMessageEntity.getIncomeTypeId(), "ACTIVE",incomeDetailMessageEntity.getParsedUserId()};
 		return new MessageFormat(QueryConstants.CREATEINCOMEDETAILQUERY).format(args);
+	}
+
+	@Override
+	public String getIncomeDetailByUserIdQuery(String userId) {
+		Object[] args = { userId };
+		return new MessageFormat(QueryConstants.GETINCOMEDETAILBYIDQUERY).format(args);
+	}
+
+	@Override
+	public IncomeDetailDAO mapIncomeDetailDAO(Row incomeDetailResult) {
+		IncomeDetailDAO incometypeDAO = new IncomeDetailDAO();
+		incometypeDAO.setId(incomeDetailResult.getUUID(DataBaseColumn.ID));		
+		incometypeDAO.setCreatedBy(incomeDetailResult.getString(DataBaseColumn.CREATEDBY));
+		incometypeDAO.setCreatedDate(incomeDetailResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
+		incometypeDAO.setModifiedBy(incomeDetailResult.getString(DataBaseColumn.MODIFIEDBY));
+		incometypeDAO.setModifiedDate(incomeDetailResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
+		incometypeDAO.setStatus(incomeDetailResult.getString(DataBaseColumn.STATUS));
+		incometypeDAO.setAmount(incomeDetailResult.getDouble(DataBaseColumn.INCOMEDETAIL_AMOUNT));
+		incometypeDAO.setDescription(incomeDetailResult.getString(DataBaseColumn.INCOMEDETAIL_DESCRIPTION));
+		incometypeDAO.setUserId(incomeDetailResult.getUUID(DataBaseColumn.INCOMETYPE_USERID));
+		incometypeDAO.setIncometypeId(incomeDetailResult.getUUID(DataBaseColumn.INCOMEDETAIL_INCOMETYPEID));
+		return incometypeDAO;
 	}
 }

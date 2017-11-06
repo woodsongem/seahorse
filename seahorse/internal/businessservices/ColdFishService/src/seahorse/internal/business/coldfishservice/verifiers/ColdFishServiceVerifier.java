@@ -17,6 +17,7 @@ import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -205,6 +206,29 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		IncomeTypeMessageEntity incomeTypRequest = coldFishServiceVerifierMapper.mapIncomeTypeMessageEntity(incomeTypeId);
 		IncometypeDAO incometypeDAO = coldFishServiceRepository.getIncomeTypeById(incomeTypRequest);
 		incomeTypeMessageEntity=coldFishServiceVerifierMapper.mapIncomeTypeMessageEntity(incometypeDAO);
+		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity verifyGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+		
+		resultMessageEntity = isUserIdValid(getincomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	private ResultMessageEntity isUserIdValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		List<UserCredentialMessageEntity> userCredentialMessageEntitys= new ArrayList<>();
+		ResultMessageEntity resultMessageEntity=isUserIdValid(getincomeDetailMessageEntity.getParsedUserId(),userCredentialMessageEntitys);
+		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return resultMessageEntity;
+		}
+		getincomeDetailMessageEntity.setUserCredential(userCredentialMessageEntitys.get(0));		
 		return resultMessageEntity;
 	}	
 }
