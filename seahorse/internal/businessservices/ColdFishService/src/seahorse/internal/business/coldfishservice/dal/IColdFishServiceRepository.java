@@ -31,4 +31,8 @@ public interface IColdFishServiceRepository {
 	IncomeDetailDAO createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity);
 
 	List<IncomeDetailDAO> getIncomeDetailByUserId(String userId);
+
+	List<IncometypeDAO> getIncomeTypeByIds(List<String> incomeTypeIds);
+	
+	
 }

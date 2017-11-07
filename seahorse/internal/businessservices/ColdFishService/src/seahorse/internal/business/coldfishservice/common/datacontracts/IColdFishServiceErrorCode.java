@@ -9,6 +9,8 @@ package seahorse.internal.business.coldfishservice.common.datacontracts;
  */
 public interface IColdFishServiceErrorCode {
 	
+	String incomeTypeNotFound();
+
 	String emptyIncomeTypeId();
 
 	String duplicateIncomeTypeInDefault();

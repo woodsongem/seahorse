@@ -159,4 +159,23 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		}
 		return incomeDetailDAOs;
 	}
+
+	@Override
+	public List<IncometypeDAO> getIncomeTypeByIds(List<String> incomeTypeIds) {
+		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0);
+			String incomeTypeQuery = coldFishServiceRepositoryMapper.getIncomeTypeByIdsQuery(incomeTypeIds);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeTypeQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incometypeDAOResult = resultSet.one();
+				IncometypeDAO incometypeDAO = coldFishServiceRepositoryMapper.mapIncometypeDAO(incometypeDAOResult);	
+				incometypeDAOs.add(incometypeDAO);
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeTypeByIds error=" + exception);
+		}
+		return incometypeDAOs;
+	}
 }

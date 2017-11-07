@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.dal;
 
+import java.util.List;
+
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
@@ -38,6 +40,8 @@ public interface IColdFishServiceRepositoryMapper {
 
 	String getIncomeDetailByUserIdQuery(String userId);
 
-	IncomeDetailDAO mapIncomeDetailDAO(Row incomeDetailResult);	
+	IncomeDetailDAO mapIncomeDetailDAO(Row incomeDetailResult);
+
+	String getIncomeTypeByIdsQuery(List<String> incomeTypeIds);	
 
 }

@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.dal;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import com.datastax.driver.core.Row;
 
@@ -112,5 +113,11 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		incometypeDAO.setUserId(incomeDetailResult.getUUID(DataBaseColumn.INCOMETYPE_USERID));
 		incometypeDAO.setIncometypeId(incomeDetailResult.getUUID(DataBaseColumn.INCOMEDETAIL_INCOMETYPEID));
 		return incometypeDAO;
+	}
+
+	@Override
+	public String getIncomeTypeByIdsQuery(List<String> incomeTypeIds) {
+		Object[] args = { String.join(",", incomeTypeIds) };
+		return new MessageFormat(QueryConstants.GETUSERCREDENTIALQUERY).format(args);
 	}
 }

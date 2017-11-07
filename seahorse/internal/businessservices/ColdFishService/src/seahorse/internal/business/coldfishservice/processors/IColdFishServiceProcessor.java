@@ -31,6 +31,6 @@ public interface IColdFishServiceProcessor {
 	
 	ResultMessageEntity getIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
 	
-	ResultMessageEntity GetIncomeTypeByIds(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity getIncomeTypeByIds(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
 
 }

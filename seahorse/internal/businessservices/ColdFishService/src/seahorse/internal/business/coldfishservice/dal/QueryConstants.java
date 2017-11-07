@@ -20,5 +20,6 @@ public class QueryConstants {
 	public static final String GETINCOMEDETAILBYIDQUERY = "SELECT id, category, createdby, createddate, description, incometypecategory, modifiedby, modifieddate, name, status, userid FROM coldfish_dev.incometype where id= {0}";
 	public static final String CREATEINCOMEDETAILQUERY = "INSERT INTO coldfish_dev.incomedetails (id, amount, createdby, createddate, description, incometypeid, status, userid) VALUES({0},{1},''{2}'',''{3}'',''{4}'',{5},''{6}'',{7})";
 	public static final String GETINCOMEDETAILBYUSERIDQUERY = "SELECT id, amount, createdby, createddate, description, incometypeid, modifiedby, modifieddate, status, userid FROM coldfish_dev.incomedetails where userid= {0}";
+	public static final String GETINCOMETYPEBYIDQUERY = "SELECT id, category, createdby, createddate, description, incometypecategory, modifiedby, modifieddate, name, status, userid FROM coldfish_dev.incometype where id in({0})";
 	
 }
