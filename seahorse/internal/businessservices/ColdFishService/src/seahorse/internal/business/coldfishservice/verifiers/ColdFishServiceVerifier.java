@@ -186,8 +186,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
-	
-	
+		
 	public ResultMessageEntity isIncomeTypeIdValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
 	{
 		IncomeTypeMessageEntity incomeTypeMessageEntity= new IncomeTypeMessageEntity();
