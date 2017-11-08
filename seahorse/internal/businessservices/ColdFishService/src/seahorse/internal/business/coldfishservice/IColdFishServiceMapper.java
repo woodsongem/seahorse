@@ -8,6 +8,8 @@ import javax.ws.rs.core.Response.Status;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -34,4 +36,8 @@ public interface IColdFishServiceMapper {
 	List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(ResultMessageEntity resultMessageEntity,Status badRequest);
 
 	List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeDetailMessageEntity getincomeDetailMessageEntity);
+
+	IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,	Status badRequest);
+
+	IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,IncomeCategoryMessageEntity incomeDetailMessageEntity);
 }

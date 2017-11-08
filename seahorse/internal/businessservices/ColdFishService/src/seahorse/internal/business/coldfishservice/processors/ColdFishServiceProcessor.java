@@ -18,6 +18,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetail
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.utilities.ColdFishServiceUtility;
@@ -233,5 +234,11 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 		}
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity getCreateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

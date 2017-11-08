@@ -9,6 +9,8 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -82,6 +84,20 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 
 	@Override
 	public List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(
+			ResultMessageEntity resultMessageEntity, Status badRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(
+			ResultMessageEntity resultMessageEntity, IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -104,4 +104,9 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String incomeTypeNotFound() {
 		return getErrorCodeMapping("IncomeType.NotFound");
 	}
+
+	@Override
+	public String emptyIncomeCategoryMessageEntityErrorCode() {
+		return getErrorCodeMapping("IncomeCategoryMessageEntity.Empty");
+	}
 }

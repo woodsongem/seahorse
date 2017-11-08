@@ -14,6 +14,8 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -173,6 +175,38 @@ public class ColdFishService implements IColdFishService {
 				
 		
 		return coldFishServiceMapper.mapIncomeDetailMessageEntity(resultMessageEntity, getincomeDetailMessageEntity);	
+	}
+
+	@Override
+	public IncomeCategoryResponseMessageEntity createIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		
+		if(incomeCategoryMessageEntity != null)
+		{
+			incomeCategoryMessageEntity.setId(UUID.randomUUID());
+		}
+		//Validator	    
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}
+		
+		//Verifier
+	    resultMessageEntity = coldFishServiceVerifier.verifyCreateIncomeCategory(incomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}		
+		
+		//Processor
+		resultMessageEntity=coldFishServiceProcessor.getCreateIncomeCategoryProcessor(incomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getCreateIncomeCategoryPostProcessor(incomeCategoryMessageEntity);		
+				
+		
+		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, incomeCategoryMessageEntity);	
 	}
 
 }

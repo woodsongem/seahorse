@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
@@ -16,6 +18,8 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRe
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -176,6 +180,26 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 			incomeDetails.add(incomeDetail);
 		}		
 		return incomeDetails;
+	}
+
+	@Override
+	public IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest) {
+		if(incomeCategoryRequest==null)
+		{
+			return null; 
+		}
+		IncomeCategoryMessageEntity incomeCategoryMessageEntity=new IncomeCategoryMessageEntity();
+		incomeCategoryMessageEntity.setDescription(incomeCategoryRequest.getDescription());
+		incomeCategoryMessageEntity.setName(incomeCategoryRequest.getName());
+		incomeCategoryMessageEntity.setUserId(incomeCategoryRequest.getUserId());
+		return incomeCategoryMessageEntity;
+	}
+
+	@Override
+	public IncomeCategoryResponse mapIncomeCategoryResponse(
+			IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
