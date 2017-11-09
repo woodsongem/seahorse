@@ -36,11 +36,15 @@ public class DataBaseColumn {
 	//user credential
 	public static final String USERCREDENTIAL_USERNAME = "username";
 	
-	//Income Details
-	
+	//Income Details	
 	public static final String INCOMEDETAIL_USERID="userid";
 	public static final String INCOMEDETAIL_AMOUNT="amount";		
 	public static final String INCOMEDETAIL_DESCRIPTION="description";
 	public static final String INCOMEDETAIL_INCOMETYPEID="incometypeid";
 	
+	//IncomeCategory
+	public static final String INCOMECATEGORY_TYPE="type";
+	public static final String INCOMECATEGORY_USERID="userid";
+	public static final String INCOMECATEGORY_NAME="name";
+	public static final String INCOMECATEGORY_DESCRIPTION="description";	
 }

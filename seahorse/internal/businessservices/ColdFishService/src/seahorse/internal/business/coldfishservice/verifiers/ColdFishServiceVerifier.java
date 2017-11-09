@@ -10,11 +10,14 @@ import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.Logger;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategory;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
@@ -239,7 +242,11 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		resultMessageEntity = isUserIdValid(incomeDetailMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
-		}		
+		}	
+		resultMessageEntity = isIncomeCategoryNameValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}	
 	
@@ -257,6 +264,10 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	
 	public ResultMessageEntity isIncomeCategoryNameValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
 	{
-		return null;
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getDefaultIncomeCategory();
+		incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId());
+		return resultMessageEntity;
 	}
 }

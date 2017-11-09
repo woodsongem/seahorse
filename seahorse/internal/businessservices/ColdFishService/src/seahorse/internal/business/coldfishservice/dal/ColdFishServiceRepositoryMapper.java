@@ -5,10 +5,12 @@ package seahorse.internal.business.coldfishservice.dal;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.UUID;
 
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.constants.Constant;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
@@ -119,5 +121,33 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	public String getIncomeTypeByIdsQuery(List<String> incomeTypeIds) {
 		Object[] args = { String.join(",", incomeTypeIds) };
 		return new MessageFormat(QueryConstants.GETUSERCREDENTIALQUERY).format(args);
+	}
+
+	@Override
+	public String getDefaultIncomeCategoryQuery() {		
+		Object[] args= {Constant.DEFAULT};
+		return new MessageFormat(QueryConstants.GETDEFAULTINCOMETYPEBYIDQUERY).format(args);
+	}
+
+	@Override
+	public IncomeCategoryDAO mapIncomeCategoryDAO(Row incomeCategoryDAOResult) {
+		IncomeCategoryDAO incomeCategoryDAO=new IncomeCategoryDAO();
+		incomeCategoryDAO.setId(incomeCategoryDAOResult.getUUID(DataBaseColumn.ID));		
+		incomeCategoryDAO.setCreatedBy(incomeCategoryDAOResult.getString(DataBaseColumn.CREATEDBY));
+		incomeCategoryDAO.setCreatedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
+		incomeCategoryDAO.setModifiedBy(incomeCategoryDAOResult.getString(DataBaseColumn.MODIFIEDBY));
+		incomeCategoryDAO.setModifiedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
+		incomeCategoryDAO.setStatus(incomeCategoryDAOResult.getString(DataBaseColumn.STATUS));
+		incomeCategoryDAO.setName(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_NAME));
+		incomeCategoryDAO.setUserId(incomeCategoryDAOResult.getUUID(DataBaseColumn.INCOMECATEGORY_USERID));
+		incomeCategoryDAO.setType(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_TYPE));
+		incomeCategoryDAO.setDescription(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_DESCRIPTION));
+		return incomeCategoryDAO;
+	}
+
+	@Override
+	public String getIncomeCategoryByUserIdQuery(UUID userId) {
+		Object[] args= {userId};
+		return new MessageFormat(QueryConstants.GETINCOMECATEGORYBYUSERIDQUERY).format(args);
 	}
 }

@@ -4,7 +4,9 @@
 package seahorse.internal.business.coldfishservice.dal;
 
 import java.util.List;
+import java.util.UUID;
 
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
@@ -33,6 +35,10 @@ public interface IColdFishServiceRepository {
 	List<IncomeDetailDAO> getIncomeDetailByUserId(String userId);
 
 	List<IncometypeDAO> getIncomeTypeByIds(List<String> incomeTypeIds);
+
+	List<IncomeCategoryDAO> getDefaultIncomeCategory();
+
+	List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId);
 	
 	
 }

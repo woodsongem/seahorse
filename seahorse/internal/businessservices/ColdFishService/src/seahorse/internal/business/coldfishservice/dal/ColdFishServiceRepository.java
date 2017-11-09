@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.dal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +15,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
@@ -177,5 +179,43 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			logger.error("Exception in getIncomeTypeByIds error=" + exception);
 		}
 		return incometypeDAOs;
+	}
+
+	@Override
+	public List<IncomeCategoryDAO> getDefaultIncomeCategory() {
+		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0);
+			String incomeCategoryQuery = coldFishServiceRepositoryMapper.getDefaultIncomeCategoryQuery();
+			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeCategoryQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incomeCategoryDAOResult = resultSet.one();
+				IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult);	
+				incomeCategoryDAOs.add(incomeCategoryDAO);
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getDefaultIncomeCategory error=" + exception);
+		}
+		return incomeCategoryDAOs;
+	}
+
+	@Override
+	public List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId) {
+		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0);
+			String incomeCategoryQuery = coldFishServiceRepositoryMapper.getIncomeCategoryByUserIdQuery(userId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeCategoryQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incomeCategoryDAOResult = resultSet.one();
+				IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult);	
+				incomeCategoryDAOs.add(incomeCategoryDAO);
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeCategoryByUserId error=" + exception);
+		}
+		return incomeCategoryDAOs;
 	}
 }
