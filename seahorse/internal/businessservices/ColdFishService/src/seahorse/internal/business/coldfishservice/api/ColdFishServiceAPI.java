@@ -79,8 +79,6 @@ public class ColdFishServiceAPI {
 		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
 	}
 	
-
-
 	@GET
 	@Path("/income")
 	@Produces(MediaType.APPLICATION_JSON)

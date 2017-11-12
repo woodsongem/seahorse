@@ -35,5 +35,7 @@ public interface IColdFishServiceProcessor {
 	ResultMessageEntity getIncomeTypeByIds(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
 
 	ResultMessageEntity getCreateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity);
+	
+	ResultMessageEntity createIncomeCategoryType(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
 }

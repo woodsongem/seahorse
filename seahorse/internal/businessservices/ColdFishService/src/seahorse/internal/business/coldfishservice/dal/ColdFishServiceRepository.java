@@ -19,6 +19,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
@@ -217,5 +218,16 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			logger.error("Exception in getIncomeCategoryByUserId error=" + exception);
 		}
 		return incomeCategoryDAOs;
+	}
+
+	@Override
+	public IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
+		cassandraConnector.connect(null, 0);
+		String applicationQuery = coldFishServiceRepositoryMapper.createIncomeCategoryQuery(incomeDetailMessageEntity);
+		cassandraConnector.getSession().execute(applicationQuery);
+		cassandraConnector.close();
+		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());
+		return incomeCategoryDAO;
 	}
 }

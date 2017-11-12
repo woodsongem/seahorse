@@ -12,6 +12,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
@@ -50,6 +51,8 @@ public interface IColdFishServiceRepositoryMapper {
 
 	IncomeCategoryDAO mapIncomeCategoryDAO(Row incomeCategoryDAOResult);
 
-	String getIncomeCategoryByUserIdQuery(UUID userId);	
+	String getIncomeCategoryByUserIdQuery(UUID userId);
+
+	String createIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);	
 
 }

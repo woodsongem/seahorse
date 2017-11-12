@@ -46,4 +46,8 @@ public interface IColdFishServiceErrorCode {
 	String emptyGetincomeDetailMessageEntityErrorCode();
 
 	String emptyIncomeCategoryMessageEntityErrorCode();
+
+	String duplicateIncomeCategoryInDefault();
+
+	String duplicateIncomeCategory();
 }

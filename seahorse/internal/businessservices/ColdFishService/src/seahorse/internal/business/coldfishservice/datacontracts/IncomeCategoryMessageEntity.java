@@ -5,18 +5,20 @@ package seahorse.internal.business.coldfishservice.datacontracts;
 
 import java.util.UUID;
 
+import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 
 /**
  * @author sajanmje
  *
  */
-public class IncomeCategoryMessageEntity {
+public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 
 	private UUID id;
 	private String name;
 	private String userId;
 	private String description;
+	private String type;
 	private UUID parsedUserId;
 	private UserCredentialMessageEntity userCredential;
 	
@@ -91,5 +93,17 @@ public class IncomeCategoryMessageEntity {
 	 */
 	public void setUserCredential(UserCredentialMessageEntity userCredential) {
 		this.userCredential = userCredential;
+	}
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 }

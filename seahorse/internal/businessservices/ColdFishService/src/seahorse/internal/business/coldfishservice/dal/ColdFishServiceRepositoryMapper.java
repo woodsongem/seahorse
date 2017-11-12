@@ -14,6 +14,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
@@ -126,7 +127,7 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	@Override
 	public String getDefaultIncomeCategoryQuery() {		
 		Object[] args= {Constant.DEFAULT};
-		return new MessageFormat(QueryConstants.GETDEFAULTINCOMETYPEBYIDQUERY).format(args);
+		return new MessageFormat(QueryConstants.GETDEFAULTINCOMETYPEQUERY).format(args);
 	}
 
 	@Override
@@ -149,5 +150,14 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	public String getIncomeCategoryByUserIdQuery(UUID userId) {
 		Object[] args= {userId};
 		return new MessageFormat(QueryConstants.GETINCOMECATEGORYBYUSERIDQUERY).format(args);
+	}
+
+	@Override
+	public String createIncomeCategoryQuery(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		Object[] args = { incomeCategoryMessageEntity.getUserId(), "ACTIVE", incomeCategoryMessageEntity.getId(),
+				incomeCategoryMessageEntity.getType().toUpperCase(), incomeCategoryMessageEntity.getCreatedBy(),
+				incomeCategoryMessageEntity.getCreatedDate(), incomeCategoryMessageEntity.getDescription(),
+				incomeCategoryMessageEntity.getName() };
+		return new MessageFormat(QueryConstants.CREATEINCOMECATEGORYQUERY).format(args);
 	}
 }

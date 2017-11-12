@@ -109,4 +109,14 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String emptyIncomeCategoryMessageEntityErrorCode() {
 		return getErrorCodeMapping("IncomeCategoryMessageEntity.Empty");
 	}
+
+	@Override
+	public String duplicateIncomeCategoryInDefault() {
+		return getErrorCodeMapping("IncomeCategoryName.AlreadyExist.Default");
+	}
+
+	@Override
+	public String duplicateIncomeCategory() {
+		return getErrorCodeMapping("IncomeCategoryName.AlreadyExist");
+	}
 }

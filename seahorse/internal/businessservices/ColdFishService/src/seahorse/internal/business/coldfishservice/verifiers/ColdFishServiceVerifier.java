@@ -267,7 +267,24 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getDefaultIncomeCategory();
+		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategoryInDefault(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
+		}		
 		incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId());
+		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
+		}
+		
 		return resultMessageEntity;
+	}
+	
+	private Boolean isIncomeCategoryNameValid(List<IncomeCategoryDAO> incomeCategoryDAOs,String incomeCategoryName)
+	{
+		
+		return	incomeCategoryDAOs != null && incomeCategoryDAOs.stream()
+				.anyMatch(x -> x.getName().equalsIgnoreCase(incomeCategoryName) && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS));
+		
 	}
 }

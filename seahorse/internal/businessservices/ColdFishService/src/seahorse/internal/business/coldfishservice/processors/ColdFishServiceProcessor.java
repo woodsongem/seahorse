@@ -238,7 +238,27 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 
 	@Override
 	public ResultMessageEntity getCreateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = createIncomeCategoryType(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity createIncomeCategoryType(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			coldFishServiceRepository.createIncomeCategory(incomeDetailMessageEntity);
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::createIncomeCategoryType error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
 	}
 }
