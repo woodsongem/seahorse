@@ -8,6 +8,7 @@ package seahorse.internal.business.coldfishservice.api.datacontracts;
  *
  */
 public class IncomeCategoryRequest extends RequestBase{
+	private String id;
 	private String name;
 	private String userId;
 	private String description;
@@ -46,5 +47,11 @@ public class IncomeCategoryRequest extends RequestBase{
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}		
 }

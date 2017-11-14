@@ -50,4 +50,8 @@ public interface IColdFishServiceErrorCode {
 	String duplicateIncomeCategoryInDefault();
 
 	String duplicateIncomeCategory();
+
+	String emptyIncomeCategoryIdErrorCode();
+
+	String inValidIncomeCategoryIdErrorCode();
 }

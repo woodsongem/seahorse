@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -50,6 +51,8 @@ public class ColdFishServiceAPI {
 	@Context
 	private HttpServletRequest httpRequest;
 	
+	
+	
 	@POST
 	@Path("/incomecategory")
 	@Produces(MediaType.APPLICATION_JSON)	
@@ -62,6 +65,35 @@ public class ColdFishServiceAPI {
 			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
 			IncomeCategoryMessageEntity incomeDetailMessageEntity = coldFishServiceAPIMapper.mapIncomeCategoryMessageEntity(incomeCategoryRequest);
 			IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity = coldFishService.createIncomeCategory(incomeDetailMessageEntity);
+			incomeCategoryResponse= coldFishServiceAPIMapper.mapIncomeCategoryResponse(incomeCategoryResponseMessageEntity);
+			httpStatus = incomeCategoryResponseMessageEntity.getHttpStatus();
+		} catch (Exception ex) {
+			if (incomeCategoryResponse == null) {
+				incomeCategoryResponse = getIncomeCategoryResponse();
+			}
+			logger.error(ex);
+		}
+		if (incomeCategoryResponse == null) {
+			incomeCategoryResponse = getIncomeCategoryResponse();
+		} else if (incomeCategoryResponse.getResultStatus() != ResultStatus.SUCCESS.toString()) {
+			incomeCategoryResponse.setresultMessage(coldFishServiceAPIMapper.mapResultMessages(incomeCategoryResponse.getResultMessage(),
+					httpRequest.getMethod()));
+		}
+		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
+	}
+	
+	@PUT
+	@Path("/incomecategory")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response updateIncomeCategory(IncomeCategoryRequest incomeCategoryRequest)
+	{
+		IncomeCategoryResponse incomeCategoryResponse = getIncomeCategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
+		try {
+			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
+			IncomeCategoryMessageEntity incomeDetailMessageEntity = coldFishServiceAPIMapper.mapIncomeCategoryMessageEntity(incomeCategoryRequest);
+			IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity = coldFishService.updateIncomeCategory(incomeDetailMessageEntity);
 			incomeCategoryResponse= coldFishServiceAPIMapper.mapIncomeCategoryResponse(incomeCategoryResponseMessageEntity);
 			httpStatus = incomeCategoryResponseMessageEntity.getHttpStatus();
 		} catch (Exception ex) {

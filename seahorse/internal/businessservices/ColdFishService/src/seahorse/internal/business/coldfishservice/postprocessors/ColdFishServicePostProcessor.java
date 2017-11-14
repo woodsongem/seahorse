@@ -49,4 +49,10 @@ public class ColdFishServicePostProcessor  implements IColdFishServicePostProces
 		return null;
 	}
 
+	@Override
+	public ResultMessageEntity updateIncomeCategoryPostProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

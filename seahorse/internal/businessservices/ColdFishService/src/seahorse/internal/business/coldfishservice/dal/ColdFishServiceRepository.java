@@ -227,7 +227,13 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		String applicationQuery = coldFishServiceRepositoryMapper.createIncomeCategoryQuery(incomeDetailMessageEntity);
 		cassandraConnector.getSession().execute(applicationQuery);
 		cassandraConnector.close();
-		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());
+		incomeCategoryDAO.setId(incomeDetailMessageEntity.getParsedId());
 		return incomeCategoryDAO;
+	}
+
+	@Override
+	public IncomeCategoryDAO getIncomeCategoryById(IncomeCategoryMessageEntity incomeCategory) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

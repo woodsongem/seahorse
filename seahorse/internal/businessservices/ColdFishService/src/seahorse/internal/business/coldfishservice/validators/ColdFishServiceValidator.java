@@ -344,4 +344,54 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		}
 		return resultMessageEntity;
 	}
+
+	@Override
+	public ResultMessageEntity validateUpdateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isIncomeCategoryMessageEntityValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+	
+		resultMessageEntity = isNameValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		
+		resultMessageEntity = isUserIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeCategoryIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		return resultMessageEntity;
+	}
+	
+	public ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity= isIncomeCategoryIdValid(incomeCategoryMessageEntity.getId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			incomeCategoryMessageEntity.setParsedId(UUID.fromString(incomeCategoryMessageEntity.getId()));
+		}
+		return resultMessageEntity;
+	}
+	public ResultMessageEntity isIncomeCategoryIdValid(String incomeCategoryId)
+	{
+		if (incomeCategoryId == null) {
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeCategoryIdErrorCode(),"Id", ResultStatus.ERROR);
+		}
+		
+		if(isUUIDValid(incomeCategoryId))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidIncomeCategoryIdErrorCode(),"Id", ResultStatus.ERROR);
+	}
 }

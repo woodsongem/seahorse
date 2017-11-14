@@ -182,7 +182,7 @@ public class ColdFishService implements IColdFishService {
 		
 		if(incomeCategoryMessageEntity != null)
 		{
-			incomeCategoryMessageEntity.setId(UUID.randomUUID());
+			incomeCategoryMessageEntity.setParsedId(UUID.randomUUID());
 		}
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);
@@ -197,13 +197,40 @@ public class ColdFishService implements IColdFishService {
 		}		
 		
 		//Processor
-		resultMessageEntity=coldFishServiceProcessor.getCreateIncomeCategoryProcessor(incomeCategoryMessageEntity);
+		resultMessageEntity=coldFishServiceProcessor.createIncomeCategoryProcessor(incomeCategoryMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
 		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getCreateIncomeCategoryPostProcessor(incomeCategoryMessageEntity);		
+				
+		
+		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, incomeCategoryMessageEntity);	
+	}
+
+	@Override
+	public IncomeCategoryResponseMessageEntity updateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		//Validator	    
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateUpdateIncomeCategory(incomeCategoryMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}
+		
+		//Verifier
+	    resultMessageEntity = coldFishServiceVerifier.verifyUpdateIncomeCategory(incomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}		
+		
+		//Processor
+		resultMessageEntity=coldFishServiceProcessor.UpdateIncomeCategoryProcessor(incomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.updateIncomeCategoryPostProcessor(incomeCategoryMessageEntity);		
 				
 		
 		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, incomeCategoryMessageEntity);	

@@ -237,7 +237,7 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	}
 
 	@Override
-	public ResultMessageEntity getCreateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+	public ResultMessageEntity createIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
 
 		resultMessageEntity = createIncomeCategoryType(incomeDetailMessageEntity);
@@ -260,5 +260,16 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 		}
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
+	}
+
+	@Override
+	public ResultMessageEntity UpdateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = createIncomeCategoryType(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 }

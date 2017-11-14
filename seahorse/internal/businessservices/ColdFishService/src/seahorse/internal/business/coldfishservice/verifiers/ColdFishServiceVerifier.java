@@ -266,6 +266,10 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	{
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		if(incomeCategoryMessageEntity.getName()==null)
+		{
+			return resultMessageEntity;
+		}
 		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getDefaultIncomeCategory();
 		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
 		{
@@ -281,10 +285,48 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	}
 	
 	private Boolean isIncomeCategoryNameValid(List<IncomeCategoryDAO> incomeCategoryDAOs,String incomeCategoryName)
-	{
-		
+	{		
 		return	incomeCategoryDAOs != null && incomeCategoryDAOs.stream()
-				.anyMatch(x -> x.getName().equalsIgnoreCase(incomeCategoryName) && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS));
-		
+				.anyMatch(x -> x.getName().equalsIgnoreCase(incomeCategoryName) && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS));		
+	}
+
+	@Override
+	public ResultMessageEntity verifyUpdateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+
+		ResultMessageEntity resultMessageEntity;		
+		resultMessageEntity = isUserIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		resultMessageEntity = isIncomeCategoryNameValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		resultMessageEntity = isIncomeCategoryIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+
+		IncomeCategoryMessageEntity incomeCategory= new  IncomeCategoryMessageEntity();
+		ResultMessageEntity resultMessageEntity=IsIncomeCategoryIdValid(incomeCategoryMessageEntity.getParsedId(),incomeCategory);
+		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return resultMessageEntity;
+		}
+		incomeCategoryMessageEntity.setIncomeCategory(incomeCategory);		
+		return resultMessageEntity;
+	}
+	
+	public ResultMessageEntity IsIncomeCategoryIdValid(UUID incomeCategoryId,IncomeCategoryMessageEntity incomeCategoryMessageEntity)
+	{
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		IncomeCategoryMessageEntity incomeCategory = coldFishServiceVerifierMapper.mapIncomeCategoryMessageEntity(incomeCategoryId);
+		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategory);
+		incomeCategoryMessageEntity=coldFishServiceVerifierMapper.mapincomeCategoryMessageEntity(incomeCategoryDAO);		
+		return resultMessageEntity;
 	}
 }

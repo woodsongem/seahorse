@@ -192,6 +192,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		incomeCategoryMessageEntity.setDescription(incomeCategoryRequest.getDescription());
 		incomeCategoryMessageEntity.setName(incomeCategoryRequest.getName());
 		incomeCategoryMessageEntity.setUserId(incomeCategoryRequest.getUserId());
+		incomeCategoryMessageEntity.setId(incomeCategoryRequest.getId());
 		return incomeCategoryMessageEntity;
 	}
 

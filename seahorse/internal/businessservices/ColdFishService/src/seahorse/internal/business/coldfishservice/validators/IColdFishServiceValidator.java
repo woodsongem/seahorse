@@ -59,4 +59,10 @@ public interface IColdFishServiceValidator {
 	ResultMessageEntity isNameValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 	
 	ResultMessageEntity isUserIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
+	ResultMessageEntity validateUpdateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeCategoryIdValid(String incomeCategoryId);
 }

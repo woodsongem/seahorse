@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.LoginDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
@@ -64,6 +66,18 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 
 	@Override
 	public IncomeTypeMessageEntity mapIncomeTypeMessageEntity(IncometypeDAO incometypeDAO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(UUID incomeCategoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IncomeCategoryMessageEntity mapincomeCategoryMessageEntity(IncomeCategoryDAO incomeCategoryDAO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

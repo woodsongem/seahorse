@@ -26,4 +26,6 @@ public interface IColdFishServicePostProcessor {
 
 	ResultMessageEntity getCreateIncomeCategoryPostProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 
+	ResultMessageEntity updateIncomeCategoryPostProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
 }

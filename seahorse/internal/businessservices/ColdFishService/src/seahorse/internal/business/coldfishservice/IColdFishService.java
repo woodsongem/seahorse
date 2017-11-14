@@ -30,4 +30,6 @@ public interface IColdFishService {
 
 	IncomeCategoryResponseMessageEntity createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
+	IncomeCategoryResponseMessageEntity updateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
 }

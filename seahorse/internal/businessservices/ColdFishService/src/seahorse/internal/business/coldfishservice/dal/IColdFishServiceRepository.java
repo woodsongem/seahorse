@@ -42,6 +42,8 @@ public interface IColdFishServiceRepository {
 	List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId);
 
 	IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
+
+	IncomeCategoryDAO getIncomeCategoryById(IncomeCategoryMessageEntity incomeCategory);
 	
 	
 }

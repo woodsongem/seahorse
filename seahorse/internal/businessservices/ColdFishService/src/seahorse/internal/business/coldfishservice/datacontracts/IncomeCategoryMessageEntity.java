@@ -14,24 +14,26 @@ import seahorse.internal.business.coldfishservice.processors.datacontracts.UserC
  */
 public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 
-	private UUID id;
+	private String id;
+	private UUID parsedId;
 	private String name;
 	private String userId;
 	private String description;
 	private String type;
 	private UUID parsedUserId;
 	private UserCredentialMessageEntity userCredential;
+	private IncomeCategoryMessageEntity incomeCategory;
 	
 	/**
 	 * @return the id
 	 */
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	/**
@@ -105,5 +107,17 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+	public UUID getParsedId() {
+		return parsedId;
+	}
+	public void setParsedId(UUID parsedId) {
+		this.parsedId = parsedId;
+	}
+	public IncomeCategoryMessageEntity getIncomeCategory() {
+		return incomeCategory;
+	}
+	public void setIncomeCategory(IncomeCategoryMessageEntity incomeCategory) {
+		this.incomeCategory = incomeCategory;
 	}
 }

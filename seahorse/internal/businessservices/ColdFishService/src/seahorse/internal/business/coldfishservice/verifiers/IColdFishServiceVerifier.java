@@ -47,4 +47,10 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity isUserIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 	
 	ResultMessageEntity isIncomeCategoryNameValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
+	ResultMessageEntity verifyUpdateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity IsIncomeCategoryIdValid(UUID incomeCategoryId,IncomeCategoryMessageEntity incomeCategoryMessageEntity );
 }
