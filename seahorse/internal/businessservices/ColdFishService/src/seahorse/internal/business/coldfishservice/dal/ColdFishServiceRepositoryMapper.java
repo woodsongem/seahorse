@@ -153,11 +153,11 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	}
 
 	@Override
-	public String createIncomeCategoryQuery(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
-		Object[] args = { incomeCategoryMessageEntity.getUserId(), "ACTIVE", incomeCategoryMessageEntity.getId(),
-				incomeCategoryMessageEntity.getType().toUpperCase(), incomeCategoryMessageEntity.getCreatedBy(),
-				incomeCategoryMessageEntity.getCreatedDate(), incomeCategoryMessageEntity.getDescription(),
-				incomeCategoryMessageEntity.getName() };
+	public String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		Object[] args = { incomeCategoryMessageEntity.getId(),incomeCategoryMessageEntity.getCreatedBy(), 
+				incomeCategoryMessageEntity.getCreatedDate(),incomeCategoryMessageEntity.getDescription(),
+				incomeCategoryMessageEntity.getName(),"ACTIVE",incomeCategoryMessageEntity.getType().toUpperCase(),
+				incomeCategoryMessageEntity.getUserId()};		
 		return new MessageFormat(QueryConstants.CREATEINCOMECATEGORYQUERY).format(args);
 	}
 }

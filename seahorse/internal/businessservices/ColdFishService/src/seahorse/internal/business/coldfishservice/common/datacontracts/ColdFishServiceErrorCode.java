@@ -129,4 +129,14 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String inValidIncomeCategoryIdErrorCode() {
 		return getErrorCodeMapping("IncomeCategoryId.InValid");
 	}
+
+	@Override
+	public String incomeCategoryIdNotFound() {
+		return getErrorCodeMapping("IncomeCategoryId.NotFound");
+	}
+
+	@Override
+	public String incomeCategoryIdNotActiveStatus() {
+		return getErrorCodeMapping("IncomeCategoryId.NotActiveStatus");
+	}
 }

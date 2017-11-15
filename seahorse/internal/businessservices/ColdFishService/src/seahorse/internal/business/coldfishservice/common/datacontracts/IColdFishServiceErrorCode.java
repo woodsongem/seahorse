@@ -54,4 +54,8 @@ public interface IColdFishServiceErrorCode {
 	String emptyIncomeCategoryIdErrorCode();
 
 	String inValidIncomeCategoryIdErrorCode();
+
+	String incomeCategoryIdNotFound();
+
+	String incomeCategoryIdNotActiveStatus();
 }

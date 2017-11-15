@@ -96,10 +96,22 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	}
 
 	@Override
-	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(
-			ResultMessageEntity resultMessageEntity, IncomeCategoryMessageEntity incomeDetailMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity, IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity = new IncomeCategoryResponseMessageEntity();
+		incomeCategoryResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
+		incomeCategoryResponseMessageEntity.setId(incomeDetailMessageEntity.getParsedId());
+		incomeCategoryResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
+		if (resultMessageEntity.getHttpStatus() == null) {
+			if (resultMessageEntity.getResultStatus() == ResultStatus.SUCCESS)
+				incomeCategoryResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				incomeCategoryResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			incomeCategoryResponseMessageEntity.setHttpStatus(resultMessageEntity.getHttpStatus());
+		}
+		return incomeCategoryResponseMessageEntity;
 	}
 
 }

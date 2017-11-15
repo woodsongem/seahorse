@@ -197,10 +197,23 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	}
 
 	@Override
-	public IncomeCategoryResponse mapIncomeCategoryResponse(
-			IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public IncomeCategoryResponse mapIncomeCategoryResponse(IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity) {
+		IncomeCategoryResponse incomeCategoryResponse = new IncomeCategoryResponse();
+		if (incomeCategoryResponseMessageEntity.getId() != null) {
+			incomeCategoryResponse.setId(incomeCategoryResponseMessageEntity.getId().toString());
+		}
+		incomeCategoryResponse.setResultStatus(incomeCategoryResponseMessageEntity.getResultStatus().toString());
+		if (incomeCategoryResponseMessageEntity.getResultMessages() == null) {
+			return incomeCategoryResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessage resultMessageMS : incomeCategoryResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(resultMessageMS.getErrorCode());
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		incomeCategoryResponse.setresultMessage(resultMessages);
+		return incomeCategoryResponse;
 	}
-
 }

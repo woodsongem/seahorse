@@ -23,6 +23,7 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	private UUID parsedUserId;
 	private UserCredentialMessageEntity userCredential;
 	private IncomeCategoryMessageEntity incomeCategory;
+	private String status;
 	
 	/**
 	 * @return the id
@@ -119,5 +120,11 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	}
 	public void setIncomeCategory(IncomeCategoryMessageEntity incomeCategory) {
 		this.incomeCategory = incomeCategory;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

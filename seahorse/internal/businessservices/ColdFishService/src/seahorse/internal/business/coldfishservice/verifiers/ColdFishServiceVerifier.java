@@ -293,7 +293,13 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	@Override
 	public ResultMessageEntity verifyUpdateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 
-		ResultMessageEntity resultMessageEntity;		
+		ResultMessageEntity resultMessageEntity;	
+		
+		resultMessageEntity = isIncomeCategoryIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		
 		resultMessageEntity = isUserIdValid(incomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
@@ -302,10 +308,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}	
-		resultMessageEntity = isIncomeCategoryIdValid(incomeCategoryMessageEntity);
-		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
-			return resultMessageEntity;
-		}	
+	
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
@@ -316,6 +319,15 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
 		{
 			return resultMessageEntity;
+		}
+		if(incomeCategory == null)
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.incomeCategoryIdNotFound(), "IncomeCategoryId",ResultStatus.ERROR);
+		}
+		
+		if(incomeCategory.getStatus() !=Constant.ACTIVESTATUS)
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.incomeCategoryIdNotActiveStatus(), "IncomeCategoryId",ResultStatus.ERROR);
 		}
 		incomeCategoryMessageEntity.setIncomeCategory(incomeCategory);		
 		return resultMessageEntity;

@@ -53,6 +53,6 @@ public interface IColdFishServiceRepositoryMapper {
 
 	String getIncomeCategoryByUserIdQuery(UUID userId);
 
-	String createIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);	
+	String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);	
 
 }
