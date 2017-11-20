@@ -6,6 +6,7 @@ package seahorse.internal.business.coldfishservice.api;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -19,15 +20,23 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.coldfishservice.IColdFishService;
+import seahorse.internal.business.coldfishservice.api.datacontracts.ExpenseCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.ExpenseSubCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeSubCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeSubCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.api.datacontracts.UpdateExpenseCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.UpdateExpenseSubCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.UpdateIncomeSubCategoryRequest;
+import seahorse.internal.business.coldfishservice.api.datacontracts.UpdateIncomeSubCategoryResponse;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
@@ -51,12 +60,12 @@ public class ColdFishServiceAPI {
 	@Context
 	private HttpServletRequest httpRequest;
 	
-	
+
 	
 	@POST
-	@Path("/incomecategory")
+	@Path("/income/category")
 	@Produces(MediaType.APPLICATION_JSON)	
-	public Response createIncomeCategory(IncomeCategoryRequest incomeCategoryRequest)
+ 	public Response createIncomeCategory(IncomeCategoryRequest incomeCategoryRequest)
 	{
 		IncomeCategoryResponse incomeCategoryResponse = getIncomeCategoryResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
@@ -81,9 +90,9 @@ public class ColdFishServiceAPI {
 		}
 		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
 	}
-	
+		
 	@PUT
-	@Path("/incomecategory")
+	@Path("/income/category")
 	@Produces(MediaType.APPLICATION_JSON)	
 	public Response updateIncomeCategory(IncomeCategoryRequest incomeCategoryRequest)
 	{
@@ -110,18 +119,164 @@ public class ColdFishServiceAPI {
 		}
 		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
 	}
+		
+	@GET
+	@Path("/income/category/{incomecategoryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getIncomeCategoryById(String incomecategoryid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}
 	
 	@GET
-	@Path("/income")
+	@Path("/income/category")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getIncomeCategoryById(@QueryParam("incomecategoryid") String incomecategoryid)
+	public Response getIncomeCategoryByUserId(@QueryParam("userid") String userid)
 	{
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		return Response.status(httpStatus).entity(null).build();
 	}	
-
+	
+	@DELETE
+	@Path("/income/category/{incomecategoryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteIncomeCategoryById(String incomecategoryid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}	
+	
+	
 	@POST
-	@Path("/Income/IncomeType")
+	@Path("/income/category/subcategory")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createIncomeSubCategory(IncomeSubCategoryRequest incomeSubCategoryRequest)
+	{
+		IncomeSubCategoryResponse incomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(incomeSubCategoryResponse).build();
+	}
+	
+	@PUT
+	@Path("/income/category/subcategory")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateIncomeSubCategory(UpdateIncomeSubCategoryRequest updateIncomeSubCategoryRequest)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}
+	
+	@DELETE
+	@Path("/income/category/subcategory/{incomeSubCategoryId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteIncomeSubCategory(@QueryParam("incomeSubCategoryId") String incomeSubCategoryId)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}
+	
+	@GET
+	@Path("/income/category/subcategory/{incomeSubCategoryId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getIncomeSubCategory(@QueryParam("incomeSubCategoryId") String incomeSubCategoryId)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}
+	
+	
+	
+	public Response createExpenseCategory(ExpenseCategoryRequest expenseCategoryRequest)
+	{
+		IncomeCategoryResponse incomeCategoryResponse = getIncomeCategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
+	}
+		
+	@PUT
+	@Path("/income/category")
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response updateExpenseCategory(UpdateExpenseCategoryRequest updateExpenseCategoryRequest)
+	{
+		IncomeCategoryResponse incomeCategoryResponse = getIncomeCategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
+	}
+		
+	@GET
+	@Path("/income/category/{incomecategoryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getExpenseCategoryById(String incomecategoryid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}
+	
+	@GET
+	@Path("/income/category")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getExpenseCategoryByUserId(@QueryParam("userid") String userid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}	
+	
+	@DELETE
+	@Path("/income/category/{incomecategoryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteExpenseCategoryById(String incomecategoryid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}	
+	
+	
+	@POST
+	@Path("/income/category/subcategory")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createExpenseSubCategory(ExpenseSubCategoryRequest expenseSubCategoryRequest)
+	{
+		IncomeSubCategoryResponse incomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(incomeSubCategoryResponse).build();
+	}
+	
+	@PUT
+	@Path("/income/category/subcategory")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateExpenseSubCategory(UpdateExpenseSubCategoryRequest updateExpenseSubCategoryRequest)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}
+	
+	@DELETE
+	@Path("/income/category/subcategory/{incomeSubCategoryId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteExpenseSubCategory(@QueryParam("expenseSubCategoryId") String expenseSubCategoryId)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}
+	
+	@GET
+	@Path("/income/category/subcategory/{incomeSubCategoryId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getExpenseSubCategory(@QueryParam("expenseSubCategoryId") String expenseSubCategoryId)
+	{
+		UpdateIncomeSubCategoryResponse updateIncomeSubCategoryResponse =null;
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;		
+		return Response.status(httpStatus).entity(updateIncomeSubCategoryResponse).build();
+	}	
+	
+	@POST
+	@Path("/income/incometype")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createIncomeType(IncomeTypeRequest incomeTypeRequest) {
 
@@ -149,8 +304,32 @@ public class ColdFishServiceAPI {
 		return Response.status(httpStatus).entity(incomeTypeResponse).build();
 	}
 
+	@PUT
+	@Path("/income/incometype")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateIncomeType(IncomeTypeRequest incomeTypeRequest) {
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}
+	
+	@DELETE
+	@Path("/income/incometype")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteIncomeType(IncomeTypeRequest incomeTypeRequest) {
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}
+	
 	@GET
-	@Path("/IncomeType")
+	@Path("/income/incometype/{incomeTypeId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getIncomeTypeById(String incomeTypeId) {
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		return Response.status(httpStatus).entity(null).build();
+	}
+		
+	@GET
+	@Path("/income/incometype")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getIncomeTypeByUserId(@QueryParam("userid") String userid) {
 		List<IncomeType> incomeTypes=null;
@@ -177,8 +356,9 @@ public class ColdFishServiceAPI {
 		return response;
 	}	
 
+	
 	@POST
-	@Path("/income")
+	@Path("/income/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createIncomeDetails(IncomeDetailRequest incomeDetailRequest)
 	{
@@ -243,7 +423,7 @@ public class ColdFishServiceAPI {
 		}
 		return response;
 	}
-	
+
 	
 	private IncomeTypeResponse getIncomeTypeResponse() {
 		IColdFishServiceErrorCode coldFishServiceErrorCode = new ColdFishServiceErrorCode();
