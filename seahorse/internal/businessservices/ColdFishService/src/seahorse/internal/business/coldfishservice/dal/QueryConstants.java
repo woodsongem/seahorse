@@ -22,5 +22,6 @@ public class QueryConstants {
 	public static final String GETINCOMEDETAILBYUSERIDQUERY = "SELECT id, amount, createdby, createddate, description, incometypeid, modifiedby, modifieddate, status, userid FROM coldfish_dev.incomedetails where userid= {0}";
 	public static final String GETDEFAULTINCOMETYPEQUERY = "SELECT id, category, createdby, createddate, description, incometypecategory, modifiedby, modifieddate, name, status, userid FROM coldfish_dev.incometype where type=''{0}'')";
 	public static final String GETINCOMECATEGORYBYUSERIDQUERY = "SELECT id, createdby, createddate, description, modifiedby, modifieddate, name, status, type, userid FROM coldfish_dev.incomecategory where userid= {0}";
-	public static final String CREATEINCOMECATEGORYQUERY = "INSERT INTO coldfish_dev.incomecategory (id, createdby, createddate, description, name, status, type, userid) VALUES({0}, ''{1}'', ''{2}'', ''{3}'', ''{4}'', ''{5}'', ''{6}'', {7})"; 
+	public static final String CREATEINCOMECATEGORYQUERY = "INSERT INTO coldfish_dev.incomecategory (id, createdby, createddate, description, name, status, type, userid) VALUES({0}, ''{1}'', ''{2}'', ''{3}'', ''{4}'', ''{5}'', ''{6}'', {7})";
+	public static final String GETUSERCREDENTIALBYUSERIDQUERY = "SELECT id, createdby, createddate, modifiedby, modifieddate, password, productitemid, status, username FROM usercredential where id=?"; 
 }

@@ -8,10 +8,14 @@ package seahorse.internal.business.coldfishservice.api.datacontracts;
  *
  */
 public class IncomeCategoryRequest extends RequestBase{
-	private String id;
+	
 	private String name;
 	private String userId;
+	private String incomeMonth;
+	private int incomeyear;
+	private String status;	
 	private String description;
+	
 	/**
 	 * @return the name
 	 */
@@ -48,10 +52,22 @@ public class IncomeCategoryRequest extends RequestBase{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getId() {
-		return id;
+	public String getIncomeMonth() {
+		return incomeMonth;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setIncomeMonth(String incomeMonth) {
+		this.incomeMonth = incomeMonth;
+	}
+	public int getIncomeyear() {
+		return incomeyear;
+	}
+	public void setIncomeyear(int incomeyear) {
+		this.incomeyear = incomeyear;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}		
 }

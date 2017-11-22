@@ -7,6 +7,8 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.UUID;
 
+import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.constants.Constant;
@@ -156,8 +158,14 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	public String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 		Object[] args = { incomeCategoryMessageEntity.getId(),incomeCategoryMessageEntity.getCreatedBy(), 
 				incomeCategoryMessageEntity.getCreatedDate(),incomeCategoryMessageEntity.getDescription(),
-				incomeCategoryMessageEntity.getName(),"ACTIVE",incomeCategoryMessageEntity.getType().toUpperCase(),
+				incomeCategoryMessageEntity.getName(),"ACTIVE",
+				//incomeCategoryMessageEntity.getType().toUpperCase(),
 				incomeCategoryMessageEntity.getUserId()};		
 		return new MessageFormat(QueryConstants.CREATEINCOMECATEGORYQUERY).format(args);
+	}
+
+	@Override
+	public BoundStatement MapBoundStatement(PreparedStatement prepared,LoginDetailMessageEntity loginDetailMessageEntity) {
+		return prepared.bind(loginDetailMessageEntity.getUserId());		
 	}
 }

@@ -65,4 +65,12 @@ public interface IColdFishServiceValidator {
 	ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 	
 	ResultMessageEntity isIncomeCategoryIdValid(String incomeCategoryId);
+	
+	ResultMessageEntity isIncomeMonthValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeYearValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	Boolean isIncomeMonthValid(String month); 
+	
+	Boolean isIncomeYearValid(int year);
 }

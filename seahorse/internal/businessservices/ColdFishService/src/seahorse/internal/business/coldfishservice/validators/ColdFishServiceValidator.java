@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.validators;
 
+import java.time.Month;
+import java.util.Calendar;
 import java.util.UUID;
 
 import com.google.inject.Inject;
@@ -317,14 +319,60 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return resultMessageEntity;
 		}
 		
+		resultMessageEntity = isIncomeMonthValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeYearValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
 		return resultMessageEntity;
 	}
 	
+	public ResultMessageEntity isIncomeYearValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {	
+		if(!isIncomeYearValid(incomeCategoryMessageEntity.getIncomeYear())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeYearMessageEntityErrorCode(), "IncomeYear",	ResultStatus.ERROR);
+		}		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+	
+	public Boolean isIncomeYearValid(int year) {
+		int currentYear=Calendar.getInstance().get(Calendar.YEAR);
+		int previousYear=currentYear-1;
+		int nextYear=currentYear+1;		
+		return (year>=previousYear && year<=nextYear);			
+	}
+
+	public  ResultMessageEntity isIncomeMonthValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		if(incomeCategoryMessageEntity.getIncomeMonth()==null){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}
+		if(!isIncomeMonthValid(incomeCategoryMessageEntity.getIncomeMonth())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+	
+	public Boolean isIncomeMonthValid(String month) {
+		if(month==null){
+			return false;
+		}
+		try {
+			Month.valueOf(month);
+		} catch (Exception e) {
+			return false;
+		}		
+		return true;
+	}
+
 	public ResultMessageEntity isIncomeCategoryMessageEntityValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 		if (incomeCategoryMessageEntity != null) {
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
-
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeCategoryMessageEntityErrorCode(), "incomeCategoryMessageEntity",	ResultStatus.ERROR);
 	}
 	
@@ -374,13 +422,14 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	
 	public ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
 	{
-		ResultMessageEntity resultMessageEntity= isIncomeCategoryIdValid(incomeCategoryMessageEntity.getId());
+		ResultMessageEntity resultMessageEntity=null;// isIncomeCategoryIdValid(incomeCategoryMessageEntity.getId());
 		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
 		{
-			incomeCategoryMessageEntity.setParsedId(UUID.fromString(incomeCategoryMessageEntity.getId()));
+			//incomeCategoryMessageEntity.setParsedId(UUID.fromString(incomeCategoryMessageEntity.getId()));
 		}
 		return resultMessageEntity;
 	}
+	
 	public ResultMessageEntity isIncomeCategoryIdValid(String incomeCategoryId)
 	{
 		if (incomeCategoryId == null) {

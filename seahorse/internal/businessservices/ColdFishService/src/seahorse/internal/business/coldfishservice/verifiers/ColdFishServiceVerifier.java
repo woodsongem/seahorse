@@ -269,18 +269,12 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		if(incomeCategoryMessageEntity.getName()==null)
 		{
 			return resultMessageEntity;
-		}
-		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getDefaultIncomeCategory();
-		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
-		{
-			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategoryInDefault(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
 		}		
-		incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId());
+		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId());
 		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
-		}
-		
+		}		
 		return resultMessageEntity;
 	}
 	
@@ -315,7 +309,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	public ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 
 		IncomeCategoryMessageEntity incomeCategory= new  IncomeCategoryMessageEntity();
-		ResultMessageEntity resultMessageEntity=IsIncomeCategoryIdValid(incomeCategoryMessageEntity.getParsedId(),incomeCategory);
+		ResultMessageEntity resultMessageEntity=IsIncomeCategoryIdValid(incomeCategoryMessageEntity.getId(),incomeCategory);
 		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
 		{
 			return resultMessageEntity;

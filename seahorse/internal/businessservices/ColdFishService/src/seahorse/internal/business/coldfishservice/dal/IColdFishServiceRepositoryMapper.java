@@ -6,6 +6,8 @@ package seahorse.internal.business.coldfishservice.dal;
 import java.util.List;
 import java.util.UUID;
 
+import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
@@ -53,6 +55,8 @@ public interface IColdFishServiceRepositoryMapper {
 
 	String getIncomeCategoryByUserIdQuery(UUID userId);
 
-	String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);	
+	String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);
+	
+	BoundStatement MapBoundStatement(PreparedStatement prepared, LoginDetailMessageEntity loginDetailMessageEntity);	
 
 }

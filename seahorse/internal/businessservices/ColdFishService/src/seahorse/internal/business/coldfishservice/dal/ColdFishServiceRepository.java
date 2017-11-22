@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 
+import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
@@ -88,8 +90,9 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 
 		try {
 			cassandraConnector.connect(null, 0);
-			String applicationQuery = coldFishServiceRepositoryMapper.getUserCredentialQuery(loginDetailMessageEntity);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
+			PreparedStatement prepared=cassandraConnector.getSession().prepare(QueryConstants.GETUSERCREDENTIALBYUSERIDQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.MapBoundStatement(prepared,loginDetailMessageEntity);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row userCredentialDAOResult = resultSet.one();
@@ -227,7 +230,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		String applicationQuery = coldFishServiceRepositoryMapper.getCreateIncomeCategoryQuery(incomeDetailMessageEntity);
 		cassandraConnector.getSession().execute(applicationQuery);
 		cassandraConnector.close();
-		incomeCategoryDAO.setId(incomeDetailMessageEntity.getParsedId());
+		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());
 		return incomeCategoryDAO;
 	}
 

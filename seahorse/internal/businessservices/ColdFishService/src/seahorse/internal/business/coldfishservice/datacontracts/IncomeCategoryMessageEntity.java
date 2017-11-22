@@ -14,29 +14,17 @@ import seahorse.internal.business.coldfishservice.processors.datacontracts.UserC
  */
 public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 
-	private String id;
-	private UUID parsedId;
+	private UUID id;
 	private String name;
 	private String userId;
-	private String description;
-	private String type;
 	private UUID parsedUserId;
+	private String incomeMonth;
+	private int incomeyear;
+	private String status;		
+	private String description;	
 	private UserCredentialMessageEntity userCredential;
-	private IncomeCategoryMessageEntity incomeCategory;
-	private String status;
-	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+	private IncomeCategoryMessageEntity incomeCategory;		
+
 	/**
 	 * @return the name
 	 */
@@ -97,24 +85,7 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	public void setUserCredential(UserCredentialMessageEntity userCredential) {
 		this.userCredential = userCredential;
 	}
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-	public UUID getParsedId() {
-		return parsedId;
-	}
-	public void setParsedId(UUID parsedId) {
-		this.parsedId = parsedId;
-	}
+
 	public IncomeCategoryMessageEntity getIncomeCategory() {
 		return incomeCategory;
 	}
@@ -126,5 +97,23 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getIncomeMonth() {
+		return incomeMonth;
+	}
+	public void setIncomeMonth(String incomeMonth) {
+		this.incomeMonth = incomeMonth;
+	}
+	public int getIncomeYear() {
+		return incomeyear;
+	}
+	public void setIncomeYear(int incomeyear) {
+		this.incomeyear = incomeyear;
+	}
+	public UUID getId() {
+		return id;
+	}
+	public void setId(UUID id) {
+		this.id = id;
 	}
 }

@@ -182,7 +182,7 @@ public class ColdFishService implements IColdFishService {
 		
 		if(incomeCategoryMessageEntity != null)
 		{
-			incomeCategoryMessageEntity.setParsedId(UUID.randomUUID());
+			incomeCategoryMessageEntity.setId(UUID.randomUUID());
 		}
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);
