@@ -9,6 +9,7 @@ package seahorse.internal.business.coldfishservice.dal;
  */
 public class DataBaseColumn {
 
+	
 	private DataBaseColumn() {
 		throw new IllegalStateException("DataBaseColumn class");
 	}
@@ -42,9 +43,11 @@ public class DataBaseColumn {
 	public static final String INCOMEDETAIL_DESCRIPTION="description";
 	public static final String INCOMEDETAIL_INCOMETYPEID="incometypeid";
 	
-	//IncomeCategory
-	public static final String INCOMECATEGORY_TYPE="type";
+	//IncomeCategory	
 	public static final String INCOMECATEGORY_USERID="userid";
 	public static final String INCOMECATEGORY_NAME="name";
-	public static final String INCOMECATEGORY_DESCRIPTION="description";	
+	public static final String INCOMECATEGORY_DESCRIPTION="description";
+	public static final String INCOMECATEGORY_INCOMEMONTH="incomemonth";
+	public static final String INCOMECATEGORY_INCOMEYEAR="incomeyear";
+	public static final String INCOMECATEGORY_ID="id";
 }

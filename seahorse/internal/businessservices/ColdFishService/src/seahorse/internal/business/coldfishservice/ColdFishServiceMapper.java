@@ -99,7 +99,7 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity, IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity = new IncomeCategoryResponseMessageEntity();
 		incomeCategoryResponseMessageEntity.setResultStatus(resultMessageEntity.getResultStatus());
-		incomeCategoryResponseMessageEntity.setId(incomeDetailMessageEntity.getParsedId());
+		incomeCategoryResponseMessageEntity.setId(incomeDetailMessageEntity.getId());
 		incomeCategoryResponseMessageEntity.setResultMessages(resultMessageEntity.getResultMessages());
 		if (resultMessageEntity.getHttpStatus() == null) {
 			if (resultMessageEntity.getResultStatus() == ResultStatus.SUCCESS)

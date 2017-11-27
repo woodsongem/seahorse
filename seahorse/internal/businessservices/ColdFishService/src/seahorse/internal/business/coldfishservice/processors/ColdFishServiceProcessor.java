@@ -240,19 +240,19 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	public ResultMessageEntity createIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
 
-		resultMessageEntity = createIncomeCategoryType(incomeDetailMessageEntity);
+		resultMessageEntity = createIncomeCategory(incomeDetailMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity createIncomeCategoryType(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+	public ResultMessageEntity createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		try {
 			coldFishServiceRepository.createIncomeCategory(incomeDetailMessageEntity);
 		} catch (Exception e) {
-			logger.error("Error in IColdFishServiceProcessor::createIncomeCategoryType error=" + e);
+			logger.error("Error in IColdFishServiceProcessor::createIncomeCategory error=" + e);
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(
 					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
@@ -266,7 +266,7 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	public ResultMessageEntity UpdateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
 
-		resultMessageEntity = createIncomeCategoryType(incomeCategoryMessageEntity);
+		resultMessageEntity = createIncomeCategory(incomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}

@@ -57,6 +57,10 @@ public interface IColdFishServiceRepositoryMapper {
 
 	String getCreateIncomeCategoryQuery(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 	
-	BoundStatement MapBoundStatement(PreparedStatement prepared, LoginDetailMessageEntity loginDetailMessageEntity);	
+	BoundStatement mapBoundStatement(PreparedStatement prepared, LoginDetailMessageEntity loginDetailMessageEntity);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId, String month,int year);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity);	
 
 }

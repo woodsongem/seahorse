@@ -270,7 +270,8 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		{
 			return resultMessageEntity;
 		}		
-		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId());
+		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId(),
+				incomeCategoryMessageEntity.getIncomeMonth(),incomeCategoryMessageEntity.getIncomeYear());
 		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);

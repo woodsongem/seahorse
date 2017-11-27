@@ -13,9 +13,10 @@ public class IncomeCategoryDAO extends BaseDAO {
 	private UUID id;
 	private String name;
 	private UUID userId;
-	private String description;
-	private String type;
+	private String description;	
 	private String status;
+	private String incomeMonth;
+	private String incomeYear;
 	/**
 	 * @return the id
 	 */
@@ -64,18 +65,7 @@ public class IncomeCategoryDAO extends BaseDAO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+
 	/**
 	 * @return the status
 	 */
@@ -87,6 +77,18 @@ public class IncomeCategoryDAO extends BaseDAO {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getIncomeYear() {
+		return incomeYear;
+	}
+	public void setIncomeYear(String incomeYear) {
+		this.incomeYear = incomeYear;
+	}
+	public String getIncomeMonth() {
+		return incomeMonth;
+	}
+	public void setIncomeMonth(String incomeMonth) {
+		this.incomeMonth = incomeMonth;
 	}
 	
 

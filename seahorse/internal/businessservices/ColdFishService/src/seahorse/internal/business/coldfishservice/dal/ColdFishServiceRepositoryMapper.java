@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.dal;
 
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -142,9 +143,10 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		incomeCategoryDAO.setModifiedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
 		incomeCategoryDAO.setStatus(incomeCategoryDAOResult.getString(DataBaseColumn.STATUS));
 		incomeCategoryDAO.setName(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_NAME));
-		incomeCategoryDAO.setUserId(incomeCategoryDAOResult.getUUID(DataBaseColumn.INCOMECATEGORY_USERID));
-		incomeCategoryDAO.setType(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_TYPE));
+		incomeCategoryDAO.setUserId(incomeCategoryDAOResult.getUUID(DataBaseColumn.INCOMECATEGORY_USERID));		
 		incomeCategoryDAO.setDescription(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_DESCRIPTION));
+		incomeCategoryDAO.setIncomeMonth(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH));
+		incomeCategoryDAO.setIncomeYear(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_INCOMEYEAR));
 		return incomeCategoryDAO;
 	}
 
@@ -165,7 +167,25 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	}
 
 	@Override
-	public BoundStatement MapBoundStatement(PreparedStatement prepared,LoginDetailMessageEntity loginDetailMessageEntity) {
+	public BoundStatement mapBoundStatement(PreparedStatement prepared,LoginDetailMessageEntity loginDetailMessageEntity) {
 		return prepared.bind(loginDetailMessageEntity.getUserId());		
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId, String month,int year) {
+		return preparedStatement.bind(userId,month,year);		 
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.INCOMECATEGORY_ID, incomeDetailMessageEntity.getId());
+		bound.setUUID(DataBaseColumn.INCOMECATEGORY_USERID, incomeDetailMessageEntity.getParsedUserId());
+		bound.setUUID(DataBaseColumn.CREATEDBY, incomeDetailMessageEntity.getParsedUserId());
+		//bound.setDate(DataBaseColumn.CREATEDDATE,com.datastax.driver.core.LocalDate.);
+		bound.setString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH, incomeDetailMessageEntity.getIncomeMonth());
+		bound.setString(DataBaseColumn.INCOMECATEGORY_NAME, incomeDetailMessageEntity.getName());
+		bound.setString(DataBaseColumn.STATUS, incomeDetailMessageEntity.getStatus());
+		return bound;
 	}
 }

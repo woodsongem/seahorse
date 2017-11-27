@@ -91,7 +91,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		try {
 			cassandraConnector.connect(null, 0);
 			PreparedStatement prepared=cassandraConnector.getSession().prepare(QueryConstants.GETUSERCREDENTIALBYUSERIDQUERY);
-			BoundStatement bound=coldFishServiceRepositoryMapper.MapBoundStatement(prepared,loginDetailMessageEntity);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(prepared,loginDetailMessageEntity);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
@@ -205,12 +205,13 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	}
 
 	@Override
-	public List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId) {
+	public List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId,String month,int year) {
 		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);
-			String incomeCategoryQuery = coldFishServiceRepositoryMapper.getIncomeCategoryByUserIdQuery(userId);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeCategoryQuery);
+			cassandraConnector.connect(null, 0);			
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYUSERIDQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,userId,month,year);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row incomeCategoryDAOResult = resultSet.one();
@@ -227,8 +228,9 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
 		cassandraConnector.connect(null, 0);
-		String applicationQuery = coldFishServiceRepositoryMapper.getCreateIncomeCategoryQuery(incomeDetailMessageEntity);
-		cassandraConnector.getSession().execute(applicationQuery);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.CREATEINCOMECATEGORYQUERY);
+		BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeDetailMessageEntity);		
+		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());
 		return incomeCategoryDAO;

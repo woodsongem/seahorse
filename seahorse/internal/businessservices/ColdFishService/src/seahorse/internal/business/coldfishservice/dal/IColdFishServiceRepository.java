@@ -39,7 +39,7 @@ public interface IColdFishServiceRepository {
 
 	List<IncomeCategoryDAO> getDefaultIncomeCategory();
 
-	List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId);
+	List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId,String month,int year);
 
 	IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
