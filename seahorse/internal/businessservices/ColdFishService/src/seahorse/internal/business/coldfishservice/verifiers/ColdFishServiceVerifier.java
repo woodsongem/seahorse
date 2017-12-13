@@ -92,8 +92,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		}
 		
 		List<UserCredentialMessageEntity> userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);	
-		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntitys.get(0));
-		incomeTypeMessageEntity.setCreatedBy(userCredentialMessageEntitys.get(0).getUsername());		
+		incomeTypeMessageEntity.setUserCredentialDetails(userCredentialMessageEntitys.get(0));		
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
@@ -154,38 +153,44 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	public ResultMessageEntity isUserIdValid(IncomeDetailMessageEntity incomeDetailMessageEntity)
 	{
 		List<UserCredentialMessageEntity> userCredentialMessageEntitys= new ArrayList<>();
-		ResultMessageEntity resultMessageEntity=isUserIdValid(incomeDetailMessageEntity.getParsedUserId(),userCredentialMessageEntitys);
+		ResultMessageEntity resultMessageEntity=new  ResultMessageEntity();
+				//getUserIdValid(incomeDetailMessageEntity.getParsedUserId());
 		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
 		{
 			return resultMessageEntity;
 		}
-		incomeDetailMessageEntity.setUserCredentialMessageEntity(userCredentialMessageEntitys.get(0));
-		incomeDetailMessageEntity.setCreatedBy(userCredentialMessageEntitys.get(0).getUsername());
+		
+		incomeDetailMessageEntity.setUserCredentialMessageEntity(new UserCredentialMessageEntity());
+		incomeDetailMessageEntity.setUserCredentialMessageEntity(userCredentialMessageEntitys.get(0));		
 		return resultMessageEntity;
 	}
 	
-	public ResultMessageEntity isUserIdValid(UUID userId,List<UserCredentialMessageEntity> userCredentialMessageEntitys)
+	public List<UserCredentialMessageEntity> getUserIdValid(UUID userId)
+	{		
+		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper.mapLoginDetailMessageEntity(userId);
+		List<UserCredentialDAO> userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);		
+		return coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(userCredentialDAO);		
+	}
+	
+	public ResultMessageEntity ValidateUserDetails(List<UserCredentialMessageEntity> userCredentialMessageEntitys)
 	{
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		LoginDetailMessageEntity loginDetailMessageEntity = coldFishServiceVerifierMapper.mapLoginDetailMessageEntity(userId);
-		List<UserCredentialDAO> userCredentialDAO = coldFishServiceRepository.getUserCredential(loginDetailMessageEntity);
-		if (userCredentialDAO == null || userCredentialDAO.isEmpty()||
-				!userCredentialDAO.stream().anyMatch(user->user.getStatus() != Constant.INACTIVESTATUS)) {
+		if (userCredentialMessageEntitys == null || userCredentialMessageEntitys.isEmpty()||
+				!userCredentialMessageEntitys.stream().anyMatch(user->user.getStatus() != Constant.INACTIVESTATUS)) {
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
 			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
-		List<UserCredentialDAO> filteredUserCredentialDAO=userCredentialDAO.stream().filter(user->user.getStatus() != Constant.INACTIVESTATUS).collect(Collectors.toList());
 		
-		if(filteredUserCredentialDAO.size()>1)
+		List<UserCredentialMessageEntity> filteredUserCredentialMessageEntity=userCredentialMessageEntitys.stream().filter(user->user.getStatus() != Constant.INACTIVESTATUS).collect(Collectors.toList());
+		if(filteredUserCredentialMessageEntity.size()>1)
 		{
-			String formatedUserId=	filteredUserCredentialDAO.stream().map(e->e.getId().toString()).collect(Collectors.joining(","));
-			logger.error("Mulitple active user id found for given userid="+userId +" and founded user id="+formatedUserId);			
+			String userId=	filteredUserCredentialMessageEntity.stream().map(e->e.getId().toString()).collect(Collectors.joining(","));
+			logger.error("Mulitple active user ids found for given userid="+userId);			
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
-			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.inValidUserIdErrorCode(), null));
+			resultMessageEntity.setResultMessages(ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.moreThanOneUserIdErrorCode(), null));
 			return resultMessageEntity;
 		}
-		userCredentialMessageEntitys=coldFishServiceVerifierMapper.mapUserCredentialMessageEntity(filteredUserCredentialDAO);			
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
 		return resultMessageEntity;
 	}
@@ -226,7 +231,8 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 
 	public ResultMessageEntity isUserIdValid(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
 		List<UserCredentialMessageEntity> userCredentialMessageEntitys= new ArrayList<>();
-		ResultMessageEntity resultMessageEntity=isUserIdValid(getincomeDetailMessageEntity.getParsedUserId(),userCredentialMessageEntitys);
+		ResultMessageEntity resultMessageEntity=new  ResultMessageEntity();
+				//isUserIdValid(getincomeDetailMessageEntity.getParsedUserId());
 		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
 		{
 			return resultMessageEntity;
@@ -252,8 +258,8 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	
 	public ResultMessageEntity isUserIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
 	{
-		List<UserCredentialMessageEntity> userCredentialMessageEntitys= new ArrayList<>();
-		ResultMessageEntity resultMessageEntity=isUserIdValid(incomeCategoryMessageEntity.getParsedUserId(),userCredentialMessageEntitys);
+		List<UserCredentialMessageEntity> userCredentialMessageEntitys= getUserIdValid(incomeCategoryMessageEntity.getParsedUserId());
+		ResultMessageEntity resultMessageEntity=ValidateUserDetails(userCredentialMessageEntitys);
 		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
 		{
 			return resultMessageEntity;
@@ -274,9 +280,10 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 				incomeCategoryMessageEntity.getIncomeMonth(),incomeCategoryMessageEntity.getIncomeYear());
 		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
 		{
-			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
-		}		
-		return resultMessageEntity;
+			return resultMessageEntity;
+		}	
+		
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);		
 	}
 	
 	private Boolean isIncomeCategoryNameValid(List<IncomeCategoryDAO> incomeCategoryDAOs,String incomeCategoryName)

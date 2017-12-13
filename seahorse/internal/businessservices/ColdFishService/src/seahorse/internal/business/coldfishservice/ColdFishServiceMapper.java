@@ -89,10 +89,12 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	}
 
 	@Override
-	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(
-			ResultMessageEntity resultMessageEntity, Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity, Status badRequest) {
+		IncomeCategoryResponseMessageEntity incomeCategoryResponse =new  IncomeCategoryResponseMessageEntity();
+		incomeCategoryResponse.setHttpStatus(badRequest);
+		incomeCategoryResponse.setResultStatus(resultMessageEntity.getResultStatus());
+		incomeCategoryResponse.setResultMessages(resultMessageEntity.getResultMessages());
+		return incomeCategoryResponse;
 	}
 
 	@Override

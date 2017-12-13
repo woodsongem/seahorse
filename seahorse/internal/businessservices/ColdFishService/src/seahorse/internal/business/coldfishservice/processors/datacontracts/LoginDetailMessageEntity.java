@@ -3,25 +3,27 @@
  */
 package seahorse.internal.business.coldfishservice.processors.datacontracts;
 
+import java.util.UUID;
+
 /**
  * @author sajanmje
  *
  */
 public class LoginDetailMessageEntity {
 
-	private String userId;
+	private UUID userId;
 
 	/**
 	 * @return the userId
 	 */
-	public String getUserId() {
+	public UUID getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(String userId) {
+	public void setUserId(UUID userId) {
 		this.userId = userId;
 	}
 

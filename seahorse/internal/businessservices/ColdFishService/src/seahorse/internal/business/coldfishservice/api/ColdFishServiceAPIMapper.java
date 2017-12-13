@@ -46,8 +46,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		IncomeTypeResponse incomeTypeResponse = new IncomeTypeResponse();
 		if (incomeTypeResponseMessageEntity.getId() != null) {
 			incomeTypeResponse.setId(incomeTypeResponseMessageEntity.getId().toString());
-		}
-		incomeTypeResponse.setResultStatus(incomeTypeResponseMessageEntity.getResultStatus().toString());
+		}		
 		if (incomeTypeResponseMessageEntity.getResultMessages() == null) {
 			return incomeTypeResponse;
 		}
@@ -59,7 +58,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 			resultMessage.setParameter(resultMessageMS.getParameter());
 			resultMessages.add(resultMessage);
 		}
-		incomeTypeResponse.setresultMessage(resultMessages);
+		incomeTypeResponse.setResultMessage(resultMessages);
 		return incomeTypeResponse;
 	}
 
@@ -95,8 +94,8 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		for (IncomeTypeMessageEntity incomeTypeMessageEntity : incomeTypeMessageEntitys) {
 			IncomeType incomeType = new IncomeType();
 			incomeType.setCategory(incomeTypeMessageEntity.getCategory());
-			incomeType.setCreatedBy(incomeTypeMessageEntity.getCreatedBy());
-			incomeType.setCreatedDate(incomeTypeMessageEntity.getCreatedDate());
+			//incomeType.setCreatedBy(incomeTypeMessageEntity.getCreatedBy());
+			//incomeType.setCreatedDate(incomeTypeMessageEntity.getCreatedDate());
 			incomeType.setDescription(incomeTypeMessageEntity.getDescription());
 			if (incomeTypeMessageEntity.getId() != null) {
 				incomeType.setId(incomeTypeMessageEntity.getId().toString());
@@ -137,8 +136,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		{
 			incomeDetailsResponse.setId(incomeDetailResponseMessageEntity.getId().toString());
 		}
-		
-		incomeDetailsResponse.setResultStatus(incomeDetailResponseMessageEntity.getResultStatus().toString());
+				
 		if (incomeDetailResponseMessageEntity.getResultMessages() == null) {
 			return incomeDetailsResponse;
 		}
@@ -150,7 +148,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 			resultMessage.setParameter(resultMessageMS.getParameter());
 			resultMessages.add(resultMessage);
 		}
-		incomeDetailsResponse.setresultMessage(resultMessages);
+		incomeDetailsResponse.setResultMessage(resultMessages);
 		
 		return incomeDetailsResponse;
 	}
@@ -201,10 +199,15 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	@Override
 	public IncomeCategoryResponse mapIncomeCategoryResponse(IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity) {
 		IncomeCategoryResponse incomeCategoryResponse = new IncomeCategoryResponse();
+		if(incomeCategoryResponseMessageEntity==null)
+		{
+			return incomeCategoryResponse;
+		}
+		
 		if (incomeCategoryResponseMessageEntity.getId() != null) {
 			incomeCategoryResponse.setId(incomeCategoryResponseMessageEntity.getId().toString());
 		}
-		incomeCategoryResponse.setResultStatus(incomeCategoryResponseMessageEntity.getResultStatus().toString());
+		
 		if (incomeCategoryResponseMessageEntity.getResultMessages() == null) {
 			return incomeCategoryResponse;
 		}
@@ -215,7 +218,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 			resultMessage.setParameter(resultMessageMS.getParameter());
 			resultMessages.add(resultMessage);
 		}
-		incomeCategoryResponse.setresultMessage(resultMessages);
+		incomeCategoryResponse.setResultMessage(resultMessages);
 		return incomeCategoryResponse;
 	}
 }

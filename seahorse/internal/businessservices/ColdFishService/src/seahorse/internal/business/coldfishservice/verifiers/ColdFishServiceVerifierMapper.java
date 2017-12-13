@@ -24,7 +24,7 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 	@Override
 	public LoginDetailMessageEntity mapLoginDetailMessageEntity(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		LoginDetailMessageEntity loginDetailMessageEntity = new LoginDetailMessageEntity();
-		loginDetailMessageEntity.setUserId(incomeTypeMessageEntity.getUserId());
+		loginDetailMessageEntity.setUserId(incomeTypeMessageEntity.getParsedUserId());
 		return loginDetailMessageEntity;
 	}
 
@@ -54,7 +54,7 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 	@Override
 	public LoginDetailMessageEntity mapLoginDetailMessageEntity(UUID userId) {
 		LoginDetailMessageEntity loginDetailMessageEntity = new LoginDetailMessageEntity();
-		loginDetailMessageEntity.setUserId(userId.toString());
+		loginDetailMessageEntity.setUserId(userId);
 		return loginDetailMessageEntity;
 	}
 

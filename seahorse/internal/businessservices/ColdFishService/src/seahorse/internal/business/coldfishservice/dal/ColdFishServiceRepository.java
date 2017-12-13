@@ -51,7 +51,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public List<IncometypeDAO> getIncometypeByUserId(String userId) {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String applicationQuery = coldFishServiceRepositoryMapper.getIncometypeByUserIdQuery(userId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
 			cassandraConnector.close();
@@ -69,7 +69,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public List<IncometypeDAO> getDefaultIncometype() {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String applicationQuery = coldFishServiceRepositoryMapper.getDefaultIncometypeQuery();
 			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
 			cassandraConnector.close();
@@ -89,7 +89,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		List<UserCredentialDAO> userCredentialDAOs = new ArrayList<>();
 
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			PreparedStatement prepared=cassandraConnector.getSession().prepare(QueryConstants.GETUSERCREDENTIALBYUSERIDQUERY);
 			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(prepared,loginDetailMessageEntity);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
@@ -109,7 +109,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	@Override
 	public IncometypeDAO createIncomeType(IncomeTypeMessageEntity incomeTypeMessageEntity) {
 		IncometypeDAO incometypeDAO = new IncometypeDAO();
-		cassandraConnector.connect(null, 0);
+		cassandraConnector.connect(null, 0,null);
 		String applicationQuery = coldFishServiceRepositoryMapper.createIncomeTypeQuery(incomeTypeMessageEntity);
 		cassandraConnector.getSession().execute(applicationQuery);
 		cassandraConnector.close();
@@ -121,7 +121,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	{
 		IncometypeDAO incometypeDAO = new IncometypeDAO();
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String incomeTypeQuery = coldFishServiceRepositoryMapper.getIncomeTypeById(incomeTypeMessageEntity);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeTypeQuery);
 			cassandraConnector.close();
@@ -138,7 +138,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	@Override
 	public IncomeDetailDAO createIncomeDetail(IncomeDetailMessageEntity incomeDetailMessageEntity) {
 		IncomeDetailDAO incomeDetailDAO = new IncomeDetailDAO();
-		cassandraConnector.connect(null, 0);
+		cassandraConnector.connect(null, 0,null);
 		String incomeDetailDAOQuery = coldFishServiceRepositoryMapper.createIncomeDetailQuery(incomeDetailMessageEntity);
 		cassandraConnector.getSession().execute(incomeDetailDAOQuery);
 		cassandraConnector.close();
@@ -151,7 +151,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		List<IncomeDetailDAO> incomeDetailDAOs = new ArrayList<>();
 
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String applicationQuery = coldFishServiceRepositoryMapper.getIncomeDetailByUserIdQuery(userId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(applicationQuery);
 			cassandraConnector.close();
@@ -170,7 +170,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public List<IncometypeDAO> getIncomeTypeByIds(List<String> incomeTypeIds) {
 		List<IncometypeDAO> incometypeDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String incomeTypeQuery = coldFishServiceRepositoryMapper.getIncomeTypeByIdsQuery(incomeTypeIds);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeTypeQuery);
 			cassandraConnector.close();
@@ -189,7 +189,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public List<IncomeCategoryDAO> getDefaultIncomeCategory() {
 		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);
+			cassandraConnector.connect(null, 0,null);
 			String incomeCategoryQuery = coldFishServiceRepositoryMapper.getDefaultIncomeCategoryQuery();
 			final ResultSet resultSet = cassandraConnector.getSession().execute(incomeCategoryQuery);
 			cassandraConnector.close();
@@ -208,7 +208,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	public List<IncomeCategoryDAO> getIncomeCategoryByUserId(UUID userId,String month,int year) {
 		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
 		try {
-			cassandraConnector.connect(null, 0);			
+			cassandraConnector.connect(null, 0,null);			
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYUSERIDQUERY);
 			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,userId,month,year);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
@@ -227,9 +227,9 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	@Override
 	public IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
-		cassandraConnector.connect(null, 0);
-		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.CREATEINCOMECATEGORYQUERY);
-		BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeDetailMessageEntity);		
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement pstmt=cassandraConnector.getSession().prepare(QueryConstants.CREATEINCOMECATEGORYQUERY);
+		BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(pstmt,incomeDetailMessageEntity);		
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());

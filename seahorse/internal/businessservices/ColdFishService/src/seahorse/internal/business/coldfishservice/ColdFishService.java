@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
@@ -183,6 +184,8 @@ public class ColdFishService implements IColdFishService {
 		if(incomeCategoryMessageEntity != null)
 		{
 			incomeCategoryMessageEntity.setId(UUID.randomUUID());
+			incomeCategoryMessageEntity.setCreatedDate(com.datastax.driver.core.LocalDate.fromMillisSinceEpoch(System.currentTimeMillis()));
+			
 		}
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);

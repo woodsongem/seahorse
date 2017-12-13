@@ -4,6 +4,9 @@
 package seahorse.internal.business.coldfishservice.dal.datacontracts;
 
 import java.util.Date;
+import java.util.UUID;
+
+import com.datastax.driver.core.LocalDate;
 
 /**
  * @author sajanmje
@@ -11,10 +14,10 @@ import java.util.Date;
  */
 public class BaseDAO {
 	
-	private String createdBy;
-	private String modifiedBy;
-	private Date createdDate;
-	private Date modifiedDate;	
+	private UUID createdBy;
+	private UUID modifiedBy;
+	private LocalDate createdDate;
+	private LocalDate modifiedDate;	
 	private String ipAddress;
 	/**
 	 * @return the ipAddress
@@ -31,49 +34,49 @@ public class BaseDAO {
 	/**
 	 * @return the modifiedDate
 	 */
-	public Date getModifiedDate() {
+	public LocalDate getModifiedDate() {
 		return modifiedDate;
 	}
 	/**
 	 * @param modifiedDate the modifiedDate to set
 	 */
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(LocalDate modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 	/**
 	 * @return the createdDate
 	 */
-	public Date getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 	/**
 	 * @return the modifiedBy
 	 */
-	public String getModifiedBy() {
+	public UUID getModifiedBy() {
 		return modifiedBy;
 	}
 	/**
 	 * @param modifiedBy the modifiedBy to set
 	 */
-	public void setModifiedBy(String modifiedBy) {
+	public void setModifiedBy(UUID modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 	/**
 	 * @return the createdBy
 	 */
-	public String getCreatedBy() {
+	public UUID getCreatedBy() {
 		return createdBy;
 	}
 	/**
 	 * @param createdBy the createdBy to set
 	 */
-	public void setCreatedBy(String createdBy) {
+	public void setCreatedBy(UUID createdBy) {
 		this.createdBy = createdBy;
 	}
 }

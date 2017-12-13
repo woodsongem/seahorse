@@ -23,9 +23,10 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+
 	<!-- Map all the URLs to the Jersey ServletContainer -->
 	<servlet-mapping>
 		<servlet-name>ColdFishService</servlet-name>
 		<url-pattern>/*</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 </web-app>

@@ -7,9 +7,11 @@ package seahorse.internal.business.coldfishservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class IncomeCategoryResponse  extends ResponseBase {
 
-	private  String id;
+public class IncomeCategoryResponse extends ResponseBase {
+
+	
+	private String id;
 
 	/**
 	 * @return the id
@@ -19,7 +21,8 @@ public class IncomeCategoryResponse  extends ResponseBase {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;

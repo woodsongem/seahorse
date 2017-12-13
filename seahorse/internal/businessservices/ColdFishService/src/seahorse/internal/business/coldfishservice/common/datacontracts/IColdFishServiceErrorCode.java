@@ -64,4 +64,6 @@ public interface IColdFishServiceErrorCode {
 	String invalidIncomeMonthMessageEntityErrorCode();
 
 	String invalidIncomeYearMessageEntityErrorCode();
+
+	String moreThanOneUserIdErrorCode();
 }

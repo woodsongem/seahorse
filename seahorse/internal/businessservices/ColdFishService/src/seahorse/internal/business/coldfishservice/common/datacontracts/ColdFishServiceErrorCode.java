@@ -154,4 +154,9 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String invalidIncomeYearMessageEntityErrorCode() {
 		return getErrorCodeMapping("IncomeYear.InValid");
 	}
+
+	@Override
+	public String moreThanOneUserIdErrorCode() {
+		return getErrorCodeMapping("UserId.MoreThanOne");
+	}
 }

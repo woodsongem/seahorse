@@ -55,7 +55,7 @@ public class CassandraConnector implements ICassandraConnector {
 	 * 
 	 */
 
-	public void connect(String node, int port) {
+	public void connect(String node, int port,String keyspaceName) {
 
 		if (node == null) {
 			node = getNode();
@@ -63,10 +63,15 @@ public class CassandraConnector implements ICassandraConnector {
 		if (port == 0) {
 			port = getPort();
 		}
+		if(StringUtils.isBlank(keyspaceName))
+		{
+			keyspaceName=getkeyspaceName();
+		}
 
 		this.cluster = Cluster.builder().addContactPoint(node).withPort(port).build();				
-		session = cluster.connect();
+		session = cluster.connect(keyspaceName);
 	}
+
 
 	/**
 	 * 
@@ -98,5 +103,14 @@ public class CassandraConnector implements ICassandraConnector {
 			return Integer.parseInt(port);
 		}
 		throw new NullPointerException("port is null or not int value in property file");
+	}
+	
+
+	private String getkeyspaceName() {
+		String keyspaceName = readPropertiesFile.getProperties(Constant.CASSANDRAKEYSPACENAME);
+		if (!StringUtils.isBlank(keyspaceName)) {
+			return keyspaceName;
+		}
+		throw new NullPointerException("keyspaceName is null or not int value in property file");
 	}
 }

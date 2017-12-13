@@ -11,7 +11,7 @@ import com.datastax.driver.core.Session;
  *
  */
 public interface ICassandraConnector {
-	void connect(final String node, final int port);
+	void connect(final String node, final int port,final String keyspaceName);
 	Session getSession();
 	void close();
 }

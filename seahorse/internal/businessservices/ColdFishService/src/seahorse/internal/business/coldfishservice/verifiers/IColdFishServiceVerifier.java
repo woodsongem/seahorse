@@ -34,7 +34,7 @@ public interface IColdFishServiceVerifier {
 	
 	ResultMessageEntity isIncomeTypeIdValid(IncomeDetailMessageEntity incomeDetailMessageEntity);
 	
-	ResultMessageEntity isUserIdValid(UUID userId,List<UserCredentialMessageEntity> userCredentialMessageEntitys);	 
+	List<UserCredentialMessageEntity> getUserIdValid(UUID userId);	 
 	
 	ResultMessageEntity isIncomeTypeIdValid(UUID incomeTypeId,IncomeTypeMessageEntity incomeTypeMessageEntity);
 
@@ -53,4 +53,6 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity isIncomeCategoryIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 	
 	ResultMessageEntity IsIncomeCategoryIdValid(UUID incomeCategoryId,IncomeCategoryMessageEntity incomeCategoryMessageEntity );
+	
+	ResultMessageEntity ValidateUserDetails(List<UserCredentialMessageEntity> userCredentialMessageEntitys);
 }

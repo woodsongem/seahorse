@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.coldfishservice.common.datacontracts;
 
-import java.util.Date;
+import java.util.UUID;
 
 import com.datastax.driver.core.LocalDate;
 
@@ -13,42 +13,42 @@ import com.datastax.driver.core.LocalDate;
  */
 public class BaseMessageEntity extends ResultMessageEntity {
 
-	private String createdBy;
-	private String modifiedBy;
-	private Date createdDate;
-	private Date modifiedDate;
+	private UUID createdBy;
+	private UUID modifiedBy;
+	private LocalDate createdDate;
+	private LocalDate modifiedDate;
 	private String httpMethod;
 	private String ipAddress;
 
-	public String getCreatedBy() {
+	public UUID getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
+	public void setCreatedBy(UUID createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	public String getModifiedBy() {
+	public UUID getModifiedBy() {
 		return modifiedBy;
 	}
 
-	public void setModifiedBy(String modifiedBy) {
+	public void setModifiedBy(UUID modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Date getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Date getModifiedDate() {
+	public LocalDate getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(LocalDate modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 

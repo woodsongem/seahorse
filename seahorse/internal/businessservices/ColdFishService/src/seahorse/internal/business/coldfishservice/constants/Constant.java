@@ -14,6 +14,7 @@ public class Constant {
 
 	public static final String CASSANDRAPORT = "ColdFishService.CassandraPort";
 	public static final String CASSANDRASERVE = "ColdFishService.CassandraServer";
+	public static final String CASSANDRAKEYSPACENAME = "ColdFishService.KeySpaceName";
 	public static final String DEFAULTPRODUCTITEM = "Seahorse";	
 	public static final String DEFAULT = "DEFAULT";
 	
@@ -26,6 +27,7 @@ public class Constant {
 	public static final String USERCREDENTIALSERVICEHELPERCLASSNAME = "UserCredentialServiceHelper";
 	public static final String INACTIVESTATUS = "INACTIVE";
 	public static final String ACTIVESTATUS = "ACTIVE";
+	
 	
 
 }
