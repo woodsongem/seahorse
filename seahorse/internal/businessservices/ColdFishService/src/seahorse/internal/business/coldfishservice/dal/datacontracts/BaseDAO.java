@@ -3,10 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.dal.datacontracts;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
-import com.datastax.driver.core.LocalDate;
 
 /**
  * @author sajanmje
@@ -16,8 +14,8 @@ public class BaseDAO {
 	
 	private UUID createdBy;
 	private UUID modifiedBy;
-	private LocalDate createdDate;
-	private LocalDate modifiedDate;	
+	private LocalDateTime createdDate;
+	private LocalDateTime modifiedDate;	
 	private String ipAddress;
 	/**
 	 * @return the ipAddress
@@ -34,25 +32,25 @@ public class BaseDAO {
 	/**
 	 * @return the modifiedDate
 	 */
-	public LocalDate getModifiedDate() {
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
 	/**
 	 * @param modifiedDate the modifiedDate to set
 	 */
-	public void setModifiedDate(LocalDate modifiedDate) {
+	public void setModifiedDate(LocalDateTime modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 	/**
 	 * @return the createdDate
 	 */
-	public LocalDate getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 	/**

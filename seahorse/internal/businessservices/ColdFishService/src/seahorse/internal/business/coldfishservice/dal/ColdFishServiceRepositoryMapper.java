@@ -3,8 +3,10 @@
  */
 package seahorse.internal.business.coldfishservice.dal;
 
+import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -110,9 +112,9 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		IncomeDetailDAO incometypeDAO = new IncomeDetailDAO();
 		incometypeDAO.setId(incomeDetailResult.getUUID(DataBaseColumn.ID));		
 		incometypeDAO.setCreatedBy(incomeDetailResult.getUUID(DataBaseColumn.CREATEDBY));
-		incometypeDAO.setCreatedDate(incomeDetailResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
+		//incometypeDAO.setCreatedDate(incomeDetailResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
 		incometypeDAO.setModifiedBy(incomeDetailResult.getUUID(DataBaseColumn.MODIFIEDBY));
-		incometypeDAO.setModifiedDate(incomeDetailResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
+		//incometypeDAO.setModifiedDate(incomeDetailResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
 		incometypeDAO.setStatus(incomeDetailResult.getString(DataBaseColumn.STATUS));
 		incometypeDAO.setAmount(incomeDetailResult.getDouble(DataBaseColumn.INCOMEDETAIL_AMOUNT));
 		incometypeDAO.setDescription(incomeDetailResult.getString(DataBaseColumn.INCOMEDETAIL_DESCRIPTION));
@@ -137,10 +139,10 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	public IncomeCategoryDAO mapIncomeCategoryDAO(Row incomeCategoryDAOResult) {
 		IncomeCategoryDAO incomeCategoryDAO=new IncomeCategoryDAO();
 		incomeCategoryDAO.setId(incomeCategoryDAOResult.getUUID(DataBaseColumn.ID));		
-		incomeCategoryDAO.setCreatedBy(incomeCategoryDAOResult.getString(DataBaseColumn.CREATEDBY));
-		incomeCategoryDAO.setCreatedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
-		incomeCategoryDAO.setModifiedBy(incomeCategoryDAOResult.getString(DataBaseColumn.MODIFIEDBY));
-		incomeCategoryDAO.setModifiedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
+		//incomeCategoryDAO.setCreatedBy(incomeCategoryDAOResult.getString(DataBaseColumn.CREATEDBY));
+		//incomeCategoryDAO.setCreatedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));		
+		//incomeCategoryDAO.setModifiedBy(incomeCategoryDAOResult.getString(DataBaseColumn.MODIFIEDBY));
+		//incomeCategoryDAO.setModifiedDate(incomeCategoryDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
 		incomeCategoryDAO.setStatus(incomeCategoryDAOResult.getString(DataBaseColumn.STATUS));
 		incomeCategoryDAO.setName(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_NAME));
 		incomeCategoryDAO.setUserId(incomeCategoryDAOResult.getUUID(DataBaseColumn.INCOMECATEGORY_USERID));		
@@ -182,7 +184,8 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		bound.setUUID(DataBaseColumn.INCOMECATEGORY_ID, incomeDetailMessageEntity.getId());
 		bound.setUUID(DataBaseColumn.INCOMECATEGORY_USERID, incomeDetailMessageEntity.getParsedUserId());		
 		bound.setUUID(DataBaseColumn.CREATEDBY, incomeDetailMessageEntity.getCreatedBy());
-		bound.setDate(DataBaseColumn.CREATEDDATE,incomeDetailMessageEntity.getCreatedDate());
+		Timestamp st=Timestamp.valueOf(incomeDetailMessageEntity.getCreatedDate());
+		bound.setTimestamp(DataBaseColumn.CREATEDDATE,st);		
 		bound.setString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH, incomeDetailMessageEntity.getIncomeMonth());
 		bound.setInt(DataBaseColumn.INCOMECATEGORY_INCOMEYEAR, incomeDetailMessageEntity.getIncomeYear());
 		bound.setString(DataBaseColumn.INCOMECATEGORY_NAME, incomeDetailMessageEntity.getName());

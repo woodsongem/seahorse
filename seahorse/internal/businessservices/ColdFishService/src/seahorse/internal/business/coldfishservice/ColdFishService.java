@@ -5,14 +5,19 @@ package seahorse.internal.business.coldfishservice;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
+
+import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -183,9 +188,9 @@ public class ColdFishService implements IColdFishService {
 		
 		if(incomeCategoryMessageEntity != null)
 		{
-			incomeCategoryMessageEntity.setId(UUID.randomUUID());
-			incomeCategoryMessageEntity.setCreatedDate(com.datastax.driver.core.LocalDate.fromMillisSinceEpoch(System.currentTimeMillis()));
-			
+			incomeCategoryMessageEntity.setId(UUIDs.timeBased());
+			incomeCategoryMessageEntity.setCreatedDate(LocalDateTime.now());
+			incomeCategoryMessageEntity.setStatus(Constant.ACTIVESTATUS);			
 		}
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);
