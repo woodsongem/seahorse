@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -40,4 +42,8 @@ public interface IColdFishServiceMapper {
 	IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,	Status badRequest);
 
 	IncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,IncomeCategoryMessageEntity incomeDetailMessageEntity);
+
+	DeleteIncomeCategoryResponseMessageEntity mapDeleteIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity, Status badRequest);
+
+	DeleteIncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 }

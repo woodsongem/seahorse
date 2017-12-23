@@ -14,6 +14,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
@@ -61,6 +62,8 @@ public interface IColdFishServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId, String month,int year);
 
-	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity);	
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);	
 
 }

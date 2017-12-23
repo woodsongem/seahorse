@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.validators;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -73,4 +74,10 @@ public interface IColdFishServiceValidator {
 	Boolean isIncomeMonthValid(String month); 
 	
 	Boolean isIncomeYearValid(int year);
+
+	ResultMessageEntity validateDeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+	
+	ResultMessageEntity isDeleteIncomeCategoryMessageEntityValid(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeCategoryIdValid(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 }

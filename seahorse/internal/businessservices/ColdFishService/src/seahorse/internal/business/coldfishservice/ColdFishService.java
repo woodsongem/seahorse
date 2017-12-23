@@ -18,6 +18,8 @@ import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.constants.Constant;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -242,6 +244,33 @@ public class ColdFishService implements IColdFishService {
 				
 		
 		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, incomeCategoryMessageEntity);	
+	}
+
+	@Override
+	public DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
+		//Validator	    
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateDeleteIncomeCategory(deleteIncomeCategoryMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapDeleteIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}
+		
+		//Verifier
+	    resultMessageEntity = coldFishServiceVerifier.verifyDeleteIncomeCategory(deleteIncomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapDeleteIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.BAD_REQUEST);
+		}		
+		
+		//Processor
+		resultMessageEntity=coldFishServiceProcessor.deleteIncomeCategoryProcessor(deleteIncomeCategoryMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return coldFishServiceMapper.mapDeleteIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.deleteIncomeCategoryPostProcessor(deleteIncomeCategoryMessageEntity);		
+				
+		
+		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, deleteIncomeCategoryMessageEntity);
 	}
 
 }

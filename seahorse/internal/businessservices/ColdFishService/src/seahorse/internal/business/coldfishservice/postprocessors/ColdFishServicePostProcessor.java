@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.postprocessors;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -51,6 +52,12 @@ public class ColdFishServicePostProcessor  implements IColdFishServicePostProces
 
 	@Override
 	public ResultMessageEntity updateIncomeCategoryPostProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessageEntity deleteIncomeCategoryPostProcessor(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

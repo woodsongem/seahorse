@@ -38,11 +38,11 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 		for (UserCredentialDAO userCredentialDAO : userCredentialDAOs) {
 			UserCredentialMessageEntity userCredentialMessageEntity=new UserCredentialMessageEntity();
 			userCredentialMessageEntity.setCreatedBy(userCredentialDAO.getCreatedBy());
-			userCredentialMessageEntity.setCreatedDate(userCredentialDAO.getCreatedDate());
+			//userCredentialMessageEntity.setCreatedDate(userCredentialDAO.getCreatedDate());
 			userCredentialMessageEntity.setId(userCredentialDAO.getId());
 			userCredentialMessageEntity.setIpAddress(userCredentialDAO.getIpAddress());
 			userCredentialMessageEntity.setModifiedBy(userCredentialDAO.getModifiedBy());
-			userCredentialMessageEntity.setModifiedDate(userCredentialDAO.getModifiedDate());
+			//userCredentialMessageEntity.setModifiedDate(userCredentialDAO.getModifiedDate());
 			userCredentialMessageEntity.setPassword(userCredentialDAO.getPassword());
 			userCredentialMessageEntity.setStatus(userCredentialDAO.getStatus());
 			userCredentialMessageEntity.setUsername(userCredentialDAO.getUsername());			
@@ -72,14 +72,25 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 
 	@Override
 	public IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(UUID incomeCategoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		IncomeCategoryMessageEntity incomeCategoryMessageEntity=new IncomeCategoryMessageEntity();
+		incomeCategoryMessageEntity.setId(incomeCategoryId);
+		return incomeCategoryMessageEntity;
 	}
 
 	@Override
 	public IncomeCategoryMessageEntity mapincomeCategoryMessageEntity(IncomeCategoryDAO incomeCategoryDAO) {
-		// TODO Auto-generated method stub
-		return null;
+		IncomeCategoryMessageEntity incomeCategoryMessageEntity=new IncomeCategoryMessageEntity();
+		incomeCategoryMessageEntity.setStatus(incomeCategoryDAO.getStatus());
+		incomeCategoryMessageEntity.setCreatedBy(incomeCategoryDAO.getCreatedBy());
+		//incomeCategoryMessageEntity.setCreatedDate(incomeCategoryDAO.getCreatedDate());
+		incomeCategoryMessageEntity.setDescription(incomeCategoryDAO.getDescription());
+		incomeCategoryMessageEntity.setId(incomeCategoryDAO.getId());
+		incomeCategoryMessageEntity.setIncomeMonth(incomeCategoryDAO.getIncomeMonth());
+		incomeCategoryMessageEntity.setIncomeYear(incomeCategoryDAO.getIncomeYear());
+		incomeCategoryMessageEntity.setParsedUserId(incomeCategoryDAO.getUserId());
+		incomeCategoryMessageEntity.setModifiedBy(incomeCategoryDAO.getModifiedBy());
+		//incomeCategoryMessageEntity.setModifiedDate(incomeCategoryDAO.getModifiedDate());
+		return incomeCategoryMessageEntity;
 	}
 
 }

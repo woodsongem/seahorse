@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
+import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
@@ -16,6 +19,8 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -220,5 +225,37 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		}
 		incomeCategoryResponse.setResultMessage(resultMessages);
 		return incomeCategoryResponse;
+	}
+
+	@Override
+	public DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid) {		
+		DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity=new DeleteIncomeCategoryMessageEntity();
+		if(StringUtils.isBlank(incomecategoryid))
+		{
+			return deleteIncomeCategoryMessageEntity;
+		}
+		deleteIncomeCategoryMessageEntity.setId(incomecategoryid);
+		return deleteIncomeCategoryMessageEntity;
+	}
+
+	@Override
+	public DeleteIncomeCategoryResponse mapDeleteIncomeCategoryResponse(DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategoryResponseMessageEntity) {
+		DeleteIncomeCategoryResponse deleteIncomeCategoryResponse=new DeleteIncomeCategoryResponse();
+		if(deleteIncomeCategoryResponseMessageEntity==null)
+		{
+			return deleteIncomeCategoryResponse;
+		}
+		if (deleteIncomeCategoryResponseMessageEntity.getResultMessages() == null) {
+			return deleteIncomeCategoryResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessage resultMessageMS : deleteIncomeCategoryResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(resultMessageMS.getErrorCode());
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		deleteIncomeCategoryResponse.setResultMessage(resultMessages);
+		return deleteIncomeCategoryResponse;		
 	}
 }

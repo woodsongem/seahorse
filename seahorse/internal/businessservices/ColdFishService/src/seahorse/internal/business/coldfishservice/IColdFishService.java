@@ -5,6 +5,8 @@ package seahorse.internal.business.coldfishservice;
 
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -31,5 +33,7 @@ public interface IColdFishService {
 	IncomeCategoryResponseMessageEntity createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
 	IncomeCategoryResponseMessageEntity updateIncomeCategory(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
+	DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 
 }

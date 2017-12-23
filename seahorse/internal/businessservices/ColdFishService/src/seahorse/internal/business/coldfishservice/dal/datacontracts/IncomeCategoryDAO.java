@@ -16,7 +16,7 @@ public class IncomeCategoryDAO extends BaseDAO {
 	private String description;	
 	private String status;
 	private String incomeMonth;
-	private String incomeYear;
+	private int incomeYear;
 	/**
 	 * @return the id
 	 */
@@ -78,10 +78,10 @@ public class IncomeCategoryDAO extends BaseDAO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getIncomeYear() {
+	public int getIncomeYear() {
 		return incomeYear;
 	}
-	public void setIncomeYear(String incomeYear) {
+	public void setIncomeYear(int incomeYear) {
 		this.incomeYear = incomeYear;
 	}
 	public String getIncomeMonth() {

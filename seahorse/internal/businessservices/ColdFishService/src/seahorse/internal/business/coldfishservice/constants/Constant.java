@@ -27,7 +27,5 @@ public class Constant {
 	public static final String USERCREDENTIALSERVICEHELPERCLASSNAME = "UserCredentialServiceHelper";
 	public static final String INACTIVESTATUS = "INACTIVE";
 	public static final String ACTIVESTATUS = "ACTIVE";
-	
-	
-
+	public static final String DATEFORMAT = "yyyy-mm-dd HH:mm:ssZ";
 }

@@ -16,6 +16,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultSta
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -271,5 +272,31 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 			return resultMessageEntity;
 		}
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public ResultMessageEntity deleteIncomeCategoryProcessor(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = DeleteIncomeCategory(deleteIncomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity DeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		try {
+			coldFishServiceRepository.DeleteIncomeCategory(deleteIncomeCategoryMessageEntity);
+		} catch (Exception e) {
+			logger.error("Error in IColdFishServiceProcessor::DeleteIncomeCategory error=" + e);
+			resultMessageEntity.setResultStatus(ResultStatus.ERROR);
+			resultMessageEntity.setResultMessages(
+					ColdFishServiceUtility.getResultMessage(coldFishServiceErrorCode.internalError(), null));
+			return resultMessageEntity;
+		}
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		return resultMessageEntity;
 	}
 }

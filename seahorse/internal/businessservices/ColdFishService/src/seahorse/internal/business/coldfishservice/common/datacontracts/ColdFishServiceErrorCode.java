@@ -159,4 +159,19 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	public String moreThanOneUserIdErrorCode() {
 		return getErrorCodeMapping("UserId.MoreThanOne");
 	}
+
+	@Override
+	public String emptyStatusMessageEntityErrorCode() {
+		return getErrorCodeMapping("Status.Empty");
+	}
+
+	@Override
+	public String inValidStatusMessageEntityErrorCode() {
+		return getErrorCodeMapping("Status.InValid");
+	}
+
+	@Override
+	public String emptyDeleteIncomeCategoryMessageEntityErrorCode() {
+		return getErrorCodeMapping("DeleteIncomeCategoryMessageEntity.Empty");
+	}
 }

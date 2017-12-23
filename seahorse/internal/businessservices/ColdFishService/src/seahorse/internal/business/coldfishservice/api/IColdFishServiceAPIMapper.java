@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.api;
 
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
@@ -14,6 +15,8 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -52,5 +55,9 @@ public interface IColdFishServiceAPIMapper {
 	IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest);
 
 	IncomeCategoryResponse mapIncomeCategoryResponse(IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity);
+
+	DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid);
+
+	DeleteIncomeCategoryResponse mapDeleteIncomeCategoryResponse(DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategoryResponseMessageEntity);
 
 }

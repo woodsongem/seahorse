@@ -4,8 +4,10 @@
 package seahorse.internal.business.coldfishservice.api;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -15,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import seahorse.internal.business.coldfishservice.IColdFishService;
+import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetailsResponse;
@@ -22,6 +25,8 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRe
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.common.datacontracts.ColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.factories.ColdFishServiceFactory;
@@ -36,6 +41,7 @@ public class ColdFishServiceAPI {
 	@Context
 	private HttpServletRequest httpRequest;
 
+	// POST ==> /income/category
 	@POST
 	@Path("/income/category")
 	@Produces(MediaType.APPLICATION_JSON)	
@@ -64,7 +70,31 @@ public class ColdFishServiceAPI {
 		}
 		return Response.status(httpStatus).entity(incomeCategoryResponse).build();
 	}
-		
+
+	// @DELETE ==> /income/category
+	@DELETE
+	@Path("/income/category/{incomecategoryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteIncomeCategoryById(@PathParam("incomecategoryid") String incomecategoryid)
+	{
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		IColdFishServiceAPIMapper coldFishServiceAPIMapper = new ColdFishServiceAPIMapper();
+		DeleteIncomeCategoryResponse response=new DeleteIncomeCategoryResponse();
+		try {
+			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
+			DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity = coldFishServiceAPIMapper.mapDeleteIncomeCategoryMessageEntity(incomecategoryid);
+			DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategoryResponseMessageEntity = coldFishService.deleteIncomeCategory(deleteIncomeCategoryMessageEntity);
+			response= coldFishServiceAPIMapper.mapDeleteIncomeCategoryResponse(deleteIncomeCategoryResponseMessageEntity);
+			httpStatus = deleteIncomeCategoryResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {			
+			logger.error(ex);
+		}		
+		if (response != null && !response.getResultMessage().isEmpty()) {					
+			response.setResultMessage(coldFishServiceAPIMapper.mapResultMessages(response.getResultMessage(),httpRequest.getMethod()));
+		}
+		return Response.status(httpStatus).entity(response).build();
+	}	
 	/*
 	@PUT
 	@Path("/income/category")
