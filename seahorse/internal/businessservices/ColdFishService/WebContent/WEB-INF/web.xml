@@ -20,10 +20,8 @@
 			<param-name>javax.ws.rs.Application</param-name>
 			<param-value>seahorse.internal.business.shared.aop.ColdFishFilters</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-
+		<load-on-startup>1</load-on-startup>		
+	</servlet>	
 	<!-- Map all the URLs to the Jersey ServletContainer -->
 	<servlet-mapping>
 		<servlet-name>ColdFishService</servlet-name>

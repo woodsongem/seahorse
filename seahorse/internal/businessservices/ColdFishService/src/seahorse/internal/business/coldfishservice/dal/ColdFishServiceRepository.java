@@ -10,11 +10,13 @@ import java.util.UUID;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.coldfishservice.common.CassandraConnector;
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
@@ -230,6 +232,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
 		cassandraConnector.connect(null, 0,null);
 		PreparedStatement pstmt=cassandraConnector.getSession().prepare(QueryConstants.CREATEINCOMECATEGORYQUERY);
+		pstmt.setConsistencyLevel(ConsistencyLevel.ALL);
 		BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(pstmt,incomeDetailMessageEntity);		
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
