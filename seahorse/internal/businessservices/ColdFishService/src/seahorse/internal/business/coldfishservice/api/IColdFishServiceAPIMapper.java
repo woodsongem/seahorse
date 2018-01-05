@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.api;
 
 import java.util.List;
+import java.util.Map;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
@@ -52,11 +53,11 @@ public interface IColdFishServiceAPIMapper {
 
 	List<IncomeDetail> mapIncomeDetail(List<IncomeDetailMessageEntity> incomeDetailMessageEntity);
 
-	IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest);
+	IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest,Map<String, String> headers);
 
 	IncomeCategoryResponse mapIncomeCategoryResponse(IncomeCategoryResponseMessageEntity incomeCategoryResponseMessageEntity);
 
-	DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid);
+	DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid,Map<String, String> headers);
 
 	DeleteIncomeCategoryResponse mapDeleteIncomeCategoryResponse(DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategoryResponseMessageEntity);
 

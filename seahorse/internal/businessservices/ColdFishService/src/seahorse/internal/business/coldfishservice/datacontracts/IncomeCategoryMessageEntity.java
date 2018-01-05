@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.coldfishservice.datacontracts;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
@@ -22,6 +23,9 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	private int incomeyear;
 	private String status;		
 	private String description;	
+	private String parentid;
+	private UUID parsedParentid;
+	private BigDecimal amount;
 	private UserCredentialMessageEntity userCredential;
 	private IncomeCategoryMessageEntity incomeCategory;		
 
@@ -115,5 +119,41 @@ public class IncomeCategoryMessageEntity  extends BaseMessageEntity {
 	}
 	public void setId(UUID id) {
 		this.id = id;
+	}
+	/**
+	 * @return the parentid
+	 */
+	public String getParentid() {
+		return parentid;
+	}
+	/**
+	 * @param parentid the parentid to set
+	 */
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
+	}
+	/**
+	 * @return the amount
+	 */
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+	/**
+	 * @return the parsedParentid
+	 */
+	public UUID getParsedParentid() {
+		return parsedParentid;
+	}
+	/**
+	 * @param parsedParentid the parsedParentid to set
+	 */
+	public void setParsedParentid(UUID parsedParentid) {
+		this.parsedParentid = parsedParentid;
 	}
 }

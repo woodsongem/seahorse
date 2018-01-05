@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.api.datacontracts;
 
+import java.math.BigDecimal;
+
 /**
  * @author sajanmje
  *
@@ -15,6 +17,8 @@ public class IncomeCategoryRequest extends RequestBase{
 	private int incomeyear;
 	private String status;	
 	private String description;
+	private String parentid;
+	private BigDecimal amount;
 	
 	/**
 	 * @return the name
@@ -69,5 +73,29 @@ public class IncomeCategoryRequest extends RequestBase{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the parentid
+	 */
+	public String getParentid() {
+		return parentid;
+	}
+	/**
+	 * @param parentid the parentid to set
+	 */
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
+	}
+	/**
+	 * @return the amount
+	 */
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}		
 }

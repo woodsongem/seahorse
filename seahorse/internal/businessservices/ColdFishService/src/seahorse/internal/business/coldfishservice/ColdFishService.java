@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -192,7 +193,11 @@ public class ColdFishService implements IColdFishService {
 		{
 			incomeCategoryMessageEntity.setId(UUIDs.timeBased());
 			incomeCategoryMessageEntity.setCreatedDate(LocalDateTime.now());
-			incomeCategoryMessageEntity.setStatus(Constant.ACTIVESTATUS);			
+			incomeCategoryMessageEntity.setStatus(Constant.ACTIVESTATUS);
+			if(incomeCategoryMessageEntity.getAmount()==null)
+			{
+				incomeCategoryMessageEntity.setAmount(new BigDecimal(0.0));
+			}
 		}
 		//Validator	    
 	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateCreateIncomeCategory(incomeCategoryMessageEntity);

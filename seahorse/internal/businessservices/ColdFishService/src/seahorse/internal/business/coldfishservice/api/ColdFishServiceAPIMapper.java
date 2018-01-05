@@ -5,7 +5,13 @@ package seahorse.internal.business.coldfishservice.api;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +25,8 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeType;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
+import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
@@ -186,7 +194,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	}
 
 	@Override
-	public IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest) {
+	public IncomeCategoryMessageEntity mapIncomeCategoryMessageEntity(IncomeCategoryRequest incomeCategoryRequest,Map<String, String> headers) {
 		if(incomeCategoryRequest==null)
 		{
 			return null; 
@@ -197,7 +205,19 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		incomeCategoryMessageEntity.setUserId(incomeCategoryRequest.getUserId());
 		incomeCategoryMessageEntity.setIncomeMonth(incomeCategoryRequest.getIncomeMonth());
 		incomeCategoryMessageEntity.setIncomeYear(incomeCategoryRequest.getIncomeyear());
-		incomeCategoryMessageEntity.setStatus(incomeCategoryRequest.getStatus());		
+		incomeCategoryMessageEntity.setStatus(incomeCategoryRequest.getStatus());
+		incomeCategoryMessageEntity.setAmount(incomeCategoryRequest.getAmount());
+		incomeCategoryMessageEntity.setParentid(incomeCategoryRequest.getParentid());
+		
+		BaseMessageEntity baseMessageEntity=new BaseMessageEntity();
+		for (Map.Entry<String, String> entry : headers.entrySet())
+		{
+			if(Constant.IPADDRESS==	entry.getKey())
+			{
+				baseMessageEntity.setIpAddress(entry.getValue());
+			}			
+		}
+		
 		return incomeCategoryMessageEntity;
 	}
 
@@ -228,7 +248,7 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	}
 
 	@Override
-	public DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid) {		
+	public DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid,Map<String, String> headers) {		
 		DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity=new DeleteIncomeCategoryMessageEntity();
 		if(StringUtils.isBlank(incomecategoryid))
 		{

@@ -232,8 +232,7 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
 		cassandraConnector.connect(null, 0,null);
 		PreparedStatement pstmt=cassandraConnector.getSession().prepare(QueryConstants.CREATEINCOMECATEGORYQUERY);
-		pstmt.setConsistencyLevel(ConsistencyLevel.ALL);
-		BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(pstmt,incomeDetailMessageEntity);		
+		BoundStatement bound=coldFishServiceRepositoryMapper.mapCreateCategoryBoundStatement(pstmt,incomeDetailMessageEntity);		
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		incomeCategoryDAO.setId(incomeDetailMessageEntity.getId());

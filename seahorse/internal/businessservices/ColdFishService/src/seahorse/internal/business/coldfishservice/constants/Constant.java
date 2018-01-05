@@ -7,7 +7,7 @@ package seahorse.internal.business.coldfishservice.constants;
  *
  */
 public class Constant {
-
+	
 	private Constant() {
 		throw new IllegalAccessError("Constant class");
 	}
@@ -17,7 +17,7 @@ public class Constant {
 	public static final String CASSANDRAKEYSPACENAME = "ColdFishService.KeySpaceName";
 	public static final String DEFAULTPRODUCTITEM = "Seahorse";	
 	public static final String DEFAULT = "DEFAULT";
-	
+	public static final String IPADDRESS="ipaddress";	
 	
 	public static final String USERCREDENTIALVALIDATORSPACKAGE="seahorse.internal.business.customerservice.validators";
 	public static final String USERCREDENTIALVALIDATORSCLASSNAME="UserCredentialServiceValidator";
