@@ -240,12 +240,12 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	}
 
 	@Override
-	public IncomeCategoryDAO getIncomeCategoryById(IncomeCategoryMessageEntity incomeCategory) {
+	public IncomeCategoryDAO getIncomeCategoryById(UUID incomeCategoryId) {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
 		try {
 			cassandraConnector.connect(null, 0,null);			
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYIDQUERY);
-			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeCategory);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeCategoryId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
@@ -274,5 +274,24 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			logger.error("Exception in getIncomeCategoryByUserId error=" + exception);
 			throw exception;
 		}			
+	}
+	@Override
+	public List<IncomeCategoryDAO> getIncomeCategoryByParentId(IncomeCategoryMessageEntity incomeCategory) {
+		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0,null);			
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYPARENTIDQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapGetIncomeCategoryBoundStatement(preparedStatement,incomeCategory);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incomeCategoryDAOResult = resultSet.one();
+				incomeCategoryDAOs.add(coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult));	
+				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeCategoryByParentId error=" + exception);
+		}
+		return incomeCategoryDAOs;
 	}
 }

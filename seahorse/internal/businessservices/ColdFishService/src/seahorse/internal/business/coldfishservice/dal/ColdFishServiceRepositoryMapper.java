@@ -183,9 +183,16 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 	}
 
 	@Override
-	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UUID incomeCategoryId) {
 		BoundStatement bound = preparedStatement.bind();
-		bound.setUUID(DataBaseColumn.ID, incomeDetailMessageEntity.getId());		
+		bound.setUUID(DataBaseColumn.ID, incomeCategoryId);		
+		return bound;
+	}
+	
+	@Override
+	public BoundStatement mapGetIncomeCategoryBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.INCOMECATEGORY_PARENTID, incomeDetailMessageEntity.getParsedParentid());		
 		return bound;
 	}
 

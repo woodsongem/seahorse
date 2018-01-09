@@ -250,7 +250,13 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		resultMessageEntity = isUserIdValid(incomeDetailMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
-		}	
+		}
+		
+		resultMessageEntity = isParentIdValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
 		resultMessageEntity = isIncomeCategoryNameValid(incomeDetailMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
@@ -342,9 +348,8 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	}
 	
 	public IncomeCategoryMessageEntity getIncomeCategoryId(UUID incomeCategoryId)
-	{	
-		IncomeCategoryMessageEntity incomeCategory = coldFishServiceVerifierMapper.mapIncomeCategoryMessageEntity(incomeCategoryId);
-		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategory);		
+	{			
+		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategoryId);		
 		return coldFishServiceVerifierMapper.mapincomeCategoryMessageEntity(incomeCategoryDAO);		
 	}
 
@@ -373,5 +378,22 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		}
 		deleteIncomeCategoryMessageEntity.setIncomeCategoryMessageEntity(incomeCategoryMessageEntity);		
 		return resultMessageEntity;
+	}
+	public ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		if(incomeCategoryMessageEntity.getName()==null)
+		{
+			return resultMessageEntity;
+		}		
+		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategoryMessageEntity.getParsedParentid());
+		
+		if(incomeCategoryDAO == null || incomeCategoryDAO.getStatus() == null ||  
+				!incomeCategoryDAO.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidParentIdMessageEntityErrorCode(), "ParentId",ResultStatus.ERROR);
+		}
+		
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
 	}
 }

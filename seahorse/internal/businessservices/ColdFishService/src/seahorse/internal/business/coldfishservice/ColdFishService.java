@@ -196,7 +196,7 @@ public class ColdFishService implements IColdFishService {
 			incomeCategoryMessageEntity.setStatus(Constant.ACTIVESTATUS);
 			if(incomeCategoryMessageEntity.getAmount()==null)
 			{
-				incomeCategoryMessageEntity.setAmount(new BigDecimal(0.0));
+				incomeCategoryMessageEntity.setAmount(BigDecimal.valueOf(0.0));
 			}
 		}
 		//Validator	    

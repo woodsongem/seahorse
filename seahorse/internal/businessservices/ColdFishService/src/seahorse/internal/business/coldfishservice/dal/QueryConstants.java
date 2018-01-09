@@ -26,4 +26,5 @@ public class QueryConstants {
 	public static final String GETUSERCREDENTIALBYUSERIDQUERY = "SELECT id, createdby, createddate, modifiedby, modifieddate, password, productitemid, status, username FROM usercredential where id=?";
 	public static final String DELETEINCOMECATEGORYBYIDQUERY = "UPDATE incomecategory set status=? where userid=? and id=? and incomemonth=? and incomeyear=?";
 	public static final String GETINCOMECATEGORYBYIDQUERY = "SELECT userid, incomemonth, incomeyear, id, createdby, createddate, description, modifiedby, modifieddate, name, status FROM coldfish_dev.incomecategory where id=?"; 
+	public static final String GETINCOMECATEGORYBYPARENTIDQUERY = "SELECT userid, incomemonth, incomeyear, id, createdby, createddate, description, modifiedby, modifieddate, name, status FROM coldfish_dev.incomecategory where parentid=? allow filtering";
 }
