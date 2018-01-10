@@ -283,14 +283,26 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		if(incomeCategoryMessageEntity.getName()==null)
 		{
 			return resultMessageEntity;
-		}		
+		}
 		List<IncomeCategoryDAO> incomeCategoryDAOs = coldFishServiceRepository.getIncomeCategoryByUserId(incomeCategoryMessageEntity.getParsedUserId(),
 				incomeCategoryMessageEntity.getIncomeMonth(),incomeCategoryMessageEntity.getIncomeYear());
-		if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
-		{
-			return resultMessageEntity;
-		}	
 		
+		if(incomeCategoryMessageEntity.getParsedParentid() == null)
+		{			
+			if(!isIncomeCategoryNameValid(incomeCategoryDAOs,incomeCategoryMessageEntity.getName()))
+			{
+				return resultMessageEntity;
+			}	
+		}	
+		else
+		{
+				if(!incomeCategoryDAOs.stream().anyMatch(
+					x -> x.getParentId()==incomeCategoryMessageEntity.getParsedParentid() && x.getName() == incomeCategoryMessageEntity.getName()
+					))
+				{
+					return resultMessageEntity;
+				}
+		}
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);		
 	}
 	
@@ -300,6 +312,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 				.anyMatch(x -> !StringUtils.isBlank(x.getName()) 
 						&& x.getName().equalsIgnoreCase(incomeCategoryName)
 						&& !StringUtils.isBlank(x.getStatus())
+						&& x.getParentId() == null
 					    && x.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS));		
 	}
 
@@ -382,7 +395,7 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	public ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
 		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
-		if(incomeCategoryMessageEntity.getName()==null)
+		if(!ColdFishServiceUtility.isValidUUID(incomeCategoryMessageEntity.getParsedParentid()))
 		{
 			return resultMessageEntity;
 		}		
@@ -394,6 +407,6 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidParentIdMessageEntityErrorCode(), "ParentId",ResultStatus.ERROR);
 		}
 		
-		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.duplicateIncomeCategory(), "IncomeCategoryMessageEntity.Name",ResultStatus.ERROR);
+		return resultMessageEntity;
 	}
 }

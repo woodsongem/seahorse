@@ -230,7 +230,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeTypeId(),"IncomeTypeId", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(incomeTypeId))
+		if(ColdFishServiceUtility.isValidUUID(incomeTypeId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -244,7 +244,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),"UserId", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(userId))
+		if(ColdFishServiceUtility.isValidUUID(userId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -252,18 +252,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidUserIdErrorCode(),"Name", ResultStatus.ERROR);
 	}
 	
-	private Boolean isUUIDValid(String uuid)
-	{
-		if (uuid == null) {
-		 return false;
-		}
-		try {
-			UUID.fromString(uuid);
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
+	
 
 	@Override
 	public ResultMessageEntity validateGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
@@ -349,7 +338,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return	ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 		
-		if(!isUUIDValid(incomeCategoryMessageEntity.getParentid()))
+		if(!ColdFishServiceUtility.isValidUUID(incomeCategoryMessageEntity.getParentid()))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidParentIdMessageEntityErrorCode(), "ParentId",	ResultStatus.ERROR);
 		}
@@ -492,7 +481,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeCategoryIdErrorCode(),"Id", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(incomeCategoryId))
+		if(ColdFishServiceUtility.isValidUUID(incomeCategoryId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}

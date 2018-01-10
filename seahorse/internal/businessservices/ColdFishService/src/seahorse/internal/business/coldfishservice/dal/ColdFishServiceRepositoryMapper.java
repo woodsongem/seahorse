@@ -153,6 +153,8 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		incomeCategoryDAO.setDescription(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_DESCRIPTION));
 		incomeCategoryDAO.setIncomeMonth(incomeCategoryDAOResult.getString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH));
 		incomeCategoryDAO.setIncomeYear(incomeCategoryDAOResult.getInt(DataBaseColumn.INCOMECATEGORY_INCOMEYEAR));
+		incomeCategoryDAO.setParentId(incomeCategoryDAOResult.getUUID(DataBaseColumn.INCOMECATEGORY_PARENTID));
+		incomeCategoryDAO.setAmount(incomeCategoryDAOResult.getDecimal(DataBaseColumn.INCOMECATEGORY_AMOUNT));
 		return incomeCategoryDAO;
 	}
 
