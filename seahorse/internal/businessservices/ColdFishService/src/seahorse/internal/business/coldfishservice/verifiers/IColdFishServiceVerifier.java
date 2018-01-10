@@ -60,4 +60,6 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity verifyDeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 	
 	ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	
+	ResultMessageEntity isAmountZeroValid(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 }

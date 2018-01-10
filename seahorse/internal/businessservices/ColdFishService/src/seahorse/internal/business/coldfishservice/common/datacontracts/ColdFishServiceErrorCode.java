@@ -178,5 +178,10 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	@Override
 	public String inValidParentIdMessageEntityErrorCode() {
 		return getErrorCodeMapping("ParentId.InValid");
+	}
+
+	@Override
+	public String incomeCategoryAmountNotZero() {
+		return getErrorCodeMapping("IncomeCategory.AmountNotZero");
 	}	
 }

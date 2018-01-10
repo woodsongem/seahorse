@@ -257,13 +257,34 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 			return resultMessageEntity;
 		}
 		
+		resultMessageEntity = isAmountZeroValid(incomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
 		resultMessageEntity = isIncomeCategoryNameValid(incomeDetailMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}	
+		
+		
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}	
 	
+	public ResultMessageEntity isAmountZeroValid(IncomeCategoryMessageEntity incomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		resultMessageEntity.setResultStatus(ResultStatus.SUCCESS);
+		if(incomeDetailMessageEntity.getParsedParentid() == null)
+		{
+			return resultMessageEntity;
+		}
+		if(incomeDetailMessageEntity.getIncomeCategory().getAmount() !=null)
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.incomeCategoryAmountNotZero(),null,ResultStatus.ERROR);
+		}
+		return resultMessageEntity;
+	}
+
 	public ResultMessageEntity isUserIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
 	{
 		List<UserCredentialMessageEntity> userCredentialMessageEntitys= getUserIdValid(incomeCategoryMessageEntity.getParsedUserId());
@@ -399,13 +420,15 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		{
 			return resultMessageEntity;
 		}		
-		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategoryMessageEntity.getParsedParentid());
+		IncomeCategoryDAO incomeCategoryDAO = coldFishServiceRepository.getIncomeCategoryById(incomeCategoryMessageEntity.getParsedParentid());		
 		
 		if(incomeCategoryDAO == null || incomeCategoryDAO.getStatus() == null ||  
 				!incomeCategoryDAO.getStatus().equalsIgnoreCase(Constant.ACTIVESTATUS))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidParentIdMessageEntityErrorCode(), "ParentId",ResultStatus.ERROR);
 		}
+		
+		incomeCategoryMessageEntity.setIncomeCategory(coldFishServiceVerifierMapper.mapincomeCategoryMessageEntity(incomeCategoryDAO));
 		
 		return resultMessageEntity;
 	}
