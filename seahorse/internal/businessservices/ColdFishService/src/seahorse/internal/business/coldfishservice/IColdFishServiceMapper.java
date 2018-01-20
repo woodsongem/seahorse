@@ -10,6 +10,7 @@ import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCate
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -46,4 +47,6 @@ public interface IColdFishServiceMapper {
 	DeleteIncomeCategoryResponseMessageEntity mapDeleteIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity, Status badRequest);
 
 	DeleteIncomeCategoryResponseMessageEntity mapIncomeCategoryResponseMessageEntity(ResultMessageEntity resultMessageEntity,DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+
+	List<IncomeCategoryDetail> mapIncomeCategoryDetail(ResultMessageEntity resultMessageEntity,GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
 }

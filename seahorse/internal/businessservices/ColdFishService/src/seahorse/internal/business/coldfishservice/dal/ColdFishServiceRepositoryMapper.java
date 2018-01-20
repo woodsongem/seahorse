@@ -215,8 +215,8 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		bound.setUUID(DataBaseColumn.ID, incomeDetailMessageEntity.getId());
 		bound.setUUID(DataBaseColumn.USERID,incomeDetailMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.CREATEDBY,incomeDetailMessageEntity.getCreatedBy());
-		Timestamp ts = Timestamp.valueOf(incomeDetailMessageEntity.getCreatedDate());
-		bound.setTimestamp(DataBaseColumn.CREATEDDATE,ts);
+		//Timestamp ts = Timestamp.valueOf(incomeDetailMessageEntity.getCreatedDate());
+		//bound.setTimestamp(DataBaseColumn.CREATEDDATE,ts);
 		bound.setString(DataBaseColumn.STATUS,incomeDetailMessageEntity.getStatus());
 		bound.setString(DataBaseColumn.INCOMECATEGORY_NAME,incomeDetailMessageEntity.getName());
 		bound.setString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH,incomeDetailMessageEntity.getIncomeMonth());
@@ -224,6 +224,27 @@ public class ColdFishServiceRepositoryMapper implements IColdFishServiceReposito
 		bound.setString(DataBaseColumn.INCOMEDETAIL_DESCRIPTION,incomeDetailMessageEntity.getDescription());
 		bound.setUUID(DataBaseColumn.INCOMECATEGORY_PARENTID,incomeDetailMessageEntity.getParsedParentid());		
 		bound.setDecimal(DataBaseColumn.INCOMECATEGORY_AMOUNT,incomeDetailMessageEntity.getAmount());
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapDeleteSubIncomeCategoryBoundStatement(PreparedStatement preparedStatement,DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setString(DataBaseColumn.STATUS, Constant.INACTIVESTATUS);
+		bound.setUUID(DataBaseColumn.USERID, deleteIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity().getParsedUserId());
+		bound.setUUID(DataBaseColumn.ID, deleteIncomeCategoryMessageEntity.getParsedId());		
+		bound.setString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH, deleteIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity().getIncomeMonth());
+		bound.setInt(DataBaseColumn.INCOMECATEGORY_INCOMEYEAR, deleteIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity().getIncomeYear());
+		bound.setUUID(DataBaseColumn.INCOMECATEGORY_PARENTID, deleteIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity().getParsedParentid());
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapGetIncomeCategoryBoundStatement(PreparedStatement preparedStatement,IncomeCategoryDAO incomeCategoryDAO) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID, incomeCategoryDAO.getUserId());				
+		bound.setString(DataBaseColumn.INCOMECATEGORY_INCOMEMONTH, incomeCategoryDAO.getIncomeMonth());
+		bound.setInt(DataBaseColumn.INCOMECATEGORY_INCOMEYEAR, incomeCategoryDAO.getIncomeYear());		
 		return bound;
 	}
 }

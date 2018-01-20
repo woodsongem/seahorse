@@ -70,4 +70,8 @@ public interface IColdFishServiceRepositoryMapper {
 	
 	BoundStatement mapGetIncomeCategoryBoundStatement(PreparedStatement preparedStatement,IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
+	BoundStatement mapDeleteSubIncomeCategoryBoundStatement(PreparedStatement preparedStatement,DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+
+	BoundStatement mapGetIncomeCategoryBoundStatement(PreparedStatement preparedStatement,IncomeCategoryDAO incomeCategoryDAO);
+
 }

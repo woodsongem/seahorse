@@ -82,4 +82,12 @@ public interface IColdFishServiceValidator {
 	ResultMessageEntity isIncomeCategoryIdValid(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 	
 	ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+
+	ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	
+	ResultMessageEntity isGetIncomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	
+	ResultMessageEntity isIncomeYearValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);	
+
+	ResultMessageEntity isIncomeMonthValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);	 
 }

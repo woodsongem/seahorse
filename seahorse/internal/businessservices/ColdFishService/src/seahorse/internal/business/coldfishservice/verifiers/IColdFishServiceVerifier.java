@@ -62,4 +62,6 @@ public interface IColdFishServiceVerifier {
 	ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 	
 	ResultMessageEntity isAmountZeroValid(IncomeCategoryMessageEntity incomeDetailMessageEntity);
+
+	ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
 }

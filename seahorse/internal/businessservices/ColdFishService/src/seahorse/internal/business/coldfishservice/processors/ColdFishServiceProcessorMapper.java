@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeTypeMessageEntity;
 
@@ -43,9 +46,35 @@ public class ColdFishServiceProcessorMapper implements IColdFishServiceProcessor
 	}
 
 	@Override
-	public List<IncomeDetailMessageEntity> mapIncomeDetailMessageEntity(List<IncomeDetailDAO> incomeDetailDAOs) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<IncomeCategoryMessageEntity> mapIncomeCategoryMessageEntity(List<IncomeCategoryDAO> incomeDetailDAOs) {
+		List<IncomeCategoryMessageEntity>  incomeCategoryMessageEntitys=new ArrayList<>();
+		for (IncomeCategoryDAO incomeCategoryDAO : incomeDetailDAOs) {
+			IncomeCategoryMessageEntity incomeCategoryMessageEntity=new IncomeCategoryMessageEntity();
+			incomeCategoryMessageEntity.setAmount(incomeCategoryDAO.getAmount());
+			incomeCategoryMessageEntity.setCreatedBy(incomeCategoryDAO.getCreatedBy());
+			incomeCategoryMessageEntity.setCreatedDate(incomeCategoryDAO.getCreatedDate());
+			incomeCategoryMessageEntity.setDescription(incomeCategoryDAO.getDescription());
+			incomeCategoryMessageEntity.setId(incomeCategoryDAO.getId());
+			incomeCategoryMessageEntity.setIncomeMonth(incomeCategoryDAO.getIncomeMonth());
+			incomeCategoryMessageEntity.setIncomeYear(incomeCategoryDAO.getIncomeYear());
+			incomeCategoryMessageEntity.setModifiedBy(incomeCategoryDAO.getModifiedBy());
+			incomeCategoryMessageEntity.setModifiedDate(incomeCategoryDAO.getModifiedDate());			
+			incomeCategoryMessageEntity.setName(incomeCategoryDAO.getName());
+			incomeCategoryMessageEntity.setParsedParentid(incomeCategoryDAO.getUserId());
+			incomeCategoryMessageEntity.setParsedUserId(incomeCategoryDAO.getUserId());
+			incomeCategoryMessageEntity.setStatus(incomeCategoryDAO.getStatus());			
+			incomeCategoryMessageEntitys.add(incomeCategoryMessageEntity);
+		}
+		return incomeCategoryMessageEntitys;
+	}
+
+	@Override
+	public IncomeCategoryDAO MapIncomeCategoryDAO(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+		IncomeCategoryDAO incomeCategoryDAO=new IncomeCategoryDAO();
+		incomeCategoryDAO.setUserId(getIncomeDetailMessageEntity.getParsedUserId());
+		incomeCategoryDAO.setIncomeMonth(getIncomeDetailMessageEntity.getIncomeMonth());
+		incomeCategoryDAO.setIncomeYear(getIncomeDetailMessageEntity.getIncomeYear());
+		return incomeCategoryDAO;
 	}
 
 }

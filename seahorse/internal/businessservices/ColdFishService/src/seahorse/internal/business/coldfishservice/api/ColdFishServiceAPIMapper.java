@@ -16,6 +16,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategory;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
@@ -31,6 +32,7 @@ import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCate
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -277,5 +279,40 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		}
 		deleteIncomeCategoryResponse.setResultMessage(resultMessages);
 		return deleteIncomeCategoryResponse;		
+	}
+
+	@Override
+	public GetIncomeDetailMessageEntity mapGetIncomeCategory(String userid, int incomeyear, String incomemonth,Map<String, String> headers) {	
+		GetIncomeDetailMessageEntity getIncomeDetailMessageEntity=new GetIncomeDetailMessageEntity();
+		getIncomeDetailMessageEntity.setUserId(userid);
+		getIncomeDetailMessageEntity.setIncomeMonth(incomemonth);
+		getIncomeDetailMessageEntity.setIncomeYear(incomeyear);
+		getIncomeDetailMessageEntity.setHeaders(headers);
+		return getIncomeDetailMessageEntity;
+	}
+
+	@Override
+	public List<IncomeCategory> mapIncomeCategory(List<IncomeCategoryDetail> incomeCategoryDetail) {
+		List<IncomeCategory> incomeCategorys=new ArrayList<>();
+		if(incomeCategoryDetail.isEmpty())
+		{
+			return incomeCategorys;
+		}
+		for (IncomeCategoryDetail incomeCategory : incomeCategoryDetail) {
+			IncomeCategory incomeCategory1=new IncomeCategory();
+			incomeCategory1.setAmount(incomeCategory.getAmount());
+			incomeCategory1.setDescription(incomeCategory.getDescription());
+			incomeCategory1.setCreatedDate(incomeCategory.getCreatedDate());
+			incomeCategory1.setId(incomeCategory.getId().toString());
+			incomeCategory1.setIncomeMonth(incomeCategory.getIncomeMonth());
+			incomeCategory1.setIncomeYear(incomeCategory.getIncomeYear());
+			incomeCategory1.setModifiedDate(incomeCategory.getModifiedDate());
+			incomeCategory1.setName(incomeCategory.getName());			
+			incomeCategory1.setParentId(incomeCategory.getParentId().toString());
+			incomeCategory1.setStatus(incomeCategory.getStatus());
+			incomeCategory1.setUserId(incomeCategory.getUserId().toString());			
+			incomeCategorys.add(incomeCategory1);
+		}
+		return incomeCategorys;
 	}
 }

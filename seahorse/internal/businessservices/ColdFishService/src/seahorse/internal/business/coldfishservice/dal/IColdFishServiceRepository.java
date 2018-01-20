@@ -49,4 +49,8 @@ public interface IColdFishServiceRepository {
 	void DeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 	
 	List<IncomeCategoryDAO>  getIncomeCategoryByParentId(IncomeCategoryMessageEntity incomeCategory);
+
+	void deleteSubIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+
+	List<IncomeCategoryDAO> getIncomeCategoryDetail(IncomeCategoryDAO incomeCategoryDAO);
 }

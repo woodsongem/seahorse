@@ -39,10 +39,15 @@ public interface IColdFishServiceProcessor {
 	
 	ResultMessageEntity createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
-	ResultMessageEntity UpdateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
+	ResultMessageEntity updateIncomeCategoryProcessor(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 
 	ResultMessageEntity deleteIncomeCategoryProcessor(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 	
-	ResultMessageEntity DeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+	ResultMessageEntity deleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+	
+	ResultMessageEntity deleteSubIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 
+	ResultMessageEntity getIncomeCategoryDetailsProcessor(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	
+	ResultMessageEntity getIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
 }

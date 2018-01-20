@@ -31,4 +31,6 @@ public interface IColdFishServicePostProcessor {
 
 	ResultMessageEntity deleteIncomeCategoryPostProcessor(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 
+	ResultMessageEntity getIncomeCategoryDetailsPostProcessor(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+
 }

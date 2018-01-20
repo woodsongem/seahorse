@@ -75,5 +75,7 @@ public interface IColdFishServiceErrorCode {
 
 	String inValidParentIdMessageEntityErrorCode();
 
-	String incomeCategoryAmountNotZero();	
+	String incomeCategoryAmountNotZero();
+
+	String emptyGetIncomeDetailMessageEntityErrorCode();	
 }

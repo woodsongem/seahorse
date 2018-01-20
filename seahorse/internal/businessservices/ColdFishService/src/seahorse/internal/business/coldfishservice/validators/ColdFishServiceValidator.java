@@ -521,4 +521,57 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		}
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyDeleteIncomeCategoryMessageEntityErrorCode(), "deleteIncomeCategoryMessageEntity",	ResultStatus.ERROR);
 	}
+
+	@Override
+	public ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isGetIncomeDetailMessageEntityValid(getIncomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		
+		resultMessageEntity = isUserIdValid(getIncomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeMonthValid(getIncomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeYearValid(getIncomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isIncomeYearValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {		
+		if(!isIncomeYearValid(getIncomeDetailMessageEntity.getIncomeYear())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeYearMessageEntityErrorCode(), "IncomeYear",	ResultStatus.ERROR);
+		}		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isIncomeMonthValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {					
+		
+		if(StringUtils.isBlank(getIncomeDetailMessageEntity.getIncomeMonth())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}
+		if(!isIncomeMonthValid(getIncomeDetailMessageEntity.getIncomeMonth())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isGetIncomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+		if (getIncomeDetailMessageEntity != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyGetIncomeDetailMessageEntityErrorCode(), "GetIncomeDetailMessageEntity",ResultStatus.ERROR);
+	}
 }

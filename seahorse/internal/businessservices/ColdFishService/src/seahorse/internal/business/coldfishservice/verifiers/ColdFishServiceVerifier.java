@@ -432,4 +432,14 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 		
 		return resultMessageEntity;
 	}
+
+	@Override
+	public ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+		ResultMessageEntity resultMessageEntity;		
+		resultMessageEntity = isUserIdValid(getIncomeDetailMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
 }

@@ -183,5 +183,10 @@ public class ColdFishServiceErrorCode implements IColdFishServiceErrorCode {
 	@Override
 	public String incomeCategoryAmountNotZero() {
 		return getErrorCodeMapping("IncomeCategory.AmountNotZero");
+	}
+
+	@Override
+	public String emptyGetIncomeDetailMessageEntityErrorCode() {
+		return getErrorCodeMapping("GetIncomeDetailMessageEntity.Empty");
 	}	
 }

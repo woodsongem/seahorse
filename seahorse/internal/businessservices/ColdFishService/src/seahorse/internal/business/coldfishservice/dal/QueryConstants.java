@@ -27,4 +27,6 @@ public class QueryConstants {
 	public static final String DELETEINCOMECATEGORYBYIDQUERY = "UPDATE incomecategory set status=? where userid=? and id=? and incomemonth=? and incomeyear=?";
 	public static final String GETINCOMECATEGORYBYIDQUERY = "SELECT userid, incomemonth, incomeyear, id, createdby, createddate, description, modifiedby, modifieddate, name, status,parentid,amount FROM incomecategory where id=? allow filtering"; 
 	public static final String GETINCOMECATEGORYBYPARENTIDQUERY = "SELECT userid, incomemonth, incomeyear, id, createdby, createddate, description, modifiedby, modifieddate, name, status FROM coldfish_dev.incomecategory where parentid=? allow filtering";
+	public static final String DELETEPARENTINCOMECATEGORYBYIDQUERY = "UPDATE incomecategory set status=? where userid=? and incomeyear=? and incomemonth=? and id=?";
+	public static final String GETINCOMECATEGORYQUERY = "SELECT userid, incomemonth, incomeyear, id, createdby, createddate, description, modifiedby, modifieddate, name, status,parentid,amount FROM incomecategory where userid=? AND incomemonth=? AND incomeyear=? allow filtering";
 }

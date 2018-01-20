@@ -23,6 +23,7 @@ import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCate
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -192,7 +193,7 @@ public class ColdFishService implements IColdFishService {
 		if(incomeCategoryMessageEntity != null)
 		{
 			incomeCategoryMessageEntity.setId(UUIDs.timeBased());
-			incomeCategoryMessageEntity.setCreatedDate(LocalDateTime.now());
+			//incomeCategoryMessageEntity.setCreatedDate(LocalDateTime.now());
 			incomeCategoryMessageEntity.setStatus(Constant.ACTIVESTATUS);
 			if(incomeCategoryMessageEntity.getAmount()==null)
 			{
@@ -239,7 +240,7 @@ public class ColdFishService implements IColdFishService {
 		}		
 		
 		//Processor
-		resultMessageEntity=coldFishServiceProcessor.UpdateIncomeCategoryProcessor(incomeCategoryMessageEntity);
+		resultMessageEntity=coldFishServiceProcessor.updateIncomeCategoryProcessor(incomeCategoryMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, Status.FORBIDDEN);
 		}
@@ -278,4 +279,27 @@ public class ColdFishService implements IColdFishService {
 		return coldFishServiceMapper.mapIncomeCategoryResponseMessageEntity(resultMessageEntity, deleteIncomeCategoryMessageEntity);
 	}
 
+	@Override
+	public List<IncomeCategoryDetail> getIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+		//Validator	    
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateGetIncomeCategoryDetails(getIncomeDetailMessageEntity);
+	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return null;
+		}
+	  //Verifier
+	    resultMessageEntity = coldFishServiceVerifier.verifyGetIncomeCategoryDetails(getIncomeDetailMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return null;
+		}	
+		//Processor
+		resultMessageEntity=coldFishServiceProcessor.getIncomeCategoryDetailsProcessor(getIncomeDetailMessageEntity);
+		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return null;
+		}
+		
+		//Post Processor
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getIncomeCategoryDetailsPostProcessor(getIncomeDetailMessageEntity);
+		
+		return coldFishServiceMapper.mapIncomeCategoryDetail(resultMessageEntity, getIncomeDetailMessageEntity);
+	}
 }
