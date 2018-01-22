@@ -4,6 +4,7 @@
 package seahorse.internal.business.coldfishservice.api.datacontracts;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author sajanmje
@@ -19,7 +20,9 @@ public class IncomeCategory extends ResponseBase  {
 	private String incomeMonth;
 	private String parentId;
 	private BigDecimal amount;
-	private int incomeYear;
+	private int incomeYear;	
+	private List<IncomeCategory> subIncomeCategory;
+	
 	/**
 	 * @return the id
 	 */
@@ -127,5 +130,17 @@ public class IncomeCategory extends ResponseBase  {
 	 */
 	public void setIncomeYear(int incomeYear) {
 		this.incomeYear = incomeYear;
+	}
+	/**
+	 * @return the subIncomeCategory
+	 */
+	public List<IncomeCategory> getSubIncomeCategory() {
+		return subIncomeCategory;
+	}
+	/**
+	 * @param subIncomeCategory the subIncomeCategory to set
+	 */
+	public void setSubIncomeCategory(List<IncomeCategory> subIncomeCategory) {
+		this.subIncomeCategory = subIncomeCategory;
 	}
 }

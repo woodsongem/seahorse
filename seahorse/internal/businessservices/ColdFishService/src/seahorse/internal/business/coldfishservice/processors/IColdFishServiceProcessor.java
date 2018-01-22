@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.processors;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -47,7 +48,7 @@ public interface IColdFishServiceProcessor {
 	
 	ResultMessageEntity deleteSubIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 
-	ResultMessageEntity getIncomeCategoryDetailsProcessor(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity getIncomeCategoryDetailsProcessor(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
 	
-	ResultMessageEntity getIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity getIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
 }

@@ -17,6 +17,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultSta
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -132,10 +133,8 @@ public class ColdFishServicePostProcessor  implements IColdFishServicePostProces
 	}
 
 	@Override
-	public ResultMessageEntity getIncomeCategoryDetailsPostProcessor(
-			GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public ResultMessageEntity getIncomeCategoryDetailsPostProcessor(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

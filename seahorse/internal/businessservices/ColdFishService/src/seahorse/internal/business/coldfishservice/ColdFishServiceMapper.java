@@ -9,6 +9,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
@@ -156,8 +157,7 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 	}
 
 	@Override
-	public List<IncomeCategoryDetail> mapIncomeCategoryDetail(ResultMessageEntity resultMessageEntity,GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<IncomeCategoryMessageEntity> mapIncomeCategoryMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		return getIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity();
 	}
 }

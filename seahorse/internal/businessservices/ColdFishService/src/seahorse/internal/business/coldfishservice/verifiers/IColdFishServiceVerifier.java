@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -63,5 +64,7 @@ public interface IColdFishServiceVerifier {
 	
 	ResultMessageEntity isAmountZeroValid(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
-	ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
+	
+	ResultMessageEntity isUserIdValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
 }

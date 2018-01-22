@@ -10,6 +10,7 @@ import java.util.List;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -69,11 +70,11 @@ public class ColdFishServiceProcessorMapper implements IColdFishServiceProcessor
 	}
 
 	@Override
-	public IncomeCategoryDAO MapIncomeCategoryDAO(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public IncomeCategoryDAO MapIncomeCategoryDAO(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		IncomeCategoryDAO incomeCategoryDAO=new IncomeCategoryDAO();
-		incomeCategoryDAO.setUserId(getIncomeDetailMessageEntity.getParsedUserId());
-		incomeCategoryDAO.setIncomeMonth(getIncomeDetailMessageEntity.getIncomeMonth());
-		incomeCategoryDAO.setIncomeYear(getIncomeDetailMessageEntity.getIncomeYear());
+		incomeCategoryDAO.setUserId(getIncomeCategoryMessageEntity.getParsedUserId());
+		incomeCategoryDAO.setIncomeMonth(getIncomeCategoryMessageEntity.getIncomeMonth());
+		incomeCategoryDAO.setIncomeYear(getIncomeCategoryMessageEntity.getIncomeYear());
 		return incomeCategoryDAO;
 	}
 

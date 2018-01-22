@@ -30,6 +30,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessa
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
@@ -282,35 +283,35 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 	}
 
 	@Override
-	public GetIncomeDetailMessageEntity mapGetIncomeCategory(String userid, int incomeyear, String incomemonth,Map<String, String> headers) {	
-		GetIncomeDetailMessageEntity getIncomeDetailMessageEntity=new GetIncomeDetailMessageEntity();
-		getIncomeDetailMessageEntity.setUserId(userid);
-		getIncomeDetailMessageEntity.setIncomeMonth(incomemonth);
-		getIncomeDetailMessageEntity.setIncomeYear(incomeyear);
-		getIncomeDetailMessageEntity.setHeaders(headers);
-		return getIncomeDetailMessageEntity;
+	public GetIncomeCategoryMessageEntity mapGetIncomeCategory(String userid, int incomeyear, String incomemonth,Map<String, String> headers) {	
+		GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity=new GetIncomeCategoryMessageEntity();
+		getIncomeCategoryMessageEntity.setUserId(userid);
+		getIncomeCategoryMessageEntity.setIncomeMonth(incomemonth);
+		getIncomeCategoryMessageEntity.setIncomeYear(incomeyear);
+		getIncomeCategoryMessageEntity.setHeaders(headers);
+		return getIncomeCategoryMessageEntity;
 	}
 
 	@Override
-	public List<IncomeCategory> mapIncomeCategory(List<IncomeCategoryDetail> incomeCategoryDetail) {
+	public List<IncomeCategory> mapIncomeCategory(List<IncomeCategoryMessageEntity> incomeCategoryMessageEntities) {
 		List<IncomeCategory> incomeCategorys=new ArrayList<>();
-		if(incomeCategoryDetail.isEmpty())
+		if(incomeCategoryMessageEntities.isEmpty())
 		{
 			return incomeCategorys;
 		}
-		for (IncomeCategoryDetail incomeCategory : incomeCategoryDetail) {
+		for (IncomeCategoryMessageEntity incomeCategoryMessageEntity : incomeCategoryMessageEntities) {
 			IncomeCategory incomeCategory1=new IncomeCategory();
-			incomeCategory1.setAmount(incomeCategory.getAmount());
-			incomeCategory1.setDescription(incomeCategory.getDescription());
-			incomeCategory1.setCreatedDate(incomeCategory.getCreatedDate());
-			incomeCategory1.setId(incomeCategory.getId().toString());
-			incomeCategory1.setIncomeMonth(incomeCategory.getIncomeMonth());
-			incomeCategory1.setIncomeYear(incomeCategory.getIncomeYear());
-			incomeCategory1.setModifiedDate(incomeCategory.getModifiedDate());
-			incomeCategory1.setName(incomeCategory.getName());			
-			incomeCategory1.setParentId(incomeCategory.getParentId().toString());
-			incomeCategory1.setStatus(incomeCategory.getStatus());
-			incomeCategory1.setUserId(incomeCategory.getUserId().toString());			
+			incomeCategory1.setAmount(incomeCategoryMessageEntity.getAmount());
+			incomeCategory1.setDescription(incomeCategoryMessageEntity.getDescription());
+			incomeCategory1.setCreatedDate(incomeCategoryMessageEntity.getCreatedDate());
+			incomeCategory1.setId(incomeCategoryMessageEntity.getId().toString());
+			incomeCategory1.setIncomeMonth(incomeCategoryMessageEntity.getIncomeMonth());
+			incomeCategory1.setIncomeYear(incomeCategoryMessageEntity.getIncomeYear());
+			incomeCategory1.setModifiedDate(incomeCategoryMessageEntity.getModifiedDate());
+			incomeCategory1.setName(incomeCategoryMessageEntity.getName());			
+			incomeCategory1.setParentId(incomeCategoryMessageEntity.getParsedParentid().toString());
+			incomeCategory1.setStatus(incomeCategoryMessageEntity.getStatus());
+			incomeCategory1.setUserId(incomeCategoryMessageEntity.getParsedUserId().toString());			
 			incomeCategorys.add(incomeCategory1);
 		}
 		return incomeCategorys;

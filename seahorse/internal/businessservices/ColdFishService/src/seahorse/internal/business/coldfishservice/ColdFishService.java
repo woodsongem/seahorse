@@ -21,6 +21,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultSta
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
@@ -280,26 +281,26 @@ public class ColdFishService implements IColdFishService {
 	}
 
 	@Override
-	public List<IncomeCategoryDetail> getIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public List<IncomeCategoryMessageEntity> getIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		//Validator	    
-	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateGetIncomeCategoryDetails(getIncomeDetailMessageEntity);
+	    ResultMessageEntity resultMessageEntity = coldFishServiceValidator.validateGetIncomeCategoryDetails(getIncomeCategoryMessageEntity);
 	    if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return null;
 		}
 	  //Verifier
-	    resultMessageEntity = coldFishServiceVerifier.verifyGetIncomeCategoryDetails(getIncomeDetailMessageEntity);
+	    resultMessageEntity = coldFishServiceVerifier.verifyGetIncomeCategoryDetails(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return null;
 		}	
 		//Processor
-		resultMessageEntity=coldFishServiceProcessor.getIncomeCategoryDetailsProcessor(getIncomeDetailMessageEntity);
+		resultMessageEntity=coldFishServiceProcessor.getIncomeCategoryDetailsProcessor(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity == null || resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return null;
 		}
 		
 		//Post Processor
-		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getIncomeCategoryDetailsPostProcessor(getIncomeDetailMessageEntity);
+		ResultMessageEntity postResultMessageEntity=coldFishServicePostProcessor.getIncomeCategoryDetailsPostProcessor(getIncomeCategoryMessageEntity);
 		
-		return coldFishServiceMapper.mapIncomeCategoryDetail(resultMessageEntity, getIncomeDetailMessageEntity);
+		return coldFishServiceMapper.mapIncomeCategoryMessageEntity(resultMessageEntity, getIncomeCategoryMessageEntity);
 	}
 }

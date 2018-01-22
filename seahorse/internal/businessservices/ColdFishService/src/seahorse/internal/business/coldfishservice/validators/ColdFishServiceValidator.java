@@ -19,6 +19,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -523,25 +524,25 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	}
 
 	@Override
-	public ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
 
-		resultMessageEntity = isGetIncomeDetailMessageEntityValid(getIncomeDetailMessageEntity);
+		resultMessageEntity = isGetIncomeCategoryMessageEntityValid(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}	
 		
-		resultMessageEntity = isUserIdValid(getIncomeDetailMessageEntity);
+		resultMessageEntity = isUserIdValid(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 		
-		resultMessageEntity = isIncomeMonthValid(getIncomeDetailMessageEntity);
+		resultMessageEntity = isIncomeMonthValid(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 		
-		resultMessageEntity = isIncomeYearValid(getIncomeDetailMessageEntity);
+		resultMessageEntity = isIncomeYearValid(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
@@ -549,26 +550,35 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		return resultMessageEntity;
 	}
 
-	public ResultMessageEntity isIncomeYearValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {		
-		if(!isIncomeYearValid(getIncomeDetailMessageEntity.getIncomeYear())){
+	public ResultMessageEntity isUserIdValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity= isUserIdValid(getIncomeCategoryMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			getIncomeCategoryMessageEntity.setParsedUserId(UUID.fromString(getIncomeCategoryMessageEntity.getUserId()));			
+		}
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isIncomeYearValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {		
+		if(!isIncomeYearValid(getIncomeCategoryMessageEntity.getIncomeYear())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeYearMessageEntityErrorCode(), "IncomeYear",	ResultStatus.ERROR);
 		}		
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity isIncomeMonthValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {					
+	public ResultMessageEntity isIncomeMonthValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {					
 		
-		if(StringUtils.isBlank(getIncomeDetailMessageEntity.getIncomeMonth())){
+		if(StringUtils.isBlank(getIncomeCategoryMessageEntity.getIncomeMonth())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
 		}
-		if(!isIncomeMonthValid(getIncomeDetailMessageEntity.getIncomeMonth())){
+		if(!isIncomeMonthValid(getIncomeCategoryMessageEntity.getIncomeMonth())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
 		}		
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 	}
 
-	public ResultMessageEntity isGetIncomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
-		if (getIncomeDetailMessageEntity != null) {
+	public ResultMessageEntity isGetIncomeCategoryMessageEntityValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		if (getIncomeCategoryMessageEntity != null) {
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 

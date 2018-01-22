@@ -22,6 +22,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -434,12 +435,23 @@ public class ColdFishServiceVerifier implements IColdFishServiceVerifier {
 	}
 
 	@Override
-	public ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public ResultMessageEntity verifyGetIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity;		
-		resultMessageEntity = isUserIdValid(getIncomeDetailMessageEntity);
+		resultMessageEntity = isUserIdValid(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isUserIdValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		List<UserCredentialMessageEntity> userCredentialMessageEntitys= getUserIdValid(getIncomeCategoryMessageEntity.getParsedUserId());
+		ResultMessageEntity resultMessageEntity=ValidateUserDetails(userCredentialMessageEntitys);
+		if(resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return resultMessageEntity;
+		}
+		getIncomeCategoryMessageEntity.setUserCredential(userCredentialMessageEntitys.get(0));		
+		return resultMessageEntity;
 	}
 }

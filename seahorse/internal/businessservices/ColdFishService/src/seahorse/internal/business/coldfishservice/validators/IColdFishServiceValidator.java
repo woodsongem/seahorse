@@ -5,6 +5,7 @@ package seahorse.internal.business.coldfishservice.validators;
 
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -83,11 +84,13 @@ public interface IColdFishServiceValidator {
 	
 	ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity);
 
-	ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
 	
-	ResultMessageEntity isGetIncomeDetailMessageEntityValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);
+	ResultMessageEntity isUserIdValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
 	
-	ResultMessageEntity isIncomeYearValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);	
+	ResultMessageEntity isGetIncomeCategoryMessageEntityValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);
+	
+	ResultMessageEntity isIncomeYearValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);	
 
-	ResultMessageEntity isIncomeMonthValid(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);	 
+	ResultMessageEntity isIncomeMonthValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);	 
 }

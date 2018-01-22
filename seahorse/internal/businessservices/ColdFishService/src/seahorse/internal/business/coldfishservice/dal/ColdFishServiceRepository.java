@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.BoundStatement;
@@ -19,6 +20,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.CassandraConnector;
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
@@ -316,14 +318,16 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);			
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYPARENTIDQUERY);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYQUERY);
 			BoundStatement bound=coldFishServiceRepositoryMapper.mapGetIncomeCategoryBoundStatement(preparedStatement,incomeCategoryDAO);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row incomeCategoryDAOResult = resultSet.one();
-				incomeCategoryDAOs.add(coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult));	
-				
+				if(StringUtils.compareIgnoreCase(StringUtils.trim(incomeCategoryDAOResult.getString(DataBaseColumn.STATUS)),Constant.ACTIVESTATUS)==0)
+				{
+					incomeCategoryDAOs.add(coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult));	
+				}								
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getIncomeCategoryByParentId error=" + exception);

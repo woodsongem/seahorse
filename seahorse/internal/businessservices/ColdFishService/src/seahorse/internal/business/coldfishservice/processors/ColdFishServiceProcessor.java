@@ -18,6 +18,7 @@ import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCatego
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -318,21 +319,22 @@ public class ColdFishServiceProcessor implements IColdFishServiceProcessor {
 	}
 
 	@Override
-	public ResultMessageEntity getIncomeCategoryDetailsProcessor(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public ResultMessageEntity getIncomeCategoryDetailsProcessor(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity;
-		resultMessageEntity = getIncomeCategoryDetails(getIncomeDetailMessageEntity);
+		resultMessageEntity = getIncomeCategoryDetails(getIncomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}
 		return resultMessageEntity;
 	}
 
-	public ResultMessageEntity getIncomeCategoryDetails(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity) {
+	public ResultMessageEntity getIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
 		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
-		IncomeCategoryDAO incomeCategoryDAO=coldFishServiceProcessorMapper.MapIncomeCategoryDAO(getIncomeDetailMessageEntity);
+		IncomeCategoryDAO incomeCategoryDAO=coldFishServiceProcessorMapper.MapIncomeCategoryDAO(getIncomeCategoryMessageEntity);
 		try {
 		 List<IncomeCategoryDAO> incomeCategoryDAOs=coldFishServiceRepository.getIncomeCategoryDetail(incomeCategoryDAO);
 		 List<IncomeCategoryMessageEntity> incomeCategoryMessageEntity= coldFishServiceProcessorMapper.mapIncomeCategoryMessageEntity(incomeCategoryDAOs);
+		 getIncomeCategoryMessageEntity.setIncomeCategoryMessageEntity(incomeCategoryMessageEntity);
 		} catch (Exception e) {
 			logger.error("Error in IColdFishServiceProcessor::DeleteIncomeCategory error=" + e);
 			resultMessageEntity.setResultStatus(ResultStatus.ERROR);

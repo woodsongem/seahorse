@@ -37,6 +37,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ColdFishS
 import seahorse.internal.business.coldfishservice.common.datacontracts.IColdFishServiceErrorCode;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -123,9 +124,9 @@ public class ColdFishServiceAPI {
 		try {
 			IColdFishService coldFishService = ColdFishServiceFactory.getColdFishService();
 			Map<String, String> headers=getHeaders(httpRequest);
-			GetIncomeDetailMessageEntity getIncomeDetailMessageEntity = coldFishServiceAPIMapper.mapGetIncomeCategory(userid,incomeyear,incomemonth,headers);			
-			List<IncomeCategoryDetail> incomeCategoryDetail = coldFishService.getIncomeCategoryDetails(getIncomeDetailMessageEntity);
-			incomeCategorys= coldFishServiceAPIMapper.mapIncomeCategory(incomeCategoryDetail);			
+			GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity = coldFishServiceAPIMapper.mapGetIncomeCategory(userid,incomeyear,incomemonth,headers);			
+			List<IncomeCategoryMessageEntity> incomeCategoryMessageEntities = coldFishService.getIncomeCategoryDetails(getIncomeCategoryMessageEntity);
+			incomeCategorys= coldFishServiceAPIMapper.mapIncomeCategory(incomeCategoryMessageEntities);			
 		}
 		catch (Exception ex) {			
 			logger.error(ex);

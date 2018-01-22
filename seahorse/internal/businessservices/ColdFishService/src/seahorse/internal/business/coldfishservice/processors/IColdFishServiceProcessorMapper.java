@@ -8,6 +8,7 @@ import java.util.List;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -23,6 +24,6 @@ public interface IColdFishServiceProcessorMapper {
 
 	List<IncomeCategoryMessageEntity> mapIncomeCategoryMessageEntity(List<IncomeCategoryDAO> incomeDetailDAOs);
 
-	IncomeCategoryDAO MapIncomeCategoryDAO(GetIncomeDetailMessageEntity getIncomeDetailMessageEntity);	
+	IncomeCategoryDAO MapIncomeCategoryDAO(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity);	
 
 }

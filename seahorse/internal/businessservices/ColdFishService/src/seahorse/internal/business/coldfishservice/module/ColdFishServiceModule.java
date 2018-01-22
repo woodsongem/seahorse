@@ -16,7 +16,9 @@ import seahorse.internal.business.coldfishservice.dal.ColdFishServiceRepositoryM
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepository;
 import seahorse.internal.business.coldfishservice.dal.IColdFishServiceRepositoryMapper;
 import seahorse.internal.business.coldfishservice.postprocessors.ColdFishServicePostProcessor;
+import seahorse.internal.business.coldfishservice.postprocessors.ColdFishServicePostProcessorMapper;
 import seahorse.internal.business.coldfishservice.postprocessors.IColdFishServicePostProcessor;
+import seahorse.internal.business.coldfishservice.postprocessors.IColdFishServicePostProcessorMapper;
 import seahorse.internal.business.coldfishservice.processors.ColdFishServiceProcessor;
 import seahorse.internal.business.coldfishservice.processors.ColdFishServiceProcessorMapper;
 import seahorse.internal.business.coldfishservice.processors.IColdFishServiceProcessor;
@@ -53,6 +55,7 @@ public class ColdFishServiceModule extends AbstractModule {
 		bind(IColdFishServiceErrorCode.class).to(ColdFishServiceErrorCode.class);
 		
 		bind(IColdFishServiceRepositoryMapper.class).to(ColdFishServiceRepositoryMapper.class);
+		bind(IColdFishServicePostProcessorMapper.class).to(ColdFishServicePostProcessorMapper.class);
 	
 	}
 
