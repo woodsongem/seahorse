@@ -3,9 +3,12 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
+import java.util.UUID;
+import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
-
 import com.google.inject.Inject;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
@@ -44,7 +47,31 @@ public class KatavuccolService implements IKatavuccolService {
 	
 	@Override
 	public CredentialsResponseMessageEntity createCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+
+		//Set	
+		credentialsRequestMessageEntity.setId(UUID.randomUUID());
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateCreateCredentials(credentialsRequestMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyCreateCredentials(credentialsRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.ProcessorCreateCredentials(credentialsRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		result=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialsRequestMessageEntity);
+				
+		return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, credentialsRequestMessageEntity);
 	}
 }

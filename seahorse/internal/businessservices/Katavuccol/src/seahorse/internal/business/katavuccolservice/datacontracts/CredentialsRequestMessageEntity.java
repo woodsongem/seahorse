@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
+import java.util.UUID;
+
 /**
  * @author sajanmje
  *
@@ -14,6 +16,8 @@ public class CredentialsRequestMessageEntity {
 	private String name;
 	private String url;
 	private String userid;
+	private UUID id;
+	
 	/**
 	 * @return the username
 	 */
@@ -73,6 +77,18 @@ public class CredentialsRequestMessageEntity {
 	 */
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+	/**
+	 * @return the id
+	 */
+	public UUID getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(UUID id) {
+		this.id = id;
 	}
 	
 }
