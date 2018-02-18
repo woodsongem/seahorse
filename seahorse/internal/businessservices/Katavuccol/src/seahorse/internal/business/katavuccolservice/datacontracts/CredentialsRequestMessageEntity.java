@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author sajanmje
@@ -17,6 +18,7 @@ public class CredentialsRequestMessageEntity {
 	private String url;
 	private String userid;
 	private UUID id;
+	private HttpServletRequest httpRequest;
 	
 	/**
 	 * @return the username
@@ -89,6 +91,18 @@ public class CredentialsRequestMessageEntity {
 	 */
 	public void setId(UUID id) {
 		this.id = id;
+	}
+	/**
+	 * @return the httpRequest
+	 */
+	public HttpServletRequest getHttpRequest() {
+		return httpRequest;
+	}
+	/**
+	 * @param httpRequest the httpRequest to set
+	 */
+	public void setHttpRequest(HttpServletRequest httpRequest) {
+		this.httpRequest = httpRequest;
 	}
 	
 }
