@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.common;
+package seahorse.internal.business.katavuccolservice.common.datacontracts;
 
 /**
  * @author sajanmje

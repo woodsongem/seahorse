@@ -6,6 +6,7 @@ package seahorse.internal.business.katavuccolservice.registries;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
+import seahorse.internal.business.shared.aop.ShardModules;
 
 /**
  * @author sajanmje
