@@ -13,5 +13,12 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsReq
 public interface IKatavuccolServiceValidator {
 
 	Result validateCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
-
+	
+	Result isCredentialsRequestMessageEntityValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	
+	Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	
+	Result isUsernameValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	
+	Result isPasswordValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
 }

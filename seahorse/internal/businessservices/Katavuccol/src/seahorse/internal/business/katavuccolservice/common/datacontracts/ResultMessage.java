@@ -11,6 +11,7 @@ public class ResultMessage {
 
 	private String parameter;
 	private String errorCode;
+	private String errorMsg;
 	/**
 	 * @return the parameter
 	 */
@@ -34,5 +35,17 @@ public class ResultMessage {
 	 */
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
+	}
+	/**
+	 * @return the errorMsg
+	 */
+	public String getErrorMsg() {
+		return errorMsg;
+	}
+	/**
+	 * @param errorMsg the errorMsg to set
+	 */
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 }

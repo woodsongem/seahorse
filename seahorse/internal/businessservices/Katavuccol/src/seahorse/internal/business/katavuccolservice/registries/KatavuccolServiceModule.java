@@ -5,13 +5,17 @@ package seahorse.internal.business.katavuccolservice.registries;
 
 import com.google.inject.AbstractModule;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
+import seahorse.internal.business.katavuccolservice.IKatavuccolServiceMapper;
 import seahorse.internal.business.katavuccolservice.KatavuccolService;
+import seahorse.internal.business.katavuccolservice.KatavuccolServiceMapper;
 import seahorse.internal.business.katavuccolservice.api.IKatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.postprocessors.KatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
 import seahorse.internal.business.katavuccolservice.processors.KatavuccolServiceProcessor;
+import seahorse.internal.business.katavuccolservice.validators.BaseValidator;
+import seahorse.internal.business.katavuccolservice.validators.IBaseValidator;
 import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
 import seahorse.internal.business.katavuccolservice.validators.KatavuccolServiceValidator;
 import seahorse.internal.business.katavuccolservice.verifiers.IKatavuccolServiceVerifier;
@@ -32,5 +36,7 @@ public class KatavuccolServiceModule extends AbstractModule {
 		bind(IKatavuccolServiceProcessor.class).to(KatavuccolServiceProcessor.class);
 		bind(IKatavuccolServicePostProcessor.class).to(KatavuccolServicePostProcessor.class);
 		bind(IKatavuccolServiceApiMapper.class).to(KatavuccolServiceApiMapper.class);
+		bind(IKatavuccolServiceMapper.class).to(KatavuccolServiceMapper.class);		
+		bind(IBaseValidator.class).to(BaseValidator.class);
 	}
 }

@@ -10,9 +10,9 @@ import org.glassfish.jersey.server.ResourceConfig;
  * @author admin
  *
  */
-public class ColdFishFilters extends ResourceConfig{
+public class KatavuccolFilters extends ResourceConfig{
 	
-	public ColdFishFilters() {
+	public KatavuccolFilters() {
                
         register(AopLoggingRequestFilter.class);
     }
