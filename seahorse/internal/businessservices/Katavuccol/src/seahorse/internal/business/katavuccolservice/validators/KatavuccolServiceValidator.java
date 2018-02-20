@@ -3,8 +3,9 @@
  */
 package seahorse.internal.business.katavuccolservice.validators;
 
+import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
 import com.google.inject.Inject;
-
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -52,14 +53,41 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	public Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result=new Result();
+		result.setResultStatus(ResultStatus.SUCCESS);
+		
+		result = isUserIdValid(credentialsRequestMessageEntity.getUserId());
+		if(result.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			credentialsRequestMessageEntity.setParsedUserId(UUID.fromString(credentialsRequestMessageEntity.getUserId()));
+		}
+		return result;
 	}
+	
+	public Result isUserIdValid(String userId)
+	{
+		Result result=new Result();
+		result.setResultStatus(ResultStatus.SUCCESS);
+		if (StringUtils.isBlank(userId)) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserId is null","UserId","8989");
+		}
+		
+		if(KatavuccolServiceUtility.isValidUUID(userId))
+		{
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Invalid user id","UserId","8989");
+	}
+	
 
 	public Result isUsernameValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
 		Result result=new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
-		
+		if(credentialsRequestMessageEntity.getUsername() == null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserName is null","UserName","8001");
+		}	
 		return result;
 	}
 
@@ -81,8 +109,8 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		
 		if(credentialsRequestMessageEntity.getPassword() == null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Password is null","Password","8989");
-		}
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Password is null","Password","8001");
+		}	
 		
 		return result;
 	}

@@ -12,9 +12,9 @@ import javax.ws.rs.core.Context;
  */
 public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 
-	@Context
-	private HttpServletRequest httpRequest;
 	private String passwordIsNullErrorCode="Katavuccol.API.CreateCredentials.{0}.Password.Empty";
+	private String passwordIsToShortErrorCode="Katavuccol.API.CreateCredentials.{0}.Password.ToShort";
+	private String passwordIsToLongErrorCode="Katavuccol.API.CreateCredentials.{0}.Password.ToLong";
 	
 	@Override
 	public String internalError() {
@@ -23,8 +23,17 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	}
 	
 	public String GetPasswordIsNullErrorCode(String httpsMethod)
-	{
-		String httpMethod= httpRequest.getMethod();
+	{		
 		return passwordIsNullErrorCode;                                                   
+	}
+	
+	public String GetPasswordIsToShortErrorCode(String httpsMethod)
+	{		
+		return passwordIsToShortErrorCode;                                                   
+	}
+	
+	public String GetPasswordIsToLongErrorCode(String httpsMethod)
+	{		
+		return passwordIsToLongErrorCode;                                                   
 	}
 }

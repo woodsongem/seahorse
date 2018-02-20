@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.common.datacontracts;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author sajanmje
@@ -40,5 +41,5 @@ public class Result {
 	 */
 	public void setResultMessages(List<ResultMessage> resultMessages) {
 		this.resultMessages = resultMessages;
-	}
+	}	
 }

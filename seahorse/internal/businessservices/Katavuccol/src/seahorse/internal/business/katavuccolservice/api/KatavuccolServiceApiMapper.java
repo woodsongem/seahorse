@@ -38,7 +38,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	@Override
 	public CredentialsRequestMessageEntity mapCredentialsRequestMessageEntity(CredentialsRequest credentialsRequest,String userid, HttpServletRequest httpRequest) {
 		CredentialsRequestMessageEntity credentialsRequestMessageEntity=new CredentialsRequestMessageEntity();
-		credentialsRequestMessageEntity.setUserid(userid);
+		credentialsRequestMessageEntity.setUserId(userid);
 		credentialsRequestMessageEntity.setHttpRequest(httpRequest);
 		if(credentialsRequest == null)
 		{

@@ -16,7 +16,8 @@ public class CredentialsRequestMessageEntity {
 	private String password;
 	private String name;
 	private String url;
-	private String userid;
+	private String userId;
+	private UUID parsedUserId;
 	private UUID id;
 	private HttpServletRequest httpRequest;
 	
@@ -71,14 +72,14 @@ public class CredentialsRequestMessageEntity {
 	/**
 	 * @return the userid
 	 */
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
 	/**
 	 * @param userid the userid to set
 	 */
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userid) {
+		this.userId = userid;
 	}
 	/**
 	 * @return the id
@@ -103,6 +104,18 @@ public class CredentialsRequestMessageEntity {
 	 */
 	public void setHttpRequest(HttpServletRequest httpRequest) {
 		this.httpRequest = httpRequest;
+	}
+	/**
+	 * @return the parsedUserId
+	 */
+	public UUID getParsedUserId() {
+		return parsedUserId;
+	}
+	/**
+	 * @param parsedUserId the parsedUserId to set
+	 */
+	public void setParsedUserId(UUID parsedUserId) {
+		this.parsedUserId = parsedUserId;
 	}
 	
 }
