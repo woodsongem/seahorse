@@ -4,17 +4,28 @@
 package seahorse.internal.business.katavuccolservice.common.datacontracts;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author sajanmje
  *
  */
 public class Result {
-
+	
 	private ResultStatus resultStatus;
 	private List<ResultMessage> resultMessages;
 
+	
+	public Result()
+	{
+		
+	}
+	
+	public Result(ResultStatus resultStatus)
+	{
+		this.resultStatus=resultStatus;
+	}
+
+	
 	/**
 	 * @return the resultStatus
 	 */

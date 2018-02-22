@@ -9,56 +9,58 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  */
 public class CredentialsRequest extends RequestBase {
 
-	private String username;
-	private String password;
-	private String name;
-	private String url;
+	private String categoryId;
+	private String typeId;
+	private String value;	
+	private String userId;
+	
 	/**
-	 * @return the username
+	 * @return the categoryId
 	 */
-	public String getUsername() {
-		return username;
+	public String getCategoryId() {
+		return categoryId;
 	}
 	/**
-	 * @param username the username to set
+	 * @param categoryId the categoryId to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 	/**
-	 * @return the password
+	 * @return the typeid
 	 */
-	public String getPassword() {
-		return password;
+	public String getTypeId() {
+		return typeId;
 	}
 	/**
-	 * @param password the password to set
+	 * @param typeid the typeid to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setTypeId(String typeid) {
+		this.typeId = typeid;
 	}
 	/**
-	 * @return the name
+	 * @return the value
 	 */
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 	/**
-	 * @param name the name to set
+	 * @param value the value to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
 	}
 	/**
-	 * @return the url
+	 * @param userId the userId to set
 	 */
-	public String getUrl() {
-		return url;
-	}
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }

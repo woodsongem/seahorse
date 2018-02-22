@@ -12,74 +12,86 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CredentialsRequestMessageEntity {
 
-	private String username;
-	private String password;
-	private String name;
-	private String url;
+	private String categoryId;
+	private String typeId;
+	private String value;	
 	private String userId;
 	private UUID parsedUserId;
+	private UUID parsedCategoryId;
+	private UUID parsedTypeId;
 	private UUID id;
 	private HttpServletRequest httpRequest;
-	
 	/**
-	 * @return the username
+	 * @return the categoryId
 	 */
-	public String getUsername() {
-		return username;
+	public String getCategoryId() {
+		return categoryId;
 	}
 	/**
-	 * @param username the username to set
+	 * @param categoryId the categoryId to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 	/**
-	 * @return the password
+	 * @return the typeid
 	 */
-	public String getPassword() {
-		return password;
+	public String getTypeId() {
+		return typeId;
 	}
 	/**
-	 * @param password the password to set
+	 * @param typeid the typeid to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setTypeId(String typeid) {
+		this.typeId = typeid;
 	}
 	/**
-	 * @return the url
+	 * @return the value
 	 */
-	public String getUrl() {
-		return url;
+	public String getValue() {
+		return value;
 	}
 	/**
-	 * @param url the url to set
+	 * @param value the value to set
 	 */
-	public void setUrl(String url) {
-		this.url = url;
+	public void setValue(String value) {
+		this.value = value;
 	}
 	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the userid
+	 * @return the userId
 	 */
 	public String getUserId() {
 		return userId;
 	}
 	/**
-	 * @param userid the userid to set
+	 * @param userId the userId to set
 	 */
-	public void setUserId(String userid) {
-		this.userId = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the parsedUserId
+	 */
+	public UUID getParsedUserId() {
+		return parsedUserId;
+	}
+	/**
+	 * @param parsedUserId the parsedUserId to set
+	 */
+	public void setParsedUserId(UUID parsedUserId) {
+		this.parsedUserId = parsedUserId;
+	}
+	/**
+	 * @return the parsedCategoryId
+	 */
+	public UUID getParsedCategoryId() {
+		return parsedCategoryId;
+	}
+	/**
+	 * @param parsedCategoryId the parsedCategoryId to set
+	 */
+	public void setParsedCategoryId(UUID parsedCategoryId) {
+		this.parsedCategoryId = parsedCategoryId;
 	}
 	/**
 	 * @return the id
@@ -106,16 +118,15 @@ public class CredentialsRequestMessageEntity {
 		this.httpRequest = httpRequest;
 	}
 	/**
-	 * @return the parsedUserId
+	 * @return the parsedTypeId
 	 */
-	public UUID getParsedUserId() {
-		return parsedUserId;
+	public UUID getParsedTypeId() {
+		return parsedTypeId;
 	}
 	/**
-	 * @param parsedUserId the parsedUserId to set
+	 * @param parsedTypeId the parsedTypeId to set
 	 */
-	public void setParsedUserId(UUID parsedUserId) {
-		this.parsedUserId = parsedUserId;
+	public void setParsedTypeId(UUID parsedTypeId) {
+		this.parsedTypeId = parsedTypeId;
 	}
-	
 }

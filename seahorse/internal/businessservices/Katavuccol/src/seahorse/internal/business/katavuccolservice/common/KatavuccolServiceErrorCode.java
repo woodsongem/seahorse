@@ -16,13 +16,16 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String passwordIsToShortErrorCode="Katavuccol.API.CreateCredentials.{0}.Password.ToShort";
 	private String passwordIsToLongErrorCode="Katavuccol.API.CreateCredentials.{0}.Password.ToLong";
 	
+	@Context
+	private HttpServletRequest httpRequest;
+	
 	@Override
 	public String internalError() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public String GetPasswordIsNullErrorCode(String httpsMethod)
+	public String GetPasswordIsNullErrorCode()
 	{		
 		return passwordIsNullErrorCode;                                                   
 	}
