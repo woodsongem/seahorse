@@ -51,6 +51,7 @@ public class ColdFishService implements IColdFishService {
 	
 	@InjectLogger  Logger logger;
 
+	
 	@Inject
 	public ColdFishService(IColdFishServiceMapper coldFishServiceMapper,
 			IColdFishServiceVerifier coldFishServiceVerifier,
