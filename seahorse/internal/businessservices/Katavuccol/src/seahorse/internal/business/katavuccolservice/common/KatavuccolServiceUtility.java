@@ -7,13 +7,11 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.UUID;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.datastax.driver.core.LocalDate;
-
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 
 /**
@@ -105,5 +103,16 @@ public class KatavuccolServiceUtility {
 		}
 		return true;		
 	}
-
+	
+	public static ResultMessageEntity getResultMessageEntity(String errorCode, String parameter,ResultStatus resultStatus) {
+		ResultMessageEntity resultMessageEntity = new ResultMessageEntity();
+		resultMessageEntity.setResultStatus(resultStatus);
+		if (errorCode != null || parameter != null) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(errorCode);
+			resultMessage.setParameter(parameter);
+			resultMessageEntity.setResultMessages(resultMessage);
+		}
+		return resultMessageEntity;
+	}
 }

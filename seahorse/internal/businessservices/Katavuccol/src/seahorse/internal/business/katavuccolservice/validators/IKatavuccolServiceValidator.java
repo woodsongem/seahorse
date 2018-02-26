@@ -18,4 +18,9 @@ public interface IKatavuccolServiceValidator {
 	
 	Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
 	
+    Result isTypeIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity); 
+
+	Result isCategoryIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	
+	Result isValueValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
 }

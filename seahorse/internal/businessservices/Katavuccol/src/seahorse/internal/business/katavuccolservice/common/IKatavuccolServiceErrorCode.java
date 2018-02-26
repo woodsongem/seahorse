@@ -3,9 +3,6 @@
  */
 package seahorse.internal.business.katavuccolservice.common;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
-
 /**
  * @author sajanmje
  *
@@ -13,5 +10,8 @@ import javax.ws.rs.core.Context;
 public interface IKatavuccolServiceErrorCode {
 
 	String internalError();
-	String GetPasswordIsNullErrorCode();
+	String getPasswordIsNullErrorCode();
+	String inCategoryIdInValidErrorCode();
+	String inTypeIdInValidErrorCode();
+	String inValueEmptyErrorCode();
 }
