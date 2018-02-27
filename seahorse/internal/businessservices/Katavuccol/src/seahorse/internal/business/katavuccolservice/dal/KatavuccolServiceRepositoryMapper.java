@@ -17,11 +17,38 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepositoryMapper {
+
+	@Override
+	public String getCategoryDetailsByIdQuery(UUID categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CategoryDAO mapCategoryDAO(Row categoryDAOResult) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTypeDetailsByIdQuery(UUID typeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TypeDAO mapTypeDAO(Row typeDAOResult) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	

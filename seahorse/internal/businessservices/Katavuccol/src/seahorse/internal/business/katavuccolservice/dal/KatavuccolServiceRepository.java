@@ -15,9 +15,10 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
-
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -41,4 +42,38 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		this.readPropertiesFile = readPropertiesFile;
 	}
 	
+	public CategoryDAO getCategoryDetailsById(UUID categoryId)
+	{
+		CategoryDAO categoryDAO = new CategoryDAO();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			String categoryQuery = katavuccolServiceRepositoryMapper.getCategoryDetailsByIdQuery(categoryId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row categoryDAOResult = resultSet.one();
+				categoryDAO = katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult);				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in GetCategoryDetailsById error=" + exception);
+		}
+		return categoryDAO;
+	}
+	public TypeDAO getTypeDetailsById(UUID typeId)
+	{
+		TypeDAO typeDAO = new TypeDAO();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			String categoryQuery = katavuccolServiceRepositoryMapper.getTypeDetailsByIdQuery(typeId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				typeDAO = katavuccolServiceRepositoryMapper.mapTypeDAO(typeDAOResult);				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getTypeDetailsById error=" + exception);
+		}
+		return typeDAO;
+	}
 }

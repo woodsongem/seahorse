@@ -10,11 +10,20 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceRepositoryMapper {
-
 	
+	String getCategoryDetailsByIdQuery(UUID categoryId);
+
+	CategoryDAO mapCategoryDAO(Row categoryDAOResult);
+
+	String getTypeDetailsByIdQuery(UUID typeId);
+
+	TypeDAO mapTypeDAO(Row typeDAOResult);	
 }
