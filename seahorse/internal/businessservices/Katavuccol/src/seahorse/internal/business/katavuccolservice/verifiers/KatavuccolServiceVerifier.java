@@ -9,7 +9,11 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtil
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.TypeMessageEntity;
 
 
 /**
@@ -58,12 +62,24 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isTypeIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result isTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		TypeDAO typeDAO = katavuccolServiceRepository.getTypeDetailsById(credentialRequestMessageEntity.getParsedTypeId());
+		TypeMessageEntity typeDAOMessageEntity=katavuccolServiceVerifierMapper.mapTypeDAOMessageEntity(typeDAO);
+		if(typeDAOMessageEntity !=null)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 
-	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailsById(credentialsRequestMessageEntity.getParsedCategoryId());
+		CategoryMessageEntity categoryMessageEntity=katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO);
+		if(categoryMessageEntity !=null)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
 		return new Result(ResultStatus.SUCCESS);
 	}
 

@@ -15,6 +15,7 @@ public class CategoryDAO extends BaseDAO {
 	private UUID userId;
 	private String description;	
 	private String status;
+	
 	/**
 	 * @return the id
 	 */
