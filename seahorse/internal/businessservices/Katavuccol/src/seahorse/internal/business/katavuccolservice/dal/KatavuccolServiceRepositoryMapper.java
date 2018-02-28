@@ -18,6 +18,7 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
  * @author sajanmje
@@ -67,6 +68,12 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		return typeDAO;
 	}
 
-
-	
+	@Override
+	public String getCreateCredentialQuery(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		Object[] args = {  
+				credentialRequestMessageEntity.getId(),credentialRequestMessageEntity.getCreatedBy(),
+				credentialRequestMessageEntity.getCreatedDate(),credentialRequestMessageEntity.getDescription(),
+				"ACTIVE",credentialRequestMessageEntity.getParsedUserId()};
+		return new MessageFormat(QueryConstants.GETCREATECREDENTIALQUERY).format(args);
+	}	
 }

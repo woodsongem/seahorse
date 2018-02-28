@@ -15,4 +15,5 @@ public class QueryConstants {
 	
 	public static final String GETCATEGORYDETAILSBYIDQUERY = "SELECT userid";
 	public static final String GETTYPEDETAILSBYIDQUERY = "";
+	public static final String GETCREATECREDENTIALQUERY = "";
 }

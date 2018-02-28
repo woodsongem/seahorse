@@ -78,10 +78,14 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		}
 		return typeDAO;
 	}
-	public OutPutResponse createCredential(CredentialRequestMessageEntity credentialsRequestMessageEntity)
+	public OutPutResponse createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity)
 	{
-		OutPutResponse outPutResponse=new OutPutResponse();
-		
-		return outPutResponse;
+		OutPutResponse outPutResponse=new OutPutResponse();		
+		cassandraConnector.connect(null, 0,null);
+		String credentialQuery = katavuccolServiceRepositoryMapper.getCreateCredentialQuery(credentialRequestMessageEntity);
+		cassandraConnector.getSession().execute(credentialQuery);
+		cassandraConnector.close();
+		outPutResponse.setId(credentialRequestMessageEntity.getId());
+		return outPutResponse;		
 	}
 }

@@ -12,6 +12,7 @@ import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
  * @author sajanmje
@@ -25,5 +26,7 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	String getTypeDetailsByIdQuery(UUID typeId);
 
-	TypeDAO mapTypeDAO(Row typeDAOResult);	
+	TypeDAO mapTypeDAO(Row typeDAOResult);
+
+	String getCreateCredentialQuery(CredentialRequestMessageEntity credentialRequestMessageEntity);	
 }

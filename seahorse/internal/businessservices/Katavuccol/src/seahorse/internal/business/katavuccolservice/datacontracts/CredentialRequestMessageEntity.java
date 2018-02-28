@@ -6,11 +6,13 @@ package seahorse.internal.business.katavuccolservice.datacontracts;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
+
 /**
  * @author sajanmje
  *
  */
-public class CredentialRequestMessageEntity {
+public class CredentialRequestMessageEntity extends BaseMessageEntity {
 
 	private String categoryId;
 	private String typeId;
@@ -21,6 +23,7 @@ public class CredentialRequestMessageEntity {
 	private UUID parsedTypeId;
 	private UUID id;
 	private HttpServletRequest httpRequest;
+	private String description;
 	/**
 	 * @return the categoryId
 	 */
@@ -128,5 +131,17 @@ public class CredentialRequestMessageEntity {
 	 */
 	public void setParsedTypeId(UUID parsedTypeId) {
 		this.parsedTypeId = parsedTypeId;
+	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
