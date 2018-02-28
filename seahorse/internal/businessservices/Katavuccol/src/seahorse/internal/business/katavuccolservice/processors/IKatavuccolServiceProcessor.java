@@ -4,7 +4,7 @@
 package seahorse.internal.business.katavuccolservice.processors;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
  * @author sajanmje
@@ -12,6 +12,6 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsReq
  */
 public interface IKatavuccolServiceProcessor {
 
-	Result ProcessorCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result ProcessorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
 }

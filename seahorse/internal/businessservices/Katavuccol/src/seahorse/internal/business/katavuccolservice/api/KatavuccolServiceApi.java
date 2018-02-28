@@ -21,13 +21,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialsRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialsResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
@@ -48,14 +48,14 @@ public class KatavuccolServiceApi {
 	@POST
 	@Path("/credentials")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createCredentials(@PathParam("userid") String userid,CredentialsRequest credentialsRequest) {
+	public Response createCredential(@PathParam("userid") String userid,CredentialRequest credentialsRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-		CredentialsResponse credentialsResponse=new CredentialsResponse();
+		CredentialResponse credentialsResponse=new CredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CredentialsRequestMessageEntity credentialsMessageEntity=katavuccolServiceApiMapper.mapCredentialsRequestMessageEntity(credentialsRequest,userid,httpRequest);
+			CredentialRequestMessageEntity credentialsMessageEntity=katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest,userid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
-			CredentialsResponseMessageEntity credentialsResMessageEntity=katavuccolService.createCredentials(credentialsMessageEntity);
+			CredentialResponseMessageEntity credentialsResMessageEntity=katavuccolService.createCredential(credentialsMessageEntity);
 			credentialsResponse=katavuccolServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity);
 		}
 		catch (Exception ex) {
@@ -88,9 +88,9 @@ public class KatavuccolServiceApi {
 		}
 	
 	
-	private CredentialsResponse getCredentialsResponse() {
+	private CredentialResponse getCredentialsResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		CredentialsResponse credentialsResponse = new CredentialsResponse();
+		CredentialResponse credentialsResponse = new CredentialResponse();
 		//incomeCategoryResponse.setResultStatus(ResultStatus.ERROR.toString());
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());

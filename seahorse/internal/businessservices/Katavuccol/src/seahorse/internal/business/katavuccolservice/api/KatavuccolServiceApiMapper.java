@@ -4,14 +4,12 @@
 package seahorse.internal.business.katavuccolservice.api;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialsRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialsResponse;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 
@@ -22,8 +20,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentials
 public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
-	public CredentialsResponse mapCredentialsResponse(CredentialsResponseMessageEntity credentialsResMessageEntity) {
-		CredentialsResponse credentialsResponse=new CredentialsResponse();
+	public CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity) {
+		CredentialResponse credentialsResponse=new CredentialResponse();
 		if(credentialsResMessageEntity == null)
 		{
 			return credentialsResponse;
@@ -36,17 +34,17 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CredentialsRequestMessageEntity mapCredentialsRequestMessageEntity(CredentialsRequest credentialsRequest,String userid, HttpServletRequest httpRequest) {
-		CredentialsRequestMessageEntity credentialsRequestMessageEntity=new CredentialsRequestMessageEntity();
+	public CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CredentialRequest credentialRequest,String userid, HttpServletRequest httpRequest) {
+		CredentialRequestMessageEntity credentialsRequestMessageEntity=new CredentialRequestMessageEntity();
 		credentialsRequestMessageEntity.setUserId(userid);
 		credentialsRequestMessageEntity.setHttpRequest(httpRequest);
-		if(credentialsRequest == null)
+		if(credentialRequest == null)
 		{
 			return credentialsRequestMessageEntity;
 		}
-		credentialsRequestMessageEntity.setCategoryId(credentialsRequest.getCategoryId());
-		credentialsRequestMessageEntity.setTypeId(credentialsRequest.getTypeId());
-		credentialsRequestMessageEntity.setValue(credentialsRequest.getValue());
+		credentialsRequestMessageEntity.setCategoryId(credentialRequest.getCategoryId());
+		credentialsRequestMessageEntity.setTypeId(credentialRequest.getTypeId());
+		credentialsRequestMessageEntity.setValue(credentialRequest.getValue());
 		return credentialsRequestMessageEntity;
 	}
 

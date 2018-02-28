@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author sajanmje
  *
  */
-public class CredentialsRequestMessageEntity {
+public class CredentialRequestMessageEntity {
 
 	private String categoryId;
 	private String typeId;

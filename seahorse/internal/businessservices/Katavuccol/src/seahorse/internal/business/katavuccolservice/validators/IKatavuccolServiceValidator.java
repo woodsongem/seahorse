@@ -4,7 +4,8 @@
 package seahorse.internal.business.katavuccolservice.validators;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+
 
 /**
  * @author sajanmje
@@ -12,15 +13,15 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsReq
  */
 public interface IKatavuccolServiceValidator {
 
-	Result validateCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result validateCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
-	Result isCredentialsRequestMessageEntityValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result isCredentialsRequestMessageEntityValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
-	Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result isUserIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
-    Result isTypeIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity); 
+    Result isTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity); 
 
-	Result isCategoryIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result isCategoryIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
-	Result isValueValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	Result isValueValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 }

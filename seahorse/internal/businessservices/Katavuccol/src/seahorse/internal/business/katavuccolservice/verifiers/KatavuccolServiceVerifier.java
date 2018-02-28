@@ -9,7 +9,8 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtil
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+
 
 /**
  * @author sajanmje
@@ -35,20 +36,20 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	
 
 	@Override
-	public Result verifyCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {	
+	public Result verifyCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity) {	
 		Result result;
 
-		result = isUserIdValid(credentialsRequestMessageEntity);
+		result = isUserIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
 
-		result = isCategoryIdValid(credentialsRequestMessageEntity);
+		result = isCategoryIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
 		
-		result = isTypeIdValid(credentialsRequestMessageEntity);
+		result = isTypeIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -57,19 +58,16 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isTypeIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result isTypeIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 
-	public Result isCategoryIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
-		Result result = null;
-	
-		return result;
+	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {		
+	public Result isUserIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
 		return new Result(ResultStatus.SUCCESS);
 	}
 

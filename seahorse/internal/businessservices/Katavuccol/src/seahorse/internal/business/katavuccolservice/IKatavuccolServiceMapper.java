@@ -6,8 +6,8 @@ package seahorse.internal.business.katavuccolservice;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 
 /**
  * @author sajanmje
@@ -15,8 +15,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRes
  */
 public interface IKatavuccolServiceMapper {
 
-	CredentialsResponseMessageEntity mapCredentialsResponseMessageEntity(Result result, Status badRequest);
+	CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result, Status badRequest);
 
-	CredentialsResponseMessageEntity mapCredentialsResponseMessageEntity(Result result,CredentialsRequestMessageEntity credentialsRequestMessageEntity);
+	CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result,CredentialRequestMessageEntity credentialRequestMessageEntity);
 
 }

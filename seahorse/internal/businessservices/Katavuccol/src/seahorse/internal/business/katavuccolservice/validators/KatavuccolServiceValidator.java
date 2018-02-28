@@ -10,7 +10,8 @@ import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErr
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+
 
 /**
  * @author sajanmje
@@ -29,29 +30,29 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	@Override
-	public Result validateCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result validateCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result;
 
-		result = isCredentialsRequestMessageEntityValid(credentialsRequestMessageEntity);
+		result = isCredentialsRequestMessageEntityValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
-		result = isUserIdValid(credentialsRequestMessageEntity);
-		if (result.getResultStatus() != ResultStatus.SUCCESS) {
-			return result;
-		}
-		
-		result = isCategoryIdValid(credentialsRequestMessageEntity);
+		result = isUserIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
 		
-		result = isTypeIdValid(credentialsRequestMessageEntity);
+		result = isCategoryIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
 		
-		result = isValueValid(credentialsRequestMessageEntity);
+		result = isTypeIdValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isValueValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -59,51 +60,51 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isValueValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result isValueValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);
 		
-		if(credentialsRequestMessageEntity.getValue()==null)
+		if(credentialRequestMessageEntity.getValue()==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Value is null","Value",katavuccolServiceErrorCode.inValueEmptyErrorCode());
 		}
 		return result;
 	}
 
-	public Result isTypeIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
-		if(credentialsRequestMessageEntity.getTypeId() ==null)
+	public Result isTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		if(credentialRequestMessageEntity.getTypeId() ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is null","TypeId","8989");
 		}
-		if(KatavuccolServiceUtility.isValidUUID(credentialsRequestMessageEntity.getCategoryId()))
+		if(KatavuccolServiceUtility.isValidUUID(credentialRequestMessageEntity.getCategoryId()))
 		{
-			credentialsRequestMessageEntity.setParsedTypeId(UUID.fromString(credentialsRequestMessageEntity.getTypeId()));
+			credentialRequestMessageEntity.setParsedTypeId(UUID.fromString(credentialRequestMessageEntity.getTypeId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is inValid","TypeId",katavuccolServiceErrorCode.inTypeIdInValidErrorCode());		
 	}
 
-	public Result isCategoryIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {		
-		if(credentialsRequestMessageEntity.getCategoryId()==null)
+	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {		
+		if(credentialRequestMessageEntity.getCategoryId()==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId","8989");
 		}		
-		if(KatavuccolServiceUtility.isValidUUID(credentialsRequestMessageEntity.getCategoryId()))
+		if(KatavuccolServiceUtility.isValidUUID(credentialRequestMessageEntity.getCategoryId()))
 		{
-			credentialsRequestMessageEntity.setParsedCategoryId(UUID.fromString(credentialsRequestMessageEntity.getCategoryId()));
+			credentialRequestMessageEntity.setParsedCategoryId(UUID.fromString(credentialRequestMessageEntity.getCategoryId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.inCategoryIdInValidErrorCode());		
 	}
 
-	public Result isUserIdValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result isUserIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result;		
 		
-		result = isUserIdValid(credentialsRequestMessageEntity.getUserId());
+		result = isUserIdValid(credentialRequestMessageEntity.getUserId());
 		if(result.getResultStatus()!=ResultStatus.SUCCESS)
 		{
 			return result;			
 		}
-		credentialsRequestMessageEntity.setParsedUserId(UUID.fromString(credentialsRequestMessageEntity.getUserId()));
+		credentialRequestMessageEntity.setParsedUserId(UUID.fromString(credentialRequestMessageEntity.getUserId()));
 		return result;
 	}
 	
@@ -123,10 +124,10 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Invalid user id","UserId","8989");
 	}
 	
-	public Result isCredentialsRequestMessageEntityValid(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result isCredentialsRequestMessageEntityValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);		
 		
-		if(credentialsRequestMessageEntity==null)
+		if(credentialRequestMessageEntity==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"credentialsRequestMessageEntity is null","CredentialsRequestMessageEntity","8989");
 		}

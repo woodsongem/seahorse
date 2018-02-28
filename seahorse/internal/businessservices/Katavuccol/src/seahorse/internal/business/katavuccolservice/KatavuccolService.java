@@ -9,8 +9,8 @@ import org.apache.logging.log4j.Logger;
 import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
@@ -48,33 +48,33 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 	
 	@Override
-	public CredentialsResponseMessageEntity createCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public CredentialResponseMessageEntity createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 
 		//Set	
-		credentialsRequestMessageEntity.setId(UUID.randomUUID());
+		credentialRequestMessageEntity.setId(UUID.randomUUID());
 		
 		//Validator	    
-	    Result result = katavuccolServiceValidator.validateCreateCredentials(credentialsRequestMessageEntity);
+	    Result result = katavuccolServiceValidator.validateCreateCredentials(credentialRequestMessageEntity);
 	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.BAD_REQUEST);
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
 		}
 		
 	    //Verifier
-	    result = katavuccolServiceVerifier.verifyCreateCredentials(credentialsRequestMessageEntity);
+	    result = katavuccolServiceVerifier.verifyCreateCredentials(credentialRequestMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.BAD_REQUEST);
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorCreateCredentials(credentialsRequestMessageEntity);
+		result=katavuccolServiceProcessor.ProcessorCreateCredentials(credentialRequestMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, Status.FORBIDDEN);
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		result=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialsRequestMessageEntity);
+		result=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialRequestMessageEntity);
 				
-		return katavuccolServiceMapper.mapCredentialsResponseMessageEntity(result, credentialsRequestMessageEntity);
+		return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, credentialRequestMessageEntity);
 	}
 
 	@Override

@@ -23,6 +23,7 @@ public class DataBaseColumn {
 	public static final String MODIFIEDBY="modifiedby";
 	public static final String MODIFIEDDATE="modifieddate";
 	public static final String USERID="userid";
+	public static final String IPADDRESS="ipaddress";
 	
 	//income type	
 	public static final String INCOMETYPE_USERID="userid";
@@ -45,13 +46,13 @@ public class DataBaseColumn {
 	public static final String INCOMEDETAIL_DESCRIPTION="description";
 	public static final String INCOMEDETAIL_INCOMETYPEID="incometypeid";
 	
-	//IncomeCategory	
-	public static final String INCOMECATEGORY_NAME="name";
-	public static final String INCOMECATEGORY_DESCRIPTION="description";
-	public static final String INCOMECATEGORY_INCOMEMONTH="incomemonth";
-	public static final String INCOMECATEGORY_INCOMEYEAR="incomeyear";
-	public static final String INCOMECATEGORY_PARENTID="parentid";
-	public static final String INCOMECATEGORY_AMOUNT="amount";
+	//Category 	
+	public static final String CATEGORY_NAME="name";
+	public static final String CATEGORY_DESCRIPTION="description";
+	public static final String CATEGORY_INCOMEMONTH="incomemonth";
+	public static final String CATEGORY_INCOMEYEAR="incomeyear";
+	public static final String CATEGORY_PARENTID="parentid";
+	public static final String CATEGORY_AMOUNT="amount";
 	
 	
 }

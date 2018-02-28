@@ -16,7 +16,6 @@ import java.util.UUID;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
-
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
 
@@ -28,26 +27,44 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public String getCategoryDetailsByIdQuery(UUID categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] args = { categoryId };
+		return new MessageFormat(QueryConstants.GETCATEGORYDETAILSBYIDQUERY).format(args);
 	}
 
 	@Override
 	public CategoryDAO mapCategoryDAO(Row categoryDAOResult) {
-		// TODO Auto-generated method stub
-		return null;
+		CategoryDAO categoryDAO =new CategoryDAO();
+		categoryDAO.setCreatedBy(categoryDAOResult.getUUID(DataBaseColumn.CREATEDBY));
+		categoryDAO.setCreatedDate(categoryDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
+		categoryDAO.setDescription(categoryDAOResult.getString(DataBaseColumn.CATEGORY_DESCRIPTION));
+		categoryDAO.setId(categoryDAOResult.getUUID(DataBaseColumn.ID));
+		categoryDAO.setModifiedBy(categoryDAOResult.getUUID(DataBaseColumn.MODIFIEDBY));
+		categoryDAO.setModifiedDate(categoryDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));
+		categoryDAO.setName(categoryDAOResult.getString(DataBaseColumn.CATEGORY_NAME));
+		categoryDAO.setStatus(categoryDAOResult.getString(DataBaseColumn.STATUS));
+		categoryDAO.setUserId(categoryDAOResult.getUUID(DataBaseColumn.USERID));		
+		return categoryDAO;
 	}
 
 	@Override
 	public String getTypeDetailsByIdQuery(UUID typeId) {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] args = { typeId };
+		return new MessageFormat(QueryConstants.GETTYPEDETAILSBYIDQUERY).format(args);
 	}
 
 	@Override
 	public TypeDAO mapTypeDAO(Row typeDAOResult) {
-		// TODO Auto-generated method stub
-		return null;
+		TypeDAO typeDAO =new TypeDAO();
+		typeDAO.setCreatedBy(typeDAOResult.getUUID(DataBaseColumn.CREATEDBY));
+		typeDAO.setCreatedDate(typeDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
+		typeDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CATEGORY_DESCRIPTION));
+		typeDAO.setId(typeDAOResult.getUUID(DataBaseColumn.ID));
+		typeDAO.setModifiedBy(typeDAOResult.getUUID(DataBaseColumn.MODIFIEDBY));
+		typeDAO.setModifiedDate(typeDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));
+		typeDAO.setName(typeDAOResult.getString(DataBaseColumn.CATEGORY_NAME));
+		typeDAO.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
+		typeDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));		
+		return typeDAO;
 	}
 
 

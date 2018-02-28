@@ -6,8 +6,8 @@ package seahorse.internal.business.katavuccolservice;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 
 /**
  * @author sajanmje
@@ -16,15 +16,15 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRes
 public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 
 	@Override
-	public CredentialsResponseMessageEntity mapCredentialsResponseMessageEntity(Result result, Status badRequest) {
-		CredentialsResponseMessageEntity credentialsResponseMessageEntity=new CredentialsResponseMessageEntity();
+	public CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result, Status badRequest) {
+		CredentialResponseMessageEntity credentialsResponseMessageEntity=new CredentialResponseMessageEntity();
 		credentialsResponseMessageEntity.setResultStatus(result.getResultStatus());
 		credentialsResponseMessageEntity.setResultMessages(result.getResultMessages());
 		return credentialsResponseMessageEntity;
 	}
 
 	@Override
-	public CredentialsResponseMessageEntity mapCredentialsResponseMessageEntity(Result result,CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result,CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

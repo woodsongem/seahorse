@@ -10,7 +10,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
  * @author sajanmje
  *
  */
-public class CredentialsResponseMessageEntity extends Result {
+public class CredentialResponseMessageEntity extends Result {
 
 	private UUID id;
 

@@ -7,7 +7,7 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class CredentialsRequest extends RequestBase {
+public class CredentialRequest extends RequestBase {
 
 	private String categoryId;
 	private String typeId;

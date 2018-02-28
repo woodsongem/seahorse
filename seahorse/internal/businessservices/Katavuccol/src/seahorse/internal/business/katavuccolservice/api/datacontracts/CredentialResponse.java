@@ -7,7 +7,7 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class CredentialsResponse extends ResponseBase {
+public class CredentialResponse extends ResponseBase {
 	private String id;
 
 	/**

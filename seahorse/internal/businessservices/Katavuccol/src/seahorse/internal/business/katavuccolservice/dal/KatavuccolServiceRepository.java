@@ -17,8 +17,10 @@ import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -75,5 +77,11 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			logger.error("Exception in getTypeDetailsById error=" + exception);
 		}
 		return typeDAO;
+	}
+	public OutPutResponse createCredential(CredentialRequestMessageEntity credentialsRequestMessageEntity)
+	{
+		OutPutResponse outPutResponse=new OutPutResponse();
+		
+		return outPutResponse;
 	}
 }

@@ -4,7 +4,7 @@
 package seahorse.internal.business.katavuccolservice.processors;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
  * @author sajanmje
@@ -13,7 +13,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialsReq
 public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 
 	@Override
-	public Result ProcessorCreateCredentials(CredentialsRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result ProcessorCreateCredentials(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
