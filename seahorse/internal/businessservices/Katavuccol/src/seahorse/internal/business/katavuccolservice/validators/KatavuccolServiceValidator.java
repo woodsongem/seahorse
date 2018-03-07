@@ -77,7 +77,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		if(KatavuccolServiceUtility.isValidUUID(credentialRequestMessageEntity.getCategoryId()))
 		{
-			credentialRequestMessageEntity.setParsedTypeId(UUID.fromString(credentialRequestMessageEntity.getTypeId()));
+			credentialRequestMessageEntity.setParsedCredentialTypeId(UUID.fromString(credentialRequestMessageEntity.getTypeId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is inValid","TypeId",katavuccolServiceErrorCode.inTypeIdInValidErrorCode());		

@@ -122,4 +122,5 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		}
 		return typeDAOs;
 	}
+	
 }

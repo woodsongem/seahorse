@@ -92,11 +92,11 @@ public class CassandraConnector implements ICassandraConnector {
 	}
 
 	private String getNode() {
-		return readPropertiesFile.getProperties(Constant.CASSANDRASERVE);
+		return readPropertiesFile.getProperties(KatavuccolConstant.CASSANDRASERVE);
 	}
 
 	private int getPort() {
-		String port = readPropertiesFile.getProperties(Constant.CASSANDRAPORT);
+		String port = readPropertiesFile.getProperties(KatavuccolConstant.CASSANDRAPORT);
 		if (StringUtils.isNumeric(port)) {
 			return Integer.parseInt(port);
 		}
@@ -105,7 +105,7 @@ public class CassandraConnector implements ICassandraConnector {
 	
 
 	private String getkeyspaceName() {
-		String keyspaceName = readPropertiesFile.getProperties(Constant.CASSANDRAKEYSPACENAME);
+		String keyspaceName = readPropertiesFile.getProperties(KatavuccolConstant.CASSANDRAKEYSPACENAME);
 		if (!StringUtils.isBlank(keyspaceName)) {
 			return keyspaceName;
 		}

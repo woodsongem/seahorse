@@ -6,9 +6,9 @@ package seahorse.internal.business.katavuccolservice.common;
  * @author sajanmje
  *
  */
-public class Constant {
+public class KatavuccolConstant {
 	
-	private Constant() {
+	private KatavuccolConstant() {
 		throw new IllegalAccessError("Constant class");
 	}
 

@@ -20,7 +20,7 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private String userId;
 	private UUID parsedUserId;
 	private UUID parsedCategoryId;
-	private UUID parsedTypeId;
+	private UUID parsedCredentialTypeId;
 	private UUID id;
 	private HttpServletRequest httpRequest;
 	private String description;
@@ -126,14 +126,14 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the parsedTypeId
 	 */
-	public UUID getParsedTypeId() {
-		return parsedTypeId;
+	public UUID getParsedCredentialTypeId() {
+		return parsedCredentialTypeId;
 	}
 	/**
 	 * @param parsedTypeId the parsedTypeId to set
 	 */
-	public void setParsedTypeId(UUID parsedTypeId) {
-		this.parsedTypeId = parsedTypeId;
+	public void setParsedCredentialTypeId(UUID parsedCredentialTypeId) {
+		this.parsedCredentialTypeId = parsedCredentialTypeId;
 	}
 	/**
 	 * @return the description
