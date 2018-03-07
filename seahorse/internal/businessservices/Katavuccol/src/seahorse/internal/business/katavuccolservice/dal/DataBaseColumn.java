@@ -54,5 +54,9 @@ public class DataBaseColumn {
 	public static final String CATEGORY_PARENTID="parentid";
 	public static final String CATEGORY_AMOUNT="amount";
 	
+	//Credential Type
+	public static final String CREDENTIALTYPE_NAME = "name";
+	public static final String CREDENTIALTYPE_DESCRIPTION = "description";
+	
 	
 }

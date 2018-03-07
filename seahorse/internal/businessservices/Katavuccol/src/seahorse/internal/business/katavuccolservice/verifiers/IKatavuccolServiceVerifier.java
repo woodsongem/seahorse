@@ -13,7 +13,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 public interface IKatavuccolServiceVerifier {
 
 	Result verifyCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
-	Result isTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	Result isCategoryIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	Result isUserIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 }

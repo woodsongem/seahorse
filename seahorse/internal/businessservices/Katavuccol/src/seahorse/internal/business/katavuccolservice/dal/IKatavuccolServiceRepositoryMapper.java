@@ -20,13 +20,17 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
  */
 public interface IKatavuccolServiceRepositoryMapper {
 	
-	String getCategoryDetailsByIdQuery(UUID categoryId);
+	String getCategoryDetailByIdQuery(UUID categoryId,UUID userId);
 
 	CategoryDAO mapCategoryDAO(Row categoryDAOResult);
 
-	String getTypeDetailsByIdQuery(UUID typeId);
+	String getCredentialTypeDetailsByIdQuery(UUID typeId,UUID userId);
 
-	TypeDAO mapTypeDAO(Row typeDAOResult);
+	TypeDAO mapCredentialTypeDAO(Row typeDAOResult);
 
-	String getCreateCredentialQuery(CredentialRequestMessageEntity credentialRequestMessageEntity);	
+	String getCreateCredentialQuery(CredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	String getCategoryDetailByUserIdQuery(UUID userId);
+
+	String getTypeDetailsByUserIdQuery(UUID userId);	
 }

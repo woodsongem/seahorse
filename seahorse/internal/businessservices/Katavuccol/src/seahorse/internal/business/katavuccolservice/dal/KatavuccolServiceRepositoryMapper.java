@@ -27,9 +27,9 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepositoryMapper {
 
 	@Override
-	public String getCategoryDetailsByIdQuery(UUID categoryId) {
-		Object[] args = { categoryId };
-		return new MessageFormat(QueryConstants.GETCATEGORYDETAILSBYIDQUERY).format(args);
+	public String getCategoryDetailByIdQuery(UUID categoryId,UUID userId) {
+		Object[] args = { categoryId,userId };
+		return new MessageFormat(QueryConstants.GET_CATEGORY_DETAIL_BY_ID_QUERY).format(args);
 	}
 
 	@Override
@@ -48,21 +48,21 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	}
 
 	@Override
-	public String getTypeDetailsByIdQuery(UUID typeId) {
-		Object[] args = { typeId };
-		return new MessageFormat(QueryConstants.GETTYPEDETAILSBYIDQUERY).format(args);
+	public String getCredentialTypeDetailsByIdQuery(UUID typeId,UUID userId) {
+		Object[] args = { typeId,userId };
+		return new MessageFormat(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY).format(args);
 	}
 
 	@Override
-	public TypeDAO mapTypeDAO(Row typeDAOResult) {
+	public TypeDAO mapCredentialTypeDAO(Row typeDAOResult) {
 		TypeDAO typeDAO =new TypeDAO();
 		typeDAO.setCreatedBy(typeDAOResult.getUUID(DataBaseColumn.CREATEDBY));
 		typeDAO.setCreatedDate(typeDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
-		typeDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CATEGORY_DESCRIPTION));
+		typeDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_DESCRIPTION));
 		typeDAO.setId(typeDAOResult.getUUID(DataBaseColumn.ID));
 		typeDAO.setModifiedBy(typeDAOResult.getUUID(DataBaseColumn.MODIFIEDBY));
 		typeDAO.setModifiedDate(typeDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));
-		typeDAO.setName(typeDAOResult.getString(DataBaseColumn.CATEGORY_NAME));
+		typeDAO.setName(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_NAME));		
 		typeDAO.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
 		typeDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));		
 		return typeDAO;
@@ -74,6 +74,18 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 				credentialRequestMessageEntity.getId(),credentialRequestMessageEntity.getCreatedBy(),
 				credentialRequestMessageEntity.getCreatedDate(),credentialRequestMessageEntity.getDescription(),
 				"ACTIVE",credentialRequestMessageEntity.getParsedUserId()};
-		return new MessageFormat(QueryConstants.GETCREATECREDENTIALQUERY).format(args);
+		return new MessageFormat(QueryConstants.GET_CREATE_CREDENTIAL_QUERY).format(args);
+	}
+
+	@Override
+	public String getCategoryDetailByUserIdQuery(UUID userId) {
+		Object[] args = { userId };
+		return new MessageFormat(QueryConstants.GET_CATEGORY_DETAIL_BY_USERID_QUERY).format(args);
+	}
+
+	@Override
+	public String getTypeDetailsByUserIdQuery(UUID userId) {
+		Object[] args = { userId };
+		return new MessageFormat(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY).format(args);
 	}	
 }

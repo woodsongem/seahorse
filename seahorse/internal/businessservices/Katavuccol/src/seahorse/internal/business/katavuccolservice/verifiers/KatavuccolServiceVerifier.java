@@ -11,9 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.TypeMessageEntity;
 
 
 /**
@@ -53,7 +51,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return result;
 		}
 		
-		result = isTypeIdValid(credentialRequestMessageEntity);
+		result = isCredentialTypeIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -62,24 +60,24 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
-		TypeDAO typeDAO = katavuccolServiceRepository.getTypeDetailsById(credentialRequestMessageEntity.getParsedTypeId());
-		TypeMessageEntity typeDAOMessageEntity=katavuccolServiceVerifierMapper.mapTypeDAOMessageEntity(typeDAO);
-		if(typeDAOMessageEntity !=null)
+	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		TypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedTypeId(),credentialRequestMessageEntity.getParsedUserId());
+		if(typeDAO !=null)
 		{
 			return new Result(ResultStatus.ERROR);
 		}
+		credentialRequestMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));		
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 
 	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
-		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailsById(credentialsRequestMessageEntity.getParsedCategoryId());
-		CategoryMessageEntity categoryMessageEntity=katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO);
-		if(categoryMessageEntity !=null)
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(credentialsRequestMessageEntity.getParsedCategoryId(),credentialsRequestMessageEntity.getParsedUserId());
+		if(categoryDAO !=null)
 		{
 			return new Result(ResultStatus.ERROR);
-		}
+		}		
+		credentialsRequestMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
 		return new Result(ResultStatus.SUCCESS);
 	}
 

@@ -6,7 +6,7 @@ package seahorse.internal.business.katavuccolservice.verifiers;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.TypeMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeMessageEntity;
 
 /**
  * @author sajanmje
@@ -30,19 +30,19 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 	}
 
 	@Override
-	public TypeMessageEntity mapTypeDAOMessageEntity(TypeDAO typeDAO) {
-		TypeMessageEntity typeDAOMessageEntity=new TypeMessageEntity();
-		typeDAOMessageEntity.setCategoryId(typeDAO.getCategoryId());
-		typeDAOMessageEntity.setCreatedBy(typeDAO.getCreatedBy());
-		typeDAOMessageEntity.setCreatedDate(typeDAO.getCreatedDate());
-		typeDAOMessageEntity.setDescription(typeDAO.getDescription());
-		typeDAOMessageEntity.setId(typeDAO.getId());
-		typeDAOMessageEntity.setModifiedBy(typeDAO.getModifiedBy());
-		typeDAOMessageEntity.setModifiedDate(typeDAO.getModifiedDate());
-		typeDAOMessageEntity.setName(typeDAO.getName());
-		typeDAOMessageEntity.setStatus(typeDAO.getStatus());
-		typeDAOMessageEntity.setUserId(typeDAO.getUserId());		
-		return typeDAOMessageEntity;
+	public CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(TypeDAO typeDAO) {
+		CredentialTypeMessageEntity credentialTypeMessageEntity=new CredentialTypeMessageEntity();
+		credentialTypeMessageEntity.setCategoryId(typeDAO.getCategoryId());
+		credentialTypeMessageEntity.setCreatedBy(typeDAO.getCreatedBy());
+		credentialTypeMessageEntity.setCreatedDate(typeDAO.getCreatedDate());
+		credentialTypeMessageEntity.setDescription(typeDAO.getDescription());
+		credentialTypeMessageEntity.setId(typeDAO.getId());
+		credentialTypeMessageEntity.setModifiedBy(typeDAO.getModifiedBy());
+		credentialTypeMessageEntity.setModifiedDate(typeDAO.getModifiedDate());
+		credentialTypeMessageEntity.setName(typeDAO.getName());
+		credentialTypeMessageEntity.setStatus(typeDAO.getStatus());
+		credentialTypeMessageEntity.setUserId(typeDAO.getUserId());		
+		return credentialTypeMessageEntity;
 	}
 
 }

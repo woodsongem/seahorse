@@ -10,7 +10,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author sajanmje
  *
  */
-public class TypeMessageEntity extends BaseMessageEntity {
+public class CredentialTypeMessageEntity extends BaseMessageEntity {
 
 	private UUID id;
 	private String name;

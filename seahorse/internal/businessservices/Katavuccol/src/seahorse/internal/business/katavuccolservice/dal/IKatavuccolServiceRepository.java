@@ -15,7 +15,8 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
  */
 public interface IKatavuccolServiceRepository {
 	
-	CategoryDAO getCategoryDetailsById(UUID categoryId);
-	
-	TypeDAO getTypeDetailsById(UUID typeId);
+	CategoryDAO getCategoryDetailById(UUID categoryId,UUID userId);	
+	TypeDAO getCredentialTypeDetailById(UUID typeId, UUID userId);	
+	List<CategoryDAO> getCategoryDetailByUserId(UUID userId);
+	List<TypeDAO>  getTypeDetailsByUserId(UUID userId);
 }

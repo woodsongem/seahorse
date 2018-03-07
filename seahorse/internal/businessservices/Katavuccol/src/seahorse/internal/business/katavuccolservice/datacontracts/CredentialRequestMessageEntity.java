@@ -24,6 +24,9 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private UUID id;
 	private HttpServletRequest httpRequest;
 	private String description;
+	private CredentialTypeMessageEntity credentialType;
+	private CategoryMessageEntity category;
+	
 	/**
 	 * @return the categoryId
 	 */
@@ -144,4 +147,28 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	/**
+	 * @return the credentialType
+	 */
+	public CredentialTypeMessageEntity getCredentialType() {
+		return credentialType;
+	}
+	/**
+	 * @param credentialType the credentialType to set
+	 */
+	public void setCredentialType(CredentialTypeMessageEntity credentialType) {
+		this.credentialType = credentialType;
+	}
+	/**
+	 * @return the category
+	 */
+	public CategoryMessageEntity getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(CategoryMessageEntity category) {
+		this.category = category;
+	}	
 }
