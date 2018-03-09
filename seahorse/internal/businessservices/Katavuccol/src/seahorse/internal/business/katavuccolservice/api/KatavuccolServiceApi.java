@@ -46,7 +46,7 @@ public class KatavuccolServiceApi {
 
 	// POST ==> /income/category
 	@POST
-	@Path("/credentials")
+	@Path("/{userid}/credentials")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredential(@PathParam("userid") String userid,CredentialRequest credentialsRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
