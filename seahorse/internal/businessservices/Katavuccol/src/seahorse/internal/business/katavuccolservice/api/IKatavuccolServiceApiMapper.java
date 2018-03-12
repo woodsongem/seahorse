@@ -27,4 +27,6 @@ public interface IKatavuccolServiceApiMapper {
 
 	List<Credential> mapCredential(GetCredentialsMessageEntity getCredentialsMessageEntity);
 
+	CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity, CredentialRequestMessageEntity credentialMessageEntity);
+
 }

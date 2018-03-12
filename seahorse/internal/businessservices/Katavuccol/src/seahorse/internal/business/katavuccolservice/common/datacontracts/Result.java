@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.common.datacontracts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,5 +53,13 @@ public class Result {
 	 */
 	public void setResultMessages(List<ResultMessage> resultMessages) {
 		this.resultMessages = resultMessages;
+	}
+
+	public void setResultMessage(ResultMessage resultMessage) {
+		if(resultMessages ==null || resultMessages.isEmpty())
+		{
+			resultMessages=new ArrayList<>();			
+		}
+		resultMessages.add(resultMessage);
 	}	
 }

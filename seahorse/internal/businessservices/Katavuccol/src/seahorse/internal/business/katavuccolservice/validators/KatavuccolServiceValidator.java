@@ -86,7 +86,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {		
 		if(credentialRequestMessageEntity.getCategoryId()==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId","8989");
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.categoryIdEmptyErrorCode());
 		}		
 		if(KatavuccolServiceUtility.isValidUUID(credentialRequestMessageEntity.getCategoryId()))
 		{

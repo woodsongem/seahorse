@@ -18,7 +18,7 @@ public class BaseMessageEntity extends ResultMessageEntity {
 	private Date createdDate;
 	private Date modifiedDate;
 	private String httpMethod;
-	private String ipAddress;
+	private String ipAddress;	
 	private Map<String, String> headers;
 
 	public UUID getCreatedBy() {

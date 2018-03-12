@@ -52,6 +52,7 @@ public class KatavuccolServiceUtility {
 		resultMessage.setErrorCode(errorCode);
 		resultMessage.setErrorMsg(errorMsg);
 		resultMessage.setParameter(parameters);
+		result.setResultMessage(resultMessage);
 		return result;
 	}
 	

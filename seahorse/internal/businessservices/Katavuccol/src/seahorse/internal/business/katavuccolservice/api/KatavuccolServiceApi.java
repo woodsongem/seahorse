@@ -4,7 +4,10 @@
 package seahorse.internal.business.katavuccolservice.api;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -55,8 +58,11 @@ public class KatavuccolServiceApi {
 		try {
 			CredentialRequestMessageEntity credentialMessageEntity=katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest,userid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			credentialMessageEntity.setHttpMethod(httpRequest.getMethod());
+			credentialMessageEntity.setHeaders(headers);
 			CredentialResponseMessageEntity credentialsResMessageEntity=katavuccolService.createCredential(credentialMessageEntity);
-			credentialsResponse=katavuccolServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity);
+			credentialsResponse=katavuccolServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity,credentialMessageEntity);
 		}
 		catch (Exception ex) {
 			if (credentialsResponse == null) {
@@ -87,7 +93,19 @@ public class KatavuccolServiceApi {
 			return Response.status(httpStatus).entity(credentials).build();
 		}
 	
-	
+		public Map<String, String> getHeaders(HttpServletRequest httpRequest)
+		{
+			Map<String, String> mapheaders=new HashMap<>();
+			Enumeration<String> e=httpRequest.getHeaderNames();
+			while(e.hasMoreElements())
+			{
+				  String name =  e.nextElement();
+				  String value = httpRequest.getHeader(name);
+				  mapheaders.put(name, value);
+			}
+			return mapheaders;		
+		}
+		
 	private CredentialResponse getCredentialsResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
 		CredentialResponse credentialsResponse = new CredentialResponse();
