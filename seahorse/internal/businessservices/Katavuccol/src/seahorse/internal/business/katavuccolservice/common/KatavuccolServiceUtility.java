@@ -48,6 +48,9 @@ public class KatavuccolServiceUtility {
 	public static Result getResult(ResultStatus resultStatus, String errorMsg, String parameters, String errorCode) {
 		Result result=new Result();
 		result.setResultStatus(resultStatus);
+		if(StringUtils.isEmpty(errorCode)) {
+			return result;	
+		}
 		ResultMessage resultMessage=new ResultMessage();
 		resultMessage.setErrorCode(errorCode);
 		resultMessage.setErrorMsg(errorMsg);

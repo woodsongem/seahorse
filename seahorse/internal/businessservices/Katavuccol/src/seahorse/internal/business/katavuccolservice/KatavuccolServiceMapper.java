@@ -20,6 +20,7 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 		CredentialResponseMessageEntity credentialsResponseMessageEntity=new CredentialResponseMessageEntity();
 		credentialsResponseMessageEntity.setResultStatus(result.getResultStatus());
 		credentialsResponseMessageEntity.setResultMessages(result.getResultMessages());
+		credentialsResponseMessageEntity.setHttpStatus(badRequest);
 		return credentialsResponseMessageEntity;
 	}
 

@@ -73,9 +73,9 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	public Result isCategoryIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
 		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(credentialsRequestMessageEntity.getParsedCategoryId(),credentialsRequestMessageEntity.getParsedUserId());
-		if(categoryDAO !=null)
+		if(categoryDAO ==null)
 		{
-			return new Result(ResultStatus.ERROR);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.categoryIdNotFoundErrorCode());
 		}		
 		credentialsRequestMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
 		return new Result(ResultStatus.SUCCESS);

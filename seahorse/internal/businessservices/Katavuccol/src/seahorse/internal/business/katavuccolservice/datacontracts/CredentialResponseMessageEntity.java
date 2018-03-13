@@ -4,13 +4,14 @@
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.UUID;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
+
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialResponseMessageEntity extends Result {
+public class CredentialResponseMessageEntity extends BaseMessageEntity {
 
 	private UUID id;
 

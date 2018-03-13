@@ -15,4 +15,5 @@ public interface IKatavuccolServiceErrorCode {
 	String inTypeIdInValidErrorCode();
 	String inValueEmptyErrorCode();
 	String categoryIdEmptyErrorCode();
+	String categoryIdNotFoundErrorCode();
 }

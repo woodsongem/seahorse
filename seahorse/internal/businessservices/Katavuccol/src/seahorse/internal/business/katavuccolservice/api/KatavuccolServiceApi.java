@@ -63,6 +63,7 @@ public class KatavuccolServiceApi {
 			credentialMessageEntity.setHeaders(headers);
 			CredentialResponseMessageEntity credentialsResMessageEntity=katavuccolService.createCredential(credentialMessageEntity);
 			credentialsResponse=katavuccolServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity,credentialMessageEntity);
+			httpStatus = credentialsResMessageEntity.getHttpStatus();
 		}
 		catch (Exception ex) {
 			if (credentialsResponse == null) {
