@@ -16,7 +16,6 @@ import java.util.UUID;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
-
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
@@ -90,5 +89,50 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	public String getTypeDetailsByUserIdQuery(UUID userId) {
 		Object[] args = { userId };
 		return new MessageFormat(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY).format(args);
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.ID, credentialRequestMessageEntity.getId());
+		bound.setUUID(DataBaseColumn.USERID,credentialRequestMessageEntity.getParsedUserId());
+		bound.setUUID(DataBaseColumn.CREATEDBY,credentialRequestMessageEntity.getCreatedBy());
+		//Timestamp ts = Timestamp.valueOf(credentialRequestMessageEntity.getCreatedDate());
+		//bound.setTimestamp(DataBaseColumn.CREATEDDATE,ts);
+		bound.setString(DataBaseColumn.STATUS,credentialRequestMessageEntity.getStatus());		
+		bound.setString(DataBaseColumn.CREDENTIAL_DESCRIPTION,credentialRequestMessageEntity.getDescription());
+		bound.setUUID(DataBaseColumn.CREDENTIAL_CATEGORYID,credentialRequestMessageEntity.getParsedCategoryId());
+		bound.setUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID,credentialRequestMessageEntity.getParsedCredentialTypeId());
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID categoryId, UUID userId) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.ID, categoryId);
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID typeId,UUID userId) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.ID, typeId);
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID userId) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
 	}	
 }

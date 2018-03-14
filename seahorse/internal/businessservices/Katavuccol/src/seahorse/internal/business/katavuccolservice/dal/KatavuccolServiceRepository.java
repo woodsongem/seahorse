@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.apache.logging.log4j.Logger;
+import com.datastax.driver.core.BoundStatement;
+import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
@@ -42,11 +44,12 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	
 	public CategoryDAO getCategoryDetailById(UUID categoryId,UUID userId)
 	{
-		CategoryDAO categoryDAO = new CategoryDAO();
+		CategoryDAO categoryDAO=null;
 		try {
 			cassandraConnector.connect(null, 0,null);
-			String categoryQuery = katavuccolServiceRepositoryMapper.getCategoryDetailByIdQuery(categoryId,userId);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_DETAIL_BY_ID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,categoryId,userId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row categoryDAOResult = resultSet.one();
@@ -60,11 +63,12 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	
 	public TypeDAO getCredentialTypeDetailById(UUID typeId,UUID userId)
 	{
-		TypeDAO typeDAO = new TypeDAO();
+		TypeDAO typeDAO = null;
 		try {
 			cassandraConnector.connect(null, 0,null);
-			String categoryQuery = katavuccolServiceRepositoryMapper.getCredentialTypeDetailsByIdQuery(typeId,userId);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapCredentialTypeBoundStatement(preparedStatement,typeId,userId);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row typeDAOResult = resultSet.one();
@@ -72,6 +76,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getCredentialTypeDetailById error=" + exception);
+			
 		}
 		return typeDAO;
 	}
@@ -80,8 +85,9 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	{
 		OutPutResponse outPutResponse=new OutPutResponse();		
 		cassandraConnector.connect(null, 0,null);
-		String credentialQuery = katavuccolServiceRepositoryMapper.getCreateCredentialQuery(credentialRequestMessageEntity);
-		cassandraConnector.getSession().execute(credentialQuery);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREATE_CREDENTIAL_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,credentialRequestMessageEntity);
+		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		outPutResponse.setId(credentialRequestMessageEntity.getId());
 		return outPutResponse;		
@@ -92,8 +98,9 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		List<CategoryDAO> categoryDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);
-			String categoryQuery = katavuccolServiceRepositoryMapper.getCategoryDetailByUserIdQuery(userId);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_DETAIL_BY_USERID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,userId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row categoryDAOResult = resultSet.one();
@@ -110,8 +117,9 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		List<TypeDAO> typeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);
-			String categoryQuery = katavuccolServiceRepositoryMapper.getTypeDetailsByUserIdQuery(userId);
-			final ResultSet resultSet = cassandraConnector.getSession().execute(categoryQuery);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapCredentialTypeBoundStatement(preparedStatement,userId);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row typeDAOResult = resultSet.one();

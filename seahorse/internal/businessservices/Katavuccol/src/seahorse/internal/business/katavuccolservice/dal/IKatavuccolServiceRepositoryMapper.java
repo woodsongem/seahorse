@@ -32,5 +32,15 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	String getCategoryDetailByUserIdQuery(UUID userId);
 
-	String getTypeDetailsByUserIdQuery(UUID userId);	
+	String getTypeDetailsByUserIdQuery(UUID userId);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,CredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID categoryId, UUID userId);
+
+	BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID typeId, UUID userId);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId);
+
+	BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID userId);	
 }

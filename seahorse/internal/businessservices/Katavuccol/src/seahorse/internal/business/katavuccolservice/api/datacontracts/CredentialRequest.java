@@ -12,7 +12,6 @@ public class CredentialRequest extends RequestBase {
 	private String categoryId;
 	private String typeId;
 	private String value;	
-	private String userId;
 	private String description;
 	
 	/**
@@ -52,18 +51,7 @@ public class CredentialRequest extends RequestBase {
 		this.value = value;
 	}
 	
-	/**
-	 * @return the userId
-	 */
-	public String getUserId() {
-		return userId;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	/**
 	 * @return the description
 	 */

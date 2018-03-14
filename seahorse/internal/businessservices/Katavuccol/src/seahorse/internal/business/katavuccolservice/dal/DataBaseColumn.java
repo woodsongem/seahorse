@@ -37,8 +37,10 @@ public class DataBaseColumn {
 	public static final String INCOMETYPE_NAME="name";
 	public static final String INCOMETYPE_INCOMETYPECATEGORY="incometypecategory";
 	
-	//user credential
-	public static final String USERCREDENTIAL_USERNAME = "username";
+	//credential	
+	public static final String CREDENTIAL_CATEGORYID = "categoryid";
+	public static final String CREDENTIAL_CREDENTIAL_TYPEID = "credentialtypeid";
+	public static final String CREDENTIAL_DESCRIPTION = "description";
 	
 	//Income Details
 	

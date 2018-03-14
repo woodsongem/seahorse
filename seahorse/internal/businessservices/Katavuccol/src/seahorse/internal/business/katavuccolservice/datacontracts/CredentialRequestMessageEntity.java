@@ -26,6 +26,7 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private String description;
 	private CredentialTypeMessageEntity credentialType;
 	private CategoryMessageEntity category;
+	private String status;
 	
 	/**
 	 * @return the categoryId
@@ -170,5 +171,17 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setCategory(CategoryMessageEntity category) {
 		this.category = category;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}	
 }

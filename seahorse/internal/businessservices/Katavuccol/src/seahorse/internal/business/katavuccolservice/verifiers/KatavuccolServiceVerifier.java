@@ -62,9 +62,9 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		TypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
-		if(typeDAO !=null)
+		if(typeDAO ==null)
 		{
-			return new Result(ResultStatus.ERROR);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeIdNotFoundErrorCode());
 		}
 		credentialRequestMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));		
 		return new Result(ResultStatus.SUCCESS);
