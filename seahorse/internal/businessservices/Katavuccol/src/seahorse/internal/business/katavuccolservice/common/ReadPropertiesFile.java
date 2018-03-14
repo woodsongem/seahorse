@@ -34,7 +34,7 @@ public class ReadPropertiesFile implements IReadPropertiesFile {
 		Properties properties = new Properties();
 		 // Get the inputStream
         InputStream inputStream = this.getClass().getClassLoader()
-                .getResourceAsStream("ColdFishService.properties");
+                .getResourceAsStream("KatavuccolService.properties");
 		try {
 			properties.load(inputStream);
 		} catch (IOException e) {
