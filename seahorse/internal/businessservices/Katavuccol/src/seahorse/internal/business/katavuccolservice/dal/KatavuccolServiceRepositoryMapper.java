@@ -96,9 +96,8 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		BoundStatement bound = preparedStatement.bind();
 		bound.setUUID(DataBaseColumn.ID, credentialRequestMessageEntity.getId());
 		bound.setUUID(DataBaseColumn.USERID,credentialRequestMessageEntity.getParsedUserId());
-		bound.setUUID(DataBaseColumn.CREATEDBY,credentialRequestMessageEntity.getCreatedBy());
-		//Timestamp ts = Timestamp.valueOf(credentialRequestMessageEntity.getCreatedDate());
-		//bound.setTimestamp(DataBaseColumn.CREATEDDATE,ts);
+		bound.setUUID(DataBaseColumn.CREATEDBY,credentialRequestMessageEntity.getCreatedBy());		
+		bound.setTimestamp(DataBaseColumn.CREATEDDATE,credentialRequestMessageEntity.getCreatedDate());
 		bound.setString(DataBaseColumn.STATUS,credentialRequestMessageEntity.getStatus());		
 		bound.setString(DataBaseColumn.CREDENTIAL_DESCRIPTION,credentialRequestMessageEntity.getDescription());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CATEGORYID,credentialRequestMessageEntity.getParsedCategoryId());

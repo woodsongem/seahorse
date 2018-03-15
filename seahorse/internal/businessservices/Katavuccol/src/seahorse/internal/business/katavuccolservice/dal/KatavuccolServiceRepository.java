@@ -16,6 +16,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
@@ -83,7 +84,8 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	
 	public OutPutResponse createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity)
 	{
-		OutPutResponse outPutResponse=new OutPutResponse();		
+		OutPutResponse outPutResponse=new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0,null);
 		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREATE_CREDENTIAL_QUERY);
 		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,credentialRequestMessageEntity);
@@ -107,7 +109,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 				categoryDAOs.add(katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult));				
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in getCategoryDetailByUserId error=" + exception);
+			logger.error("Exception in getCategoryDetailByUserId error=" + exception);			
 		}
 		return categoryDAOs;
 	}

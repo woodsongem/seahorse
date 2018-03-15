@@ -3,10 +3,16 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
+
+import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
@@ -51,7 +57,9 @@ public class KatavuccolService implements IKatavuccolService {
 	public CredentialResponseMessageEntity createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 
 		//Set	
-		credentialRequestMessageEntity.setId(UUID.randomUUID());
+		credentialRequestMessageEntity.setId(UUIDs.timeBased());
+		credentialRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+		credentialRequestMessageEntity.setCreatedDate(new Date());
 		
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateCreateCredentials(credentialRequestMessageEntity);
@@ -72,7 +80,7 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Post Processor
-		result=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialRequestMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialRequestMessageEntity);
 				
 		return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, credentialRequestMessageEntity);
 	}
