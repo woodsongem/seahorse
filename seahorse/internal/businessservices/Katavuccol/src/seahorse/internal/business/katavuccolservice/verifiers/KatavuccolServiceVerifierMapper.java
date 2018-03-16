@@ -4,7 +4,7 @@
 package seahorse.internal.business.katavuccolservice.verifiers;
 
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeMessageEntity;
 
@@ -30,7 +30,7 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 	}
 
 	@Override
-	public CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(TypeDAO typeDAO) {
+	public CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(CredentialTypeDAO typeDAO) {
 		CredentialTypeMessageEntity credentialTypeMessageEntity=new CredentialTypeMessageEntity();
 		credentialTypeMessageEntity.setCategoryId(typeDAO.getCategoryId());
 		credentialTypeMessageEntity.setCreatedBy(typeDAO.getCreatedBy());
@@ -41,7 +41,9 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 		credentialTypeMessageEntity.setModifiedDate(typeDAO.getModifiedDate());
 		credentialTypeMessageEntity.setName(typeDAO.getName());
 		credentialTypeMessageEntity.setStatus(typeDAO.getStatus());
-		credentialTypeMessageEntity.setUserId(typeDAO.getUserId());		
+		credentialTypeMessageEntity.setUserId(typeDAO.getUserId());
+		credentialTypeMessageEntity.setIsDuplicationAllowed(typeDAO.getIsDuplicationAllowed());
+		credentialTypeMessageEntity.setIsSubitemAllowed(typeDAO.getIsSubitemAllowed());
 		return credentialTypeMessageEntity;
 	}
 

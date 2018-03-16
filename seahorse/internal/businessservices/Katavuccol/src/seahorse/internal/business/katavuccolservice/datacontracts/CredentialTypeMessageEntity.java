@@ -18,6 +18,8 @@ public class CredentialTypeMessageEntity extends BaseMessageEntity {
 	private UUID categoryId;
 	private String description;	
 	private String status;
+	private Boolean isDuplicationAllowed;
+	private Boolean isSubitemAllowed;
 	/**
 	 * @return the id
 	 */
@@ -89,5 +91,29 @@ public class CredentialTypeMessageEntity extends BaseMessageEntity {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the isDuplicationAllowed
+	 */
+	public Boolean getIsDuplicationAllowed() {
+		return isDuplicationAllowed;
+	}
+	/**
+	 * @param isDuplicationAllowed the isDuplicationAllowed to set
+	 */
+	public void setIsDuplicationAllowed(Boolean isDuplicationAllowed) {
+		this.isDuplicationAllowed = isDuplicationAllowed;
+	}
+	/**
+	 * @return the isSubitemAllowed
+	 */
+	public Boolean getIsSubitemAllowed() {
+		return isSubitemAllowed;
+	}
+	/**
+	 * @param isSubitemAllowed the isSubitemAllowed to set
+	 */
+	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
+		this.isSubitemAllowed = isSubitemAllowed;
 	}
 }

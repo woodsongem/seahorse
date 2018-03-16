@@ -9,13 +9,16 @@ import java.util.UUID;
  * @author sajanmje
  *
  */
-public class TypeDAO extends BaseDAO {
+public class CredentialTypeDAO extends BaseDAO {
 	private UUID id;
 	private String name;
 	private UUID userId;
 	private UUID categoryId;
 	private String description;	
 	private String status;
+	private Boolean isDuplicationAllowed;
+	private Boolean isSubitemAllowed;
+	
 	/**
 	 * @return the id
 	 */
@@ -87,6 +90,30 @@ public class TypeDAO extends BaseDAO {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the isSubitemAllowed
+	 */
+	public Boolean getIsSubitemAllowed() {
+		return isSubitemAllowed;
+	}
+	/**
+	 * @param isSubitemAllowed the isSubitemAllowed to set
+	 */
+	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
+		this.isSubitemAllowed = isSubitemAllowed;
+	}
+	/**
+	 * @return the isDuplicationAllowed
+	 */
+	public Boolean getIsDuplicationAllowed() {
+		return isDuplicationAllowed;
+	}
+	/**
+	 * @param isDuplicationAllowed the isDuplicationAllowed to set
+	 */
+	public void setIsDuplicationAllowed(Boolean isDuplicationAllowed) {
+		this.isDuplicationAllowed = isDuplicationAllowed;
 	}
 
 }

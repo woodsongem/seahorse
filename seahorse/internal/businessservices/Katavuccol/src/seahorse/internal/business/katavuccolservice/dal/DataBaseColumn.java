@@ -59,6 +59,8 @@ public class DataBaseColumn {
 	//Credential Type
 	public static final String CREDENTIALTYPE_NAME = "name";
 	public static final String CREDENTIALTYPE_DESCRIPTION = "description";
+	public static final String CREDENTIALTYPE_ISDUPLICATIONALLOWED = "isduplicationallowed";
+	public static final String CREDENTIALTYPE_ISSUBITEMALLOWED = "issubitemallowed";
 	
 	
 }

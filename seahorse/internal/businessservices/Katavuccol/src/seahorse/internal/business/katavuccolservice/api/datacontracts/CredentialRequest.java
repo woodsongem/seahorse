@@ -13,6 +13,7 @@ public class CredentialRequest extends RequestBase {
 	private String typeId;
 	private String value;	
 	private String description;
+	private String parentId;
 	
 	/**
 	 * @return the categoryId
@@ -63,5 +64,17 @@ public class CredentialRequest extends RequestBase {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	/**
+	 * @return the parentId
+	 */
+	public String getParentId() {
+		return parentId;
+	}
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 }

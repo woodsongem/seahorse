@@ -57,8 +57,12 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		
+		
 		return new Result(ResultStatus.SUCCESS);
 	}
+	
+
 
 	public Result isValueValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);

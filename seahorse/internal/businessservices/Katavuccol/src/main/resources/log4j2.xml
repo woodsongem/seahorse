@@ -5,7 +5,7 @@
     <!-- Console Appender -->
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout
-        pattern="Application=ColdFishService %d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+        pattern="Application=KatavuccolService %d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
     </Console>
 
     <!-- File Appender -->

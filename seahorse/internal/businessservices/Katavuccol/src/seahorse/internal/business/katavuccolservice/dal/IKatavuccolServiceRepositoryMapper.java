@@ -11,7 +11,8 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
@@ -26,7 +27,7 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	String getCredentialTypeDetailsByIdQuery(UUID typeId,UUID userId);
 
-	TypeDAO mapCredentialTypeDAO(Row typeDAOResult);
+	CredentialTypeDAO mapCredentialTypeDAO(Row typeDAOResult);
 
 	String getCreateCredentialQuery(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
@@ -42,5 +43,9 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId);
 
-	BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID userId);	
+	BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID userId);
+
+	CredentialDAO mapCredentialDAO(Row typeDAOResult);
+
+	BoundStatement mapCredentialBoundStatement(PreparedStatement preparedStatement, UUID userId);	
 }

@@ -18,7 +18,8 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 /**
@@ -55,8 +56,8 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	}
 
 	@Override
-	public TypeDAO mapCredentialTypeDAO(Row typeDAOResult) {
-		TypeDAO typeDAO =new TypeDAO();
+	public CredentialTypeDAO mapCredentialTypeDAO(Row typeDAOResult) {
+		CredentialTypeDAO typeDAO =new CredentialTypeDAO();
 		typeDAO.setCreatedBy(typeDAOResult.getUUID(DataBaseColumn.CREATEDBY));
 		typeDAO.setCreatedDate(typeDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
 		typeDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_DESCRIPTION));
@@ -65,7 +66,9 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		typeDAO.setModifiedDate(typeDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));
 		typeDAO.setName(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_NAME));		
 		typeDAO.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
-		typeDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));		
+		typeDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));
+		typeDAO.setIsDuplicationAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISDUPLICATIONALLOWED));
+		typeDAO.setIsSubitemAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED));	
 		return typeDAO;
 	}
 
@@ -130,6 +133,29 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public BoundStatement mapCredentialTypeBoundStatement(PreparedStatement preparedStatement, UUID userId) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
+	}
+
+	@Override
+	public CredentialDAO mapCredentialDAO(Row typeDAOResult) {
+		CredentialDAO credentialDAO=new CredentialDAO();
+		credentialDAO.setCreatedBy(typeDAOResult.getUUID(DataBaseColumn.CREATEDBY));
+		credentialDAO.setCreatedDate(typeDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
+		credentialDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CREDENTIAL_DESCRIPTION));
+		credentialDAO.setId(typeDAOResult.getUUID(DataBaseColumn.ID));
+		credentialDAO.setModifiedBy(typeDAOResult.getUUID(DataBaseColumn.MODIFIEDBY));
+		credentialDAO.setModifiedDate(typeDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));		
+		credentialDAO.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
+		credentialDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));
+		credentialDAO.setCategoryId(typeDAOResult.getUUID(DataBaseColumn.CREDENTIAL_CATEGORYID));
+		credentialDAO.setCredentialTypeId(typeDAOResult.getUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID));	
+		return credentialDAO;
+	}
+
+	@Override
+	public BoundStatement mapCredentialBoundStatement(PreparedStatement preparedStatement, UUID userId) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,userId);
 		return bound;

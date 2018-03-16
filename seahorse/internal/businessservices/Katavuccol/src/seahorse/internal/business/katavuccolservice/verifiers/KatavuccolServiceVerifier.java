@@ -10,7 +10,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 
 
@@ -54,14 +54,34 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		result = isCredentialTypeIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
+		}		
+				
+		result = isCredentialTypeDuplicateAllowedValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
 		}
 
+		result = isCredentialTypeSubItemAllowedValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 
+	public Result isCredentialTypeSubItemAllowedValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isCredentialTypeDuplicateAllowedValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
 
 	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
-		TypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
+		CredentialTypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
 		if(typeDAO ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeIdNotFoundErrorCode());

@@ -18,7 +18,8 @@ import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
@@ -62,9 +63,9 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		return categoryDAO;
 	}
 	
-	public TypeDAO getCredentialTypeDetailById(UUID typeId,UUID userId)
+	public CredentialTypeDAO getCredentialTypeDetailById(UUID typeId,UUID userId)
 	{
-		TypeDAO typeDAO = null;
+		CredentialTypeDAO typeDAO = null;
 		try {
 			cassandraConnector.connect(null, 0,null);
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY);
@@ -114,9 +115,9 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		return categoryDAOs;
 	}
 	
-	public List<TypeDAO> getTypeDetailsByUserId(UUID userId)
+	public List<CredentialTypeDAO> getTypeDetailsByUserId(UUID userId)
 	{
-		List<TypeDAO> typeDAOs = new ArrayList<>();
+		List<CredentialTypeDAO> typeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY);
@@ -131,6 +132,25 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			logger.error("Exception in getTypeDetailsByUserId error=" + exception);
 		}
 		return typeDAOs;
+	}
+
+	@Override
+	public List<CredentialDAO> getCredentialByUserId(UUID userId) {
+		List<CredentialDAO> credentialDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_DETAIL_BY_USERID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapCredentialBoundStatement(preparedStatement,userId);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				credentialDAOs.add(katavuccolServiceRepositoryMapper.mapCredentialDAO(typeDAOResult));				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialByUserId error=" + exception);
+		}
+		return credentialDAOs;
 	}
 	
 }

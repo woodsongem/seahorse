@@ -4,7 +4,7 @@
 package seahorse.internal.business.katavuccolservice.verifiers;
 
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.TypeDAO;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeMessageEntity;
 
@@ -17,6 +17,6 @@ public interface IKatavuccolServiceVerifierMapper {
 
 	CategoryMessageEntity mapCategoryMessageEntity(CategoryDAO categoryDAO);
 
-	CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(TypeDAO typeDAO);	
+	CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(CredentialTypeDAO typeDAO);	
 
 }
