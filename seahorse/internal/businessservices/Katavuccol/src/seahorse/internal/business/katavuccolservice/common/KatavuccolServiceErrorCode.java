@@ -21,6 +21,12 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String internalErrorErrorCode="Katavuccol.API.%s.InternalError";
 	private String categoryIdNotFoundErrorCode="Katavuccol.API.CreateCredentials.%s.Category.NotFound";
 	private String categoryTypeIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.NotFound";
+	private String categoryTypeExcitedMultipleEntryErrorCode="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.ExcitedMultiple";
+	private String categoryTypeDuplicateNotAllowedErrorCode= "Katavuccol.API.CreateCredentials.%s.CategoryTypeId.DuplicateNotAllowed";
+	private String parentIdInValidErrorCode="Katavuccol.API.CreateCredentials.%s.ParentId.InValid";
+	private String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.SubEntryIsNotAllowed";
+	private String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.ParentId.NotFound";
+	private String credentialSubEntryExceedLimitationErrorCode ="";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -73,5 +79,43 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String categoryTypeIdNotFoundErrorCode() {
 		return categoryTypeIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String categoryTypeIdExcitedMultipleErrorCode() {
+		return categoryTypeExcitedMultipleEntryErrorCode;
+	}
+
+	@Override
+	public String categoryTypeDuplicateNotAllowedErrorCode() {
+		
+		return categoryTypeDuplicateNotAllowedErrorCode;
+	}
+
+	@Override
+	public String parentIdInValidErrorCode() {
+		
+		return parentIdInValidErrorCode;
+	}
+
+	@Override
+	public String categoryTypeSubEntryNotAllowedErrorCode() {	
+		return categoryTypeSubEntryNotAllowedErrorCode;
+	}
+
+	@Override
+	public String parentIdNotFoundErrorCode() {		
+		return parentIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String credentialSubEntryNotAllowedErrorCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String credentialSubEntryExceedLimitationErrorCode() {		
+		return credentialSubEntryExceedLimitationErrorCode;
 	}
 }

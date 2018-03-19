@@ -1,15 +1,17 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.dal.datacontracts;
+package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.UUID;
+
+import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialDAO extends BaseDAO {
+public class CredentialMessageEntity extends BaseMessageEntity {
 
 	private UUID userId;
 	private UUID id;
@@ -18,7 +20,6 @@ public class CredentialDAO extends BaseDAO {
 	private String description;
 	private String status;
 	private UUID parentId;
-	
 	/**
 	 * @return the userId
 	 */

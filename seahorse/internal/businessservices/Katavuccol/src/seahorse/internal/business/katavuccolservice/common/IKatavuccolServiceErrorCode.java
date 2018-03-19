@@ -17,4 +17,11 @@ public interface IKatavuccolServiceErrorCode {
 	String categoryIdEmptyErrorCode();
 	String categoryIdNotFoundErrorCode();
 	String categoryTypeIdNotFoundErrorCode();
+	String categoryTypeIdExcitedMultipleErrorCode();
+	String categoryTypeDuplicateNotAllowedErrorCode();
+	String parentIdInValidErrorCode();
+	String categoryTypeSubEntryNotAllowedErrorCode();
+	String parentIdNotFoundErrorCode();
+	String credentialSubEntryNotAllowedErrorCode();
+	String credentialSubEntryExceedLimitationErrorCode();	
 }

@@ -60,6 +60,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		credentialRequestMessageEntity.setTypeId(credentialRequest.getTypeId());
 		credentialRequestMessageEntity.setValue(credentialRequest.getValue());
 		credentialRequestMessageEntity.setDescription(credentialRequest.getDescription());
+		credentialRequestMessageEntity.setParentCredentialId(credentialRequest.getParentId());
 		return credentialRequestMessageEntity;
 	}
 

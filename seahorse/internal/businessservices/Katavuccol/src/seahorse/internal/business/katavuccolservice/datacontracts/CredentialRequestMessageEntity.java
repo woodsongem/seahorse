@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
+import java.util.List;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,10 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private CredentialTypeMessageEntity credentialType;
 	private CategoryMessageEntity category;
 	private String status;
+	private List<CredentialMessageEntity> credential;
+	private Boolean isCredentialNull;
+	private String parentCredentialId;
+	private UUID parsedParentCredentialId;
 	
 	/**
 	 * @return the categoryId
@@ -183,5 +188,53 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	/**
+	 * @return the credential
+	 */
+	public List<CredentialMessageEntity> getCredential() {
+		return credential;
+	}
+	/**
+	 * @param credential the credential to set
+	 */
+	public void setCredential(List<CredentialMessageEntity> credential) {
+		this.credential = credential;
+	}
+	/**
+	 * @return the isCredentialNull
+	 */
+	public Boolean getIsCredentialNull() {
+		return isCredentialNull;
+	}
+	/**
+	 * @param isCredentialNull the isCredentialNull to set
+	 */
+	public void setIsCredentialNull(Boolean isCredentialNull) {
+		this.isCredentialNull = isCredentialNull;
+	}
+	/**
+	 * @return the parentCredentialId
+	 */
+	public String getParentCredentialId() {
+		return parentCredentialId;
+	}
+	/**
+	 * @param parentCredentialId the parentCredentialId to set
+	 */
+	public void setParentCredentialId(String parentCredentialId) {
+		this.parentCredentialId = parentCredentialId;
+	}
+	/**
+	 * @return the parsedParentCredentialId
+	 */
+	public UUID getParsedParentCredentialId() {
+		return parsedParentCredentialId;
+	}
+	/**
+	 * @param parsedParentCredentialId the parsedParentCredentialId to set
+	 */
+	public void setParsedParentCredentialId(UUID parsedParentCredentialId) {
+		this.parsedParentCredentialId = parsedParentCredentialId;
 	}	
 }

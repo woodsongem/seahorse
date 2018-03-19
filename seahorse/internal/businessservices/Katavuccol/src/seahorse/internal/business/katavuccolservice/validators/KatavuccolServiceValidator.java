@@ -42,6 +42,11 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		result = isParentIdValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		result = isCategoryIdValid(credentialRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
@@ -57,12 +62,25 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
-		
-		
 		return new Result(ResultStatus.SUCCESS);
 	}
 	
 
+
+	public Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		Result result=new Result();
+		result.setResultStatus(ResultStatus.SUCCESS);
+		if(credentialRequestMessageEntity.getParentCredentialId().isEmpty())
+		{
+			return result;
+		}
+		if(KatavuccolServiceUtility.isValidUUID(credentialRequestMessageEntity.getParentCredentialId()))
+		{
+			credentialRequestMessageEntity.setParsedParentCredentialId(UUID.fromString(credentialRequestMessageEntity.getParentCredentialId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"ParentId is inValid","ParentId",katavuccolServiceErrorCode.parentIdInValidErrorCode());
+	}
 
 	public Result isValueValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);
