@@ -70,7 +70,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
-		if(credentialRequestMessageEntity.getParentCredentialId().isEmpty())
+		if(credentialRequestMessageEntity.getParentCredentialId() == null)
 		{
 			return result;
 		}

@@ -86,22 +86,22 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return new Result(ResultStatus.SUCCESS);
 		}
 		
-		if(!credentialDAOs.stream().anyMatch(x -> x.getId()==credentialRequestMessageEntity.getParsedParentCredentialId()				
+		if(!credentialDAOs.stream().anyMatch(x -> KatavuccolServiceUtility.isEqual(x.getId(),credentialRequestMessageEntity.getParsedParentCredentialId())				
 				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS))
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "InValid Parent Id", "ParentCredentialId", katavuccolServiceErrorCode.parentIdNotFoundErrorCode());
 		}
 		
-		if(credentialDAOs.stream().anyMatch(x -> x.getCredentialTypeId()==credentialRequestMessageEntity.getParsedCredentialTypeId()
-				&& x.getCategoryId()==credentialRequestMessageEntity.getParsedParentCredentialId()
-				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS)
+		if(credentialDAOs.stream().anyMatch(x -> KatavuccolServiceUtility.isEqual(x.getCredentialTypeId(),credentialRequestMessageEntity.getParsedCredentialTypeId())
+				&& KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedParentCredentialId())
+				&& x.getStatus()== KatavuccolConstant.ACTIVESTATUS)
 				&& !credentialRequestMessageEntity.getCredentialType().getIsSubitemAllowed())
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Sub entry is not allowed", "", katavuccolServiceErrorCode.categoryTypeSubEntryNotAllowedErrorCode());
 		}
 		
-		if(credentialDAOs.stream().anyMatch(x -> x.getCredentialTypeId()==credentialRequestMessageEntity.getParsedCredentialTypeId()
-				&& x.getCategoryId()==credentialRequestMessageEntity.getParsedParentCredentialId()
+		if(credentialDAOs.stream().anyMatch(x ->KatavuccolServiceUtility.isEqual(x.getCredentialTypeId(),credentialRequestMessageEntity.getParsedCredentialTypeId())
+				&& KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedParentCredentialId())
 				&& x.getParentId() != null
 				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS))
 		{
@@ -127,8 +127,8 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return new Result(ResultStatus.SUCCESS);
 		}
 		
-		if(credentialDAOs.stream().anyMatch(x -> x.getCategoryId()==credentialRequestMessageEntity.getParsedCategoryId()
-				&& x.getCredentialTypeId() == credentialRequestMessageEntity.getParsedCredentialTypeId()
+		if(credentialDAOs.stream().anyMatch(x -> KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedCategoryId())
+				&& KatavuccolServiceUtility.isEqual(x.getCredentialTypeId() , credentialRequestMessageEntity.getParsedCredentialTypeId())
 				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS) 
 				&& !credentialRequestMessageEntity.getCredentialType().getIsDuplicationAllowed())
 		{

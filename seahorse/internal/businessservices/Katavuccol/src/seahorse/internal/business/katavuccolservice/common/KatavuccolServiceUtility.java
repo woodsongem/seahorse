@@ -21,7 +21,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 public class KatavuccolServiceUtility {
 	
 	 private KatavuccolServiceUtility() {
-		    throw new IllegalAccessError("SeahorseUtilities class");
+		    throw new IllegalAccessError("KatavuccolServiceUtility class");
 		  }
 	
 	public static boolean isNullOrEmpty(String s) {
@@ -118,5 +118,16 @@ public class KatavuccolServiceUtility {
 			resultMessageEntity.setResultMessages(resultMessage);
 		}
 		return resultMessageEntity;
+	}
+	
+
+	public static boolean isEqual(UUID source, UUID des)
+	{
+		if(source == null || des == null)
+		{
+			return false;
+		}
+		
+		return source.equals(des);
 	}
 }

@@ -60,6 +60,7 @@ public class KatavuccolService implements IKatavuccolService {
 		credentialRequestMessageEntity.setId(UUIDs.timeBased());
 		credentialRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
 		credentialRequestMessageEntity.setCreatedDate(new Date());
+		credentialRequestMessageEntity.setIsCredentialNull(false);
 		
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateCreateCredentials(credentialRequestMessageEntity);
