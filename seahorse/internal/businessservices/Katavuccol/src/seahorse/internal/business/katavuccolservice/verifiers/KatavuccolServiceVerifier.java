@@ -94,7 +94,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		
 		if(credentialDAOs.stream().anyMatch(x -> KatavuccolServiceUtility.isEqual(x.getCredentialTypeId(),credentialRequestMessageEntity.getParsedCredentialTypeId())
 				&& KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedParentCredentialId())
-				&& x.getStatus()== KatavuccolConstant.ACTIVESTATUS)
+				&& KatavuccolServiceUtility.isEqual(x.getStatus(), KatavuccolConstant.ACTIVESTATUS))
 				&& !credentialRequestMessageEntity.getCredentialType().getIsSubitemAllowed())
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Sub entry is not allowed", "", katavuccolServiceErrorCode.categoryTypeSubEntryNotAllowedErrorCode());
@@ -103,7 +103,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		if(credentialDAOs.stream().anyMatch(x ->KatavuccolServiceUtility.isEqual(x.getCredentialTypeId(),credentialRequestMessageEntity.getParsedCredentialTypeId())
 				&& KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedParentCredentialId())
 				&& x.getParentId() != null
-				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS))
+				&& KatavuccolServiceUtility.isEqual(x.getStatus(),KatavuccolConstant.ACTIVESTATUS)))
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Sub entry exceed limitation", "", katavuccolServiceErrorCode.credentialSubEntryExceedLimitationErrorCode());
 		}		
@@ -129,7 +129,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		
 		if(credentialDAOs.stream().anyMatch(x -> KatavuccolServiceUtility.isEqual(x.getCategoryId(),credentialRequestMessageEntity.getParsedCategoryId())
 				&& KatavuccolServiceUtility.isEqual(x.getCredentialTypeId() , credentialRequestMessageEntity.getParsedCredentialTypeId())
-				&& x.getStatus()==KatavuccolConstant.ACTIVESTATUS) 
+				&& KatavuccolServiceUtility.isEqual(x.getStatus(),KatavuccolConstant.ACTIVESTATUS)) 
 				&& !credentialRequestMessageEntity.getCredentialType().getIsDuplicationAllowed())
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate entry is not allowed", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeDuplicateNotAllowedErrorCode());

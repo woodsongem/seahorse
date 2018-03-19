@@ -130,4 +130,14 @@ public class KatavuccolServiceUtility {
 		
 		return source.equals(des);
 	}
+	
+	public static boolean isEqual(String source, String des)
+	{
+		if(source == null || des == null)
+		{
+			return false;
+		}
+		
+		return source.equals(des);
+	}
 }
