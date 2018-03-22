@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -29,16 +30,20 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	private final IKatavuccolServiceVerifierMapper katavuccolServiceVerifierMapper;
 	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	private final IKatavuccolServiceRepository katavuccolServiceRepository;
+	private final Ikatavuccolredis katavuccolredis;
 	
 	@Inject
 	public KatavuccolServiceVerifier(IBaseVerifier baseVerifier,
 			IKatavuccolServiceVerifierMapper katavuccolServiceVerifierMapper,
-			IKatavuccolServiceErrorCode katavuccolServiceErrorCode, IKatavuccolServiceRepository katavuccolServiceRepository)
+			IKatavuccolServiceErrorCode katavuccolServiceErrorCode, 
+			IKatavuccolServiceRepository katavuccolServiceRepository,
+			Ikatavuccolredis katavuccolredis)
 	{
 		this.baseVerifier=baseVerifier;
 		this.katavuccolServiceVerifierMapper = katavuccolServiceVerifierMapper;
 		this.katavuccolServiceErrorCode = katavuccolServiceErrorCode;
 		this.katavuccolServiceRepository = katavuccolServiceRepository;
+		this.katavuccolredis=katavuccolredis;
 	}
 	
 
@@ -140,7 +145,9 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {		
+		
+		
 		CredentialTypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
 		if(typeDAO ==null)
 		{

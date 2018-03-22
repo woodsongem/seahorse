@@ -11,7 +11,9 @@ import seahorse.internal.business.katavuccolservice.KatavuccolServiceMapper;
 import seahorse.internal.business.katavuccolservice.api.IKatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.Katavuccolredis;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepositoryMapper;
 import seahorse.internal.business.katavuccolservice.dal.KatavuccolServiceRepository;
@@ -56,5 +58,6 @@ public class KatavuccolServiceModule extends AbstractModule {
 		bind(IKatavuccolServiceVerifierMapper.class).to(KatavuccolServiceVerifierMapper.class);		
 		bind(IBaseValidator.class).to(BaseValidator.class);
 		bind(IBaseVerifier.class).to(BaseVerifier.class);
+		bind(Ikatavuccolredis.class).to(Katavuccolredis.class);
 	}
 }

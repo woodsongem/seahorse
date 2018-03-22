@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import com.datastax.driver.core.LocalDate;
+import com.google.gson.Gson;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessageEntity;
@@ -124,5 +125,10 @@ public class KatavuccolServiceUtility {
 		}
 		
 		return source.equals(des);
+	}
+	public static String getString(Object value)
+	{
+		Gson gson = new Gson();
+		return gson.toJson(value);		
 	}
 }
