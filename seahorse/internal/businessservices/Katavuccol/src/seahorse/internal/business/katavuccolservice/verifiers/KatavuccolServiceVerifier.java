@@ -5,6 +5,7 @@ package seahorse.internal.business.katavuccolservice.verifiers;
 
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
@@ -145,10 +146,19 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {		
-		
-		
-		CredentialTypeDAO typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
+	public Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {	
+		String credentialType=katavuccolredis.getvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE);
+		CredentialTypeDAO typeDAO = null;
+		if(credentialType == null)
+		{
+			typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(credentialRequestMessageEntity.getParsedCredentialTypeId(),credentialRequestMessageEntity.getParsedUserId());
+			katavuccolredis.setvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE, typeDAO);
+		}		
+		else
+		{
+			Gson gson=new Gson();
+			typeDAO =gson.fromJson(credentialType, CredentialTypeDAO.class);
+		}
 		if(typeDAO ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeIdNotFoundErrorCode());

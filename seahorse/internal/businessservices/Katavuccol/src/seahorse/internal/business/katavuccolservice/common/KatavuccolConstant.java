@@ -21,7 +21,7 @@ public class KatavuccolConstant {
 	
 	public static final String REDISSERVER = "KatavuccolService.RedisServer";
 	public static final String REDISSERVERPORT = "KatavuccolService.RedisServerPort";
-	
+	public static final String REDIS_CREDENTIALTYPE="RedisCredentialType";
 	
 	public static final String USERCREDENTIALVALIDATORSPACKAGE="seahorse.internal.business.customerservice.validators";
 	public static final String USERCREDENTIALVALIDATORSCLASSNAME="UserCredentialServiceValidator";
@@ -32,4 +32,7 @@ public class KatavuccolConstant {
 	public static final String INACTIVESTATUS = "INACTIVE";
 	public static final String ACTIVESTATUS = "ACTIVE";
 	public static final String DATEFORMAT = "yyyy-mm-dd HH:mm:ssZ";
+	
+	
+	
 }

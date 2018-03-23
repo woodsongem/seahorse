@@ -10,5 +10,8 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
  *
  */
 public interface Ikatavuccolredis  {
+
+	String getvalue(String key);
 	
+	Result setvalue(String key,Object value);
 }

@@ -3,8 +3,6 @@
  */
 package seahorse.internal.business.katavuccolservice.common;
 
-import java.io.Serializable;
-
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 
@@ -41,22 +39,20 @@ public class Katavuccolredis implements Ikatavuccolredis {
 		try (Jedis jedis = pool.getResource()) {
 			String status=jedis.set(key, data);
 		}	
-		
+	
 		return new Result(ResultStatus.SUCCESS);
 	}
 	
-	public Result getvalue(String key)
-	{		
+	
+	public String  getvalue(String key)
+	{
 		String redisServer =readPropertiesFile.getProperties(KatavuccolConstant.REDISSERVER);
 		String redisServerPort =readPropertiesFile.getProperties(KatavuccolConstant.REDISSERVERPORT);
 		
 		JedisPool pool = new JedisPool(new JedisPoolConfig(), redisServer);
 		/// Jedis implements Closeable. Hence, the jedis instance will be auto-closed after the last statement.
 		try (Jedis jedis = pool.getResource()) {
-			String data=jedis.get(key);
-			Gson gson=new Gson();
-			//gson.fromJson(data, typeOfT)
+			return jedis.get(key);			
 		}		
-		return new Result(ResultStatus.SUCCESS);
 	}
 }
