@@ -66,8 +66,9 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public GetCredentialMessageEntity mapGetCredentialMessageEntity(String userid, HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		GetCredentialMessageEntity getCredentialMessageEntity=new GetCredentialMessageEntity();
+		getCredentialMessageEntity.setUserId(userid);
+		return getCredentialMessageEntity;
 	}
 
 	@Override

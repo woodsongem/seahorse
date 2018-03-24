@@ -85,8 +85,8 @@ public class KatavuccolServiceApi {
 			try {
 				GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,httpRequest);
 				IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
-				GetCredentialsMessageEntity getCredentialsMessageEntity=katavuccolService.getCredentials(getCredentialMessageEntity);
-				credentials=katavuccolServiceApiMapper.mapCredential(getCredentialsMessageEntity);
+				credentials=katavuccolService.getCredentials(getCredentialMessageEntity);
+				
 			}
 			catch (Exception ex) {				
 				logger.error(ex);

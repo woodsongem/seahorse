@@ -1,6 +1,5 @@
-/**
- * 
- */
+
+
 package seahorse.internal.business.katavuccolservice.registries;
 
 import com.google.inject.AbstractModule;

@@ -19,6 +19,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 
 
 /**
@@ -184,6 +185,34 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 	public Result isUserIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyGetCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(getCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCredentialValid(getCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isCredentialValid(GetCredentialMessageEntity getCredentialMessageEntity) {
+		List<CredentialDAO>  credentialDAOs=katavuccolServiceRepository.getCredentialByUserId(getCredentialMessageEntity.getParsedUserId());
+		getCredentialMessageEntity.setCredentialDAO(credentialDAOs);
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

@@ -4,21 +4,22 @@
 package seahorse.internal.business.katavuccolservice;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
 import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
@@ -87,8 +88,19 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public GetCredentialsMessageEntity getCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Credential> getCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateGetCredentials(getCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+	    
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyGetCredentials(getCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+		
+		return katavuccolServiceMapper.mapCredentials(result, getCredentialMessageEntity);
 	}
 }

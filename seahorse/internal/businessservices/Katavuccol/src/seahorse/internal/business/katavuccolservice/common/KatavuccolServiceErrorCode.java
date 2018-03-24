@@ -27,6 +27,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.SubEntryIsNotAllowed";
 	private String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.ParentId.NotFound";
 	private String credentialSubEntryExceedLimitationErrorCode ="";
+	private String getCredentialMessageEntityEmptyErrorCode ="Katavuccol.API.GetCredentialsByUserId.%s.GetCredentialMessageEntity.Empty";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -118,4 +119,11 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	public String credentialSubEntryExceedLimitationErrorCode() {		
 		return credentialSubEntryExceedLimitationErrorCode;
 	}
+
+	@Override
+	public String GetCredentialMessageEntityEmptyErrorCode() {		
+		return getCredentialMessageEntityEmptyErrorCode;
+	}
+	
+	
 }

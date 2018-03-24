@@ -23,5 +23,6 @@ public interface IKatavuccolServiceErrorCode {
 	String categoryTypeSubEntryNotAllowedErrorCode();
 	String parentIdNotFoundErrorCode();
 	String credentialSubEntryNotAllowedErrorCode();
-	String credentialSubEntryExceedLimitationErrorCode();	
+	String credentialSubEntryExceedLimitationErrorCode();
+	String GetCredentialMessageEntityEmptyErrorCode();	
 }

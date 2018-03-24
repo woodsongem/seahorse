@@ -38,6 +38,7 @@ public class Katavuccolredis implements Ikatavuccolredis {
 		/// Jedis implements Closeable. Hence, the jedis instance will be auto-closed after the last statement.
 		try (Jedis jedis = pool.getResource()) {
 			String status=jedis.set(key, data);
+			jedis.expire(key, 86400);
 		}	
 	
 		return new Result(ResultStatus.SUCCESS);

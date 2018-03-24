@@ -5,6 +5,7 @@ package seahorse.internal.business.katavuccolservice.validators;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 
 
 /**
@@ -25,6 +26,11 @@ public interface IKatavuccolServiceValidator {
 	
 	Result isValueValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
-	 Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
+	Result validateGetCredentials(GetCredentialMessageEntity getCredentialMessageEntity);
+	
+	Result isGetCredentialMessageEntityValid(GetCredentialMessageEntity getCredentialMessageEntity);
+	
+	Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity);
 }

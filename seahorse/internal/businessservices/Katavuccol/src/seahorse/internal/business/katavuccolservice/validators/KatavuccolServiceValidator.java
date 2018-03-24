@@ -11,6 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtil
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 
 
 /**
@@ -152,6 +153,46 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		if(credentialRequestMessageEntity==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"credentialsRequestMessageEntity is null","CredentialsRequestMessageEntity","8989");
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Result validateGetCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
+		Result result;
+
+		result = isGetCredentialMessageEntityValid(getCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(getCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return result;
+	}
+
+	public Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity) {
+		Result result;	
+		
+		result = isUserIdValid(getCredentialMessageEntity.getUserId());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		getCredentialMessageEntity.setParsedUserId(UUID.fromString(getCredentialMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isGetCredentialMessageEntityValid(GetCredentialMessageEntity getCredentialMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);	
+		
+		if(getCredentialMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"getCredentialMessageEntity is null","GetCredentialMessageEntity",katavuccolServiceErrorCode.GetCredentialMessageEntityEmptyErrorCode());
 		}
 		
 		return result;
