@@ -8,6 +8,7 @@
     createddate timestamp,
     description text,
     modifiedby timeuuid,
+    parentId UUID,
     modifieddate timestamp,    
     status text,
     PRIMARY KEY((userid),id)
