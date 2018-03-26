@@ -13,14 +13,18 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -120,7 +124,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		List<CredentialTypeDAO> typeDAOs = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIALTYPE_DETAIL_BY_USERID_QUERY);
 			BoundStatement bound=katavuccolServiceRepositoryMapper.mapCredentialTypeBoundStatement(preparedStatement,userId);			
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
@@ -145,12 +149,51 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row typeDAOResult = resultSet.one();
-				credentialDAOs.add(katavuccolServiceRepositoryMapper.mapCredentialDAO(typeDAOResult));				
+				CredentialDAO credentialDAO=katavuccolServiceRepositoryMapper.mapCredentialDAO(typeDAOResult);
+				if(KatavuccolServiceUtility.isEqual(credentialDAO.getStatus(),KatavuccolConstant.ACTIVESTATUS))
+				{
+					credentialDAOs.add(credentialDAO);	
+				}								
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getCredentialByUserId error=" + exception);
 		}
 		return credentialDAOs;
+	}
+
+	@Override
+	public CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		CredentialDAO credentialDAO = new CredentialDAO();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapGetCredentialByIdBoundStatement(preparedStatement,deleteCredentialMessageEntity);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				CredentialDAO credentialDBDAO=katavuccolServiceRepositoryMapper.mapCredentialDAO(typeDAOResult);
+				if(KatavuccolServiceUtility.isEqual(credentialDBDAO.getStatus(),KatavuccolConstant.ACTIVESTATUS))
+				{
+					credentialDAO=credentialDBDAO;
+				}	
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialById error=" + exception);
+		}
+		return credentialDAO;
+	}
+
+	@Override
+	public OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		OutPutResponse outPutResponse=new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DELETE_CREDENTIAL_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,deleteCredentialMessageEntity);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();		
+		return outPutResponse;
 	}
 	
 }

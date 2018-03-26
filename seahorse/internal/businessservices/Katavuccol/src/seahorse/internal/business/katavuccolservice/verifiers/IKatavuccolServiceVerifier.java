@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.verifiers;
 
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
@@ -30,4 +31,10 @@ public interface IKatavuccolServiceVerifier {
 	Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity);
 	
 	Result isCredentialValid(GetCredentialMessageEntity getCredentialMessageEntity);
+
+	Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	
+	Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 }

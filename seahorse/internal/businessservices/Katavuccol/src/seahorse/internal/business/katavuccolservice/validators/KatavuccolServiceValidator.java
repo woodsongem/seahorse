@@ -6,6 +6,8 @@ package seahorse.internal.business.katavuccolservice.validators;
 import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -66,8 +68,6 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 	
-
-
 	public Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
@@ -192,7 +192,66 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		
 		if(getCredentialMessageEntity==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"getCredentialMessageEntity is null","GetCredentialMessageEntity",katavuccolServiceErrorCode.GetCredentialMessageEntityEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"getCredentialMessageEntity is null","GetCredentialMessageEntity",katavuccolServiceErrorCode.getCredentialMessageEntityEmptyErrorCode());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Result validateDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		Result result;
+		result = isDeleteCredentialRequestMessageEntityValid(deleteCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(deleteCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCredentialIdValid(deleteCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		
+		if(StringUtils.isEmpty(deleteCredentialMessageEntity.getCredentialId()))
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential id is empty","CredentialId",katavuccolServiceErrorCode.credentialIdEmptyErrorCode());
+		}
+		if(KatavuccolServiceUtility.isValidUUID(deleteCredentialMessageEntity.getCredentialId()))
+		{
+			deleteCredentialMessageEntity.setParsedCredentialId(UUID.fromString(deleteCredentialMessageEntity.getCredentialId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		else
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential id is invalid","CredentialId",katavuccolServiceErrorCode.credentialIdInValidErrorCode());
+		}		
+	}
+
+	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(deleteCredentialMessageEntity.getUserId());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		deleteCredentialMessageEntity.setParsedUserId(UUID.fromString(deleteCredentialMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(deleteCredentialMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"DeleteCredentialRequestMessageEntity is null","DeleteCredentialRequestMessageEntity",katavuccolServiceErrorCode.deleteCredentialRequestMessageEntityIsEmptyErrorCode());
 		}
 		
 		return result;

@@ -7,6 +7,7 @@ package seahorse.internal.business.katavuccolservice.dal;
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
@@ -29,4 +30,8 @@ public interface IKatavuccolServiceRepository {
 	List<CredentialDAO>  getCredentialByUserId(UUID userId);
 	
 	OutPutResponse createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 }

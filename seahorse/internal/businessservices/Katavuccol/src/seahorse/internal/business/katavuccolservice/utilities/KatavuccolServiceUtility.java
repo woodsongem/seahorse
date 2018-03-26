@@ -131,4 +131,22 @@ public class KatavuccolServiceUtility {
 		Gson gson = new Gson();
 		return gson.toJson(value);		
 	}
+	
+	public static String getString(UUID value)
+	{
+		if(value ==null)
+		{
+			return null;
+		}
+		return value.toString();
+	}
+	public static boolean isEqual(String source, String des)
+	{
+		if(source == null || des == null)
+		{
+			return false;
+		}
+		
+		return source.equals(des);
+	}
 }

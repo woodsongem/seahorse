@@ -9,13 +9,16 @@ import java.util.List;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 
 /**
  * @author sajanmje
@@ -69,20 +72,48 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 		
 		for (CredentialDAO credentialDAO : getCredentialMessageEntity.getCredentialDAO()) {
 			Credential credential=new Credential();
-			credential.setCategoryId(credentialDAO.getCategoryId().toString());
-			credential.setCreatedBy(credentialDAO.getCreatedBy().toString());
+			credential.setCategoryId(KatavuccolServiceUtility.getString(credentialDAO.getCategoryId()));
+			credential.setCreatedBy(KatavuccolServiceUtility.getString(credentialDAO.getCreatedBy()));
 			credential.setCreatedDate(credentialDAO.getCreatedDate());
-			credential.setCredentialTypeId(credentialDAO.getCredentialTypeId().toString());
+			credential.setCredentialTypeId(KatavuccolServiceUtility.getString(credentialDAO.getCredentialTypeId()));
 			credential.setDescription(credentialDAO.getDescription());
-			credential.setId(credentialDAO.getId().toString());
-			credential.setModifiedBy(credentialDAO.getModifiedBy().toString());
+			credential.setId(KatavuccolServiceUtility.getString(credentialDAO.getId()));
+			credential.setModifiedBy(KatavuccolServiceUtility.getString(credentialDAO.getModifiedBy()));
 			credential.setModifiedDate(credentialDAO.getModifiedDate());
-			credential.setParentId(credentialDAO.getParentId().toString());
+			credential.setParentId(KatavuccolServiceUtility.getString(credentialDAO.getParentId()));
 			credential.setStatus(credentialDAO.getStatus());
-			credential.setUserId(credentialDAO.getUserId().toString());
+			credential.setUserId(KatavuccolServiceUtility.getString(credentialDAO.getUserId()));
 			credentials.add(credential);
 		}		
 		return credentials;
+	}
+
+	@Override
+	public DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,Status badRequest) {
+		DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResponseMessageEntity();
+		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
+		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
+		deleteCredentialResponseMessageEntity.setHttpStatus(badRequest);
+		return deleteCredentialResponseMessageEntity;
+	}
+
+	@Override
+	public DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResponseMessageEntity();
+		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
+		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
+		deleteCredentialResponseMessageEntity.setHttpStatus(Status.OK);		
+		if (deleteCredentialResponseMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				deleteCredentialResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				deleteCredentialResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			deleteCredentialResponseMessageEntity.setHttpStatus(deleteCredentialResponseMessageEntity.getHttpStatus());
+		}
+		return deleteCredentialResponseMessageEntity;
 	}
 
 }

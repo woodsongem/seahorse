@@ -78,4 +78,21 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 		return credentialMessageEntities;
 	}
 
+	@Override
+	public CredentialMessageEntity MapCredentialMessageEntity(CredentialDAO credentialDAO) {
+		CredentialMessageEntity credentialMessageEntity=new CredentialMessageEntity();
+		credentialMessageEntity.setCategoryId(credentialDAO.getCategoryId());
+		credentialMessageEntity.setCreatedBy(credentialDAO.getCreatedBy());
+		credentialMessageEntity.setCreatedDate(credentialDAO.getCreatedDate());
+		credentialMessageEntity.setCredentialTypeId(credentialDAO.getCredentialTypeId());
+		credentialMessageEntity.setDescription(credentialDAO.getDescription());
+		credentialMessageEntity.setId(credentialDAO.getId());
+		credentialMessageEntity.setModifiedBy(credentialDAO.getModifiedBy());
+		credentialMessageEntity.setModifiedDate(credentialDAO.getModifiedDate());
+		credentialMessageEntity.setStatus(credentialDAO.getStatus());
+		credentialMessageEntity.setUserId(credentialDAO.getUserId());
+		credentialMessageEntity.setParentId(credentialDAO.getParentId());
+		return credentialMessageEntity;
+	}
+
 }

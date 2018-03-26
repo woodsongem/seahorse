@@ -23,6 +23,8 @@ public interface IKatavuccolServiceVerifierMapper {
 
 	CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(CredentialTypeDAO typeDAO);
 
-	List<CredentialMessageEntity> MapCredentialMessageEntity(List<CredentialDAO> credentialDAOs);	
+	List<CredentialMessageEntity> MapCredentialMessageEntity(List<CredentialDAO> credentialDAOs);
+
+	CredentialMessageEntity MapCredentialMessageEntity(CredentialDAO credentialDAO);	
 
 }

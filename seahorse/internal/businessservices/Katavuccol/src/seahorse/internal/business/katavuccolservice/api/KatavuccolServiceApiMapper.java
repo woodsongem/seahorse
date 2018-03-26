@@ -9,11 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
 /**
  * @author sajanmje
@@ -101,5 +108,53 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		credentialsResponse.setResultMessages(resultMessages);		
 		
 		return	credentialsResponse;
+	}
+
+	@Override
+	public UpdateCredentialRequestMessageEntity mapUpdateCredentialRequestMessageEntity(
+			UpdateCredentialRequest updateCredentialRequest, String userid, String credentialId,
+			HttpServletRequest httpRequest) {
+		UpdateCredentialRequestMessageEntity updateCredentialRequestMessageEntity=new UpdateCredentialRequestMessageEntity();
+		updateCredentialRequestMessageEntity.setUserId(userid);
+		updateCredentialRequestMessageEntity.setCredentialId(credentialId);
+		return updateCredentialRequestMessageEntity;
+	}
+
+	@Override
+	public UpdateCredentialResponse mapUpdateCredentialResponse(
+			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
+			UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCredentialRequestMessageEntity mapDeleteCredentialRequestMessageEntity(String userid,String credentialId, HttpServletRequest httpRequest) {
+		DeleteCredentialRequestMessageEntity deleteCredentialRequestMessageEntity=new DeleteCredentialRequestMessageEntity();
+		deleteCredentialRequestMessageEntity.setUserId(userid);
+		deleteCredentialRequestMessageEntity.setCredentialId(credentialId);		
+		return deleteCredentialRequestMessageEntity;
+	}
+
+	@Override
+	public DeleteCredentialResponse mapDeleteCredentialResponse(
+			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
+		if(deleteCredentialResponseMessageEntity == null || deleteCredentialResponseMessageEntity.getResultMessages() == null)
+		{
+			return deleteCredentialResponse;
+		}		
+		
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : deleteCredentialResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),deleteCredentialMessageEntity.getHttpMethod()));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		deleteCredentialResponse.setResultMessages(resultMessages);		
+		
+		return	deleteCredentialResponse;
 	}
 }

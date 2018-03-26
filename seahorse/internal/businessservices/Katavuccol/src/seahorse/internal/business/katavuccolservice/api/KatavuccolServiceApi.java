@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,13 +28,20 @@ import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 /**
@@ -49,7 +58,7 @@ public class KatavuccolServiceApi {
 
 	// POST ==> /income/category
 	@POST
-	@Path("/{userid}/credentials")
+	@Path("/{userid}/credential")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredential(@PathParam("userid") String userid,CredentialRequest credentialsRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
@@ -74,25 +83,81 @@ public class KatavuccolServiceApi {
 		return Response.status(httpStatus).entity(credentialsResponse).build();
 	}
 	
-		//GET ==> /income/category
-		@GET
-		@Path("/{userid}/credentials")
-		@Produces(MediaType.APPLICATION_JSON)
-		public Response getCredentialsByUserId(@PathParam("userid") String userid){
-			IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-			List<Credential> credentials=new ArrayList<>();
-			Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-			try {
-				GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,httpRequest);
-				IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
-				credentials=katavuccolService.getCredentials(getCredentialMessageEntity);
-				
-			}
-			catch (Exception ex) {				
-				logger.error(ex);
-			}
-			return Response.status(httpStatus).entity(credentials).build();
+	// @PUT ==> /income/category
+	@PUT
+	@Path("/{userid}/credential/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId,UpdateCredentialRequest updateCredentialRequest) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		UpdateCredentialResponse updateCredentialResponse=new UpdateCredentialResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			UpdateCredentialRequestMessageEntity updateCredentialMessageEntity=katavuccolServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest,userid,credentialId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			updateCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
+			updateCredentialMessageEntity.setHeaders(headers);
+			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=katavuccolService.updateCredential(updateCredentialMessageEntity);
+			updateCredentialResponse=katavuccolServiceApiMapper.mapUpdateCredentialResponse(updateCredentialResponseMessageEntity,updateCredentialMessageEntity);
+			httpStatus = updateCredentialResponseMessageEntity.getHttpStatus();
 		}
+		catch (Exception ex) {
+			if (updateCredentialResponse == null) {
+				updateCredentialResponse = getUpdateCredentialResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(updateCredentialResponse).build();
+	}
+	
+	// @DELETE ==> /income/category
+	@DELETE
+	@Path("/{userid}/credential/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialRequestMessageEntity(userid,credentialId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			deleteCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
+			deleteCredentialMessageEntity.setHeaders(headers);
+			DeleteCredentialResponseMessageEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredential(deleteCredentialMessageEntity);
+			deleteCredentialResponse=katavuccolServiceApiMapper.mapDeleteCredentialResponse(deleteCredentialResponseMessageEntity,deleteCredentialMessageEntity);
+			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (deleteCredentialResponse == null) {
+				deleteCredentialResponse = getDeleteCredentialResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(deleteCredentialResponse).build();
+	}
+	
+	//GET ==> /income/category
+	@GET
+	@Path("/{userid}/credential")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCredentialsByUserId(@PathParam("userid") String userid){
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		List<Credential> credentials=new ArrayList<>();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			credentials=katavuccolService.getCredentials(getCredentialMessageEntity);
+			
+		}
+		catch (Exception ex) {				
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(credentials).build();
+	}
 	
 		public Map<String, String> getHeaders(HttpServletRequest httpRequest)
 		{
@@ -115,5 +180,15 @@ public class KatavuccolServiceApi {
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
 		credentialsResponse.setResultMessages(resultMessage);
 		return credentialsResponse;
+	}
+	
+	private UpdateCredentialResponse getUpdateCredentialResponse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private DeleteCredentialResponse getDeleteCredentialResponse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

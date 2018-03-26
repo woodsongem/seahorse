@@ -16,6 +16,8 @@ import java.util.UUID;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
@@ -91,7 +93,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	@Override
 	public String getTypeDetailsByUserIdQuery(UUID userId) {
 		Object[] args = { userId };
-		return new MessageFormat(QueryConstants.GET_CREDENTIAL_TYPE_DETAIL_BY_USERID_QUERY).format(args);
+		return new MessageFormat(QueryConstants.GET_CREDENTIALTYPE_DETAIL_BY_USERID_QUERY).format(args);
 	}
 
 	@Override
@@ -159,6 +161,27 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	public BoundStatement mapCredentialBoundStatement(PreparedStatement preparedStatement, UUID userId) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,
+			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
+		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,
+			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
+		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());
+		bound.setString(DataBaseColumn.STATUS,deleteCredentialMessageEntity.getStatus());
+		bound.setUUID(DataBaseColumn.MODIFIEDBY,deleteCredentialMessageEntity.getModifiedBy());
+		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE,deleteCredentialMessageEntity.getModifiedDate());		
 		return bound;
 	}	
 }

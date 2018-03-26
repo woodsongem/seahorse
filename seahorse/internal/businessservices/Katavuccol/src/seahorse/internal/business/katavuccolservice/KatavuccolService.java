@@ -14,12 +14,16 @@ import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
 import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
@@ -102,5 +106,42 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		return katavuccolServiceMapper.mapCredentials(result, getCredentialMessageEntity);
+	}
+
+	@Override
+	public UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCredentialResponseMessageEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		//Set
+		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
+		deleteCredentialMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateDeleteCredential(deleteCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyDeleteCredential(deleteCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.ProcessorDeleteCredential(deleteCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.PostProcessorDeleteCredential(deleteCredentialMessageEntity);
+				
+		return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, deleteCredentialMessageEntity);	
+		
 	}
 }

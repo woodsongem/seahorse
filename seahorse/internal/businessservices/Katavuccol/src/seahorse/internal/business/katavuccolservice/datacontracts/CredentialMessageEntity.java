@@ -6,6 +6,7 @@ package seahorse.internal.business.katavuccolservice.datacontracts;
 import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 
 /**
  * @author sajanmje
@@ -19,7 +20,8 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	private UUID credentialTypeId;
 	private String description;
 	private String status;
-	private UUID parentId;
+	private UUID parentId;	
+	
 	/**
 	 * @return the userId
 	 */
@@ -103,5 +105,5 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setParentId(UUID parentId) {
 		this.parentId = parentId;
-	}
+	}	
 }

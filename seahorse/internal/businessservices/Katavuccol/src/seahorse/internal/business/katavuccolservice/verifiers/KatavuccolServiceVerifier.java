@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -213,6 +215,39 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(deleteCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCredentialIdValid(deleteCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(deleteCredentialMessageEntity);
+		if(credentialDAO == null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.categoryIdNotFoundErrorCode());
+		}
+		CredentialMessageEntity credentialMessageEntity=katavuccolServiceVerifierMapper.MapCredentialMessageEntity(credentialDAO);		
+		deleteCredentialMessageEntity.setCredential(credentialMessageEntity);
+		return null;
+	}
+
+
+	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

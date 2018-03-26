@@ -24,5 +24,9 @@ public interface IKatavuccolServiceErrorCode {
 	String parentIdNotFoundErrorCode();
 	String credentialSubEntryNotAllowedErrorCode();
 	String credentialSubEntryExceedLimitationErrorCode();
-	String GetCredentialMessageEntityEmptyErrorCode();	
+	String getCredentialMessageEntityEmptyErrorCode();
+	String deleteCredentialRequestMessageEntityIsEmptyErrorCode();
+	String userIdEmptyErrorCode();
+	String credentialIdEmptyErrorCode();
+	String credentialIdInValidErrorCode();	
 }

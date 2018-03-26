@@ -5,6 +5,8 @@ package seahorse.internal.business.katavuccolservice.common;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
+
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 /**
  * @author sajanmje
  *
@@ -28,6 +30,10 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.ParentId.NotFound";
 	private String credentialSubEntryExceedLimitationErrorCode ="";
 	private String getCredentialMessageEntityEmptyErrorCode ="Katavuccol.API.GetCredentialsByUserId.%s.GetCredentialMessageEntity.Empty";
+	private String deleteCredentialRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.DeleteCredentialMessageEntity.Empty";
+	private String userIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.Empty";
+	private String credentialIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.Empty";
+	private String credentialIdInValidErrorCode="Katavuccol.API.DeleteCredential.%s.CredentialId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -121,8 +127,28 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	}
 
 	@Override
-	public String GetCredentialMessageEntityEmptyErrorCode() {		
+	public String getCredentialMessageEntityEmptyErrorCode() {		
 		return getCredentialMessageEntityEmptyErrorCode;
+	}
+
+	@Override
+	public String deleteCredentialRequestMessageEntityIsEmptyErrorCode() {		
+		return deleteCredentialRequestMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String userIdEmptyErrorCode() {		
+		return userIdEmptyErrorCode;
+	}
+
+	@Override
+	public String credentialIdEmptyErrorCode() {		
+		return credentialIdEmptyErrorCode;
+	}
+
+	@Override
+	public String credentialIdInValidErrorCode() {		
+		return credentialIdInValidErrorCode;
 	}
 	
 	
