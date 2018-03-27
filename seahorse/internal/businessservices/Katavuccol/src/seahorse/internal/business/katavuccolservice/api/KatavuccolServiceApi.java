@@ -174,8 +174,7 @@ public class KatavuccolServiceApi {
 		
 	private CredentialResponse getCredentialsResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		CredentialResponse credentialsResponse = new CredentialResponse();
-		//incomeCategoryResponse.setResultStatus(ResultStatus.ERROR.toString());
+		CredentialResponse credentialsResponse = new CredentialResponse();		
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
 		credentialsResponse.setResultMessages(resultMessage);
@@ -183,12 +182,20 @@ public class KatavuccolServiceApi {
 	}
 	
 	private UpdateCredentialResponse getUpdateCredentialResponse() {
-		// TODO Auto-generated method stub
-		return null;
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		UpdateCredentialResponse updateCredentialResponse = new UpdateCredentialResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		updateCredentialResponse.setResultMessages(resultMessage);
+		return updateCredentialResponse;
 	}
 	
 	private DeleteCredentialResponse getDeleteCredentialResponse() {
-		// TODO Auto-generated method stub
-		return null;
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		DeleteCredentialResponse deleteCredentialResponse = new DeleteCredentialResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		deleteCredentialResponse.setResultMessages(resultMessage);
+		return deleteCredentialResponse;
 	}
 }

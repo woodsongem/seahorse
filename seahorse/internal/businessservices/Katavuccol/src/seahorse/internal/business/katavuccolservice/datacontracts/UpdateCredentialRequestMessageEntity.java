@@ -16,6 +16,9 @@ public class UpdateCredentialRequestMessageEntity extends BaseMessageEntity {
 	private String credentialId;
 	private UUID parsedUserId;
 	private UUID parsedCredentialId;
+	private String value;	
+	private String description;
+	
 	/**
 	 * @return the userId
 	 */
@@ -63,5 +66,29 @@ public class UpdateCredentialRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setParsedCredentialId(UUID parsedCredentialId) {
 		this.parsedCredentialId = parsedCredentialId;
+	}
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

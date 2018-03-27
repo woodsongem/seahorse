@@ -22,6 +22,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
 
 
 /**
@@ -249,6 +250,13 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyUpdateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

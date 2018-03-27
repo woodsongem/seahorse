@@ -110,8 +110,31 @@ public class KatavuccolService implements IKatavuccolService {
 
 	@Override
 	public UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		//Set		
+		updateCredentialMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateUpdateCredential(updateCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyUpdateCredential(updateCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.ProcessorUpdateCredential(updateCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.PostProcessorUpdateCredential(updateCredentialMessageEntity);
+				
+		return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, updateCredentialMessageEntity);	
 	}
 
 	@Override

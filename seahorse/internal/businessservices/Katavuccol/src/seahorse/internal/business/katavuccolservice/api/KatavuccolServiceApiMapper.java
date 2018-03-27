@@ -117,6 +117,8 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		UpdateCredentialRequestMessageEntity updateCredentialRequestMessageEntity=new UpdateCredentialRequestMessageEntity();
 		updateCredentialRequestMessageEntity.setUserId(userid);
 		updateCredentialRequestMessageEntity.setCredentialId(credentialId);
+		updateCredentialRequestMessageEntity.setValue(updateCredentialRequest.getValue());
+		updateCredentialRequestMessageEntity.setDescription(updateCredentialRequest.getDescription());
 		return updateCredentialRequestMessageEntity;
 	}
 
