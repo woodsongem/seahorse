@@ -34,7 +34,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String userIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.Empty";
 	private String credentialIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.Empty";
 	private String credentialIdInValidErrorCode="Katavuccol.API.DeleteCredential.%s.CredentialId.InValid";
-	
+	private String credentialIdNotFoundErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.NotFound";
 	@Context
 	private HttpServletRequest httpRequest;
 	
@@ -149,6 +149,11 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String credentialIdInValidErrorCode() {		
 		return credentialIdInValidErrorCode;
+	}
+
+	@Override
+	public String credentialIdNotFoundErrorCode() {	
+		return credentialIdNotFoundErrorCode;
 	}
 	
 	

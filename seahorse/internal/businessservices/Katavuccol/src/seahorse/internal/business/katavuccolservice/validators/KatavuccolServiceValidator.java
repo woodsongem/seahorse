@@ -243,6 +243,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;			
 		}
 		deleteCredentialMessageEntity.setParsedUserId(UUID.fromString(deleteCredentialMessageEntity.getUserId()));
+		deleteCredentialMessageEntity.setModifiedBy(UUID.fromString(deleteCredentialMessageEntity.getUserId()));
 		return result;
 	}
 

@@ -54,7 +54,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	@Override
 	public String getCredentialTypeDetailsByIdQuery(UUID typeId,UUID userId) {
 		Object[] args = { typeId,userId };
-		return new MessageFormat(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY).format(args);
+		return new MessageFormat(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_ID_QUERY).format(args);
 	}
 
 	@Override

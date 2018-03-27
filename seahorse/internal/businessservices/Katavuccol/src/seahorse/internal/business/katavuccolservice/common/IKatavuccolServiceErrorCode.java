@@ -28,5 +28,6 @@ public interface IKatavuccolServiceErrorCode {
 	String deleteCredentialRequestMessageEntityIsEmptyErrorCode();
 	String userIdEmptyErrorCode();
 	String credentialIdEmptyErrorCode();
-	String credentialIdInValidErrorCode();	
+	String credentialIdInValidErrorCode();
+	String credentialIdNotFoundErrorCode();	
 }

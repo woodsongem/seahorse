@@ -72,7 +72,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		CredentialTypeDAO typeDAO = null;
 		try {
 			cassandraConnector.connect(null, 0,null);
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_ID_QUERY);
 			BoundStatement bound=katavuccolServiceRepositoryMapper.mapCredentialTypeBoundStatement(preparedStatement,typeId,userId);			
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
@@ -163,10 +163,10 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 
 	@Override
 	public CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
-		CredentialDAO credentialDAO = new CredentialDAO();
+		CredentialDAO credentialDAO =null;
 		try {
 			cassandraConnector.connect(null, 0,null);
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_TYPE_DETAILS_BY_ID_QUERY);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_DETAIL_BY_USERID_ID_QUERY);
 			BoundStatement bound=katavuccolServiceRepositoryMapper.mapGetCredentialByIdBoundStatement(preparedStatement,deleteCredentialMessageEntity);			
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();

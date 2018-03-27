@@ -239,11 +239,11 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(deleteCredentialMessageEntity);
 		if(credentialDAO == null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.categoryIdNotFoundErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find credential id", "CredentialId", katavuccolServiceErrorCode.credentialIdNotFoundErrorCode());
 		}
 		CredentialMessageEntity credentialMessageEntity=katavuccolServiceVerifierMapper.MapCredentialMessageEntity(credentialDAO);		
 		deleteCredentialMessageEntity.setCredential(credentialMessageEntity);
-		return null;
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 
 
