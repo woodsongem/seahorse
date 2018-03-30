@@ -14,6 +14,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDA
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 /**
  * @author sajanmje
@@ -49,9 +50,9 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	BoundStatement mapCredentialBoundStatement(PreparedStatement preparedStatement, UUID userId);
 
-	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
-	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);	
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCredentialMessageEntity updateCredentialMessageEntity);	
 }

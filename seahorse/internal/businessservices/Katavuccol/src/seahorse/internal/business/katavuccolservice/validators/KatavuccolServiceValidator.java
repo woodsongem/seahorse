@@ -14,7 +14,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
 /**
@@ -260,8 +260,67 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	@Override
-	public Result validateUpdateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
+	public Result validateUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		Result result;
+
+		result = isUpdateCredentialMessageEntityValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCategoryIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isValueValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isValueValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		if(updateCredentialMessageEntity.getCategoryId()==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.categoryIdEmptyErrorCode());
+		}		
+		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCategoryId()))
+		{
+			updateCredentialMessageEntity.setParsedCategoryId(UUID.fromString(updateCredentialMessageEntity.getCategoryId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.inCategoryIdInValidErrorCode());
+	}
+
+	public Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		Result result;	
+		
+		result = isUserIdValid(updateCredentialMessageEntity.getUserId());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		updateCredentialMessageEntity.setParsedUserId(UUID.fromString(updateCredentialMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isUpdateCredentialMessageEntityValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(updateCredentialMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UpdateCredentialMessageEntity is null","UpdateCredentialMessageEntity",katavuccolServiceErrorCode.updateCredentialMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;		
 	}
 }

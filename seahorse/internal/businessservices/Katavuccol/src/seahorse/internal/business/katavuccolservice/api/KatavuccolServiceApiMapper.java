@@ -19,7 +19,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResp
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
 /**
@@ -111,23 +111,40 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public UpdateCredentialRequestMessageEntity mapUpdateCredentialRequestMessageEntity(
+	public UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(
 			UpdateCredentialRequest updateCredentialRequest, String userid, String credentialId,
 			HttpServletRequest httpRequest) {
-		UpdateCredentialRequestMessageEntity updateCredentialRequestMessageEntity=new UpdateCredentialRequestMessageEntity();
+		UpdateCredentialMessageEntity updateCredentialRequestMessageEntity=new UpdateCredentialMessageEntity();
 		updateCredentialRequestMessageEntity.setUserId(userid);
 		updateCredentialRequestMessageEntity.setCredentialId(credentialId);
 		updateCredentialRequestMessageEntity.setValue(updateCredentialRequest.getValue());
 		updateCredentialRequestMessageEntity.setDescription(updateCredentialRequest.getDescription());
+		updateCredentialRequestMessageEntity.setCategoryId(updateCredentialRequest.getCategoryId());
 		return updateCredentialRequestMessageEntity;
 	}
 
 	@Override
 	public UpdateCredentialResponse mapUpdateCredentialResponse(
 			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
-			UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+			UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		UpdateCredentialResponse updateCredentialResponse=new UpdateCredentialResponse();
+		if(updateCredentialResponseMessageEntity == null)
+		{
+			return updateCredentialResponse;
+		}		
+		if (updateCredentialResponseMessageEntity.getResultMessages() == null) {
+			return updateCredentialResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : updateCredentialResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),updateCredentialMessageEntity.getHttpMethod()));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		updateCredentialResponse.setResultMessages(resultMessages);		
+		
+		return	updateCredentialResponse;
 	}
 
 	@Override

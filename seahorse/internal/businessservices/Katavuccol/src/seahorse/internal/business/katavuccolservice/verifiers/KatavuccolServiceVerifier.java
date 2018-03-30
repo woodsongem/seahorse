@@ -22,7 +22,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
 /**
@@ -254,9 +254,63 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	@Override
-	public Result verifyUpdateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result verifyUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+
+		result = isCategoryIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isCredentialTypeIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}	
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isCredentialTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		String credentialType=katavuccolredis.getvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE);
+		CredentialTypeDAO typeDAO = null;
+		if(credentialType == null)
+		{
+			typeDAO = katavuccolServiceRepository.getCredentialTypeDetailById(updateCredentialMessageEntity.getParsedCredentialTypeId(),updateCredentialMessageEntity.getParsedUserId());
+			katavuccolredis.setvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE, typeDAO);
+		}		
+		else
+		{
+			Gson gson=new Gson();
+			typeDAO =gson.fromJson(credentialType, CredentialTypeDAO.class);
+		}
+		if(typeDAO ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeIdNotFoundErrorCode());
+		}	
+		
+		updateCredentialMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(updateCredentialMessageEntity.getParsedCategoryId(),updateCredentialMessageEntity.getParsedUserId());
+		if(categoryDAO ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.categoryIdNotFoundErrorCode());
+		}		
+		updateCredentialMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

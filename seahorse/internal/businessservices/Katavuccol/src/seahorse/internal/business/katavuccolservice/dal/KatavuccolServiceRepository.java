@@ -24,6 +24,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDA
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
@@ -191,6 +192,18 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		cassandraConnector.connect(null, 0,null);
 		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DELETE_CREDENTIAL_QUERY);
 		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,deleteCredentialMessageEntity);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();		
+		return outPutResponse;
+	}
+
+	@Override
+	public OutPutResponse updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		OutPutResponse outPutResponse=new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_UPDATE_CREDENTIAL_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,updateCredentialMessageEntity);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();		
 		return outPutResponse;

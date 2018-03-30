@@ -22,7 +22,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
@@ -109,7 +109,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialRequestMessageEntity updateCredentialMessageEntity) {
+	public UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		//Set		
 		updateCredentialMessageEntity.setModifiedDate(new Date());
 		

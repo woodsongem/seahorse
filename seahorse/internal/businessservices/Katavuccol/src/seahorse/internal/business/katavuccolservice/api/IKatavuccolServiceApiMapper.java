@@ -17,7 +17,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResp
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
 /**
@@ -36,12 +36,12 @@ public interface IKatavuccolServiceApiMapper {
 
 	CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity, CredentialRequestMessageEntity credentialMessageEntity);
 
-	UpdateCredentialRequestMessageEntity mapUpdateCredentialRequestMessageEntity(
+	UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(
 			UpdateCredentialRequest updateCredentialRequest, String userid, String credentialId,
 			HttpServletRequest httpRequest);
 
 	UpdateCredentialResponse mapUpdateCredentialResponse(UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
-			UpdateCredentialRequestMessageEntity updateCredentialMessageEntity);
+			UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 	DeleteCredentialRequestMessageEntity mapDeleteCredentialRequestMessageEntity(String userid, String credentialId,
 			HttpServletRequest httpRequest);
