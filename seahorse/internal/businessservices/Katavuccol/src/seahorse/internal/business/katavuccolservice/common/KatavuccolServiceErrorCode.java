@@ -36,6 +36,18 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String credentialIdInValidErrorCode="Katavuccol.API.DeleteCredential.%s.CredentialId.InValid";
 	private String credentialIdNotFoundErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.NotFound";
 	private String updateCredentialMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.UpdateCredentialMessageEntity.Empty";
+	private String updateCredentialInValidUserIdErrorCode="Katavuccol.API.UpdateCredential.%s.UserId.InValid";
+	private String updateCredentialEmptyUserIdErrorCode ="Katavuccol.API.UpdateCredential.%s.UserId.Empty";
+	private String deleteCredentialEmptyUserIdErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.Empty";
+	private String deleteCredentialInValidUserIdErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.InValid";
+	private String getCredentialEmptyUserIdErrorCode="Katavuccol.API.GetCredential.%s.UserId.Empty";
+	private String getCredentialInValidUserIdErrorCode="Katavuccol.API.GetCredential.%s.UserId.InValid";
+	private String createCredentialEmptyUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.Empty";
+	private String createCredentialInValidUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.InValid";
+	private String updateCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
+	private String updateCategoryIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
+	private String updateCategoryTypeIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.Empty";
+	private String updateCategoryTypeIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -162,6 +174,64 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	public String updateCredentialMessageEntityIsEmptyErrorCode() {		
 		return updateCredentialMessageEntityIsEmptyErrorCode;
 	}
-	
-	
+
+	@Override
+	public String updateCredentialInValidUserIdErrorCode() {		
+		return updateCredentialInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String updateCredentialEmptyUserIdErrorCode() {		
+		return updateCredentialEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String deleteCredentialEmptyUserIdErrorCode() {		
+		return deleteCredentialEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String deleteCredentialInValidUserIdErrorCode() {		
+		return deleteCredentialInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String getCredentialEmptyUserIdErrorCode() {		
+		return getCredentialEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String getCredentialInValidUserIdErrorCode() {		
+		return getCredentialInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String createCredentialEmptyUserIdErrorCode() {		
+		return createCredentialEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String createCredentialInValidUserIdErrorCode() {		
+		return createCredentialInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String updateCategoryIdEmptyErrorCode() {		
+		return updateCategoryIdEmptyErrorCode;
+	}
+
+	@Override
+	public String updateCategoryIdInValidErrorCode() {		
+		return updateCategoryIdInValidErrorCode;
+	}
+
+	@Override
+	public String updateCategoryTypeIdEmptyErrorCode() {		
+		return updateCategoryTypeIdEmptyErrorCode;
+	}
+
+	@Override
+	public String updateCategoryTypeIdInValidErrorCode() {		
+		return updateCategoryTypeIdInValidErrorCode;
+	}
 }

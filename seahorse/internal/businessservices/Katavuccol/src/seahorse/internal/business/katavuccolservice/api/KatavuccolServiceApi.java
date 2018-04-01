@@ -96,7 +96,7 @@ public class KatavuccolServiceApi {
 			UpdateCredentialMessageEntity updateCredentialMessageEntity=katavuccolServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest,userid,credentialId,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
-			updateCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
+			updateCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());			
 			updateCredentialMessageEntity.setHeaders(headers);
 			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=katavuccolService.updateCredential(updateCredentialMessageEntity);
 			updateCredentialResponse=katavuccolServiceApiMapper.mapUpdateCredentialResponse(updateCredentialResponseMessageEntity,updateCredentialMessageEntity);

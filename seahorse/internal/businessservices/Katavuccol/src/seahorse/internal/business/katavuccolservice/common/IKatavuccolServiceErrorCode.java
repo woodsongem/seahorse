@@ -9,6 +9,7 @@ package seahorse.internal.business.katavuccolservice.common;
  */
 public interface IKatavuccolServiceErrorCode {
 
+	String updateCredentialInValidUserIdErrorCode();
 	String internalError();
 	String getPasswordIsNullErrorCode();
 	String inCategoryIdInValidErrorCode();
@@ -30,5 +31,16 @@ public interface IKatavuccolServiceErrorCode {
 	String credentialIdEmptyErrorCode();
 	String credentialIdInValidErrorCode();
 	String credentialIdNotFoundErrorCode();
-	String updateCredentialMessageEntityIsEmptyErrorCode();	
+	String updateCredentialMessageEntityIsEmptyErrorCode();
+	String updateCredentialEmptyUserIdErrorCode();
+	String deleteCredentialEmptyUserIdErrorCode();
+	String deleteCredentialInValidUserIdErrorCode();
+	String getCredentialEmptyUserIdErrorCode();
+	String getCredentialInValidUserIdErrorCode();
+	String createCredentialEmptyUserIdErrorCode();
+	String createCredentialInValidUserIdErrorCode();
+	String updateCategoryIdEmptyErrorCode();
+	String updateCategoryIdInValidErrorCode();
+	String updateCategoryTypeIdEmptyErrorCode();
+	String updateCategoryTypeIdInValidErrorCode();	
 }

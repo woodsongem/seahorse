@@ -123,7 +123,9 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isUserIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result;		
 		
-		result = isUserIdValid(credentialRequestMessageEntity.getUserId());
+		result = isUserIdValid(credentialRequestMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.createCredentialInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.createCredentialEmptyUserIdErrorCode());
 		if(result.getResultStatus()!=ResultStatus.SUCCESS)
 		{
 			return result;			
@@ -132,12 +134,12 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return result;
 	}
 	
-	public Result isUserIdValid(String userId)
+	public Result isUserIdValid(String userId,String errorCode,String nullErrorCode)
 	{
 		Result result=new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
 		if (StringUtils.isBlank(userId)) {
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserId is null","UserId","8989");
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserId is null","UserId",nullErrorCode);
 		}
 		
 		if(KatavuccolServiceUtility.isValidUUID(userId))
@@ -145,7 +147,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
-		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Invalid user id","UserId","8989");
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Invalid user id","UserId",errorCode);
 	}
 	
 	public Result isCredentialsRequestMessageEntityValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
@@ -179,7 +181,9 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isUserIdValid(GetCredentialMessageEntity getCredentialMessageEntity) {
 		Result result;	
 		
-		result = isUserIdValid(getCredentialMessageEntity.getUserId());
+		result = isUserIdValid(getCredentialMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.getCredentialInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.getCredentialEmptyUserIdErrorCode());
 		if(result.getResultStatus()!=ResultStatus.SUCCESS)
 		{
 			return result;			
@@ -238,7 +242,9 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		Result result;		
 		
-		result = isUserIdValid(deleteCredentialMessageEntity.getUserId());
+		result = isUserIdValid(deleteCredentialMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.deleteCredentialInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.deleteCredentialEmptyUserIdErrorCode());
 		if(result.getResultStatus()!=ResultStatus.SUCCESS)
 		{
 			return result;			
@@ -280,7 +286,25 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		result = isCategoryTypeIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isCategoryTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		if(updateCredentialMessageEntity.getCredentialTypeId() ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is null","TypeId",katavuccolServiceErrorCode.updateCategoryTypeIdEmptyErrorCode());
+		}
+		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCategoryId()))
+		{
+			updateCredentialMessageEntity.setParsedCredentialTypeId(UUID.fromString(updateCredentialMessageEntity.getCredentialTypeId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is inValid","TypeId",katavuccolServiceErrorCode.updateCategoryTypeIdInValidErrorCode());
 	}
 
 	public Result isValueValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
@@ -291,20 +315,21 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		if(updateCredentialMessageEntity.getCategoryId()==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.categoryIdEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.updateCategoryIdEmptyErrorCode());
 		}		
 		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCategoryId()))
 		{
 			updateCredentialMessageEntity.setParsedCategoryId(UUID.fromString(updateCredentialMessageEntity.getCategoryId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
-		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.inCategoryIdInValidErrorCode());
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.updateCategoryIdInValidErrorCode());
 	}
 
 	public Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		Result result;	
-		
-		result = isUserIdValid(updateCredentialMessageEntity.getUserId());
+		Result result;
+		result = isUserIdValid(updateCredentialMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.updateCredentialInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.updateCredentialEmptyUserIdErrorCode());
 		if(result.getResultStatus()!=ResultStatus.SUCCESS)
 		{
 			return result;			
