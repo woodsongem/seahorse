@@ -281,10 +281,6 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
-		result = isValueValid(updateCredentialMessageEntity);
-		if (result.getResultStatus() != ResultStatus.SUCCESS) {
-			return result;
-		}
 		
 		result = isCategoryTypeIdValid(updateCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -307,10 +303,6 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is inValid","TypeId",katavuccolServiceErrorCode.updateCategoryTypeIdInValidErrorCode());
 	}
 
-	public Result isValueValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		if(updateCredentialMessageEntity.getCategoryId()==null)

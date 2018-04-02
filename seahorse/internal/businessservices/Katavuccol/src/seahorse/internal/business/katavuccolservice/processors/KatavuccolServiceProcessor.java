@@ -3,10 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.processors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.inject.Inject;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -58,6 +61,33 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 
 	@Override
 	public Result ProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		Result result;
+
+		result = UpdateCredential(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+	
+	public Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity)
+	{
+		if(StringUtils.isEmpty(updateCredentialMessageEntity.getDescription()))
+		{
+			updateCredentialMessageEntity.setDescription(updateCredentialMessageEntity.getCredential().getDescription());
+		}
+		
+		if(updateCredentialMessageEntity.getParsedCredentialTypeId() == null)
+		{
+			updateCredentialMessageEntity.setParsedCredentialTypeId(updateCredentialMessageEntity.getCredential().getCredentialTypeId());
+		}
+		
+		if(updateCredentialMessageEntity.getValue() == null)
+		{
+			updateCredentialMessageEntity.setValue(updateCredentialMessageEntity.getCredential().getValue());
+		}
+		
 		OutPutResponse outPutResponse=katavuccolServiceRepository.updateCredential(updateCredentialMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{

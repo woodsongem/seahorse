@@ -11,6 +11,7 @@ public class UpdateCredentialRequest extends RequestBase {
 	private String value;	
 	private String description;
 	private String categoryId;
+	private String credentialTypeId;
 	/**
 	 * @return the value
 	 */
@@ -46,5 +47,17 @@ public class UpdateCredentialRequest extends RequestBase {
 	 */
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
+	}
+	/**
+	 * @return the credentialTypeId
+	 */
+	public String getCredentialTypeId() {
+		return credentialTypeId;
+	}
+	/**
+	 * @param credentialTypeId the credentialTypeId to set
+	 */
+	public void setCredentialTypeId(String credentialTypeId) {
+		this.credentialTypeId = credentialTypeId;
 	}	
 }

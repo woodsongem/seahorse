@@ -24,6 +24,7 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	private UUID parsedCredentialTypeId;
 	private CredentialTypeMessageEntity credentialType;
 	private CategoryMessageEntity category;
+	private CredentialMessageEntity credential;
 	
 	/**
 	 * @return the userId
@@ -168,5 +169,17 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setCategory(CategoryMessageEntity category) {
 		this.category = category;
+	}
+	/**
+	 * @return the credential
+	 */
+	public CredentialMessageEntity getCredential() {
+		return credential;
+	}
+	/**
+	 * @param credential the credential to set
+	 */
+	public void setCredential(CredentialMessageEntity credential) {
+		this.credential = credential;
 	}
 }

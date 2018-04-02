@@ -44,9 +44,7 @@ public interface IKatavuccolServiceValidator {
 
 	Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
-	Result validateUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity); 
-	
-	Result isValueValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);		
+	Result validateUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);			
 
 	Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity); 
 

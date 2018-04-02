@@ -21,6 +21,7 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	private String description;
 	private String status;
 	private UUID parentId;	
+	private String value;
 	
 	/**
 	 * @return the userId
@@ -105,5 +106,17 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setParentId(UUID parentId) {
 		this.parentId = parentId;
+	}
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
 	}	
 }

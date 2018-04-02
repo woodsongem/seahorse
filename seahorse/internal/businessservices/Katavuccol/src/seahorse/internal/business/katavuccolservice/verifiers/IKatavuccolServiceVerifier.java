@@ -46,4 +46,6 @@ public interface IKatavuccolServiceVerifier {
 	Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 	Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+	
+	Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 }

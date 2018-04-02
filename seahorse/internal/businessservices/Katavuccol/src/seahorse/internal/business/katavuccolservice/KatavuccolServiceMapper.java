@@ -121,15 +121,40 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	@Override
 	public UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result,
 			Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=new UpdateCredentialResponseMessageEntity();
+		updateCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
+		updateCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());				
+		if (updateCredentialResponseMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				updateCredentialResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				updateCredentialResponseMessageEntity.setHttpStatus(badRequest);
+		}
+		else
+		{
+			updateCredentialResponseMessageEntity.setHttpStatus(updateCredentialResponseMessageEntity.getHttpStatus());
+		}
+		return updateCredentialResponseMessageEntity;
 	}
 
 	@Override
 	public UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result,
 			UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=new UpdateCredentialResponseMessageEntity();
+		updateCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
+		updateCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
+		updateCredentialResponseMessageEntity.setHttpStatus(Status.OK);		
+		if (updateCredentialResponseMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				updateCredentialResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				updateCredentialResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			updateCredentialResponseMessageEntity.setHttpStatus(updateCredentialResponseMessageEntity.getHttpStatus());
+		}
+		return updateCredentialResponseMessageEntity;
 	}
 
 }

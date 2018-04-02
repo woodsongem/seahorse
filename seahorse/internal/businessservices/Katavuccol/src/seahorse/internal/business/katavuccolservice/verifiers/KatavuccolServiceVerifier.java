@@ -270,12 +270,35 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		result = isCredentialTypeIdValid(updateCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
-		}	
+		}
+		
+		result = isCredentialIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 
 
+	public Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	public Result isCredentialTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		
+		if(updateCredentialMessageEntity.getParsedCredentialTypeId() ==null)
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
+		
+		if(updateCredentialMessageEntity.getParsedCredentialTypeId()==updateCredentialMessageEntity.getCredentialType().getId())
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
+		
 		String credentialType=katavuccolredis.getvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE);
 		CredentialTypeDAO typeDAO = null;
 		if(credentialType == null)
@@ -290,7 +313,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		}
 		if(typeDAO ==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.categoryTypeIdNotFoundErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.updateCategoryTypeIdNotFoundErrorCode());
 		}	
 		
 		updateCredentialMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));		

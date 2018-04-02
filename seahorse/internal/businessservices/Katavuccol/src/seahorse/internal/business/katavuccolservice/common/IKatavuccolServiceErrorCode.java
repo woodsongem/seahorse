@@ -42,5 +42,6 @@ public interface IKatavuccolServiceErrorCode {
 	String updateCategoryIdEmptyErrorCode();
 	String updateCategoryIdInValidErrorCode();
 	String updateCategoryTypeIdEmptyErrorCode();
-	String updateCategoryTypeIdInValidErrorCode();	
+	String updateCategoryTypeIdInValidErrorCode();
+	String updateCategoryTypeIdNotFoundErrorCode();	
 }
