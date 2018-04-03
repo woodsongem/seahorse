@@ -261,7 +261,12 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
-
+		
+		result = isCredentialIdValid(updateCredentialMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		result = isCategoryIdValid(updateCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
@@ -272,18 +277,20 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return result;
 		}
 		
-		result = isCredentialIdValid(updateCredentialMessageEntity);
-		if (result.getResultStatus() != ResultStatus.SUCCESS) {
-			return result;
-		}
-		
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 
 
 	public Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(
+				updateCredentialMessageEntity.getParsedUserId(),
+				updateCredentialMessageEntity.getParsedCredentialId());
+		if(credentialDAO == null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
+		}
+		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(credentialDAO));
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 
@@ -293,12 +300,6 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		{
 			return new Result(ResultStatus.SUCCESS);
 		}
-		
-		if(updateCredentialMessageEntity.getParsedCredentialTypeId()==updateCredentialMessageEntity.getCredentialType().getId())
-		{
-			return new Result(ResultStatus.SUCCESS);
-		}
-		
 		String credentialType=katavuccolredis.getvalue(KatavuccolConstant.REDIS_CREDENTIALTYPE);
 		CredentialTypeDAO typeDAO = null;
 		if(credentialType == null)

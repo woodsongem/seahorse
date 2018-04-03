@@ -54,5 +54,7 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
-	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCredentialMessageEntity updateCredentialMessageEntity);	
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID credentialId);	
 }

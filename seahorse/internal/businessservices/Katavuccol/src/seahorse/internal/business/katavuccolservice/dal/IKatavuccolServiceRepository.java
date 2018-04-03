@@ -37,4 +37,6 @@ public interface IKatavuccolServiceRepository {
 	OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
 	OutPutResponse updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	CredentialDAO getCredentialById(UUID userId, UUID credentialId);
 }

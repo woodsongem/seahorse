@@ -60,7 +60,11 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row categoryDAOResult = resultSet.one();
-				categoryDAO = katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult);				
+				categoryDAO = katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult);
+				if(categoryDAO.getStatus() != KatavuccolConstant.ACTIVESTATUS)
+				{
+					categoryDAO=null;
+				}
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getCategoryDetailById error=" + exception);
@@ -162,6 +166,29 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		return credentialDAOs;
 	}
 
+	@Override
+	public CredentialDAO getCredentialById(UUID userId,UUID credentialId) {
+		CredentialDAO credentialDAO =null;
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREDENTIAL_DETAIL_BY_USERID_ID_QUERY);
+			BoundStatement bound=katavuccolServiceRepositoryMapper.mapGetCredentialByIdBoundStatement(preparedStatement,userId,credentialId);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				CredentialDAO credentialDBDAO=katavuccolServiceRepositoryMapper.mapCredentialDAO(typeDAOResult);
+				if(KatavuccolServiceUtility.isEqual(credentialDBDAO.getStatus(),KatavuccolConstant.ACTIVESTATUS))
+				{
+					credentialDAO=credentialDBDAO;
+				}	
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialById error=" + exception);
+		}
+		return credentialDAO;
+	}
+	
 	@Override
 	public CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		CredentialDAO credentialDAO =null;

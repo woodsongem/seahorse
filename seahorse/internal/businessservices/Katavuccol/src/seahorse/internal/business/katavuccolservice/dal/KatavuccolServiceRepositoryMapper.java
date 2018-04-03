@@ -198,5 +198,13 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID,updateCredentialMessageEntity.getParsedCredentialTypeId());
 		bound.setString(DataBaseColumn.CREDENTIAL_DESCRIPTION,updateCredentialMessageEntity.getDescription());
 		return bound;
+	}
+
+	@Override
+	public BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID credentialId) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		bound.setUUID(DataBaseColumn.ID,credentialId);
+		return bound;
 	}	
 }
