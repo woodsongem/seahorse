@@ -4,6 +4,8 @@
 package seahorse.internal.business.katavuccolservice.verifiers;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.inject.Inject;
@@ -282,14 +284,24 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(
-				updateCredentialMessageEntity.getParsedUserId(),
-				updateCredentialMessageEntity.getParsedCredentialId());
-		if(credentialDAO == null)
+		List<CredentialDAO>  credentialDAOs=katavuccolServiceRepository.getCredentialByUserId(
+				updateCredentialMessageEntity.getParsedUserId());
+		if(credentialDAOs == null || credentialDAOs.isEmpty() || 
+				!credentialDAOs
+				.stream()
+				.anyMatch(x-> KatavuccolServiceUtility.isEqual(x.getId(),updateCredentialMessageEntity.getParsedCredentialId())))
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
 		}
-		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(credentialDAO));
+		List<CredentialDAO>  filteredCredentialDAOs=credentialDAOs.stream().filter(x->KatavuccolServiceUtility.isEqual(x.getCategoryId(), updateCredentialMessageEntity.getParsedCategoryId()))
+		.collect(Collectors.toList());
+		
+		if(filteredCredentialDAOs == null || filteredCredentialDAOs.isEmpty())
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
+		}
+		
+		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(filteredCredentialDAOs));
 		return new Result(ResultStatus.SUCCESS);
 	}
 
@@ -317,7 +329,12 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category type id", "CategoryTypeId", katavuccolServiceErrorCode.updateCategoryTypeIdNotFoundErrorCode());
 		}	
 		
-		updateCredentialMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));		
+		updateCredentialMessageEntity.setCredentialType(katavuccolServiceVerifierMapper.mapCredentialTypeDAOMessageEntity(typeDAO));
+		
+		if(!updateCredentialMessageEntity.getCredential().stream().anyMatch(x->KatavuccolServiceUtility.isEqual(x.getCredentialTypeId(), updateCredentialMessageEntity.getParsedCredentialId())))
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
 		return new Result(ResultStatus.SUCCESS);
 	}
 
@@ -328,7 +345,8 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.categoryIdNotFoundErrorCode());
 		}		
-		updateCredentialMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
+		updateCredentialMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));		
+				
 		return new Result(ResultStatus.SUCCESS);
 	}
 

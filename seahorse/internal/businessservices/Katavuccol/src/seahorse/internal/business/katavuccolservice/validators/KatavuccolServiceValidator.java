@@ -277,7 +277,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
-		result = isCategoryIdValid(updateCredentialMessageEntity);
+		result = isCredentialIdValid(updateCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -290,12 +290,25 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
+	public Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		if(updateCredentialMessageEntity.getCredentialId() ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential Id is null","TypeId",katavuccolServiceErrorCode.updateCredentialIdEmptyErrorCode());
+		}
+		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCredentialId()))
+		{
+			updateCredentialMessageEntity.setParsedCategoryId(UUID.fromString(updateCredentialMessageEntity.getCredentialId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential is inValid","CredentialId",katavuccolServiceErrorCode.updateCredentialIdInValidErrorCode());
+	}
+
 	public Result isCategoryTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		if(updateCredentialMessageEntity.getCredentialTypeId() ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"TypeId is null","TypeId",katavuccolServiceErrorCode.updateCategoryTypeIdEmptyErrorCode());
 		}
-		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCategoryId()))
+		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCredentialTypeId()))
 		{
 			updateCredentialMessageEntity.setParsedCredentialTypeId(UUID.fromString(updateCredentialMessageEntity.getCredentialTypeId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");

@@ -9,8 +9,7 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  */
 public class UpdateCredentialRequest extends RequestBase {	
 	private String value;	
-	private String description;
-	private String categoryId;
+	private String description;	
 	private String credentialTypeId;
 	/**
 	 * @return the value
@@ -36,18 +35,7 @@ public class UpdateCredentialRequest extends RequestBase {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/**
-	 * @return the categoryId
-	 */
-	public String getCategoryId() {
-		return categoryId;
-	}
-	/**
-	 * @param categoryId the categoryId to set
-	 */
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
+	
 	/**
 	 * @return the credentialTypeId
 	 */

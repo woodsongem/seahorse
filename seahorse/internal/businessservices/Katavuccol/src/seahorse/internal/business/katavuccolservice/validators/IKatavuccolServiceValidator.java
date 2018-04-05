@@ -55,4 +55,6 @@ public interface IKatavuccolServiceValidator {
 	Result isUserIdValid(String userId,String errorCode,String nullErrorCode);
 	
 	Result isCategoryTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+	
+	Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 }

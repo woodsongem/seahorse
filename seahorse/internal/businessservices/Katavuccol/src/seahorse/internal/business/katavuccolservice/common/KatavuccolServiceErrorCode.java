@@ -50,6 +50,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String updateCategoryTypeIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.InValid";
 	private String updateCategoryTypeIdNotFoundErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.NotFound";
 	private String updateCategoryIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.%s.CredentialId.NotFound";
+	private String updateCredentialIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
+	private String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -245,5 +247,15 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String updateCategoryIdNotFoundErrorCode() {		
 		return updateCategoryIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String updateCredentialIdEmptyErrorCode() {		
+		return updateCredentialIdEmptyErrorCode;
+	}
+
+	@Override
+	public String updateCredentialIdInValidErrorCode() {		
+		return updateCredentialIdInValidErrorCode;
 	}
 }

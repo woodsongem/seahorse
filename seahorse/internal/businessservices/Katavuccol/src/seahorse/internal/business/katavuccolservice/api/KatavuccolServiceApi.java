@@ -58,7 +58,7 @@ public class KatavuccolServiceApi {
 
 	// POST ==> /income/category
 	@POST
-	@Path("/{userid}/credential")
+	@Path("/{userid}/category/credential/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredential(@PathParam("userid") String userid,CredentialRequest credentialsRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
@@ -85,7 +85,7 @@ public class KatavuccolServiceApi {
 	
 	// @PUT ==> /income/category
 	@PUT
-	@Path("/{userid}/credential/{id}")
+	@Path("/{userid}/category/credential/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId,UpdateCredentialRequest updateCredentialRequest) 
 	{
@@ -113,7 +113,7 @@ public class KatavuccolServiceApi {
 	
 	// @DELETE ==> /income/category
 	@DELETE
-	@Path("/{userid}/credential/{id}")
+	@Path("/{userid}/category/credential/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId) 
 	{
@@ -141,7 +141,7 @@ public class KatavuccolServiceApi {
 	
 	//GET ==> /income/category
 	@GET
-	@Path("/{userid}/credential")
+	@Path("/{userid}/category/credential")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialsByUserId(@PathParam("userid") String userid){
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();

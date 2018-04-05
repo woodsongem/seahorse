@@ -3,6 +3,9 @@
  */
 package seahorse.internal.business.katavuccolservice.processors;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.inject.Inject;
@@ -14,6 +17,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutR
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -73,19 +77,28 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	
 	public Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity)
 	{
+		List<CredentialMessageEntity> credentialMessageEntites=
+		updateCredentialMessageEntity
+		.getCredential()
+		.stream()
+		.filter(x-> KatavuccolServiceUtility.isEqual(x.getId(),updateCredentialMessageEntity.getParsedCredentialId()))
+		.collect(Collectors.toList());
+		
+		CredentialMessageEntity credentialMessageEntity=credentialMessageEntites.get(0);
+		
 		if(StringUtils.isEmpty(updateCredentialMessageEntity.getDescription()))
 		{
-			updateCredentialMessageEntity.setDescription(updateCredentialMessageEntity.getCredential().getDescription());
+			updateCredentialMessageEntity.setDescription(credentialMessageEntity.getDescription());
 		}
 		
 		if(updateCredentialMessageEntity.getParsedCredentialTypeId() == null)
 		{
-			updateCredentialMessageEntity.setParsedCredentialTypeId(updateCredentialMessageEntity.getCredential().getCredentialTypeId());
+			updateCredentialMessageEntity.setParsedCredentialTypeId(credentialMessageEntity.getCredentialTypeId());
 		}
 		
 		if(updateCredentialMessageEntity.getValue() == null)
 		{
-			updateCredentialMessageEntity.setValue(updateCredentialMessageEntity.getCredential().getValue());
+			updateCredentialMessageEntity.setValue(credentialMessageEntity.getValue());
 		}
 		
 		OutPutResponse outPutResponse=katavuccolServiceRepository.updateCredential(updateCredentialMessageEntity);

@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
+import java.util.List;
 import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
@@ -24,7 +25,7 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	private UUID parsedCredentialTypeId;
 	private CredentialTypeMessageEntity credentialType;
 	private CategoryMessageEntity category;
-	private CredentialMessageEntity credential;
+	private List<CredentialMessageEntity> credential;
 	
 	/**
 	 * @return the userId
@@ -173,13 +174,13 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credential
 	 */
-	public CredentialMessageEntity getCredential() {
+	public List<CredentialMessageEntity> getCredential() {
 		return credential;
 	}
 	/**
 	 * @param credential the credential to set
 	 */
-	public void setCredential(CredentialMessageEntity credential) {
+	public void setCredential(List<CredentialMessageEntity> credential) {
 		this.credential = credential;
 	}
 }
