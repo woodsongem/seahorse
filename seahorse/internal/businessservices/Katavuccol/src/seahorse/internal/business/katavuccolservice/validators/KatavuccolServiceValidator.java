@@ -297,7 +297,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCredentialId()))
 		{
-			updateCredentialMessageEntity.setParsedCategoryId(UUID.fromString(updateCredentialMessageEntity.getCredentialId()));
+			updateCredentialMessageEntity.setParsedCredentialId(UUID.fromString(updateCredentialMessageEntity.getCredentialId()));
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential is inValid","CredentialId",katavuccolServiceErrorCode.updateCredentialIdInValidErrorCode());

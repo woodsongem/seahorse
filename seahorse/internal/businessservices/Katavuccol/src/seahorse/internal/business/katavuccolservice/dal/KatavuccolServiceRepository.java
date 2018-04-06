@@ -61,7 +61,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			while (!resultSet.isExhausted()) {
 				final Row categoryDAOResult = resultSet.one();
 				categoryDAO = katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult);
-				if(categoryDAO.getStatus() != KatavuccolConstant.ACTIVESTATUS)
+				if(!KatavuccolServiceUtility.isEqual(categoryDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
 				{
 					categoryDAO=null;
 				}

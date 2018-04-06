@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.FluentIterable;
 import com.google.inject.Inject;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -76,13 +77,12 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 	
 	public Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity)
-	{
+	{		
 		List<CredentialMessageEntity> credentialMessageEntites=
-		updateCredentialMessageEntity
-		.getCredential()
-		.stream()
+		FluentIterable
+		.from(updateCredentialMessageEntity.getCredential())
 		.filter(x-> KatavuccolServiceUtility.isEqual(x.getId(),updateCredentialMessageEntity.getParsedCredentialId()))
-		.collect(Collectors.toList());
+		.toList();
 		
 		CredentialMessageEntity credentialMessageEntity=credentialMessageEntites.get(0);
 		

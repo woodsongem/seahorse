@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.FluentIterable;
 import com.google.gson.Gson;
 import com.google.inject.Inject;
 
+import jersey.repackaged.com.google.common.collect.Collections2;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
@@ -286,22 +288,29 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	public Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		List<CredentialDAO>  credentialDAOs=katavuccolServiceRepository.getCredentialByUserId(
 				updateCredentialMessageEntity.getParsedUserId());
-		if(credentialDAOs == null || credentialDAOs.isEmpty() || 
-				!credentialDAOs
-				.stream()
-				.anyMatch(x-> KatavuccolServiceUtility.isEqual(x.getId(),updateCredentialMessageEntity.getParsedCredentialId())))
+		
+		List<CredentialDAO>  curCredentialDAOs =FluentIterable
+								.from(credentialDAOs)
+								.filter(x-> KatavuccolServiceUtility.isEqual(x.getId(),updateCredentialMessageEntity.getParsedCredentialId()))
+								.toList();
+		
+		if(credentialDAOs == null || credentialDAOs.isEmpty() || curCredentialDAOs.isEmpty())
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
 		}
-		List<CredentialDAO>  filteredCredentialDAOs=credentialDAOs.stream().filter(x->KatavuccolServiceUtility.isEqual(x.getCategoryId(), updateCredentialMessageEntity.getParsedCategoryId()))
-		.collect(Collectors.toList());
+		updateCredentialMessageEntity.setParsedCategoryId(curCredentialDAOs.get(0).getCategoryId());
+		List<CredentialDAO>  categoryCredentialDAOs=
+				FluentIterable
+				.from(credentialDAOs)
+				.filter(x-> KatavuccolServiceUtility.isEqual(x.getCategoryId(),updateCredentialMessageEntity.getParsedCategoryId()))
+				.toList();				
 		
-		if(filteredCredentialDAOs == null || filteredCredentialDAOs.isEmpty())
+		if(categoryCredentialDAOs == null || categoryCredentialDAOs.isEmpty())
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
 		}
 		
-		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(filteredCredentialDAOs));
+		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(categoryCredentialDAOs));
 		return new Result(ResultStatus.SUCCESS);
 	}
 
