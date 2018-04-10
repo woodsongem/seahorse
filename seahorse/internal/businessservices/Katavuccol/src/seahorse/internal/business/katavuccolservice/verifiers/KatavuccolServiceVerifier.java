@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 
 import jersey.repackaged.com.google.common.collect.Collections2;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -25,6 +24,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 

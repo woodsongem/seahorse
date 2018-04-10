@@ -17,12 +17,12 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 /**
@@ -191,8 +191,8 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		BoundStatement bound = preparedStatement.bind();
 		bound.setUUID(DataBaseColumn.ID, updateCredentialMessageEntity.getParsedCategoryId());
 		bound.setUUID(DataBaseColumn.USERID,updateCredentialMessageEntity.getParsedUserId());
-		bound.setUUID(DataBaseColumn.MODIFIEDBY,updateCredentialMessageEntity.getCreatedBy());		
-		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE,updateCredentialMessageEntity.getCreatedDate());			
+		bound.setUUID(DataBaseColumn.MODIFIEDBY,updateCredentialMessageEntity.getModifiedBy());		
+		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE,updateCredentialMessageEntity.getModifiedDate());			
 		bound.setString(DataBaseColumn.CREDENTIAL_DESCRIPTION,updateCredentialMessageEntity.getDescription());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CATEGORYID,updateCredentialMessageEntity.getParsedCategoryId());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID,updateCredentialMessageEntity.getParsedCredentialTypeId());

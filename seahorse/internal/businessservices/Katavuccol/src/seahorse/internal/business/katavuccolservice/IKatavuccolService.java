@@ -5,13 +5,17 @@ package seahorse.internal.business.katavuccolservice;
 
 
 import java.util.List;
-
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
@@ -28,4 +32,11 @@ public interface IKatavuccolService {
 	UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 	DeleteCredentialResponseMessageEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryMessageEntity);
+
+	DeleteCredentialResponseMessageEntity deleteCategory(
+			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+
+	UpdateCategoryResponseMessageEntity updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);
 }

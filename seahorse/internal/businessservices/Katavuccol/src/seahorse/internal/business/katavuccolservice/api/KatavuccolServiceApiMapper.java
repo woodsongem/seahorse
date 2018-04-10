@@ -6,19 +6,30 @@ package seahorse.internal.business.katavuccolservice.api;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
@@ -179,5 +190,47 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		deleteCredentialResponse.setResultMessages(resultMessages);		
 		
 		return	deleteCredentialResponse;
+	}
+
+	@Override
+	public CategoryRequestMessageEntity mapCategoryRequestMessageEntity(CategoryRequest categoryRequest, String userid,HttpServletRequest httpRequest) {
+		CategoryRequestMessageEntity categoryRequestMessageEntity=new CategoryRequestMessageEntity();
+		return categoryRequestMessageEntity;
+	}
+
+	@Override
+	public CategoryResponse mapCategoryResponse(CategoryResponseMessageEntity categoryResponseMessageEntity,CategoryRequestMessageEntity categoryMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCategoryRequestMessageEntity mapDeleteCategoryRequestMessageEntity(String userid, String categoryId,HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCategoryResponse mapDeleteCategoryResponse(
+			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
+			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(
+			UpdateCategoryRequest updateCategoryRequest, String userid, String categoryId,
+			HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpdateCategoryResponse mapUpdateCategoryResponse(
+			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
+			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

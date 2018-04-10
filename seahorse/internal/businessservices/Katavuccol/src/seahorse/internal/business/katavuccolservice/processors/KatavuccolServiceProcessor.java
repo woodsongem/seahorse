@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.collect.FluentIterable;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
@@ -20,6 +19,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 

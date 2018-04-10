@@ -25,21 +25,31 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
@@ -55,6 +65,88 @@ public class KatavuccolServiceApi {
 	private static final Logger logger = LogManager.getLogger(KatavuccolServiceApi.class);
 	@Context
 	private HttpServletRequest httpRequest;
+	
+	@POST
+	@Path("/{userid}/category/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createCategory(@PathParam("userid") String userid,CategoryRequest categoryRequest) {
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		CategoryResponse categoryResponse=new CategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			CategoryRequestMessageEntity categoryMessageEntity=katavuccolServiceApiMapper.mapCategoryRequestMessageEntity(categoryRequest,userid,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			categoryMessageEntity.setHttpMethod(httpRequest.getMethod());
+			categoryMessageEntity.setHeaders(headers);
+			CategoryResponseMessageEntity categoryResponseMessageEntity=katavuccolService.createCategory(categoryMessageEntity);
+			categoryResponse=katavuccolServiceApiMapper.mapCategoryResponse(categoryResponseMessageEntity,categoryMessageEntity);
+			httpStatus = categoryResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (categoryResponse == null) {
+				categoryResponse = getCategoryResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(categoryResponse).build();
+	}
+	
+	@DELETE
+	@Path("/{userid}/category/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		DeleteCategoryResponse deleteCategoryResponse=new DeleteCategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity=katavuccolServiceApiMapper.mapDeleteCategoryRequestMessageEntity(userid,categoryId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			deleteCategoryRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
+			deleteCategoryRequestMessageEntity.setHeaders(headers);
+			DeleteCredentialResponseMessageEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCategory(deleteCategoryRequestMessageEntity);
+			deleteCategoryResponse=katavuccolServiceApiMapper.mapDeleteCategoryResponse(deleteCredentialResponseMessageEntity,deleteCategoryRequestMessageEntity);
+			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (deleteCategoryResponse == null) {
+				deleteCategoryResponse = getDeleteCategoryResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(deleteCategoryResponse).build();
+	}
+	
+	@PUT
+	@Path("/{userid}/category/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId,UpdateCategoryRequest updateCategoryRequest) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		UpdateCategoryResponse updateCategoryResponse=new UpdateCategoryResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			UpdateCategoryMessageEntity updateCategoryMessageEntity=katavuccolServiceApiMapper.mapUpdateCategoryRequestMessageEntity(updateCategoryRequest,userid,categoryId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			updateCategoryMessageEntity.setHttpMethod(httpRequest.getMethod());			
+			updateCategoryMessageEntity.setHeaders(headers);
+			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity=katavuccolService.updateCategory(updateCategoryMessageEntity);
+			updateCategoryResponse=katavuccolServiceApiMapper.mapUpdateCategoryResponse(updateCategoryResponseMessageEntity,updateCategoryMessageEntity);
+			httpStatus = updateCategoryResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (updateCategoryResponse == null) {
+				updateCategoryResponse = getUpdateCategoryResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(updateCategoryResponse).build();
+	}
+	
+	
 
 	// POST ==> /income/category
 	@POST
@@ -159,6 +251,8 @@ public class KatavuccolServiceApi {
 		return Response.status(httpStatus).entity(credentials).build();
 	}
 	
+	
+	
 		public Map<String, String> getHeaders(HttpServletRequest httpRequest)
 		{
 			Map<String, String> mapheaders=new HashMap<>();
@@ -197,5 +291,30 @@ public class KatavuccolServiceApi {
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
 		deleteCredentialResponse.setResultMessages(resultMessage);
 		return deleteCredentialResponse;
+	}
+	private CategoryResponse getCategoryResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		CategoryResponse categoryResponse = new CategoryResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		categoryResponse.setResultMessages(resultMessage);
+		return categoryResponse;
+	}
+	private DeleteCategoryResponse getDeleteCategoryResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		DeleteCategoryResponse deleteCategoryResponse = new DeleteCategoryResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		deleteCategoryResponse.setResultMessages(resultMessage);
+		return deleteCategoryResponse;
+	}
+	
+	private UpdateCategoryResponse getUpdateCategoryResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		UpdateCategoryResponse updateCategoryResponse = new UpdateCategoryResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		updateCategoryResponse.setResultMessages(resultMessage);
+		return updateCategoryResponse;
 	}
 }

@@ -1,13 +1,12 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 
 /**
  * @author sajanmje
