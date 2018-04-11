@@ -30,12 +30,17 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRe
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -43,15 +48,19 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CategoryReques
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 /**
@@ -146,8 +155,88 @@ public class KatavuccolServiceApi {
 		return Response.status(httpStatus).entity(updateCategoryResponse).build();
 	}
 	
+	@POST
+	@Path("/{userid}/category/credentialtype")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createCredentialType(@PathParam("userid") String userid,CredentialTypeRequest credentialTypeRequest) {
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		CredentialTypeResponse credentialTypeResponse=new CredentialTypeResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity=katavuccolServiceApiMapper.mapCredentialTypeRequestMessageEntity(credentialTypeRequest,userid,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			credentialTypeRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
+			credentialTypeRequestMessageEntity.setHeaders(headers);
+			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity=katavuccolService.createCredentialType(credentialTypeRequestMessageEntity);
+			credentialTypeResponse=katavuccolServiceApiMapper.mapCredentialTypeResponse(credentialTypeResponseMessageEntity,credentialTypeRequestMessageEntity);
+			httpStatus = credentialTypeResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (credentialTypeResponse == null) {
+				credentialTypeResponse = getCredentialTypeResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(credentialTypeResponse).build();
+	}	
+	
+	@PUT
+	@Path("/{userid}/category/credentialtype/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCredentialType(@PathParam("userid") String userid,@PathParam("id") String credentialId,UpdateCredentialTypeRequest updateCredentialTypeRequest) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		UpdateCredentialTypeResponse updateCredentialTypeResponse=new UpdateCredentialTypeResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity=katavuccolServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialTypeRequest,userid,credentialId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			updateCredentialTypeMessageEntity.setHttpMethod(httpRequest.getMethod());			
+			updateCredentialTypeMessageEntity.setHeaders(headers);
+			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=katavuccolService.updateCredentialType(updateCredentialTypeMessageEntity);
+			updateCredentialTypeResponse=katavuccolServiceApiMapper.mapUpdateCredentialTypeResponse(updateCredentialResponseMessageEntity,updateCredentialTypeMessageEntity);
+			httpStatus = updateCredentialResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (updateCredentialTypeResponse == null) {
+				updateCredentialTypeResponse = getUpdateTypeCredentialResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(updateCredentialTypeResponse).build();
+	}
+
+	@DELETE
+	@Path("/{userid}/category/credentialtype/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteCredentialType(@PathParam("userid") String userid,@PathParam("id") String credentialTypeId) 
+	{
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		DeleteCredentialTypeResponse deleteCredentialTypeResponse=new DeleteCredentialTypeResponse();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialTypeRequestMessageEntity(userid,credentialTypeId,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			Map<String, String> headers=getHeaders(httpRequest);
+			deleteCredentialTypeRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
+			deleteCredentialTypeRequestMessageEntity.setHeaders(headers);
+			DeleteCredentialResponseMessageEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredentialType(deleteCredentialTypeRequestMessageEntity);
+			deleteCredentialTypeResponse=katavuccolServiceApiMapper.mapDeleteCredentialTypeResponse(deleteCredentialResponseMessageEntity,deleteCredentialTypeRequestMessageEntity);
+			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
+		}
+		catch (Exception ex) {
+			if (deleteCredentialTypeResponse == null) {
+				deleteCredentialTypeResponse = getDeleteCredentialTypeResponse();
+			}
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(deleteCredentialTypeResponse).build();
+	}
 	
 
+	
 	// POST ==> /income/category
 	@POST
 	@Path("/{userid}/category/credential/")
@@ -317,4 +406,29 @@ public class KatavuccolServiceApi {
 		updateCategoryResponse.setResultMessages(resultMessage);
 		return updateCategoryResponse;
 	}
+	private CredentialTypeResponse getCredentialTypeResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		CredentialTypeResponse credentialTypeResponse = new CredentialTypeResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		credentialTypeResponse.setResultMessages(resultMessage);
+		return credentialTypeResponse;
+	}
+	private UpdateCredentialTypeResponse getUpdateTypeCredentialResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		UpdateCredentialTypeResponse updateCredentialTypeResponse = new UpdateCredentialTypeResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		updateCredentialTypeResponse.setResultMessages(resultMessage);
+		return updateCredentialTypeResponse;
+	}
+	private DeleteCredentialTypeResponse getDeleteCredentialTypeResponse() {
+		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
+		DeleteCredentialTypeResponse deleteCredentialTypeResponse = new DeleteCredentialTypeResponse();		
+		ResultMessage resultMessage = new ResultMessage();
+		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
+		deleteCredentialTypeResponse.setResultMessages(resultMessage);
+		return deleteCredentialTypeResponse;
+	}
+
 }

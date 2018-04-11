@@ -5,6 +5,9 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 
 /**

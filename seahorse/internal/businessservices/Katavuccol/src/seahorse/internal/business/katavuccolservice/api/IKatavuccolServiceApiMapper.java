@@ -11,25 +11,34 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRe
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
 
 /**
  * @author sajanmje
@@ -69,5 +78,29 @@ public interface IKatavuccolServiceApiMapper {
 	UpdateCategoryResponse mapUpdateCategoryResponse(
 			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
 			UpdateCategoryMessageEntity updateCategoryMessageEntity);
+
+	CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(
+			CredentialTypeRequest credentialTypeRequest, 
+			String userid, 
+			HttpServletRequest httpRequest);
+
+	CredentialTypeResponse mapCredentialTypeResponse(
+			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
+			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
+
+	UpdateCredentialTypeMessageEntity mapUpdateCredentialRequestMessageEntity(
+			UpdateCredentialTypeRequest updateCredentialTypeRequest, String userid, String credentialId,
+			HttpServletRequest httpRequest);
+
+	UpdateCredentialTypeResponse mapUpdateCredentialTypeResponse(
+			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
+			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
+
+	DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
+			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity);
+
+	DeleteCredentialTypeRequestMessageEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,
+			String credentialTypeId, HttpServletRequest httpRequest);
 
 }
