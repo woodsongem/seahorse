@@ -19,6 +19,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -107,5 +108,11 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 			return outPutResponse;
 		}		
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result ProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

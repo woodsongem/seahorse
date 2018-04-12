@@ -12,6 +12,7 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtil
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -353,5 +354,63 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		
 		return result;		
+	}
+
+	@Override
+	public Result validateCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		Result result;
+
+		result = isCredentialTypeRequestMessageEntityValid(credentialTypeRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(credentialTypeRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isNameValid(credentialTypeRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+				
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isNameValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(credentialTypeRequestMessageEntity.getName() == null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"name is null","Name",katavuccolServiceErrorCode.credentialTypeNameIsEmptyErrorCode());
+		}
+		
+		return result;
+	}
+
+	public Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(credentialTypeRequestMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.createCredentialInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.createCredentialEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		credentialTypeRequestMessageEntity.setParsedUserId(UUID.fromString(credentialTypeRequestMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isCredentialTypeRequestMessageEntityValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(credentialTypeRequestMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"credentialTypeRequestMessageEntity is null","credentialTypeRequestMessageEntity",katavuccolServiceErrorCode.credentialTypeMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
 	}
 }

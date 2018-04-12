@@ -24,6 +24,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -361,6 +362,44 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(credentialTypeRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}	
+			
+		result = isNameValid(credentialTypeRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+				
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isNameValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		List<CategoryDAO> categoryDAOs=katavuccolServiceRepository.getCategoryDetailByUserId(credentialTypeRequestMessageEntity.getParsedUserId());
+		List<CategoryDAO> filterCategoryDAOs=
+										FluentIterable
+										.from(categoryDAOs)
+										.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),credentialTypeRequestMessageEntity.getName()))
+										.toList();
+		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential type is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

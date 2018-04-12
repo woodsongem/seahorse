@@ -6,6 +6,7 @@ package seahorse.internal.business.katavuccolservice.postprocessors;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -33,4 +34,8 @@ public class KatavuccolServicePostProcessor implements IKatavuccolServicePostPro
 		return new Result(ResultStatus.SUCCESS);
 	}
 
+	@Override
+	public Result PostProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
 }

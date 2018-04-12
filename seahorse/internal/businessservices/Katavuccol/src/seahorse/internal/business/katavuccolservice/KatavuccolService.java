@@ -197,22 +197,44 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public CredentialTypeResponseMessageEntity createCredentialType(
-			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+	public CredentialTypeResponseMessageEntity createCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		//Set	
+		credentialTypeRequestMessageEntity.setId(UUIDs.timeBased());
+		credentialTypeRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+		credentialTypeRequestMessageEntity.setCreatedDate(new Date());
+	
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateCreateCredentialType(credentialTypeRequestMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyCreateCredentialType(credentialTypeRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.ProcessorCreateCredentialType(credentialTypeRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCredentialType(credentialTypeRequestMessageEntity);
+				
+		return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, credentialTypeRequestMessageEntity);
+	}
+
+	@Override
+	public UpdateCredentialResponseMessageEntity updateCredentialType(UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UpdateCredentialResponseMessageEntity updateCredentialType(
-			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DeleteCredentialResponseMessageEntity deleteCredentialType(
-			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
+	public DeleteCredentialResponseMessageEntity deleteCredentialType(DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

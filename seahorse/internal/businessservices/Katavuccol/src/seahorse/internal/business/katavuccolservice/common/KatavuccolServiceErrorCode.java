@@ -52,6 +52,10 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String updateCategoryIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.%s.CredentialId.NotFound";
 	private String updateCredentialIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
 	private String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
+	private String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.%s.CredentialTypeMessageEntity.Empty";
+	private String credentialTypeNameIsEmptyErrorCode = "Katavuccol.API.CredentialType.%s.Name.Empty";
+	private String credentialTypeDuplicateErrorCode = "Katavuccol.API.CredentialType.%s.Name.DuplicateNotAllowed";
+	
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -257,5 +261,20 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String updateCredentialIdInValidErrorCode() {		
 		return updateCredentialIdInValidErrorCode;
+	}
+
+	@Override
+	public String credentialTypeMessageEntityIsEmptyErrorCode() {		
+		return credentialTypeMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String credentialTypeNameIsEmptyErrorCode() {		
+		return credentialTypeNameIsEmptyErrorCode;
+	}
+
+	@Override
+	public String credentialTypeDuplicateErrorCode() {		
+		return credentialTypeDuplicateErrorCode;
 	}
 }

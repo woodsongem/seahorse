@@ -244,10 +244,14 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(
-			CredentialTypeRequest credentialTypeRequest, String userid, HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(CredentialTypeRequest credentialTypeRequest, String userid, HttpServletRequest httpRequest) {
+		CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity=new CredentialTypeRequestMessageEntity();
+		credentialTypeRequestMessageEntity.setUserId(userid);
+		credentialTypeRequestMessageEntity.setName(credentialTypeRequest.getName());
+		credentialTypeRequestMessageEntity.setDescription(credentialTypeRequest.getDescription());
+		credentialTypeRequestMessageEntity.setIsDuplicationAllowed(credentialTypeRequest.getIsDuplicationAllowed());
+		credentialTypeRequestMessageEntity.setIsSubitemAllowed(credentialTypeRequest.getIsSubitemAllowed());		
+		return credentialTypeRequestMessageEntity;
 	}
 
 	@Override
