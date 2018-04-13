@@ -55,6 +55,9 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.%s.CredentialTypeMessageEntity.Empty";
 	private String credentialTypeNameIsEmptyErrorCode = "Katavuccol.API.CredentialType.%s.Name.Empty";
 	private String credentialTypeDuplicateErrorCode = "Katavuccol.API.CredentialType.%s.Name.DuplicateNotAllowed";
+	private String createCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.CategoryRequestMessageEntity.Empty";
+	private String createCategoryEmptyUserIdErrorCode ="Katavuccol.API.CreateCategory.%s.UserId.Empty";
+	private String createCategoryInValidUserIdErrorCode= "Katavuccol.API.CreateCategory.%s.UserId.InValid";
 	
 	
 	@Context
@@ -276,5 +279,20 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String credentialTypeDuplicateErrorCode() {		
 		return credentialTypeDuplicateErrorCode;
+	}
+
+	@Override
+	public String createCategoryRequestMessageEntityIsEmptyErrorCode() {		
+		return createCategoryRequestMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String createCategoryEmptyUserIdErrorCode() {		
+		return createCategoryEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String createCategoryInValidUserIdErrorCode() {		
+		return createCategoryInValidUserIdErrorCode;
 	}
 }

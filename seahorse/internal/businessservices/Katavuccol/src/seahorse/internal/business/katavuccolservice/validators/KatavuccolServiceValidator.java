@@ -11,6 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErr
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -412,5 +413,55 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Result validateCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		Result result;
+
+		result = isCategoryRequestMessageEntityValid(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isNameValid(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(categoryRequestMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"categoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCategoryRequestMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
+	}
+
+	public Result isUserIdValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(categoryRequestMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.createCategoryInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.createCategoryEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		categoryRequestMessageEntity.setParsedUserId(UUID.fromString(categoryRequestMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isCategoryRequestMessageEntityValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

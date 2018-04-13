@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.validators;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -66,4 +67,12 @@ public interface IKatavuccolServiceValidator {
 	Result isCredentialTypeRequestMessageEntityValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
 	
 	Result isNameValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
+
+	Result validateCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	
+    Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity);
+    
+    Result isUserIdValid(CategoryRequestMessageEntity categoryRequestMessageEntity);
+    
+    Result isCategoryRequestMessageEntityValid(CategoryRequestMessageEntity categoryRequestMessageEntity);
 }

@@ -12,6 +12,8 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
@@ -169,6 +171,43 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	public CredentialTypeResponseMessageEntity mapCredentialTypeResponseMessageEntity(Result result,CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result, Status badRequest) {
+		CategoryResponseMessageEntity categoryResponseMessageEntity=new CategoryResponseMessageEntity();
+		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());				
+		if (categoryResponseMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				categoryResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				categoryResponseMessageEntity.setHttpStatus(badRequest);
+		}
+		else
+		{
+			categoryResponseMessageEntity.setHttpStatus(categoryResponseMessageEntity.getHttpStatus());
+		}
+		return categoryResponseMessageEntity;
+	}
+
+	@Override
+	public CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result,CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		CategoryResponseMessageEntity categoryResponseMessageEntity=new CategoryResponseMessageEntity();
+		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		categoryResponseMessageEntity.setHttpStatus(Status.OK);		
+		if (categoryResponseMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				categoryResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				categoryResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			categoryResponseMessageEntity.setHttpStatus(categoryResponseMessageEntity.getHttpStatus());
+		}
+		return categoryResponseMessageEntity;
 	}
 
 }

@@ -49,5 +49,8 @@ public interface IKatavuccolServiceErrorCode {
 	String updateCredentialIdInValidErrorCode();
 	String credentialTypeMessageEntityIsEmptyErrorCode();
 	String credentialTypeNameIsEmptyErrorCode();
-	String credentialTypeDuplicateErrorCode();	
+	String credentialTypeDuplicateErrorCode();
+	String createCategoryRequestMessageEntityIsEmptyErrorCode();
+	String createCategoryEmptyUserIdErrorCode();
+	String createCategoryInValidUserIdErrorCode();	
 }

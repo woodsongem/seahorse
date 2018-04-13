@@ -178,9 +178,34 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		//Set	
+		categoryRequestMessageEntity.setId(UUIDs.timeBased());
+		categoryRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+		categoryRequestMessageEntity.setCreatedDate(new Date());		
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateCreateCategory(categoryRequestMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyCreateCategory(categoryRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.ProcessorCreateCategory(categoryRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCategory(categoryRequestMessageEntity);
+				
+		return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, categoryRequestMessageEntity);
 	}
 
 	@Override

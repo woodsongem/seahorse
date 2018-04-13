@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.processors;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -24,5 +25,7 @@ public interface IKatavuccolServiceProcessor {
 	Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 	Result ProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
+
+	Result ProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
 
 }

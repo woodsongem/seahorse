@@ -22,6 +22,7 @@ import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceReposi
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
@@ -401,6 +402,13 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	public Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
