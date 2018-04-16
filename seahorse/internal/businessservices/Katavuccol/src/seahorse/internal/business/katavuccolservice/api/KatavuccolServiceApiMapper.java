@@ -31,6 +31,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResp
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
@@ -212,22 +213,58 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public CategoryResponse mapCategoryResponse(CategoryResponseMessageEntity categoryResponseMessageEntity,CategoryRequestMessageEntity categoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		CategoryResponse categoryResponse=new CategoryResponse();
+		if(categoryResponseMessageEntity == null)
+		{
+			return categoryResponse;
+		}
+		if(categoryResponseMessageEntity.getId() != null)
+		{
+			categoryResponse.setId(categoryResponseMessageEntity.getId().toString());
+		}
+		if (categoryResponseMessageEntity.getResultMessages() == null) {
+			return categoryResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : categoryResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),categoryMessageEntity.getHttpMethod()));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		categoryResponse.setResultMessages(resultMessages);		
+		
+		return	categoryResponse;
 	}
 
 	@Override
 	public DeleteCategoryRequestMessageEntity mapDeleteCategoryRequestMessageEntity(String userid, String categoryId,HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity=new DeleteCategoryRequestMessageEntity();
+		deleteCategoryRequestMessageEntity.setUserId(userid);
+		deleteCategoryRequestMessageEntity.setCategoryId(categoryId);
+		return deleteCategoryRequestMessageEntity;
 	}
 
 	@Override
 	public DeleteCategoryResponse mapDeleteCategoryResponse(
-			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
+			DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,
 			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		DeleteCategoryResponse deleteCategoryResponse=new DeleteCategoryResponse();
+		if(deleteCategoryResponseMessageEntity == null || deleteCategoryResponseMessageEntity.getResultMessages() == null)
+		{
+			return deleteCategoryResponse;
+		}		
+		
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : deleteCategoryResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),deleteCategoryRequestMessageEntity.getHttpMethod()));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		deleteCategoryResponse.setResultMessages(resultMessages);		
+		
+		return	deleteCategoryResponse;
 	}
 
 	@Override

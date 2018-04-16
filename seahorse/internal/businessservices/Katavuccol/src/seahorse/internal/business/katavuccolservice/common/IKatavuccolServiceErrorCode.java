@@ -52,5 +52,11 @@ public interface IKatavuccolServiceErrorCode {
 	String credentialTypeDuplicateErrorCode();
 	String createCategoryRequestMessageEntityIsEmptyErrorCode();
 	String createCategoryEmptyUserIdErrorCode();
-	String createCategoryInValidUserIdErrorCode();	
+	String createCategoryInValidUserIdErrorCode();
+	String categoryNameDuplicateErrorCode();
+	String deleteCategoryInValidUserIdErrorCode();
+	String deleteCategoryEmptyUserIdErrorCode();
+	String deleteCategoryRequestMessageEntityIsEmptyErrorCode();
+	String deleteCategoryIdEmptyErrorCode();
+	String deleteCategoryIdInValidErrorCode();	
 }

@@ -14,6 +14,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -463,5 +464,65 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isCategoryRequestMessageEntityValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Result validateDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		Result result;
+
+		result = isDeleteCategoryRequestMessageEntityValid(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isCategoryIdValid(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isCategoryIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		if(deleteCategoryRequestMessageEntity.getCategoryId()==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.deleteCategoryIdEmptyErrorCode());
+		}		
+		if(KatavuccolServiceUtility.isValidUUID(deleteCategoryRequestMessageEntity.getCategoryId()))
+		{
+			deleteCategoryRequestMessageEntity.setParsedCategoryId(UUID.fromString(deleteCategoryRequestMessageEntity.getCategoryId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.deleteCategoryIdInValidErrorCode());
+	}
+
+	public Result isUserIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(deleteCategoryRequestMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.deleteCategoryInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.deleteCategoryEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		deleteCategoryRequestMessageEntity.setParsedUserId(UUID.fromString(deleteCategoryRequestMessageEntity.getUserId()));
+		return result;
+	}
+
+	public Result isDeleteCategoryRequestMessageEntityValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(deleteCategoryRequestMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"DeleteCategoryRequestMessageEntity is null","DeleteCategoryRequestMessageEntity",katavuccolServiceErrorCode.deleteCategoryRequestMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
 	}
 }

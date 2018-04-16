@@ -18,6 +18,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
@@ -208,6 +210,20 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 			categoryResponseMessageEntity.setHttpStatus(categoryResponseMessageEntity.getHttpStatus());
 		}
 		return categoryResponseMessageEntity;
+	}
+
+	@Override
+	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,
+			Status badRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,
+			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

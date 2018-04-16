@@ -7,6 +7,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -16,16 +17,20 @@ import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredenti
  */
 public interface IKatavuccolServiceProcessor {
 
-	Result ProcessorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	Result processorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	Result ProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
-	Result ProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+	Result processorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 	
-	Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+	Result updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	Result ProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
+	Result processorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
 
-	Result ProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	Result processorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	
+	Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+
+	Result processorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 }

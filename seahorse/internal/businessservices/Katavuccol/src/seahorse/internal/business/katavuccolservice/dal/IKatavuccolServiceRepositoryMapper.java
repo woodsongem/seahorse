@@ -12,6 +12,7 @@ import com.datastax.driver.core.Row;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -56,5 +57,9 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID credentialId);	
+	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID credentialId);
+
+	BoundStatement mapGetCredentialTypeByUserIdBoundStatement(PreparedStatement preparedStatement, UUID parsedUserId);
+
+	BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CategoryRequestMessageEntity categoryRequestMessageEntity);	
 }

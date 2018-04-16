@@ -58,7 +58,12 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String createCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.CategoryRequestMessageEntity.Empty";
 	private String createCategoryEmptyUserIdErrorCode ="Katavuccol.API.CreateCategory.%s.UserId.Empty";
 	private String createCategoryInValidUserIdErrorCode= "Katavuccol.API.CreateCategory.%s.UserId.InValid";
-	
+	private String categoryNameDuplicateErrorCode ="Katavuccol.API.CreateCategory.%s.Name.DuplicateNotAllowed";
+	private String deleteCategoryInValidUserIdErrorCode ="Katavuccol.API.DeleteCategory.%s.UserId.InValid";
+	private String deleteCategoryEmptyUserIdErrorCode ="Katavuccol.API.DeleteCategory.%s.UserId.Empty";
+	private String deleteCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCategory.%s.DeleteCategoryRequestMessageEntity.Empty";
+	private String deleteCategoryIdEmptyErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.Empty";
+	private String deleteCategoryIdInValidErrorCode="Katavuccol.API.DeleteCategory.%s.CategoryId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -294,5 +299,35 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String createCategoryInValidUserIdErrorCode() {		
 		return createCategoryInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String categoryNameDuplicateErrorCode() {		
+		return categoryNameDuplicateErrorCode;
+	}
+
+	@Override
+	public String deleteCategoryInValidUserIdErrorCode() {		
+		return deleteCategoryInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String deleteCategoryEmptyUserIdErrorCode() {		
+		return deleteCategoryEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String deleteCategoryRequestMessageEntityIsEmptyErrorCode() {		
+		return deleteCategoryRequestMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String deleteCategoryIdEmptyErrorCode() {		
+		return deleteCategoryIdEmptyErrorCode;
+	}
+
+	@Override
+	public String deleteCategoryIdInValidErrorCode() {		
+		return deleteCategoryIdInValidErrorCode;
 	}
 }

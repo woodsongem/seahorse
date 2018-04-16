@@ -8,6 +8,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -19,29 +20,34 @@ import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredenti
 public class KatavuccolServicePostProcessor implements IKatavuccolServicePostProcessor {
 
 	@Override
-	public Result PostProcessorCreateCredentials(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+	public Result postProcessorCreateCredentials(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
 		
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
-	public Result PostProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result postProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
-	public Result PostProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+	public Result postProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
-	public Result PostProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+	public Result postProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
-	public Result PostProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result postProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result postProcessorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 }

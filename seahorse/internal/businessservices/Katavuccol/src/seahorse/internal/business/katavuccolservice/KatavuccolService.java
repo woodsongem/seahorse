@@ -24,6 +24,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResp
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
@@ -89,13 +90,13 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorCreateCredentials(credentialRequestMessageEntity);
+		result=katavuccolServiceProcessor.processorCreateCredentials(credentialRequestMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
 			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCredentials(credentialRequestMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.postProcessorCreateCredentials(credentialRequestMessageEntity);
 				
 		return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, credentialRequestMessageEntity);
 	}
@@ -135,13 +136,13 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorUpdateCredential(updateCredentialMessageEntity);
+		result=katavuccolServiceProcessor.processorUpdateCredential(updateCredentialMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
 			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		Result postresult=katavuccolServicePostProcessor.PostProcessorUpdateCredential(updateCredentialMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.postProcessorUpdateCredential(updateCredentialMessageEntity);
 				
 		return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, updateCredentialMessageEntity);	
 	}
@@ -165,13 +166,13 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorDeleteCredential(deleteCredentialMessageEntity);
+		result=katavuccolServiceProcessor.processorDeleteCredential(deleteCredentialMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
 			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		Result postresult=katavuccolServicePostProcessor.PostProcessorDeleteCredential(deleteCredentialMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.postProcessorDeleteCredential(deleteCredentialMessageEntity);
 				
 		return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, deleteCredentialMessageEntity);	
 		
@@ -197,22 +198,45 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorCreateCategory(categoryRequestMessageEntity);
+		result=katavuccolServiceProcessor.processorCreateCategory(categoryRequestMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
 			return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCategory(categoryRequestMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.postProcessorCreateCategory(categoryRequestMessageEntity);
 				
 		return katavuccolServiceMapper.mapCategoryResponseMessageEntity(result, categoryRequestMessageEntity);
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity deleteCategory(
-			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public DeleteCategoryResponseMessageEntity deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		//Set
+		deleteCategoryRequestMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
+		deleteCategoryRequestMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateDeleteCategory(deleteCategoryRequestMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyDeleteCategory(deleteCategoryRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorDeleteCategory(deleteCategoryRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCategoryResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.postProcessorDeleteCategory(deleteCategoryRequestMessageEntity);
+				
+		return katavuccolServiceMapper.mapDeleteCategoryResponseMessageEntity(result, deleteCategoryRequestMessageEntity);	
 	}
 
 	@Override
@@ -241,13 +265,13 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		//Processor
-		result=katavuccolServiceProcessor.ProcessorCreateCredentialType(credentialTypeRequestMessageEntity);
+		result=katavuccolServiceProcessor.processorCreateCredentialType(credentialTypeRequestMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
 			return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, Status.FORBIDDEN);
 		}
 		
 		//Post Processor
-		Result postresult=katavuccolServicePostProcessor.PostProcessorCreateCredentialType(credentialTypeRequestMessageEntity);
+		Result postresult=katavuccolServicePostProcessor.postProcessorCreateCredentialType(credentialTypeRequestMessageEntity);
 				
 		return katavuccolServiceMapper.mapCredentialTypeResponseMessageEntity(result, credentialTypeRequestMessageEntity);
 	}

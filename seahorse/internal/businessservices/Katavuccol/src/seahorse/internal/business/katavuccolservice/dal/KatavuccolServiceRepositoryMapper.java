@@ -21,6 +21,7 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -205,6 +206,25 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,userId);
 		bound.setUUID(DataBaseColumn.ID,credentialId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapGetCredentialTypeByUserIdBoundStatement(PreparedStatement preparedStatement,UUID parsedUserId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(DataBaseColumn.ID,categoryRequestMessageEntity.getId());
+		bound.setString(DataBaseColumn.USERID,categoryRequestMessageEntity.getUserId());
+		bound.setString(DataBaseColumn.CATEGORY_NAME,categoryRequestMessageEntity.getName());
+		bound.setUUID(DataBaseColumn.CREATEDBY,categoryRequestMessageEntity.getCreatedBy());
+		bound.setTimestamp(DataBaseColumn.CREATEDDATE,categoryRequestMessageEntity.getCreatedDate());		
+		bound.setString(DataBaseColumn.STATUS,categoryRequestMessageEntity.getStatus());
+		bound.setString(DataBaseColumn.CATEGORY_DESCRIPTION,categoryRequestMessageEntity.getDescription());		
 		return bound;
 	}	
 }

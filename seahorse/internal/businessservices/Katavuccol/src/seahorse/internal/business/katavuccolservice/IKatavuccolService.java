@@ -13,6 +13,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResp
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
@@ -39,7 +40,7 @@ public interface IKatavuccolService {
 
 	CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryMessageEntity);
 
-	DeleteCredentialResponseMessageEntity deleteCategory(
+	DeleteCategoryResponseMessageEntity deleteCategory(
 			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 	UpdateCategoryResponseMessageEntity updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);

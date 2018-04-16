@@ -21,6 +21,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CategoryReques
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -46,7 +47,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 	
 	@Override
-	public Result ProcessorCreateCredentials(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
+	public Result processorCreateCredentials(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
 		OutPutResponse outPutResponse=katavuccolServiceRepository.createCredential(credentialsRequestMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{
@@ -57,7 +58,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	@Override
-	public Result ProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		OutPutResponse outPutResponse=katavuccolServiceRepository.deleteCredential(deleteCredentialMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{
@@ -67,10 +68,10 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	@Override
-	public Result ProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+	public Result processorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		Result result;
 
-		result = UpdateCredential(updateCredentialMessageEntity);
+		result = updateCredential(updateCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -78,7 +79,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 	
-	public Result UpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity)
+	public Result updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity)
 	{		
 		List<CredentialMessageEntity> credentialMessageEntites=
 		FluentIterable
@@ -112,13 +113,35 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	@Override
-	public Result ProcessorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+	public Result processorCreateCredentialType(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Result ProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result processorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {		
+		Result result;
+		result=createCategory(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+	
+	public Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity)
+	{
+		OutPutResponse outPutResponse=katavuccolServiceRepository.createCategory(categoryRequestMessageEntity);
+		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result processorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

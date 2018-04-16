@@ -26,6 +26,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CategoryReques
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -386,15 +387,15 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isNameValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
-		List<CategoryDAO> categoryDAOs=katavuccolServiceRepository.getCategoryDetailByUserId(credentialTypeRequestMessageEntity.getParsedUserId());
-		List<CategoryDAO> filterCategoryDAOs=
+		List<CredentialTypeDAO> credentialTypeDAO=katavuccolServiceRepository.getCredentialTypeByUserId(credentialTypeRequestMessageEntity.getParsedUserId());
+		List<CredentialTypeDAO> filterCategoryDAOs=
 										FluentIterable
-										.from(categoryDAOs)
+										.from(credentialTypeDAO)
 										.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),credentialTypeRequestMessageEntity.getName()))
 										.toList();
 		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential type is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
 		}
 		return new Result(ResultStatus.SUCCESS);
 	}
@@ -407,6 +408,44 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	@Override
 	public Result verifyCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}	
+			
+		result = isNameValid(categoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+				
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		List<CategoryDAO> categoryDAOs=katavuccolServiceRepository.getCategoryDetailByUserId(categoryRequestMessageEntity.getParsedUserId());
+		List<CategoryDAO> filterCategoryDAOs=
+										FluentIterable
+										.from(categoryDAOs)
+										.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),categoryRequestMessageEntity.getName()))
+										.toList();
+		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate category anem is is not allowed", "Name", katavuccolServiceErrorCode.categoryNameDuplicateErrorCode());
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

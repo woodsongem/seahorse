@@ -11,6 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutR
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -26,7 +27,7 @@ public interface IKatavuccolServiceRepository {
 	
 	List<CategoryDAO> getCategoryDetailByUserId(UUID userId);
 	
-	List<CredentialTypeDAO>  getTypeDetailsByUserId(UUID userId);
+	List<CredentialTypeDAO>  getCredentialTypeByUserId(UUID userId);
 	
 	List<CredentialDAO>  getCredentialByUserId(UUID userId);
 	
@@ -39,4 +40,6 @@ public interface IKatavuccolServiceRepository {
 	OutPutResponse updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 	CredentialDAO getCredentialById(UUID userId, UUID credentialId);
+
+	OutPutResponse createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);	
 }

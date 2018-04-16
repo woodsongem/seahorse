@@ -22,6 +22,8 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -124,7 +126,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		return categoryDAOs;
 	}
 	
-	public List<CredentialTypeDAO> getTypeDetailsByUserId(UUID userId)
+	public List<CredentialTypeDAO> getCredentialTypeByUserId(UUID userId)
 	{
 		List<CredentialTypeDAO> typeDAOs = new ArrayList<>();
 		try {
@@ -235,5 +237,16 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		cassandraConnector.close();		
 		return outPutResponse;
 	}
-	
+
+	@Override
+	public OutPutResponse createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+		OutPutResponse outPutResponse=new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CREATE_CATEGORY_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatementRequest(preparedStatement,categoryRequestMessageEntity);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();
+		return outPutResponse;	
+	}
 }
