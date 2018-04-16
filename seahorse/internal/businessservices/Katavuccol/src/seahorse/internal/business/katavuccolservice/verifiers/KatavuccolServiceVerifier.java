@@ -446,8 +446,34 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	@Override
 	public Result verifyDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+
+		result = isUserIdValid(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCategoryIdValid(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isCategoryIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(deleteCategoryRequestMessageEntity.getParsedCategoryId(),deleteCategoryRequestMessageEntity.getParsedUserId());
+		if(categoryDAO ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.deleteCategoryIdNotFoundErrorCode());
+		}		
+		deleteCategoryRequestMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));		
+				
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

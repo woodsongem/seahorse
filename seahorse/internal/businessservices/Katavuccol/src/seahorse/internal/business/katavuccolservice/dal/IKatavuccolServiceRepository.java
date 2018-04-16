@@ -13,6 +13,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 /**
@@ -41,5 +42,7 @@ public interface IKatavuccolServiceRepository {
 
 	CredentialDAO getCredentialById(UUID userId, UUID credentialId);
 
-	OutPutResponse createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);	
+	OutPutResponse createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+
+	OutPutResponse deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);	
 }

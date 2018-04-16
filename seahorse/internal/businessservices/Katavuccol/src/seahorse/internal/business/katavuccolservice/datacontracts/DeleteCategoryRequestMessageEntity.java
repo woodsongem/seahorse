@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
+import java.util.List;
 import java.util.UUID;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
@@ -17,6 +18,7 @@ public class DeleteCategoryRequestMessageEntity extends BaseMessageEntity {
 	private String status;
 	private UUID parsedUserId;
 	private UUID parsedCategoryId;
+	private CategoryMessageEntity category;
 	
 	/**
 	 * @return the userId
@@ -77,5 +79,17 @@ public class DeleteCategoryRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setParsedCategoryId(UUID parsedCategoryId) {
 		this.parsedCategoryId = parsedCategoryId;
+	}
+	/**
+	 * @return the category
+	 */
+	public CategoryMessageEntity getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(CategoryMessageEntity category) {
+		this.category = category;
 	}
 }

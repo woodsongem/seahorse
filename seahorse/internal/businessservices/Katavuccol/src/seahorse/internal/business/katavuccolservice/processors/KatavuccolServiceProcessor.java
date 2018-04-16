@@ -142,7 +142,23 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 
 	@Override
 	public Result processorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+		result=deleteCategory(deleteCategoryRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+	
+	public Result deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity)
+	{
+		OutPutResponse outPutResponse=katavuccolServiceRepository.deleteCategory(deleteCategoryRequestMessageEntity);
+		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
 	}
 }

@@ -23,6 +23,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -225,6 +226,17 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		bound.setTimestamp(DataBaseColumn.CREATEDDATE,categoryRequestMessageEntity.getCreatedDate());		
 		bound.setString(DataBaseColumn.STATUS,categoryRequestMessageEntity.getStatus());
 		bound.setString(DataBaseColumn.CATEGORY_DESCRIPTION,categoryRequestMessageEntity.getDescription());		
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,deleteCategoryRequestMessageEntity.getParsedUserId());
+		bound.setUUID(DataBaseColumn.ID,deleteCategoryRequestMessageEntity.getParsedCategoryId());
+		bound.setString(DataBaseColumn.STATUS,deleteCategoryRequestMessageEntity.getStatus());
+		bound.setUUID(DataBaseColumn.MODIFIEDBY,deleteCategoryRequestMessageEntity.getModifiedBy());
+		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE,deleteCategoryRequestMessageEntity.getModifiedDate());		
 		return bound;
 	}	
 }

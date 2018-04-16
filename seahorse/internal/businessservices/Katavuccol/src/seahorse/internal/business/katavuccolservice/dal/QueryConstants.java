@@ -23,5 +23,6 @@ public class QueryConstants {
 	public static final String GET_DELETE_CREDENTIAL_QUERY = "UPDATE credential SET modifiedby=?, modifieddate=?,status=? where id=? and userid=? ";
 	public static final String GET_UPDATE_CREDENTIAL_QUERY = "UPDATE credential SET value=?,categoryid=?,credentialtypeid=?, modifiedby=?, modifieddate=?,description=? where id=? and userid=? ";
 	public static final String GET_CREATE_CATEGORY_QUERY = "";
+	public static final String GET_DELETE_CATEGORY_QUERY = null;
 	
 }

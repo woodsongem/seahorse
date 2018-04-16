@@ -25,6 +25,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
@@ -248,5 +249,17 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return outPutResponse;	
+	}
+
+	@Override
+	public OutPutResponse deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		OutPutResponse outPutResponse=new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DELETE_CATEGORY_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,deleteCategoryRequestMessageEntity);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();		
+		return outPutResponse;
 	}
 }

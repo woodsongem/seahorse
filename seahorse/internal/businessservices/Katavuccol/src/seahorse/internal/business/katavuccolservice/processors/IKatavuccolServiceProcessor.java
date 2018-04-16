@@ -32,5 +32,7 @@ public interface IKatavuccolServiceProcessor {
 	Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
 
 	Result processorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+	
+	Result deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 }

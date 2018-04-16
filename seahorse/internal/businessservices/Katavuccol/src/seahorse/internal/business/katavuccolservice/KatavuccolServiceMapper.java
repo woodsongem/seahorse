@@ -199,7 +199,7 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
 		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());
 		categoryResponseMessageEntity.setHttpStatus(Status.OK);		
-		if (categoryResponseMessageEntity.getHttpStatus() == null) {
+		if (categoryRequestMessageEntity.getHttpStatus() == null) {
 			if (result.getResultStatus() == ResultStatus.SUCCESS)
 				categoryResponseMessageEntity.setHttpStatus(Status.OK);
 			else
@@ -207,7 +207,7 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 		}
 		else
 		{
-			categoryResponseMessageEntity.setHttpStatus(categoryResponseMessageEntity.getHttpStatus());
+			categoryResponseMessageEntity.setHttpStatus(categoryRequestMessageEntity.getHttpStatus());
 		}
 		return categoryResponseMessageEntity;
 	}
@@ -220,10 +220,22 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,
-			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity=new DeleteCategoryResponseMessageEntity();
+		deleteCategoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		deleteCategoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		deleteCategoryResponseMessageEntity.setHttpStatus(Status.OK);		
+		if (deleteCategoryRequestMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				deleteCategoryResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				deleteCategoryResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			deleteCategoryResponseMessageEntity.setHttpStatus(deleteCategoryRequestMessageEntity.getHttpStatus());
+		}
+		return deleteCategoryResponseMessageEntity;
 	}
 
 }
