@@ -218,9 +218,9 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		{
 			return categoryResponse;
 		}
-		if(categoryResponseMessageEntity.getId() != null)
+		if(categoryMessageEntity.getId() != null)
 		{
-			categoryResponse.setId(categoryResponseMessageEntity.getId().toString());
+			categoryResponse.setId(categoryMessageEntity.getId().toString());
 		}
 		if (categoryResponseMessageEntity.getResultMessages() == null) {
 			return categoryResponse;

@@ -433,9 +433,10 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 										.toList();
 		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate category anem is is not allowed", "Name", katavuccolServiceErrorCode.categoryNameDuplicateErrorCode());
+			return new Result(ResultStatus.SUCCESS);
 		}
-		return new Result(ResultStatus.SUCCESS);
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate category anem is is not allowed", "Name", katavuccolServiceErrorCode.categoryNameDuplicateErrorCode());
+				
 	}
 
 

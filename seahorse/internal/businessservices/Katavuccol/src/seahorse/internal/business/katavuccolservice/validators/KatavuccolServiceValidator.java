@@ -439,9 +439,9 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);		
 		
-		if(categoryRequestMessageEntity==null)
+		if(StringUtils.isEmpty(categoryRequestMessageEntity.getName()))
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"categoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCategoryRequestMessageEntityIsEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"categoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCategoryNameIsEmptyErrorCode());
 		}
 		
 		return result;
@@ -458,12 +458,19 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;			
 		}
 		categoryRequestMessageEntity.setParsedUserId(UUID.fromString(categoryRequestMessageEntity.getUserId()));
+		categoryRequestMessageEntity.setCreatedBy(categoryRequestMessageEntity.getParsedUserId());
 		return result;
 	}
 
 	public Result isCategoryRequestMessageEntityValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(categoryRequestMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.categoryRequestMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
 	}
 
 	@Override

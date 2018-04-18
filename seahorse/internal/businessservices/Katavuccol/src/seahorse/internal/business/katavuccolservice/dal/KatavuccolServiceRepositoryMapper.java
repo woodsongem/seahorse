@@ -220,7 +220,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	public BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CategoryRequestMessageEntity categoryRequestMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();
 		bound.setUUID(DataBaseColumn.ID,categoryRequestMessageEntity.getId());
-		bound.setString(DataBaseColumn.USERID,categoryRequestMessageEntity.getUserId());
+		bound.setUUID(DataBaseColumn.USERID,categoryRequestMessageEntity.getParsedUserId());
 		bound.setString(DataBaseColumn.CATEGORY_NAME,categoryRequestMessageEntity.getName());
 		bound.setUUID(DataBaseColumn.CREATEDBY,categoryRequestMessageEntity.getCreatedBy());
 		bound.setTimestamp(DataBaseColumn.CREATEDDATE,categoryRequestMessageEntity.getCreatedDate());		

@@ -65,6 +65,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String deleteCategoryIdEmptyErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.Empty";
 	private String deleteCategoryIdInValidErrorCode="Katavuccol.API.DeleteCategory.%s.CategoryId.InValid";
 	private String deleteCategoryIdNotFoundErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.NotFound";
+	private String categoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.categoryRequestMessageEntity.Empty";
+	private String createCategoryNameIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.Name.Empty";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -335,5 +337,15 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String deleteCategoryIdNotFoundErrorCode() {		
 		return deleteCategoryIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String categoryRequestMessageEntityIsEmptyErrorCode() {		
+		return categoryRequestMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String createCategoryNameIsEmptyErrorCode() {		
+		return createCategoryNameIsEmptyErrorCode;
 	}
 }

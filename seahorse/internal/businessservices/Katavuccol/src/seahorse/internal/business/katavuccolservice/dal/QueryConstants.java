@@ -22,7 +22,7 @@ public class QueryConstants {
 	public static final String GET_CREDENTIAL_DETAIL_BY_USERID_ID_QUERY = "SELECT userid,parentId, id, categoryid, createdby, createddate, credentialtypeid, description, modifiedby, modifieddate, status FROM credential where id=? and userid=? ";
 	public static final String GET_DELETE_CREDENTIAL_QUERY = "UPDATE credential SET modifiedby=?, modifieddate=?,status=? where id=? and userid=? ";
 	public static final String GET_UPDATE_CREDENTIAL_QUERY = "UPDATE credential SET value=?,categoryid=?,credentialtypeid=?, modifiedby=?, modifieddate=?,description=? where id=? and userid=? ";
-	public static final String GET_CREATE_CATEGORY_QUERY = "";
+	public static final String GET_CREATE_CATEGORY_QUERY = "INSERT INTO category (userid, id, createdby, createddate, description, name, status) VALUES(?, ?, ?, ?,?,?,?)";
 	public static final String GET_DELETE_CATEGORY_QUERY = null;
 	
 }

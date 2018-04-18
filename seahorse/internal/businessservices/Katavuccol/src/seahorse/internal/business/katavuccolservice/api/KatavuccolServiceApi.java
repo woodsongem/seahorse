@@ -77,7 +77,7 @@ public class KatavuccolServiceApi {
 	private HttpServletRequest httpRequest;
 	
 	@POST
-	@Path("/{userid}/category/")
+	@Path("/{userid}/category")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCategory(@PathParam("userid") String userid,CategoryRequest categoryRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
