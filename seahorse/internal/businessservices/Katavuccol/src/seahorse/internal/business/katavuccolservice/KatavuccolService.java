@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -28,6 +29,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
@@ -285,5 +287,22 @@ public class KatavuccolService implements IKatavuccolService {
 	public DeleteCredentialResponseMessageEntity deleteCredentialType(DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Category> getCategory(GetCategoryMessageEntity getCategoryMessageEntity) {
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateGetCategory(getCategoryMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+	    
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyGetCategory(getCategoryMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+		
+		return katavuccolServiceMapper.mapCategory(result, getCategoryMessageEntity);
 	}
 }

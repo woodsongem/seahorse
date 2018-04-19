@@ -5,6 +5,8 @@ package seahorse.internal.business.katavuccolservice;
 
 
 import java.util.List;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
@@ -17,6 +19,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
@@ -52,4 +55,6 @@ public interface IKatavuccolService {
 
 	DeleteCredentialResponseMessageEntity deleteCredentialType(
 			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity);
+
+	List<Category> getCategory(GetCategoryMessageEntity getCategoryMessageEntity);
 }

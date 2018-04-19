@@ -35,6 +35,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
@@ -331,5 +332,12 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 			String credentialTypeId, HttpServletRequest httpRequest) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest) {
+		GetCategoryMessageEntity getCategoryMessageEntity=new GetCategoryMessageEntity();
+		getCategoryMessageEntity.setUserid(userid);
+		return getCategoryMessageEntity;
 	}
 }

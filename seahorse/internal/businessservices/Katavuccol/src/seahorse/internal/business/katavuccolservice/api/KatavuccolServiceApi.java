@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
@@ -55,6 +56,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
@@ -154,6 +156,25 @@ public class KatavuccolServiceApi {
 			logger.error(ex);
 		}
 		return Response.status(httpStatus).entity(updateCategoryResponse).build();
+	}
+	
+	//GET ==> /income/category
+	@GET
+	@Path("/{userid}/category")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCategoryByUserId(@PathParam("userid") String userid){
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		List<Category> credentials=new ArrayList<>();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			GetCategoryMessageEntity getCategoryMessageEntity=katavuccolServiceApiMapper.mapGetCategoryMessageEntity(userid,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			credentials=katavuccolService.getCategory(getCategoryMessageEntity);
+		}
+		catch (Exception ex) {				
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(credentials).build();
 	}
 	
 	@POST
