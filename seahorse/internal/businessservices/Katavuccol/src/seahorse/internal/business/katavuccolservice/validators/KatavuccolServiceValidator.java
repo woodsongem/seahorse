@@ -519,6 +519,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;			
 		}
 		deleteCategoryRequestMessageEntity.setParsedUserId(UUID.fromString(deleteCategoryRequestMessageEntity.getUserId()));
+		deleteCategoryRequestMessageEntity.setModifiedBy(deleteCategoryRequestMessageEntity.getParsedUserId());
 		return result;
 	}
 

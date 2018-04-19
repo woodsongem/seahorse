@@ -180,8 +180,7 @@ public class KatavuccolService implements IKatavuccolService {
 
 	@Override
 	public CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
-		//Set	
-		categoryRequestMessageEntity.setId(UUIDs.timeBased());
+		//Set
 		categoryRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
 		categoryRequestMessageEntity.setCreatedDate(new Date());		
 		

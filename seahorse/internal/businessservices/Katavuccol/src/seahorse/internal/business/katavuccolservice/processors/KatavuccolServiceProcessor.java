@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.datastax.driver.core.utils.UUIDs;
 import com.google.common.collect.FluentIterable;
 import com.google.inject.Inject;
 
@@ -131,6 +132,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	
 	public Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity)
 	{
+		categoryRequestMessageEntity.setId(UUIDs.timeBased());
 		OutPutResponse outPutResponse=katavuccolServiceRepository.createCategory(categoryRequestMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{

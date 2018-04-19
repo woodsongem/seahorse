@@ -65,8 +65,11 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 
 	@Override
 	public GetCredentialsMessageEntity mapGetCredentialsMessageEntity(Result result, Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		GetCredentialsMessageEntity getCredentialsMessageEntity=new GetCredentialsMessageEntity();
+		getCredentialsMessageEntity.setResultStatus(result.getResultStatus());
+		getCredentialsMessageEntity.setResultMessages(result.getResultMessages());
+		getCredentialsMessageEntity.setHttpStatus(badRequest);
+		return getCredentialsMessageEntity;
 	}
 
 	@Override
@@ -125,21 +128,11 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result,
-			Status badRequest) {
+	public UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result,Status badRequest) {
 		UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity=new UpdateCredentialResponseMessageEntity();
 		updateCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
-		updateCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());				
-		if (updateCredentialResponseMessageEntity.getHttpStatus() == null) {
-			if (result.getResultStatus() == ResultStatus.SUCCESS)
-				updateCredentialResponseMessageEntity.setHttpStatus(Status.OK);
-			else
-				updateCredentialResponseMessageEntity.setHttpStatus(badRequest);
-		}
-		else
-		{
-			updateCredentialResponseMessageEntity.setHttpStatus(updateCredentialResponseMessageEntity.getHttpStatus());
-		}
+		updateCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
+		updateCredentialResponseMessageEntity.setHttpStatus(badRequest);
 		return updateCredentialResponseMessageEntity;
 	}
 
@@ -165,8 +158,11 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 
 	@Override
 	public CredentialTypeResponseMessageEntity mapCredentialTypeResponseMessageEntity(Result result,Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity=new CredentialTypeResponseMessageEntity();
+		credentialTypeResponseMessageEntity.setResultStatus(result.getResultStatus());
+		credentialTypeResponseMessageEntity.setResultMessages(result.getResultMessages());
+		credentialTypeResponseMessageEntity.setHttpStatus(badRequest);
+		return credentialTypeResponseMessageEntity;
 	}
 
 	@Override
@@ -179,17 +175,8 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	public CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result, Status badRequest) {
 		CategoryResponseMessageEntity categoryResponseMessageEntity=new CategoryResponseMessageEntity();
 		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
-		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());				
-		if (categoryResponseMessageEntity.getHttpStatus() == null) {
-			if (result.getResultStatus() == ResultStatus.SUCCESS)
-				categoryResponseMessageEntity.setHttpStatus(Status.OK);
-			else
-				categoryResponseMessageEntity.setHttpStatus(badRequest);
-		}
-		else
-		{
-			categoryResponseMessageEntity.setHttpStatus(categoryResponseMessageEntity.getHttpStatus());
-		}
+		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		categoryResponseMessageEntity.setHttpStatus(badRequest);
 		return categoryResponseMessageEntity;
 	}
 
@@ -213,10 +200,12 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,
-			Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,Status badRequest) {
+		DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity=new DeleteCategoryResponseMessageEntity();
+		deleteCategoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		deleteCategoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		deleteCategoryResponseMessageEntity.setHttpStatus(badRequest);
+		return deleteCategoryResponseMessageEntity;
 	}
 
 	@Override
