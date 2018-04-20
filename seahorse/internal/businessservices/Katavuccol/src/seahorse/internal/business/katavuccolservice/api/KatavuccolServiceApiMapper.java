@@ -337,7 +337,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	@Override
 	public GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest) {
 		GetCategoryMessageEntity getCategoryMessageEntity=new GetCategoryMessageEntity();
-		getCategoryMessageEntity.setUserid(userid);
+		getCategoryMessageEntity.setUserId(userid);
 		return getCategoryMessageEntity;
 	}
 }

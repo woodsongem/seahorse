@@ -481,8 +481,18 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	@Override
 	public Result verifyGetCategory(GetCategoryMessageEntity getCategoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+
+		result = isUserIdValid(getCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}	
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isUserIdValid(GetCategoryMessageEntity getCategoryMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

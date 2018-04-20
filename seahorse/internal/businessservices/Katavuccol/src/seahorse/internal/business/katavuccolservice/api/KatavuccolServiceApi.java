@@ -164,17 +164,17 @@ public class KatavuccolServiceApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCategoryByUserId(@PathParam("userid") String userid){
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-		List<Category> credentials=new ArrayList<>();
+		List<Category> categorys=new ArrayList<>();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
 			GetCategoryMessageEntity getCategoryMessageEntity=katavuccolServiceApiMapper.mapGetCategoryMessageEntity(userid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
-			credentials=katavuccolService.getCategory(getCategoryMessageEntity);
+			categorys=katavuccolService.getCategory(getCategoryMessageEntity);
 		}
 		catch (Exception ex) {				
 			logger.error(ex);
 		}
-		return Response.status(httpStatus).entity(credentials).build();
+		return Response.status(httpStatus).entity(categorys).build();
 	}
 	
 	@POST

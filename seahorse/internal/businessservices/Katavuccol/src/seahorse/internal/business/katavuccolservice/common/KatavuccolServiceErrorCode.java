@@ -67,6 +67,9 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String deleteCategoryIdNotFoundErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.NotFound";
 	private String categoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.categoryRequestMessageEntity.Empty";
 	private String createCategoryNameIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.Name.Empty";
+	private String getCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCategory.%s.GetCategoryMessageEntity.Empty";
+	private String getCategoryEmptyUserIdErrorCode ="Katavuccol.API.GetCategory.%s.UserId.Empty";
+	private String getCategoryInValidUserIdErrorCode= "Katavuccol.API.GetCategory.%s.UserId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -347,5 +350,20 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String createCategoryNameIsEmptyErrorCode() {		
 		return createCategoryNameIsEmptyErrorCode;
+	}
+
+	@Override
+	public String getCategoryMessageEntityIsEmptyErrorCode() {		
+		return getCategoryMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String getCategoryEmptyUserIdErrorCode() {		
+		return getCategoryEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String getCategoryInValidUserIdErrorCode() {		
+		return getCategoryInValidUserIdErrorCode;
 	}
 }

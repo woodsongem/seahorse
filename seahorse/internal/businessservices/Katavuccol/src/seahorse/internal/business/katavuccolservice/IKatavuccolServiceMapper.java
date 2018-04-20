@@ -64,4 +64,6 @@ public interface IKatavuccolServiceMapper {
 
 	List<Category> mapCategory(Result result, GetCategoryMessageEntity getCategoryMessageEntity);
 
+	List<Category> mapCategory(Result result, Status forbidden);
+
 }

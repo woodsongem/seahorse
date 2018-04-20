@@ -231,6 +231,29 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 
 	@Override
 	public List<Category> mapCategory(Result result, GetCategoryMessageEntity getCategoryMessageEntity) {
+		List<Category> categorys=new ArrayList<>();
+		if(getCategoryMessageEntity.getCategory() == null || getCategoryMessageEntity.getCategory().isEmpty())
+		{
+			return categorys;
+		}
+		for (seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO categoryDAO : getCategoryMessageEntity.getCategory()) {
+			Category category=new Category();
+			category.setName(categoryDAO.getName());
+			category.setUserId(KatavuccolServiceUtility.getString(categoryDAO.getUserId()));
+			category.setDescription(categoryDAO.getDescription());
+			category.setId(KatavuccolServiceUtility.getString(categoryDAO.getId()));
+			category.setCreatedBy(KatavuccolServiceUtility.getString(categoryDAO.getCreatedBy()));
+			category.setCreatedDate(categoryDAO.getCreatedDate());
+			category.setModifiedBy(KatavuccolServiceUtility.getString(categoryDAO.getModifiedBy()));
+			category.setModifiedDate(categoryDAO.getModifiedDate());			
+			category.setStatus(categoryDAO.getStatus());			
+			categorys.add(category);
+		}		
+		return categorys;
+	}
+
+	@Override
+	public List<Category> mapCategory(Result result, Status forbidden) {
 		// TODO Auto-generated method stub
 		return null;
 	}

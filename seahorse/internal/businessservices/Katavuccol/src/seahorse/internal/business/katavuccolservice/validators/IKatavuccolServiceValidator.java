@@ -87,4 +87,8 @@ public interface IKatavuccolServiceValidator {
 	Result isCategoryIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 	Result validateGetCategory(GetCategoryMessageEntity getCategoryMessageEntity);
+	
+	Result isGetCategoryMessageEntityValid(GetCategoryMessageEntity getCategoryMessageEntity);
+	
+	Result isUserIdValid(GetCategoryMessageEntity getCategoryMessageEntity);
 }

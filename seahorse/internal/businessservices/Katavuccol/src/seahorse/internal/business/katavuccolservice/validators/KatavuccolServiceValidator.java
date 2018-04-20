@@ -537,7 +537,44 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 
 	@Override
 	public Result validateGetCategory(GetCategoryMessageEntity getCategoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+
+		result = isGetCategoryMessageEntityValid(getCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(getCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isGetCategoryMessageEntityValid(GetCategoryMessageEntity getCategoryMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(getCategoryMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"GetCategoryMessageEntity is null","GetCategoryMessageEntity",katavuccolServiceErrorCode.getCategoryMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
+	}
+
+	public Result isUserIdValid(GetCategoryMessageEntity getCategoryMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(getCategoryMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.getCategoryInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.getCategoryEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		getCategoryMessageEntity.setParsedUserId(UUID.fromString(getCategoryMessageEntity.getUserId()));
+		getCategoryMessageEntity.setModifiedBy(getCategoryMessageEntity.getParsedUserId());
+		return result;
 	}
 }

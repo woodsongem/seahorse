@@ -72,4 +72,6 @@ public interface IKatavuccolServiceVerifier {
 	Result isUserIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 	Result verifyGetCategory(GetCategoryMessageEntity getCategoryMessageEntity);
+	
+	Result isUserIdValid(GetCategoryMessageEntity getCategoryMessageEntity);
 }

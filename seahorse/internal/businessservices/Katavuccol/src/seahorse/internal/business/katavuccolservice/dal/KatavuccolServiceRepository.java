@@ -86,7 +86,11 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row typeDAOResult = resultSet.one();
-				typeDAO = katavuccolServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult);				
+				typeDAO = katavuccolServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult);	
+				if(!KatavuccolServiceUtility.isEqual(typeDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
+				{
+					typeDAO=null;
+				}							
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getCredentialTypeDetailById error=" + exception);
@@ -119,7 +123,11 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row categoryDAOResult = resultSet.one();
-				categoryDAOs.add(katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult));				
+				CategoryDAO categoryDAO=katavuccolServiceRepositoryMapper.mapCategoryDAO(categoryDAOResult);
+				if(KatavuccolServiceUtility.isEqual(categoryDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
+				{
+					categoryDAOs.add(categoryDAO);
+				}								
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getCategoryDetailByUserId error=" + exception);			
@@ -138,7 +146,11 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row typeDAOResult = resultSet.one();
-				typeDAOs.add(katavuccolServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult));				
+				CredentialTypeDAO credentialTypeDAO=katavuccolServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult);
+				if(KatavuccolServiceUtility.isEqual(credentialTypeDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
+				{
+					typeDAOs.add(credentialTypeDAO);
+				}								
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getTypeDetailsByUserId error=" + exception);

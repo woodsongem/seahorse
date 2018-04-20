@@ -61,5 +61,8 @@ public interface IKatavuccolServiceErrorCode {
 	String deleteCategoryIdInValidErrorCode();
 	String deleteCategoryIdNotFoundErrorCode();
 	String categoryRequestMessageEntityIsEmptyErrorCode();
-	String createCategoryNameIsEmptyErrorCode();	
+	String createCategoryNameIsEmptyErrorCode();
+	String getCategoryMessageEntityIsEmptyErrorCode();
+	String getCategoryEmptyUserIdErrorCode();
+	String getCategoryInValidUserIdErrorCode();	
 }

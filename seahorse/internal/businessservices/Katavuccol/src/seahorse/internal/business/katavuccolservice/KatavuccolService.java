@@ -303,6 +303,12 @@ public class KatavuccolService implements IKatavuccolService {
 			return new ArrayList<>();
 		}
 		
+		//Processor
+		result=katavuccolServiceProcessor.processorGetCategory(getCategoryMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+		
 		return katavuccolServiceMapper.mapCategory(result, getCategoryMessageEntity);
 	}
 }

@@ -18,12 +18,14 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutR
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -163,4 +165,26 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 		
 		return new Result(ResultStatus.SUCCESS);
 	}
+
+	@Override
+	public Result processorGetCategory(GetCategoryMessageEntity getCategoryMessageEntity) {
+		Result result;
+		result=getCategory(getCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+	public Result getCategory(GetCategoryMessageEntity getCategoryMessageEntity) {
+		List<CategoryDAO> categoryDAO=katavuccolServiceRepository.getCategoryDetailByUserId(getCategoryMessageEntity.getParsedUserId());
+		if(categoryDAO==null || categoryDAO.isEmpty())
+		{
+			return new Result(ResultStatus.ERROR);
+		}
+		getCategoryMessageEntity.setCategory(categoryDAO);
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+	
 }
