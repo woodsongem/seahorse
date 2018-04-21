@@ -272,8 +272,16 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	public UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(
 			UpdateCategoryRequest updateCategoryRequest, String userid, String categoryId,
 			HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		UpdateCategoryMessageEntity updateCategoryMessageEntity=new UpdateCategoryMessageEntity();
+		updateCategoryMessageEntity.setUserId(userid);
+		updateCategoryMessageEntity.setCategoryId(categoryId);
+		if(updateCategoryRequest ==null)
+		{
+			return updateCategoryMessageEntity;
+		}
+		updateCategoryMessageEntity.setName(updateCategoryRequest.getName());
+		updateCategoryMessageEntity.setDescription(updateCategoryRequest.getDescription());
+		return updateCategoryMessageEntity;
 	}
 
 	@Override

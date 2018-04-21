@@ -9,6 +9,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -29,5 +30,7 @@ public interface IKatavuccolServicePostProcessor {
 	Result postProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
 
 	Result postProcessorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+
+	Result postProcessorUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);
 
 }

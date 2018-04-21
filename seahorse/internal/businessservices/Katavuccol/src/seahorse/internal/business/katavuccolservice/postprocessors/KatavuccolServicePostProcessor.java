@@ -10,6 +10,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -48,6 +49,11 @@ public class KatavuccolServicePostProcessor implements IKatavuccolServicePostPro
 
 	@Override
 	public Result postProcessorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result postProcessorUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 }

@@ -30,6 +30,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -300,7 +301,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		
 		if(credentialDAOs == null || credentialDAOs.isEmpty() || curCredentialDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCredentialIdNotFoundErrorCode());
 		}
 		updateCredentialMessageEntity.setParsedCategoryId(curCredentialDAOs.get(0).getCategoryId());
 		List<CredentialDAO>  categoryCredentialDAOs=
@@ -311,7 +312,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		
 		if(categoryCredentialDAOs == null || categoryCredentialDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find category id", "CategoryId", katavuccolServiceErrorCode.updateCredentialIdNotFoundErrorCode());
 		}
 		
 		updateCredentialMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(categoryCredentialDAOs));
@@ -492,6 +493,64 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isUserIdValid(GetCategoryMessageEntity getCategoryMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result;
+
+		result = isUserIdValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isCategoryIdValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isNameValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isNameValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		if(updateCategoryMessageEntity.getName()==null)
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
+		
+		List<CategoryDAO> categoryDAOs=katavuccolServiceRepository.getCategoryDetailByUserId(updateCategoryMessageEntity.getParsedUserId());
+		
+		List<CategoryDAO> filterCategoryDAOs=
+				FluentIterable
+				.from(categoryDAOs)
+				.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),updateCategoryMessageEntity.getName()))
+				.toList();
+		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate category name is is not allowed", "Name", katavuccolServiceErrorCode.updateCategoryNameDuplicateErrorCode());
+	}
+
+
+	public Result isCategoryIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(updateCategoryMessageEntity.getParsedCategoryId(),updateCategoryMessageEntity.getParsedUserId());
+		if(categoryDAO ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.updateCategoryIdNotFoundErrorCode());
+		}		
+		updateCategoryMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

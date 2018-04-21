@@ -242,8 +242,31 @@ public class KatavuccolService implements IKatavuccolService {
 
 	@Override
 	public UpdateCategoryResponseMessageEntity updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		//Set		
+		updateCategoryMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateUpdateCategory(updateCategoryMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyUpdateCategory(updateCategoryMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCategoryResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorUpdateCategory(updateCategoryMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCategoryResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.postProcessorUpdateCategory(updateCategoryMessageEntity);
+		
+		return katavuccolServiceMapper.mapUpdateCategoryResponseMessageEntity(result, updateCategoryMessageEntity);
 	}
 
 	@Override

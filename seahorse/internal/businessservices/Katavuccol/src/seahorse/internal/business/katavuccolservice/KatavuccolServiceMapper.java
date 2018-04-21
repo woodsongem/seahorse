@@ -26,6 +26,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
@@ -256,6 +258,33 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	public List<Category> mapCategory(Result result, Status forbidden) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,
+			Status badRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,
+			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity=new UpdateCategoryResponseMessageEntity();
+		updateCategoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		updateCategoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		updateCategoryResponseMessageEntity.setHttpStatus(Status.OK);		
+		if (updateCategoryMessageEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				updateCategoryResponseMessageEntity.setHttpStatus(Status.OK);
+			else
+				updateCategoryResponseMessageEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			updateCategoryResponseMessageEntity.setHttpStatus(updateCategoryMessageEntity.getHttpStatus());
+		}
+		return updateCategoryResponseMessageEntity;
 	}
 
 }

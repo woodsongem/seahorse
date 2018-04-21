@@ -26,6 +26,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialType
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -185,6 +186,27 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 		}
 		getCategoryMessageEntity.setCategory(categoryDAO);
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+	@Override
+	public Result processorUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result;
+		result=updateCategory(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+	public Result updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {		
+		Result result=katavuccolServiceRepository.updateCategory(updateCategoryMessageEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
 	}
 	
 }

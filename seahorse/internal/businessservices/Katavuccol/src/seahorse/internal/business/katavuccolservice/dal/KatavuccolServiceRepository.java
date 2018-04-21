@@ -18,6 +18,7 @@ import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
@@ -27,6 +28,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRespon
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
@@ -273,5 +275,17 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();		
 		return outPutResponse;
+	}
+
+	@Override
+	public Result updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result=new Result();
+		result.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0,null);
+		PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_UPDATE_CATEGORY_QUERY);
+		BoundStatement bound=katavuccolServiceRepositoryMapper.mapBoundStatement(preparedStatement,updateCategoryMessageEntity);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();		
+		return result;
 	}
 }

@@ -23,6 +23,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 
@@ -65,5 +67,10 @@ public interface IKatavuccolServiceMapper {
 	List<Category> mapCategory(Result result, GetCategoryMessageEntity getCategoryMessageEntity);
 
 	List<Category> mapCategory(Result result, Status forbidden);
+
+	UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result, Status badRequest);
+
+	UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,
+			UpdateCategoryMessageEntity updateCategoryMessageEntity);
 
 }

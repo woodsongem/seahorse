@@ -44,12 +44,12 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String getCredentialInValidUserIdErrorCode="Katavuccol.API.GetCredential.%s.UserId.InValid";
 	private String createCredentialEmptyUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.Empty";
 	private String createCredentialInValidUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.InValid";
-	private String updateCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
+	private String updateCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCategory.%s.CategoryId.Empty";
 	private String updateCategoryIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
 	private String updateCategoryTypeIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.Empty";
 	private String updateCategoryTypeIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.InValid";
 	private String updateCategoryTypeIdNotFoundErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.NotFound";
-	private String updateCategoryIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.%s.CredentialId.NotFound";
+	private String updateCredentialIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.%s.CredentialId.NotFound";
 	private String updateCredentialIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
 	private String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
 	private String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.%s.CredentialTypeMessageEntity.Empty";
@@ -70,6 +70,13 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String getCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCategory.%s.GetCategoryMessageEntity.Empty";
 	private String getCategoryEmptyUserIdErrorCode ="Katavuccol.API.GetCategory.%s.UserId.Empty";
 	private String getCategoryInValidUserIdErrorCode= "Katavuccol.API.GetCategory.%s.UserId.InValid";
+	private String updateCategoryEmptyUserIdErrorCode ="Katavuccol.API.UpdateCategory.%s.UserId.Empty";
+	private String updateCategoryInValidUserIdErrorCode ="Katavuccol.API.UpdateCategory.%s.UserId.InValid";
+	private String updateCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCategory.%s.UpdateCategoryMessageEntity.Empty";
+	private String updateCredentialCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
+	private String updateCategoryInCategoryIdInValidErrorCode="Katavuccol.API.UpdateCategory.%s.CategoryId.InValid";
+	private String updateCategoryIdNotFoundErrorCode ="Katavuccol.API.UpdateCategory.%s.CategoryId.NotFound";
+	private String updateCategoryNameDuplicateErrorCode="Katavuccol.API.UpdateCategory.%s.Name.DuplicateNotAllowed";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -263,8 +270,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	}
 
 	@Override
-	public String updateCategoryIdNotFoundErrorCode() {		
-		return updateCategoryIdNotFoundErrorCode;
+	public String updateCredentialIdNotFoundErrorCode() {		
+		return updateCredentialIdNotFoundErrorCode;
 	}
 
 	@Override
@@ -365,5 +372,40 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String getCategoryInValidUserIdErrorCode() {		
 		return getCategoryInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String updateCategoryEmptyUserIdErrorCode() {		
+		return updateCategoryEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String updateCategoryInValidUserIdErrorCode() {		
+		return updateCategoryInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String updateCategoryMessageEntityIsEmptyErrorCode() {		
+		return updateCategoryMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String updateCredentialCategoryIdEmptyErrorCode() {		
+		return updateCredentialCategoryIdEmptyErrorCode;
+	}
+
+	@Override
+	public String updateCategoryInCategoryIdInValidErrorCode() {		
+		return updateCategoryInCategoryIdInValidErrorCode;
+	}
+
+	@Override
+	public String updateCategoryIdNotFoundErrorCode() {		
+		return updateCategoryIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String updateCategoryNameDuplicateErrorCode() {		
+		return updateCategoryNameDuplicateErrorCode;
 	}
 }

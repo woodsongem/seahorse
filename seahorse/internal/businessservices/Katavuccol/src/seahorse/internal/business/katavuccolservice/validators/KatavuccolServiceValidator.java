@@ -18,6 +18,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
 
@@ -324,7 +325,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	public Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
 		if(updateCredentialMessageEntity.getCategoryId()==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.updateCategoryIdEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.updateCredentialCategoryIdEmptyErrorCode());
 		}		
 		if(KatavuccolServiceUtility.isValidUUID(updateCredentialMessageEntity.getCategoryId()))
 		{
@@ -575,6 +576,67 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		getCategoryMessageEntity.setParsedUserId(UUID.fromString(getCategoryMessageEntity.getUserId()));
 		getCategoryMessageEntity.setModifiedBy(getCategoryMessageEntity.getParsedUserId());
+		return result;
+	}
+
+	@Override
+	public Result validateUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result;
+
+		result = isUpdateCategoryMessageEntityValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}		
+		
+		result = isCategoryIdValid(updateCategoryMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isCategoryIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		if(updateCategoryMessageEntity.getCategoryId()==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.updateCategoryIdEmptyErrorCode());
+		}		
+		if(KatavuccolServiceUtility.isValidUUID(updateCategoryMessageEntity.getCategoryId()))
+		{
+			updateCategoryMessageEntity.setParsedCategoryId(UUID.fromString(updateCategoryMessageEntity.getCategoryId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.updateCategoryInCategoryIdInValidErrorCode());
+	}
+	
+
+	public Result isUserIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result;		
+		
+		result = isUserIdValid(updateCategoryMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.updateCategoryInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.updateCategoryEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		updateCategoryMessageEntity.setParsedUserId(UUID.fromString(updateCategoryMessageEntity.getUserId()));
+		updateCategoryMessageEntity.setModifiedBy(updateCategoryMessageEntity.getParsedUserId());
+		return result;
+	}
+
+	public Result isUpdateCategoryMessageEntityValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(updateCategoryMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UpdateCategoryMessageEntity is null","UpdateCategoryMessageEntity",katavuccolServiceErrorCode.updateCategoryMessageEntityIsEmptyErrorCode());
+		}
+		
 		return result;
 	}
 }
