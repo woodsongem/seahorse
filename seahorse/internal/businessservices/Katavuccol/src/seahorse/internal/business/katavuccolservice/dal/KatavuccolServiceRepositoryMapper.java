@@ -242,8 +242,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 	}
 
 	@Override
-	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,
-			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
+	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCategoryMessageEntity updateCategoryMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,updateCategoryMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.ID,updateCategoryMessageEntity.getParsedCategoryId());

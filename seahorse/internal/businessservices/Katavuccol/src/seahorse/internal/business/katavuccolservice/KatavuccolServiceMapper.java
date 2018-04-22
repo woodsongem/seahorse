@@ -261,10 +261,12 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,
-			Status badRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,Status badRequest) {
+		UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity=new UpdateCategoryResponseMessageEntity();
+		updateCategoryResponseMessageEntity.setResultStatus(result.getResultStatus());
+		updateCategoryResponseMessageEntity.setResultMessages(result.getResultMessages());
+		updateCategoryResponseMessageEntity.setHttpStatus(badRequest);
+		return updateCategoryResponseMessageEntity;
 	}
 
 	@Override

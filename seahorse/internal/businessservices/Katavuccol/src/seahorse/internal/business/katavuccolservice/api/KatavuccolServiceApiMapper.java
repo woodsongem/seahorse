@@ -288,8 +288,22 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	public UpdateCategoryResponse mapUpdateCategoryResponse(
 			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
 			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		UpdateCategoryResponse updateCategoryResponse=new UpdateCategoryResponse();
+		if(updateCategoryResponseMessageEntity == null || updateCategoryResponseMessageEntity.getResultMessages() == null)
+		{
+			return updateCategoryResponse;
+		}		
+		
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : updateCategoryResponseMessageEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),updateCategoryMessageEntity.getHttpMethod()));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		updateCategoryResponse.setResultMessages(resultMessages);		
+		
+		return	updateCategoryResponse;
 	}
 
 	@Override
