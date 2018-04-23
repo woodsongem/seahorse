@@ -4,15 +4,23 @@
 
 package seahorse.internal.business.katavuccolservice.utilities;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import com.datastax.driver.core.LocalDate;
+import com.google.crypto.tink.Config;
+import com.google.crypto.tink.DeterministicAead;
+import com.google.crypto.tink.KeysetHandle;
+import com.google.crypto.tink.daead.DeterministicAeadConfig;
+import com.google.crypto.tink.daead.DeterministicAeadFactory;
+import com.google.crypto.tink.daead.DeterministicAeadKeyTemplates;
 import com.google.gson.Gson;
-
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -148,5 +156,54 @@ public class KatavuccolServiceUtility {
 		}
 		
 		return source.equals(des);
+	}
+	public static String encrypt(String key,String value)
+	{
+		String cp = null;
+		
+		try {
+			DeterministicAeadConfig.init();
+		    Config.register(DeterministicAeadConfig.TINK_1_1_0);
+			KeysetHandle keysetHandle = KeysetHandle.generateNew(DeterministicAeadKeyTemplates.AES256_SIV);
+			DeterministicAead daead = DeterministicAeadFactory.getPrimitive(keysetHandle);
+			byte[] plaintext = null;
+			byte[] associatedData=null;
+			try {
+				plaintext = value.getBytes("UTF-8");
+				associatedData = key.getBytes("UTF-8");
+			} catch (UnsupportedEncodingException e) {				
+			
+			}
+			
+			byte[] ciphertext = daead.encryptDeterministically(plaintext, associatedData);
+			cp = Arrays.toString(ciphertext);			
+		} catch (GeneralSecurityException e) {
+			
+		}
+	  return cp;
+	}
+	public static String decrypt(String key,String value)
+	{
+		String cp = null;
+		
+		try {
+			DeterministicAeadConfig.init();
+		    Config.register(DeterministicAeadConfig.TINK_1_1_0);
+			KeysetHandle keysetHandle = KeysetHandle.generateNew(DeterministicAeadKeyTemplates.AES256_SIV);
+			DeterministicAead daead = DeterministicAeadFactory.getPrimitive(keysetHandle);
+			byte[] encrypttext = null;
+			byte[] associatedData=null;
+			try {
+				encrypttext = value.getBytes("UTF-8");
+				associatedData = key.getBytes("UTF-8");
+			} catch (UnsupportedEncodingException e) {				
+			
+			}
+			byte[] decrypted = daead.decryptDeterministically(encrypttext, associatedData);
+			cp = cp + Arrays.toString(decrypted);
+		} catch (GeneralSecurityException e) {
+			
+		}
+	  return cp;
 	}
 }

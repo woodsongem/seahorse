@@ -32,6 +32,8 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private Boolean isCredentialNull;
 	private String parentCredentialId;
 	private UUID parsedParentCredentialId;
+	private String encryptValue;
+	private String encryptKey;
 	
 	/**
 	 * @return the categoryId
@@ -236,5 +238,29 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setParsedParentCredentialId(UUID parsedParentCredentialId) {
 		this.parsedParentCredentialId = parsedParentCredentialId;
+	}
+	/**
+	 * @return the encryptValue
+	 */
+	public String getEncryptValue() {
+		return encryptValue;
+	}
+	/**
+	 * @param encryptValue the encryptValue to set
+	 */
+	public void setEncryptValue(String encryptValue) {
+		this.encryptValue = encryptValue;
+	}
+	/**
+	 * @return the encryptKey
+	 */
+	public String getEncryptKey() {
+		return encryptKey;
+	}
+	/**
+	 * @param encryptKey the encryptKey to set
+	 */
+	public void setEncryptKey(String encryptKey) {
+		this.encryptKey = encryptKey;
 	}	
 }

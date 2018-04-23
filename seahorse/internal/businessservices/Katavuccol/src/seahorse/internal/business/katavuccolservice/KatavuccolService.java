@@ -31,6 +31,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -333,5 +334,29 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		return katavuccolServiceMapper.mapCategory(result, getCategoryMessageEntity);
+	}
+
+	@Override
+	public Credential getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+
+		//Validator	    
+	    Result result = katavuccolServiceValidator.validateGetCredentialValueByUserId(getCredentialValueMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new Credential();
+		}
+	    
+	    //Verifier
+	    result = katavuccolServiceVerifier.verifyGetCredentialValueByUserId(getCredentialValueMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new Credential();
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorGetCredentialValueByUserId(getCredentialValueMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new Credential();
+		}
+		
+		return katavuccolServiceMapper.mapCategory(result, getCredentialValueMessageEntity);
 	}
 }

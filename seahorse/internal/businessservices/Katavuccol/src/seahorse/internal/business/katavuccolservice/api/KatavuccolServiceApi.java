@@ -58,6 +58,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
@@ -354,6 +355,24 @@ public class KatavuccolServiceApi {
 			GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			credentials=katavuccolService.getCredentials(getCredentialMessageEntity);
+			
+		}
+		catch (Exception ex) {				
+			logger.error(ex);
+		}
+		return Response.status(httpStatus).entity(credentials).build();
+	}
+	@GET
+	@Path("/{userid}/category/credential/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCredentialValueByUserId(@PathParam("userid") String userid,@PathParam("id") String credentialId){
+		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		Credential credentials=new Credential();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		try {
+			GetCredentialValueMessageEntity getCredentialValueMessageEntity=katavuccolServiceApiMapper.mapGetCredentialValueMessageEntity(userid,httpRequest);
+			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			credentials=katavuccolService.getCredentialValueByUserId(getCredentialValueMessageEntity);
 			
 		}
 		catch (Exception ex) {				

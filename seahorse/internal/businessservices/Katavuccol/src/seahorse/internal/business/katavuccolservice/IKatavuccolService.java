@@ -21,6 +21,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
@@ -57,4 +58,6 @@ public interface IKatavuccolService {
 			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity);
 
 	List<Category> getCategory(GetCategoryMessageEntity getCategoryMessageEntity);
+
+	Credential getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 }

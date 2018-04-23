@@ -26,6 +26,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialType
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -207,6 +209,12 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 		}
 		
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result processorGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

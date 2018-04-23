@@ -37,6 +37,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
@@ -361,5 +362,12 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		GetCategoryMessageEntity getCategoryMessageEntity=new GetCategoryMessageEntity();
 		getCategoryMessageEntity.setUserId(userid);
 		return getCategoryMessageEntity;
+	}
+
+	@Override
+	public GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,
+			HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

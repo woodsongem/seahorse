@@ -30,6 +30,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -90,8 +91,20 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 			return result;
 		}
 		
+		result = isEncryptValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
+
+	public Result isEncryptValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		String encrypted=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.encrypt("12345678910", credentialRequestMessageEntity.getValue());
+		credentialRequestMessageEntity.setEncryptValue(encrypted);
+		return new Result(ResultStatus.SUCCESS);		
+	}
+
 
 	public Result isCredentialTypeSubItemAllowedValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		if(credentialRequestMessageEntity.getIsCredentialNull() || credentialRequestMessageEntity.getParsedParentCredentialId() == null)
@@ -552,6 +565,13 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	public Result isUserIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	@Override
+	public Result verifyGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

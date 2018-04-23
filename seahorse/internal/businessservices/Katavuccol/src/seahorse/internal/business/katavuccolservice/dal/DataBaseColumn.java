@@ -42,6 +42,7 @@ public class DataBaseColumn {
 	public static final String CREDENTIAL_CREDENTIAL_TYPEID = "credentialtypeid";
 	public static final String CREDENTIAL_DESCRIPTION = "description";
 	public static final String CREDENTIAL_PARENTID = "parentid";
+	public static final String CREDENTIAL_VALUE = "value";
 	
 	//Income Details
 	
@@ -62,4 +63,5 @@ public class DataBaseColumn {
 	public static final String CREDENTIALTYPE_DESCRIPTION = "description";
 	public static final String CREDENTIALTYPE_ISDUPLICATIONALLOWED = "isduplicationallowed";
 	public static final String CREDENTIALTYPE_ISSUBITEMALLOWED = "issubitemallowed";
+	
 }

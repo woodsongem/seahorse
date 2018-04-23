@@ -18,6 +18,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -638,5 +639,41 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Result validateGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		Result result;
+
+		result = isGetCredentialValueMessageEntityValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}		
+		
+		result = isCategoryIdValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Result isGetCredentialValueMessageEntityValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Result isCategoryIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

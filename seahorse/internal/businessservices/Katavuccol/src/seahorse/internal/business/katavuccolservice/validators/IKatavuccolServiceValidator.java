@@ -11,6 +11,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 
@@ -100,4 +101,12 @@ public interface IKatavuccolServiceValidator {
 	Result isUpdateCategoryMessageEntityValid(UpdateCategoryMessageEntity updateCategoryMessageEntity);
 	
 	Result isCategoryIdValid(UpdateCategoryMessageEntity updateCategoryMessageEntity);
+
+	Result validateGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) ;
+	
+	Result isGetCredentialValueMessageEntityValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isCategoryIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 }
