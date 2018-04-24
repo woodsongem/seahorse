@@ -22,6 +22,7 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	private String status;
 	private UUID parentId;	
 	private String value;
+	private String decryptValue;
 	
 	/**
 	 * @return the userId
@@ -118,5 +119,17 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setValue(String value) {
 		this.value = value;
+	}
+	/**
+	 * @return the decryptValue
+	 */
+	public String getDecryptValue() {
+		return decryptValue;
+	}
+	/**
+	 * @param decryptValue the decryptValue to set
+	 */
+	public void setDecryptValue(String decryptValue) {
+		this.decryptValue = decryptValue;
 	}	
 }

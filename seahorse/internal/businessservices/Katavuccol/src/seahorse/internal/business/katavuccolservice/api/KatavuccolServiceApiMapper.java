@@ -17,6 +17,7 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
@@ -365,9 +366,16 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,
-			HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String credentialId,HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest) {
+		GetCredentialValueMessageEntity getCredentialValueMessageEntity=new GetCredentialValueMessageEntity();
+		getCredentialValueMessageEntity.setUserId(userid);
+		getCredentialValueMessageEntity.setCategoryId(credentialId);
+		if(getCredentialValueRequest == null)
+		{
+			return getCredentialValueMessageEntity;
+		}
+		getCredentialValueMessageEntity.setKey(getCredentialValueMessageEntity.getKey());
+		
+		return getCredentialValueMessageEntity;
 	}
 }

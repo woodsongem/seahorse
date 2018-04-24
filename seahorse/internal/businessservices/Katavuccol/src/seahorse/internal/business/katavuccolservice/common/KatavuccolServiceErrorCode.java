@@ -77,6 +77,14 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String updateCategoryInCategoryIdInValidErrorCode="Katavuccol.API.UpdateCategory.%s.CategoryId.InValid";
 	private String updateCategoryIdNotFoundErrorCode ="Katavuccol.API.UpdateCategory.%s.CategoryId.NotFound";
 	private String updateCategoryNameDuplicateErrorCode="Katavuccol.API.UpdateCategory.%s.Name.DuplicateNotAllowed";
+	private String getCredentialKeyisSmallErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.Key.TooSmall";
+	private String getCredentialValueInValidUserIdErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.UserId.InValid";
+	private String getCredentialValueEmptyUserIdErrorCode="Katavuccol.API.GetCredentialValueByUserId.%s.UserId.Empty";
+	private String getCredentialValueCategoryIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.Empty";
+	private String getCredentialValueCategoryIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.InValid";
+	private String getCredentialValueMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.GetCredentialValueMessageEntity.Empty";
+	private String getCredentialValueCategoryIdNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.NotFound";
+	private String getCredentialValueCredentialNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.Credential.NotFound";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -407,5 +415,46 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String updateCategoryNameDuplicateErrorCode() {		
 		return updateCategoryNameDuplicateErrorCode;
+	}
+
+	@Override
+	public String getCredentialKeyisSmallErrorCode() {		
+		return getCredentialKeyisSmallErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueInValidUserIdErrorCode() {
+		// TODO Auto-generated method stub
+		return getCredentialValueInValidUserIdErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueEmptyUserIdErrorCode() {		
+		return getCredentialValueEmptyUserIdErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCategoryIdEmptyErrorCode() {		
+		return getCredentialValueCategoryIdEmptyErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCategoryIdInValidErrorCode() {		
+		return getCredentialValueCategoryIdInValidErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueMessageEntityIsEmptyErrorCode() {		
+		return getCredentialValueMessageEntityIsEmptyErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCategoryIdNotFoundErrorCode() {		
+		return getCredentialValueCategoryIdNotFoundErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCredentialNotFoundErrorCode() {		
+		return getCredentialValueCredentialNotFoundErrorCode;
 	}
 }

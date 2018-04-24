@@ -213,8 +213,21 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 
 	@Override
 	public Result processorGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result=getDecryptCredentialValue(getCredentialValueMessageEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return new Result(ResultStatus.ERROR);
+		}
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		String decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.decrypt("12345678910", 
+				getCredentialValueMessageEntity.getCredential().getValue());
+		
+		getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
+		return new Result(ResultStatus.SUCCESS);
 	}
 	
 }

@@ -659,21 +659,58 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		result = isKeyValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return new Result(ResultStatus.SUCCESS);
 	}
 
+	public Result isKeyValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		if(StringUtils.isEmpty(getCredentialValueMessageEntity.getKey()) && getCredentialValueMessageEntity.getKey().length() >= 10)
+		{
+			return new Result(ResultStatus.SUCCESS);
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Key is too small","Key",katavuccolServiceErrorCode.getCredentialKeyisSmallErrorCode());
+	}
+
 	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;		
+		
+		result = isUserIdValid(getCredentialValueMessageEntity.getUserId(),
+				katavuccolServiceErrorCode.getCredentialValueInValidUserIdErrorCode(),
+				katavuccolServiceErrorCode.getCredentialValueEmptyUserIdErrorCode());
+		if(result.getResultStatus()!=ResultStatus.SUCCESS)
+		{
+			return result;			
+		}
+		getCredentialValueMessageEntity.setParsedUserId(UUID.fromString(getCredentialValueMessageEntity.getUserId()));		
+		return result;
 	}
 
 	public Result isGetCredentialValueMessageEntityValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(getCredentialValueMessageEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"GetCredentialValueMessageEntity is null","GetCredentialValueMessageEntity",katavuccolServiceErrorCode.getCredentialValueMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
 	}
 
 	public Result isCategoryIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		if(getCredentialValueMessageEntity.getCategoryId()==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is null","CategoryId",katavuccolServiceErrorCode.getCredentialValueCategoryIdEmptyErrorCode());
+		}		
+		if(KatavuccolServiceUtility.isValidUUID(getCredentialValueMessageEntity.getCategoryId()))
+		{
+			getCredentialValueMessageEntity.setParsedCategoryId(UUID.fromString(getCredentialValueMessageEntity.getCategoryId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.getCredentialValueCategoryIdInValidErrorCode());
 	}
 }

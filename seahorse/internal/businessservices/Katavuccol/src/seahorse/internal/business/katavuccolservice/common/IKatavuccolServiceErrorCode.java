@@ -71,5 +71,13 @@ public interface IKatavuccolServiceErrorCode {
 	String updateCredentialCategoryIdEmptyErrorCode();
 	String updateCategoryInCategoryIdInValidErrorCode();
 	String updateCategoryIdNotFoundErrorCode();
-	String updateCategoryNameDuplicateErrorCode();	
+	String updateCategoryNameDuplicateErrorCode();
+	String getCredentialKeyisSmallErrorCode();
+	String getCredentialValueInValidUserIdErrorCode();
+	String getCredentialValueEmptyUserIdErrorCode();
+	String getCredentialValueCategoryIdEmptyErrorCode();
+	String getCredentialValueCategoryIdInValidErrorCode();
+	String getCredentialValueMessageEntityIsEmptyErrorCode();
+	String getCredentialValueCategoryIdNotFoundErrorCode();
+	String getCredentialValueCredentialNotFoundErrorCode();	
 }

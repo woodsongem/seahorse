@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.katavuccolservice.datacontracts;
 
+import java.util.UUID;
+
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -13,8 +15,12 @@ public class GetCredentialValueMessageEntity extends BaseMessageEntity {
 
 	private String userId;
 	private String categoryId;
-	private String parsedUserId;
-	private String parsedCategoryId;
+	private UUID parsedUserId;
+	private UUID parsedCategoryId;
+	private String key;
+	private CategoryMessageEntity category;
+	private CredentialMessageEntity credential;
+	
 
 	/**
 	 * @return the userId
@@ -47,28 +53,71 @@ public class GetCredentialValueMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the parsedUserId
 	 */
-	public String getParsedUserId() {
+	public UUID getParsedUserId() {
 		return parsedUserId;
 	}
 
 	/**
 	 * @param parsedUserId the parsedUserId to set
 	 */
-	public void setParsedUserId(String parsedUserId) {
+	public void setParsedUserId(UUID parsedUserId) {
 		this.parsedUserId = parsedUserId;
 	}
 
 	/**
 	 * @return the parsedCategoryId
 	 */
-	public String getParsedCategoryId() {
+	public UUID getParsedCategoryId() {
 		return parsedCategoryId;
 	}
 
 	/**
 	 * @param parsedCategoryId the parsedCategoryId to set
 	 */
-	public void setParsedCategoryId(String parsedCategoryId) {
+	public void setParsedCategoryId(UUID parsedCategoryId) {
 		this.parsedCategoryId = parsedCategoryId;
+	}
+
+	/**
+	 * @return the key
+	 */
+	public String getKey() {
+		return key;
+	}
+
+	/**
+	 * @param key the key to set
+	 */
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+
+	/**
+	 * @return the category
+	 */
+	public CategoryMessageEntity getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(CategoryMessageEntity category) {
+		this.category = category;
+	}
+
+	/**
+	 * @return the credential
+	 */
+	public CredentialMessageEntity getCredential() {
+		return credential;
+	}
+
+	/**
+	 * @param credential the credential to set
+	 */
+	public void setCredential(CredentialMessageEntity credential) {
+		this.credential = credential;
 	}
 }

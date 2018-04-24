@@ -87,5 +87,11 @@ public interface IKatavuccolServiceVerifier {
 	
 	Result isEncryptValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	Result verifyGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);	
+	Result verifyGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isCategoryIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isCredentialValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 }

@@ -17,7 +17,7 @@ public class CategoryMessageEntity extends BaseMessageEntity {
 	private String name;
 	private UUID userId;
 	private String description;	
-	private String status;
+	private String status;	
 	
 	/**
 	 * @return the id

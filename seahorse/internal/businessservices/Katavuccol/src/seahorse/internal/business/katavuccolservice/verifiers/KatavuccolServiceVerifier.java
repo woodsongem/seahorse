@@ -570,8 +570,54 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 	@Override
 	public Result verifyGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+
+		result = isUserIdValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isCategoryIdValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isCredentialValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+	}
+
+
+	public Result isCredentialValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		List<CredentialDAO>  credentialDAOs=katavuccolServiceRepository.getCredentialByUserId(getCredentialValueMessageEntity.getParsedUserId());
+		List<CredentialDAO> filterCategoryDAOs=
+				FluentIterable
+				.from(credentialDAOs)
+				.filter(x-> KatavuccolServiceUtility.isEqual(x.getCategoryId(),getCredentialValueMessageEntity.getParsedCategoryId()))
+				.toList();
+		if(filterCategoryDAOs ==null || filterCategoryDAOs.isEmpty())
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find credential", "CategoryId", katavuccolServiceErrorCode.getCredentialValueCredentialNotFoundErrorCode());
+		}
+		getCredentialValueMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(filterCategoryDAOs.get(0)));
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isCategoryIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		CategoryDAO categoryDAO = katavuccolServiceRepository.getCategoryDetailById(getCredentialValueMessageEntity.getParsedCategoryId(),getCredentialValueMessageEntity.getParsedUserId());
+		if(categoryDAO ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find categoryid", "CategoryId", katavuccolServiceErrorCode.getCredentialValueCategoryIdNotFoundErrorCode());
+		}		
+		getCredentialValueMessageEntity.setCategory(katavuccolServiceVerifierMapper.mapCategoryMessageEntity(categoryDAO));
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+
+	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

@@ -48,5 +48,6 @@ public interface IKatavuccolServiceProcessor {
 	Result updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);
 
 	Result processorGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
-
+	
+	Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 }
