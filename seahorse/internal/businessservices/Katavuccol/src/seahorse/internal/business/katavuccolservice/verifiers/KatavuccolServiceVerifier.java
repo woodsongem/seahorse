@@ -590,17 +590,14 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	public Result isCredentialValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		List<CredentialDAO>  credentialDAOs=katavuccolServiceRepository.getCredentialByUserId(getCredentialValueMessageEntity.getParsedUserId());
-		List<CredentialDAO> filterCategoryDAOs=
-				FluentIterable
-				.from(credentialDAOs)
-				.filter(x-> KatavuccolServiceUtility.isEqual(x.getCategoryId(),getCredentialValueMessageEntity.getParsedCategoryId()))
-				.toList();
-		if(filterCategoryDAOs ==null || filterCategoryDAOs.isEmpty())
+		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(getCredentialValueMessageEntity.getParsedUserId(),
+				getCredentialValueMessageEntity.getParsedCredentialId());
+	
+		if(credentialDAO ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Not able to find credential", "CategoryId", katavuccolServiceErrorCode.getCredentialValueCredentialNotFoundErrorCode());
 		}
-		getCredentialValueMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(filterCategoryDAOs.get(0)));
+		getCredentialValueMessageEntity.setCredential(katavuccolServiceVerifierMapper.MapCredentialMessageEntity(credentialDAO));
 		return new Result(ResultStatus.SUCCESS);
 	}
 

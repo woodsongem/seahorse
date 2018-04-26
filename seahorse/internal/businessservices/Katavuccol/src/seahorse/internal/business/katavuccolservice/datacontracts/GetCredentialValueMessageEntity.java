@@ -17,6 +17,8 @@ public class GetCredentialValueMessageEntity extends BaseMessageEntity {
 	private String categoryId;
 	private UUID parsedUserId;
 	private UUID parsedCategoryId;
+	private String credentialId;
+	private UUID parsedCredentialId;
 	private String key;
 	private CategoryMessageEntity category;
 	private CredentialMessageEntity credential;
@@ -119,5 +121,33 @@ public class GetCredentialValueMessageEntity extends BaseMessageEntity {
 	 */
 	public void setCredential(CredentialMessageEntity credential) {
 		this.credential = credential;
+	}
+
+	/**
+	 * @return the parsedCredentialId
+	 */
+	public UUID getParsedCredentialId() {
+		return parsedCredentialId;
+	}
+
+	/**
+	 * @param parsedCredentialId the parsedCredentialId to set
+	 */
+	public void setParsedCredentialId(UUID parsedCredentialId) {
+		this.parsedCredentialId = parsedCredentialId;
+	}
+
+	/**
+	 * @return the credentialId
+	 */
+	public String getCredentialId() {
+		return credentialId;
+	}
+
+	/**
+	 * @param credentialId the credentialId to set
+	 */
+	public void setCredentialId(String credentialId) {
+		this.credentialId = credentialId;
 	}
 }

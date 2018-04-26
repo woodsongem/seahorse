@@ -366,10 +366,11 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String credentialId,HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest) {
+	public GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String categoryId,String credentialId,HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest) {
 		GetCredentialValueMessageEntity getCredentialValueMessageEntity=new GetCredentialValueMessageEntity();
 		getCredentialValueMessageEntity.setUserId(userid);
-		getCredentialValueMessageEntity.setCategoryId(credentialId);
+		getCredentialValueMessageEntity.setCredentialId(credentialId);
+		getCredentialValueMessageEntity.setCategoryId(categoryId);
 		if(getCredentialValueRequest == null)
 		{
 			return getCredentialValueMessageEntity;

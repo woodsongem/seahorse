@@ -659,6 +659,11 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		result = isCredentialIdValid(getCredentialValueMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		result = isKeyValid(getCredentialValueMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
@@ -667,13 +672,30 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
+	public Result isCredentialIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		if(getCredentialValueMessageEntity.getCredentialId() ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential Id is null","CredentialId",katavuccolServiceErrorCode.getCredentialValueCredentialIdEmptyErrorCode());
+		}
+		if(KatavuccolServiceUtility.isValidUUID(getCredentialValueMessageEntity.getCredentialId()))
+		{
+			getCredentialValueMessageEntity.setParsedCredentialId(UUID.fromString(getCredentialValueMessageEntity.getCredentialId()));
+			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Credential is inValid","CredentialId",katavuccolServiceErrorCode.getCredentialValueCredentialIdInValidErrorCode());
+	}
+
 	public Result isKeyValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		if(StringUtils.isEmpty(getCredentialValueMessageEntity.getKey()) && getCredentialValueMessageEntity.getKey().length() >= 10)
+		if(StringUtils.isEmpty(getCredentialValueMessageEntity.getKey()))
 		{
 			return new Result(ResultStatus.SUCCESS);
 		}
+		if(getCredentialValueMessageEntity.getKey().length() <= 10)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Key is too small","Key",katavuccolServiceErrorCode.getCredentialKeyisSmallErrorCode());
+		}
 		
-		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Key is too small","Key",katavuccolServiceErrorCode.getCredentialKeyisSmallErrorCode());
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {

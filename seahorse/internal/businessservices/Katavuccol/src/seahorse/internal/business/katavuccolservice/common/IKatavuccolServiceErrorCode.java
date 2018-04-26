@@ -79,5 +79,7 @@ public interface IKatavuccolServiceErrorCode {
 	String getCredentialValueCategoryIdInValidErrorCode();
 	String getCredentialValueMessageEntityIsEmptyErrorCode();
 	String getCredentialValueCategoryIdNotFoundErrorCode();
-	String getCredentialValueCredentialNotFoundErrorCode();	
+	String getCredentialValueCredentialNotFoundErrorCode();
+	String getCredentialValueCredentialIdEmptyErrorCode();
+	String getCredentialValueCredentialIdInValidErrorCode();	
 }

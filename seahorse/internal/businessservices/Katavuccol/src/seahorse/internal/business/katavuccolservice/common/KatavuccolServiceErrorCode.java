@@ -84,7 +84,9 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String getCredentialValueCategoryIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.InValid";
 	private String getCredentialValueMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.GetCredentialValueMessageEntity.Empty";
 	private String getCredentialValueCategoryIdNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.NotFound";
-	private String getCredentialValueCredentialNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.Credential.NotFound";
+	private String getCredentialValueCredentialNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.NotFound";
+	private String getCredentialValueCredentialIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.Empty";
+	private String getCredentialValueCredentialIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -456,5 +458,15 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String getCredentialValueCredentialNotFoundErrorCode() {		
 		return getCredentialValueCredentialNotFoundErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCredentialIdEmptyErrorCode() {		
+		return getCredentialValueCredentialIdEmptyErrorCode;
+	}
+
+	@Override
+	public String getCredentialValueCredentialIdInValidErrorCode() {		
+		return getCredentialValueCredentialIdInValidErrorCode;
 	}
 }

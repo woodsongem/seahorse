@@ -109,6 +109,7 @@ public interface IKatavuccolServiceApiMapper {
 
 	GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest);
 
-	GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String credentialId, HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest);
+	GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String categoryId,String credentialId, 
+			HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest);
 
 }

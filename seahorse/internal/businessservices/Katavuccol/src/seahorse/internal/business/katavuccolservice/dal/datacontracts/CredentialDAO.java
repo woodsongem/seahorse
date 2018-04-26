@@ -18,6 +18,7 @@ public class CredentialDAO extends BaseDAO {
 	private String description;
 	private String status;
 	private UUID parentId;
+	private String value;
 	
 	/**
 	 * @return the userId
@@ -102,5 +103,17 @@ public class CredentialDAO extends BaseDAO {
 	 */
 	public void setParentId(UUID parentId) {
 		this.parentId = parentId;
+	}
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
 	}
 }

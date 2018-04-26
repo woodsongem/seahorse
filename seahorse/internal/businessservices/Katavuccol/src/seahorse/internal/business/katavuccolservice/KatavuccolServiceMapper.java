@@ -292,8 +292,9 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 
 	@Override
 	public Credential mapCategory(Result result, GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Credential credential=new Credential();
+		
+		return credential;
 	}
 
 }
