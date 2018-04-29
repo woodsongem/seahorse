@@ -226,14 +226,14 @@ public class KatavuccolServiceApi {
 	
 	// POST ==> /income/category
 	@POST
-	@Path("/{userid}/category/credential/")
+	@Path("/{userid}/{categoryid}/credential/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createCredential(@PathParam("userid") String userid,CredentialRequest credentialsRequest) {
+	public Response createCredential(@PathParam("userid") String userid,@PathParam("categoryid") String categoryid,CredentialRequest credentialsRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
 		CredentialResponse credentialsResponse=new CredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CredentialRequestMessageEntity credentialMessageEntity=katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest,userid,httpRequest);
+			CredentialRequestMessageEntity credentialMessageEntity=katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest,userid,categoryid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			credentialMessageEntity.setHttpMethod(httpRequest.getMethod());
@@ -253,15 +253,15 @@ public class KatavuccolServiceApi {
 	
 	// @PUT ==> /income/category
 	@PUT
-	@Path("/{userid}/category/credential/{id}")
+	@Path("/{userid}/{categoryid}/credential/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId,UpdateCredentialRequest updateCredentialRequest) 
+	public Response updateCredential(@PathParam("userid") String userid,@PathParam("categoryid") String categoryid,@PathParam("id") String credentialId,UpdateCredentialRequest updateCredentialRequest) 
 	{
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
 		UpdateCredentialResponse updateCredentialResponse=new UpdateCredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			UpdateCredentialMessageEntity updateCredentialMessageEntity=katavuccolServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest,userid,credentialId,httpRequest);
+			UpdateCredentialMessageEntity updateCredentialMessageEntity=katavuccolServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest,userid,categoryid,credentialId,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			updateCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());			
@@ -281,15 +281,15 @@ public class KatavuccolServiceApi {
 	
 	// @DELETE ==> /income/category
 	@DELETE
-	@Path("/{userid}/category/credential/{id}")
+	@Path("/{userid}/{categoryid}/credential/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteCredential(@PathParam("userid") String userid,@PathParam("id") String credentialId) 
+	public Response deleteCredential(@PathParam("userid") String userid,@PathParam("userid") String categoryid,@PathParam("id") String credentialId) 
 	{
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
 		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialRequestMessageEntity(userid,credentialId,httpRequest);
+			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialRequestMessageEntity(userid,categoryid,credentialId,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			deleteCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
@@ -309,17 +309,16 @@ public class KatavuccolServiceApi {
 	
 	//GET ==> /income/category
 	@GET
-	@Path("/{userid}/category/credential")
+	@Path("/{userid}/{categoryid}/credential")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCredentialsByUserId(@PathParam("userid") String userid){
+	public Response getCredentialsByUserId(@PathParam("userid") String userid,@PathParam("categoryid") String categoryid){
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
 		List<Credential> credentials=new ArrayList<>();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,httpRequest);
+			GetCredentialMessageEntity getCredentialMessageEntity=katavuccolServiceApiMapper.mapGetCredentialMessageEntity(userid,categoryid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
-			credentials=katavuccolService.getCredentials(getCredentialMessageEntity);
-			
+			credentials=katavuccolService.getCredentials(getCredentialMessageEntity);			
 		}
 		catch (Exception ex) {				
 			logger.error(ex);

@@ -13,6 +13,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
  *
  */
 public class DeleteCredentialRequestMessageEntity extends BaseMessageEntity {
+	private String categoryId;
 	private String userId;		
 	private String credentialId;
 	private UUID parsedUserId;
@@ -91,5 +92,17 @@ public class DeleteCredentialRequestMessageEntity extends BaseMessageEntity {
 	 */
 	public void setCredential(CredentialMessageEntity credentialMessageEntity) {
 		this.credentialMessageEntity = credentialMessageEntity;
+	}
+	/**
+	 * @return the categoryId
+	 */
+	public String getCategoryId() {
+		return categoryId;
+	}
+	/**
+	 * @param categoryId the categoryId to set
+	 */
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 }

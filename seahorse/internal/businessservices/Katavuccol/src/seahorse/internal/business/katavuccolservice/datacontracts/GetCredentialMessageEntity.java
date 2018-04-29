@@ -17,6 +17,7 @@ public class GetCredentialMessageEntity extends BaseMessageEntity {
 
 	private String userId;
 	private UUID parsedUserId;
+	private String categoryId;
 	private List<CredentialDAO>  credentialDAO;
 	
 	/**
@@ -54,6 +55,18 @@ public class GetCredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setCredentialDAO(List<CredentialDAO> credentialDAO) {
 		this.credentialDAO = credentialDAO;
+	}
+	/**
+	 * @return the categoryId
+	 */
+	public String getCategoryId() {
+		return categoryId;
+	}
+	/**
+	 * @param categoryId the categoryId to set
+	 */
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 }
