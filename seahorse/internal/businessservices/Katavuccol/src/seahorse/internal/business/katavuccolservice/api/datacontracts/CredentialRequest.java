@@ -14,6 +14,7 @@ public class CredentialRequest extends RequestBase {
 	private String value;	
 	private String description;
 	private String parentId;
+	private String encryptKey;
 	
 	/**
 	 * @return the categoryId
@@ -76,5 +77,17 @@ public class CredentialRequest extends RequestBase {
 	 */
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+	/**
+	 * @return the encryptKey
+	 */
+	public String getEncryptKey() {
+		return encryptKey;
+	}
+	/**
+	 * @param encryptKey the encryptKey to set
+	 */
+	public void setEncryptKey(String encryptKey) {
+		this.encryptKey = encryptKey;
 	}
 }

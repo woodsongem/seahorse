@@ -143,7 +143,7 @@ public class KatavuccolServiceApi {
 	}
 	
 	@POST
-	@Path("/{userid}/category/credentialtype")
+	@Path("/{userid}/credentialtype")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredentialType(@PathParam("userid") String userid,CredentialTypeRequest credentialTypeRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
@@ -169,7 +169,7 @@ public class KatavuccolServiceApi {
 	}	
 	
 	@PUT
-	@Path("/{userid}/category/credentialtype/{id}")
+	@Path("/{userid}/credentialtype/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCredentialType(@PathParam("userid") String userid,@PathParam("id") String credentialId,UpdateCredentialTypeRequest updateCredentialTypeRequest) 
 	{
@@ -196,7 +196,7 @@ public class KatavuccolServiceApi {
 	}
 
 	@DELETE
-	@Path("/{userid}/category/credentialtype/{id}")
+	@Path("/{userid}/credentialtype/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteCredentialType(@PathParam("userid") String userid,@PathParam("id") String credentialTypeId) 
 	{

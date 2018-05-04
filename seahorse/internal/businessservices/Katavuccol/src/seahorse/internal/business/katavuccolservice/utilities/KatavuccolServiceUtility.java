@@ -4,23 +4,35 @@
 
 package seahorse.internal.business.katavuccolservice.utilities;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+
 import com.datastax.driver.core.LocalDate;
+import com.google.crypto.tink.CleartextKeysetHandle;
 import com.google.crypto.tink.Config;
 import com.google.crypto.tink.DeterministicAead;
+import com.google.crypto.tink.JsonKeysetReader;
+import com.google.crypto.tink.JsonKeysetWriter;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.crypto.tink.daead.DeterministicAeadFactory;
 import com.google.crypto.tink.daead.DeterministicAeadKeyTemplates;
+import com.google.crypto.tink.proto.Keyset;
 import com.google.gson.Gson;
+
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -157,15 +169,26 @@ public class KatavuccolServiceUtility {
 		
 		return source.equals(des);
 	}
-	public static String encrypt(String key,String value)
+	public static Map<String,String> encrypt(String key,String value)
 	{
 		String cp = null;
+		String encryptKey=null;
+		Map<String,String> result=new HashMap<>();;
 		
 		try {
 			DeterministicAeadConfig.init();
 		    Config.register(DeterministicAeadConfig.TINK_1_1_0);
 			KeysetHandle keysetHandle = KeysetHandle.generateNew(DeterministicAeadKeyTemplates.AES256_SIV);
 			DeterministicAead daead = DeterministicAeadFactory.getPrimitive(keysetHandle);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			try {
+				CleartextKeysetHandle.write(keysetHandle, JsonKeysetWriter.withOutputStream(outputStream));
+				encryptKey=outputStream.toString();
+				
+			} catch (IOException e1) {
+				
+			}
+
 			byte[] plaintext = null;
 			byte[] associatedData=null;
 			try {
@@ -178,24 +201,33 @@ public class KatavuccolServiceUtility {
 			byte[] ciphertext = daead.encryptDeterministically(plaintext, associatedData);
 			cp = Arrays.toString(ciphertext);			
 		} catch (GeneralSecurityException e) {
-			
+			encryptKey=null;
+			cp=null;
 		}
-	  return cp;
+		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_KEY, encryptKey);
+		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE, cp);
+	  return result;
 	}
-	public static String decrypt(String key,String value)
+	public static String decrypt(String encryptKey,String value,String userkey)
 	{
 		String cp = null;
 		
 		try {
 			DeterministicAeadConfig.init();
 		    Config.register(DeterministicAeadConfig.TINK_1_1_0);
-			KeysetHandle keysetHandle = KeysetHandle.generateNew(DeterministicAeadKeyTemplates.AES256_SIV);
+		    ByteArrayInputStream inputStream = new ByteArrayInputStream(encryptKey.getBytes());
+			KeysetHandle keysetHandle=null;
+			try {
+				keysetHandle = CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(inputStream));
+			} catch(IOException e1) {
+				
+			}					
 			DeterministicAead daead = DeterministicAeadFactory.getPrimitive(keysetHandle);
 			byte[] encrypttext = null;
 			byte[] associatedData=null;
 			try {
 				encrypttext = value.getBytes("UTF-8");
-				associatedData = key.getBytes("UTF-8");
+				associatedData = userkey.getBytes("UTF-8");
 			} catch (UnsupportedEncodingException e) {				
 			
 			}

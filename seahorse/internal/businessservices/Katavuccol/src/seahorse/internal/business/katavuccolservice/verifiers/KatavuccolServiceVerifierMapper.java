@@ -92,6 +92,7 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 		credentialMessageEntity.setStatus(credentialDAO.getStatus());
 		credentialMessageEntity.setUserId(credentialDAO.getUserId());
 		credentialMessageEntity.setParentId(credentialDAO.getParentId());
+		credentialMessageEntity.setValue(credentialDAO.getValue());
 		return credentialMessageEntity;
 	}
 

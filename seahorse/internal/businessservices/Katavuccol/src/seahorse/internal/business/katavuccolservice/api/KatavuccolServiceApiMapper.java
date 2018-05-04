@@ -83,7 +83,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		CredentialRequestMessageEntity credentialRequestMessageEntity=new CredentialRequestMessageEntity();
 		credentialRequestMessageEntity.setUserId(userid);
 		credentialRequestMessageEntity.setHttpRequest(httpRequest);
-		credentialRequestMessageEntity.setCategoryId(categoryId);
+		credentialRequestMessageEntity.setCategoryId(categoryId);		
 		if(credentialRequest == null)
 		{
 			return credentialRequestMessageEntity;
@@ -93,6 +93,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		credentialRequestMessageEntity.setValue(credentialRequest.getValue());
 		credentialRequestMessageEntity.setDescription(credentialRequest.getDescription());
 		credentialRequestMessageEntity.setParentCredentialId(credentialRequest.getParentId());
+		credentialRequestMessageEntity.setUserEncryptKey(credentialRequest.getEncryptKey());
 		return credentialRequestMessageEntity;
 	}
 

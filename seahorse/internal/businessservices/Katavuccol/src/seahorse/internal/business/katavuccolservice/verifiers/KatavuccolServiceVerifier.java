@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.verifiers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -100,8 +101,16 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 	public Result isEncryptValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
-		String encrypted=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.encrypt("12345678910", credentialRequestMessageEntity.getValue());
-		credentialRequestMessageEntity.setEncryptValue(encrypted);
+		Map<String,String> encryptedvalue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.
+				encrypt(credentialRequestMessageEntity.getUserEncryptKey(), credentialRequestMessageEntity.getValue());
+		if(encryptedvalue ==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Error in Encrypt", "", katavuccolServiceErrorCode.createCredentialEncryptErrorCode());
+		}
+		
+		credentialRequestMessageEntity.setEncryptValue(encryptedvalue.get(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE));
+		credentialRequestMessageEntity.setEncryptValue(encryptedvalue.get(KatavuccolConstant.CREDENTIAL_ENCRYPT_KEY));
+		
 		return new Result(ResultStatus.SUCCESS);		
 	}
 

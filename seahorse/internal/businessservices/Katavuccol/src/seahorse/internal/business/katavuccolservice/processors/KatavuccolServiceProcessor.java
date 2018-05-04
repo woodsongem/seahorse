@@ -4,6 +4,7 @@
 package seahorse.internal.business.katavuccolservice.processors;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -223,10 +224,10 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	public Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-		String decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.decrypt("12345678910", 
-				getCredentialValueMessageEntity.getCredential().getValue());
+	//	Map<String,String> decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.decrypt("12345678910", 
+			//	getCredentialValueMessageEntity.getCredential().getValue());
 		
-		getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
+	//	getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
 		return new Result(ResultStatus.SUCCESS);
 	}
 	
