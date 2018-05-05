@@ -113,4 +113,6 @@ public interface IKatavuccolServiceValidator {
 	Result isKeyValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 	
 	Result isCredentialIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
+	Result isUserEncryptKeyValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 }

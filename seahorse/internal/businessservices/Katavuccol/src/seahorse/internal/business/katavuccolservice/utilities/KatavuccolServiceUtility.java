@@ -173,8 +173,7 @@ public class KatavuccolServiceUtility {
 	{
 		String cp = null;
 		String encryptKey=null;
-		Map<String,String> result=new HashMap<>();;
-		
+		Map<String,String> result=new HashMap<>();		
 		try {
 			DeterministicAeadConfig.init();
 		    Config.register(DeterministicAeadConfig.TINK_1_1_0);

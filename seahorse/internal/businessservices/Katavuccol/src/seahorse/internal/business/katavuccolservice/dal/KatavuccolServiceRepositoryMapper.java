@@ -112,6 +112,8 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CATEGORYID,credentialRequestMessageEntity.getParsedCategoryId());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID,credentialRequestMessageEntity.getParsedCredentialTypeId());
 		bound.setString(DataBaseColumn.CREDENTIAL_VALUE,credentialRequestMessageEntity.getEncryptValue());
+		bound.setString(DataBaseColumn.CREDENTIAL_ENCRYPTKEY, credentialRequestMessageEntity.getEncryptKey());
+		bound.setString(DataBaseColumn.CREDENTIAL_USERENCRYPTKEY, credentialRequestMessageEntity.getUserEncryptKey());
 		return bound;
 	}
 

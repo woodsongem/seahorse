@@ -101,8 +101,10 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 	public Result isEncryptValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		
 		Map<String,String> encryptedvalue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.
 				encrypt(credentialRequestMessageEntity.getUserEncryptKey(), credentialRequestMessageEntity.getValue());
+		
 		if(encryptedvalue ==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Error in Encrypt", "", katavuccolServiceErrorCode.createCredentialEncryptErrorCode());

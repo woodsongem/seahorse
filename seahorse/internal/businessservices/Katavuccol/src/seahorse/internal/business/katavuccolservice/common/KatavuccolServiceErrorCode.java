@@ -88,6 +88,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String getCredentialValueCredentialIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.Empty";
 	private String getCredentialValueCredentialIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.InValid";
 	private String createCredentialEncryptErrorCode ="Katavuccol.API.CreateCredentials.%s.Encrypt";
+	private String createCredentialUserEncryptKeySmall ="Katavuccol.API.CreateCredentials.%s.UserEncryptKey.ToShort";
+	private String createCredentialUserEncryptKeyLong ="Katavuccol.API.CreateCredentials.%s.UserEncryptKey.ToLong";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -474,5 +476,17 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String createCredentialEncryptErrorCode() {		
 		return createCredentialEncryptErrorCode;
+	}
+
+	@Override
+	public String createCredentialUserEncryptKeySmall() {
+		
+		return createCredentialUserEncryptKeySmall;
+	}
+
+	@Override
+	public String createCredentialUserEncryptKeyLong() {
+		// TODO Auto-generated method stub
+		return createCredentialUserEncryptKeyLong;
 	}
 }

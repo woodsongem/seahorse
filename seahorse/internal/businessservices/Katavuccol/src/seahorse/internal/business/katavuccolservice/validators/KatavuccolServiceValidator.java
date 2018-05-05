@@ -72,9 +72,37 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;
 		}
 		
+		result = isUserEncryptKeyValid(credentialRequestMessageEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
 		return new Result(ResultStatus.SUCCESS);
 	}
 	
+	public Result isUserEncryptKeyValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(StringUtils.isEmpty(credentialRequestMessageEntity.getUserEncryptKey()))
+		{			 
+		    UUID idOne = UUID.randomUUID();
+		    credentialRequestMessageEntity.setUserEncryptKey(idOne.toString().substring(0, 14));
+			return result;			
+		}
+		
+		if(credentialRequestMessageEntity.getUserEncryptKey().length() < 8)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserEncryptKey is too small","UserEncryptKey",katavuccolServiceErrorCode.createCredentialUserEncryptKeySmall());
+		}
+		
+		if(credentialRequestMessageEntity.getUserEncryptKey().length() > 15)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserEncryptKey is too long","UserEncryptKey",katavuccolServiceErrorCode.createCredentialUserEncryptKeyLong());
+		}
+		
+		return result;
+	}
+
 	public Result isParentIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity) {
 		Result result=new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
