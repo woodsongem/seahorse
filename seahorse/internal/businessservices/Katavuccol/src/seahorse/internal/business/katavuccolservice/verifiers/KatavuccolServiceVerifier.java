@@ -111,7 +111,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		}
 		
 		credentialRequestMessageEntity.setEncryptValue(encryptedvalue.get(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE));
-		credentialRequestMessageEntity.setEncryptValue(encryptedvalue.get(KatavuccolConstant.CREDENTIAL_ENCRYPT_KEY));
+		credentialRequestMessageEntity.setEncryptKey(encryptedvalue.get(KatavuccolConstant.CREDENTIAL_ENCRYPT_KEY));
 		
 		return new Result(ResultStatus.SUCCESS);		
 	}

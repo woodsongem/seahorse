@@ -84,5 +84,7 @@ public interface IKatavuccolServiceErrorCode {
 	String getCredentialValueCredentialIdEmptyErrorCode();
 	String getCredentialValueCredentialIdInValidErrorCode();
 	String createCredentialEncryptErrorCode();
-	String createCredentialUserEncryptKeyLong();	
+	String createCredentialUserEncryptKeyLong();
+	String getCredentialUserEncryptKeySmall();
+	String getCredentialUserEncryptKeyLong();	
 }

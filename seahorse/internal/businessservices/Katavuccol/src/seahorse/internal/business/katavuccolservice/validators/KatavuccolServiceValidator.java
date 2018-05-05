@@ -165,6 +165,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return result;			
 		}
 		credentialRequestMessageEntity.setParsedUserId(UUID.fromString(credentialRequestMessageEntity.getUserId()));
+		credentialRequestMessageEntity.setCreatedBy(credentialRequestMessageEntity.getParsedUserId());
 		return result;
 	}
 	
@@ -207,7 +208,8 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		result = isUserIdValid(getCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
-		}
+		}	
+	
 		
 		return result;
 	}
@@ -714,16 +716,25 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	public Result isKeyValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
 		if(StringUtils.isEmpty(getCredentialValueMessageEntity.getKey()))
 		{
-			return new Result(ResultStatus.SUCCESS);
-		}
-		if(getCredentialValueMessageEntity.getKey().length() <= 10)
-		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Key is too small","Key",katavuccolServiceErrorCode.getCredentialKeyisSmallErrorCode());
+			return result;			
 		}
 		
-		return new Result(ResultStatus.SUCCESS);
+		if(getCredentialValueMessageEntity.getKey().length() < 8)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserEncryptKey is too small","UserEncryptKey",katavuccolServiceErrorCode.getCredentialUserEncryptKeySmall());
+		}
+		
+		if(getCredentialValueMessageEntity.getKey().length() > 15)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"UserEncryptKey is too long","UserEncryptKey",katavuccolServiceErrorCode.getCredentialUserEncryptKeyLong());
+		}
+		
+		return result;
 	}
 
 	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {

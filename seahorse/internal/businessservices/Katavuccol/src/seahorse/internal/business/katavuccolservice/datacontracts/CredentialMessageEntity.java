@@ -23,6 +23,8 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	private UUID parentId;	
 	private String value;
 	private String decryptValue;
+	private String userEncryptKey;
+	private String encryptKey;	
 	
 	/**
 	 * @return the userId
@@ -131,5 +133,29 @@ public class CredentialMessageEntity extends BaseMessageEntity {
 	 */
 	public void setDecryptValue(String decryptValue) {
 		this.decryptValue = decryptValue;
+	}
+	/**
+	 * @return the encryptKey
+	 */
+	public String getEncryptKey() {
+		return encryptKey;
+	}
+	/**
+	 * @param encryptKey the encryptKey to set
+	 */
+	public void setEncryptKey(String encryptKey) {
+		this.encryptKey = encryptKey;
+	}
+	/**
+	 * @return the userEncryptKey
+	 */
+	public String getUserEncryptKey() {
+		return userEncryptKey;
+	}
+	/**
+	 * @param userEncryptKey the userEncryptKey to set
+	 */
+	public void setUserEncryptKey(String userEncryptKey) {
+		this.userEncryptKey = userEncryptKey;
 	}	
 }

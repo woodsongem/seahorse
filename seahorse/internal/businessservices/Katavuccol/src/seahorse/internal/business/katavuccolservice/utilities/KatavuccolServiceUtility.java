@@ -210,6 +210,7 @@ public class KatavuccolServiceUtility {
 	public static String decrypt(String encryptKey,String value,String userkey)
 	{
 		String cp = null;
+		String error=null;
 		
 		try {
 			DeterministicAeadConfig.init();
@@ -219,7 +220,7 @@ public class KatavuccolServiceUtility {
 			try {
 				keysetHandle = CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(inputStream));
 			} catch(IOException e1) {
-				
+				e1.printStackTrace();
 			}					
 			DeterministicAead daead = DeterministicAeadFactory.getPrimitive(keysetHandle);
 			byte[] encrypttext = null;
@@ -227,13 +228,13 @@ public class KatavuccolServiceUtility {
 			try {
 				encrypttext = value.getBytes("UTF-8");
 				associatedData = userkey.getBytes("UTF-8");
-			} catch (UnsupportedEncodingException e) {				
-			
+			} catch (Exception e) {				
+				e.printStackTrace();
 			}
 			byte[] decrypted = daead.decryptDeterministically(encrypttext, associatedData);
-			cp = cp + Arrays.toString(decrypted);
+			cp = Arrays.toString(decrypted);
 		} catch (GeneralSecurityException e) {
-			
+			e.printStackTrace();
 		}
 	  return cp;
 	}

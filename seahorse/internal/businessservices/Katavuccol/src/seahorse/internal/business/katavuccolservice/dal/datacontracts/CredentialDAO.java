@@ -18,7 +18,9 @@ public class CredentialDAO extends BaseDAO {
 	private String description;
 	private String status;
 	private UUID parentId;
-	private String value;
+	private String value;	
+	private String userEncryptKey;
+	private String encryptKey;	
 	
 	/**
 	 * @return the userId
@@ -116,4 +118,28 @@ public class CredentialDAO extends BaseDAO {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	/**
+	 * @return the userEncryptKey
+	 */
+	public String getUserEncryptKey() {
+		return userEncryptKey;
+	}
+	/**
+	 * @param userEncryptKey the userEncryptKey to set
+	 */
+	public void setUserEncryptKey(String userEncryptKey) {
+		this.userEncryptKey = userEncryptKey;
+	}
+	/**
+	 * @return the encryptKey
+	 */
+	public String getEncryptKey() {
+		return encryptKey;
+	}
+	/**
+	 * @param encryptKey the encryptKey to set
+	 */
+	public void setEncryptKey(String encryptKey) {
+		this.encryptKey = encryptKey;
+	}	
 }

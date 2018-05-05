@@ -224,10 +224,12 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	public Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
-	//	Map<String,String> decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility.decrypt("12345678910", 
-			//	getCredentialValueMessageEntity.getCredential().getValue());
+			String decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility
+							.decrypt(getCredentialValueMessageEntity.getCredential().getEncryptKey(),									 
+									getCredentialValueMessageEntity.getCredential().getValue(),
+									getCredentialValueMessageEntity.getCredential().getUserEncryptKey());
 		
-	//	getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
+			getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
 		return new Result(ResultStatus.SUCCESS);
 	}
 	

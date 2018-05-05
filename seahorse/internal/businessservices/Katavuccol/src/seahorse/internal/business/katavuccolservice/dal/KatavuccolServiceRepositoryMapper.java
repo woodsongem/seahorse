@@ -162,6 +162,8 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		credentialDAO.setCredentialTypeId(typeDAOResult.getUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID));
 		credentialDAO.setParentId(typeDAOResult.getUUID(DataBaseColumn.CREDENTIAL_PARENTID));
 		credentialDAO.setValue(typeDAOResult.getString(DataBaseColumn.CREDENTIAL_VALUE));
+		credentialDAO.setEncryptKey(typeDAOResult.getString(DataBaseColumn.CREDENTIAL_ENCRYPTKEY));
+		credentialDAO.setUserEncryptKey(typeDAOResult.getString(DataBaseColumn.CREDENTIAL_USERENCRYPTKEY));
 		return credentialDAO;
 	}
 
