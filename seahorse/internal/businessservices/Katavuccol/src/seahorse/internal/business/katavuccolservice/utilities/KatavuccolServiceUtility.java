@@ -7,10 +7,13 @@ package seahorse.internal.business.katavuccolservice.utilities;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +32,6 @@ import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.crypto.tink.daead.DeterministicAeadFactory;
 import com.google.crypto.tink.daead.DeterministicAeadKeyTemplates;
-import com.google.crypto.tink.proto.Keyset;
 import com.google.gson.Gson;
 
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -171,7 +173,7 @@ public class KatavuccolServiceUtility {
 	}
 	public static Map<String,String> encrypt(String key,String value)
 	{
-		String cp = null;
+		String encryptValue = null;
 		String encryptKey=null;
 		Map<String,String> result=new HashMap<>();		
 		try {
@@ -198,13 +200,14 @@ public class KatavuccolServiceUtility {
 			}
 			
 			byte[] ciphertext = daead.encryptDeterministically(plaintext, associatedData);
-			cp = Arrays.toString(ciphertext);			
+			encryptValue= Base64.getEncoder().encodeToString(ciphertext);
+			
 		} catch (GeneralSecurityException e) {
 			encryptKey=null;
-			cp=null;
+			encryptValue=null;
 		}
 		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_KEY, encryptKey);
-		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE, cp);
+		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE, encryptValue);
 	  return result;
 	}
 	public static String decrypt(String encryptKey,String value,String userkey)
@@ -226,13 +229,18 @@ public class KatavuccolServiceUtility {
 			byte[] encrypttext = null;
 			byte[] associatedData=null;
 			try {
-				encrypttext = value.getBytes("UTF-8");
-				associatedData = userkey.getBytes("UTF-8");
+				encrypttext =Base64.getDecoder().decode(value);
+				associatedData = userkey.getBytes("UTF-8");				
+				
 			} catch (Exception e) {				
 				e.printStackTrace();
 			}
 			byte[] decrypted = daead.decryptDeterministically(encrypttext, associatedData);
-			cp = Arrays.toString(decrypted);
+			try {
+				cp = new String(decrypted,"UTF-8");
+			} catch (UnsupportedEncodingException e) {				
+				e.printStackTrace();
+			}
 		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
 		}
