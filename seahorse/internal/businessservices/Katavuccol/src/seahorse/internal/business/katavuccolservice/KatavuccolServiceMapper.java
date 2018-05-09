@@ -19,6 +19,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValueDetail;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -295,6 +296,17 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 		Credential credential=new Credential();
 		
 		return credential;
+	}
+
+	@Override
+	public CredentialValueDetail mapCredentialValueDetail(Result result,GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		CredentialValueDetail credentialValueDetail=new CredentialValueDetail();
+		if(getCredentialValueMessageEntity == null || getCredentialValueMessageEntity.getCredential()==null)
+		{
+			return credentialValueDetail;
+		}
+		credentialValueDetail.setValue(getCredentialValueMessageEntity.getCredential().getDecryptValue());
+		return credentialValueDetail;
 	}
 
 }

@@ -24,6 +24,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequ
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValueDetail;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -337,26 +338,26 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public Credential getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+	public CredentialValueDetail getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateGetCredentialValueByUserId(getCredentialValueMessageEntity);
 	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return new Credential();
+			return new CredentialValueDetail();
 		}
 	    
 	    //Verifier
 	    result = katavuccolServiceVerifier.verifyGetCredentialValueByUserId(getCredentialValueMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return new Credential();
+			return new CredentialValueDetail();
 		}
 		
 		//Processor
 		result=katavuccolServiceProcessor.processorGetCredentialValueByUserId(getCredentialValueMessageEntity);
 		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
-			return new Credential();
+			return new CredentialValueDetail();
 		}
 		
-		return katavuccolServiceMapper.mapCategory(result, getCredentialValueMessageEntity);
+		return katavuccolServiceMapper.mapCredentialValueDetail(result, getCredentialValueMessageEntity);
 	}
 }
