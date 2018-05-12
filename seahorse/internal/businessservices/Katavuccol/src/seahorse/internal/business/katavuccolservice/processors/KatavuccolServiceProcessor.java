@@ -31,6 +31,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialM
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolEncryption;
 
 
 /**
@@ -225,9 +226,10 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 
 	public Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 			String decryptCredentialValue=seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility
-							.decrypt(getCredentialValueMessageEntity.getCredential().getEncryptKey(),									 
+							.decrypt(
+									KatavuccolEncryption.decrypt(getCredentialValueMessageEntity.getCredential().getEncryptKey(),5),									 
 									getCredentialValueMessageEntity.getCredential().getValue(),
-									getCredentialValueMessageEntity.getCredential().getUserEncryptKey());
+									KatavuccolEncryption.decrypt(getCredentialValueMessageEntity.getCredential().getUserEncryptKey(),5));
 		
 			getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
 		return new Result(ResultStatus.SUCCESS);

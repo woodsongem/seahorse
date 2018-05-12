@@ -7,18 +7,16 @@ package seahorse.internal.business.katavuccolservice.utilities;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
@@ -216,8 +214,7 @@ public class KatavuccolServiceUtility {
 		String error=null;
 		
 		try {
-			DeterministicAeadConfig.init();
-		    Config.register(DeterministicAeadConfig.TINK_1_1_0);
+			
 		    ByteArrayInputStream inputStream = new ByteArrayInputStream(encryptKey.getBytes());
 			KeysetHandle keysetHandle=null;
 			try {

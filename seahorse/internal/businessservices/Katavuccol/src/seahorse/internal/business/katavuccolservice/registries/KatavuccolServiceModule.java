@@ -2,6 +2,10 @@
 
 package seahorse.internal.business.katavuccolservice.registries;
 
+import java.security.GeneralSecurityException;
+
+import com.google.crypto.tink.Config;
+import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.inject.AbstractModule;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.katavuccolservice.IKatavuccolServiceMapper;
@@ -43,6 +47,7 @@ public class KatavuccolServiceModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
+		
 		bind(IKatavuccolService.class).to(KatavuccolService.class);
 		bind(IKatavuccolServiceValidator.class).to(KatavuccolServiceValidator.class);
 		bind(IKatavuccolServiceVerifier.class).to(KatavuccolServiceVerifier.class);
@@ -58,5 +63,16 @@ public class KatavuccolServiceModule extends AbstractModule {
 		bind(IBaseValidator.class).to(BaseValidator.class);
 		bind(IBaseVerifier.class).to(BaseVerifier.class);
 		bind(Ikatavuccolredis.class).to(Katavuccolredis.class);
+		
+		try {
+			DeterministicAeadConfig.init();
+		} catch (GeneralSecurityException e) {
+			
+		}
+	    try {
+			Config.register(DeterministicAeadConfig.TINK_1_1_0);
+		} catch (GeneralSecurityException e) {
+			
+		}
 	}
 }

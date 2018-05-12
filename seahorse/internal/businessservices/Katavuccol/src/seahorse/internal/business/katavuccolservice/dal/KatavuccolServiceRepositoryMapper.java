@@ -27,6 +27,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategory
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolEncryption;
 
 /**
  * @author sajanmje
@@ -111,9 +112,9 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		bound.setString(DataBaseColumn.CREDENTIAL_DESCRIPTION,credentialRequestMessageEntity.getDescription());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CATEGORYID,credentialRequestMessageEntity.getParsedCategoryId());
 		bound.setUUID(DataBaseColumn.CREDENTIAL_CREDENTIAL_TYPEID,credentialRequestMessageEntity.getParsedCredentialTypeId());
-		bound.setString(DataBaseColumn.CREDENTIAL_VALUE,credentialRequestMessageEntity.getEncryptValue());
-		bound.setString(DataBaseColumn.CREDENTIAL_ENCRYPTKEY, credentialRequestMessageEntity.getEncryptKey());
-		bound.setString(DataBaseColumn.CREDENTIAL_USERENCRYPTKEY, credentialRequestMessageEntity.getUserEncryptKey());
+		bound.setString(DataBaseColumn.CREDENTIAL_VALUE, credentialRequestMessageEntity.getEncryptValue());
+		bound.setString(DataBaseColumn.CREDENTIAL_ENCRYPTKEY,KatavuccolEncryption.encrypt(credentialRequestMessageEntity.getEncryptKey(),5));
+		bound.setString(DataBaseColumn.CREDENTIAL_USERENCRYPTKEY, KatavuccolEncryption.encrypt(credentialRequestMessageEntity.getUserEncryptKey(),5));
 		return bound;
 	}
 
