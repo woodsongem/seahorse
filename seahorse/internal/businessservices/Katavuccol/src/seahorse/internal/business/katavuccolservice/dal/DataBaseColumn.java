@@ -66,5 +66,6 @@ public class DataBaseColumn {
 	public static final String CREDENTIALTYPE_ISDUPLICATIONALLOWED = "isduplicationallowed";
 	public static final String CREDENTIALTYPE_ISSUBITEMALLOWED = "issubitemallowed";
 
-	
+	//user credential
+	public static final String USERCREDENTIAL_USERNAME = "username";
 }

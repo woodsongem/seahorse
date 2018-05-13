@@ -25,5 +25,6 @@ public class QueryConstants {
 	public static final String GET_CREATE_CATEGORY_QUERY = "INSERT INTO category (userid, id, createdby, createddate, description, name, status) VALUES(?, ?, ?, ?,?,?,?)";
 	public static final String GET_DELETE_CATEGORY_QUERY = "UPDATE category SET modifiedby=?, modifieddate=?, status=? where userid=? and id=?";
 	public static final String GET_UPDATE_CATEGORY_QUERY = "UPDATE category SET description=?, modifiedby=?, modifieddate=?, name=? where userid=? and id=?";
+	public static final String GET_USER_CREDENTIAL_BY_USERIDQUERY = "SELECT id, createdby, createddate, modifiedby, modifieddate, password, productitemid, status, username FROM usercredential where id=?";
 	
 }
