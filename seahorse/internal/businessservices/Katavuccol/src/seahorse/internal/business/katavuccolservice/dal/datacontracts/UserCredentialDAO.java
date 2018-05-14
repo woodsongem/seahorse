@@ -14,7 +14,9 @@ public class UserCredentialDAO extends BaseDAO {
 	private UUID id;
 	private String username;
 	private String status;
-	private String password;
+	private String encryptedPassword;
+	private int loginAttempts;
+	
 	/**
 	 * @return the id
 	 */
@@ -52,15 +54,27 @@ public class UserCredentialDAO extends BaseDAO {
 		this.status = status;
 	}
 	/**
-	 * @return the password
+	 * @return the encryptedPassword
 	 */
-	public String getPassword() {
-		return password;
+	public String getEncryptedPassword() {
+		return encryptedPassword;
 	}
 	/**
-	 * @param password the password to set
+	 * @param encryptedPassword the encryptedPassword to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
+	}
+	/**
+	 * @return the loginAttempts
+	 */
+	public int getLoginAttempts() {
+		return loginAttempts;
+	}
+	/**
+	 * @param loginAttempts the loginAttempts to set
+	 */
+	public void setLoginAttempts(int loginAttempts) {
+		this.loginAttempts = loginAttempts;
 	}
 }

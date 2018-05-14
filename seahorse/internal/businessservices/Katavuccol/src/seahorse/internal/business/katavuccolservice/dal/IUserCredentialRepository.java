@@ -3,8 +3,6 @@
  */
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.util.List;
-
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
 
@@ -14,5 +12,5 @@ import seahorse.internal.business.katavuccolservice.datacontracts.UserCredential
  */
 public interface IUserCredentialRepository {
 
-	UserCredentialDAO getUserCredential(UserCredentialMessageEntity userCredentialMessageEntity);
+	UserCredentialDAO getUserCredentialById(UserCredentialMessageEntity userCredentialMessageEntity);	
 }

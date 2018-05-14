@@ -3,6 +3,9 @@
  */
 package seahorse.internal.business.katavuccolservice.dal;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
@@ -11,6 +14,8 @@ import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
@@ -39,7 +44,7 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 		this.readPropertiesFile = readPropertiesFile;
 	}
 	
-	public UserCredentialDAO getUserCredential(UserCredentialMessageEntity userCredentialMessageEntity) {
+	public UserCredentialDAO getUserCredentialById(UserCredentialMessageEntity userCredentialMessageEntity) {
 
 		UserCredentialDAO userCredentialDAO = new UserCredentialDAO();
 
@@ -51,7 +56,11 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row userCredentialDAOResult = resultSet.one();
-				userCredentialDAO = userCredentialRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);				
+				userCredentialDAO = userCredentialRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);
+				if(userCredentialDAO.getStatus() != KatavuccolConstant.ACTIVESTATUS)
+				{
+					userCredentialDAO=new UserCredentialDAO();
+				}
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getUserCredential error=" + exception);
