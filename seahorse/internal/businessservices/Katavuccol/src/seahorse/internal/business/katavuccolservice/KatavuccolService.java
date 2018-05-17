@@ -6,14 +6,10 @@ package seahorse.internal.business.katavuccolservice;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ws.rs.core.Response.Status;
-
 import org.apache.logging.log4j.Logger;
-
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
-
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -36,7 +32,7 @@ public class KatavuccolService implements IKatavuccolService {
 	private IKatavuccolServiceVerifier katavuccolServiceVerifier;
 	private IKatavuccolServiceValidator katavuccolServiceValidator;
 	private IKatavuccolServiceProcessor katavuccolServiceProcessor;
-	private IKatavuccolServicePostProcessor katavuccolServicePostProcessor;
+	private IKatavuccolServicePostProcessor katavuccolServicePostProcessor;	
 	
 	@InjectLogger  Logger logger;
 
@@ -51,7 +47,7 @@ public class KatavuccolService implements IKatavuccolService {
 		this.katavuccolServiceVerifier=katavuccolServiceVerifier;
 		this.katavuccolServiceValidator=katavuccolServiceValidator;
 		this.katavuccolServiceProcessor=katavuccolServiceProcessor;
-		this.katavuccolServicePostProcessor=katavuccolServicePostProcessor;
+		this.katavuccolServicePostProcessor=katavuccolServicePostProcessor;		
 	}
 	
 	@Override

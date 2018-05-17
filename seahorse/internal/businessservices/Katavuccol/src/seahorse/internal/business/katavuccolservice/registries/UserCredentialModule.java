@@ -19,8 +19,12 @@ import seahorse.internal.business.katavuccolservice.postprocessors.IUserCredenti
 import seahorse.internal.business.katavuccolservice.postprocessors.UserCredentialServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.processors.IUserCredentialServiceProcessor;
 import seahorse.internal.business.katavuccolservice.processors.UserCredentialServiceProcessor;
+import seahorse.internal.business.katavuccolservice.validators.BaseValidator;
+import seahorse.internal.business.katavuccolservice.validators.IBaseValidator;
 import seahorse.internal.business.katavuccolservice.validators.IUserCredentialServiceValidator;
 import seahorse.internal.business.katavuccolservice.validators.UserCredentialServiceValidator;
+import seahorse.internal.business.katavuccolservice.verifiers.BaseVerifier;
+import seahorse.internal.business.katavuccolservice.verifiers.IBaseVerifier;
 import seahorse.internal.business.katavuccolservice.verifiers.IUserCredentialServiceVerifier;
 import seahorse.internal.business.katavuccolservice.verifiers.IUserCredentialVerifierMapper;
 import seahorse.internal.business.katavuccolservice.verifiers.UserCredentialServiceVerifier;
@@ -48,6 +52,9 @@ public class UserCredentialModule extends AbstractModule {
 		bind(IUserCredentialVerifierMapper.class).to(UserCredentialVerifierMapper.class);
 		bind(IUserCredentialErrorCode.class).to(UserCredentialErrorCode.class);
 		
+		bind(IBaseValidator.class).to(BaseValidator.class);
+		bind(IBaseVerifier.class).to(BaseVerifier.class);
+		bind(IUserCredentialErrorCode.class).to(UserCredentialErrorCode.class);
 		
 	}
 }

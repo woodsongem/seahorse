@@ -3,11 +3,8 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
-import java.util.ArrayList;
 import java.util.UUID;
-
 import org.apache.logging.log4j.Logger;
-
 import com.google.inject.Inject;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;

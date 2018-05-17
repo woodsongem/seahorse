@@ -13,21 +13,21 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
  */
 public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 
-	private String passwordIsNullErrorCode="Katavuccol.API.CreateCredentials.%s.Password.Empty";
-	private String passwordIsToShortErrorCode="Katavuccol.API.CreateCredentials.%s.Password.ToShort";
-	private String passwordIsToLongErrorCode="Katavuccol.API.CreateCredentials.%s.Password.ToLong";
-	private String categoryIdIsInValidErrorCode="Katavuccol.API.CreateCredentials.%s.Category.InValid";
-	private String categoryIdIsEmptyErrorCode="Katavuccol.API.CreateCredentials.%s.Category.Empty";
-	private String typeIdIsInValidErrorCode="Katavuccol.API.CreateCredentials.%s.TypeId.InValid";
-	private String valueIsEmptyErrorCode="Katavuccol.API.CreateCredentials.%s.Value.Empty";	
+	private String passwordIsNullErrorCode="Katavuccol.API.CreateCredential.%s.Password.Empty";
+	private String passwordIsToShortErrorCode="Katavuccol.API.CreateCredential.%s.Password.ToShort";
+	private String passwordIsToLongErrorCode="Katavuccol.API.CreateCredential.%s.Password.ToLong";
+	private String categoryIdIsInValidErrorCode="Katavuccol.API.CreateCredential.%s.Category.InValid";
+	private String categoryIdIsEmptyErrorCode="Katavuccol.API.CreateCredential.%s.Category.Empty";
+	private String typeIdIsInValidErrorCode="Katavuccol.API.CreateCredential.%s.TypeId.InValid";
+	private String valueIsEmptyErrorCode="Katavuccol.API.CreateCredential.%s.Value.Empty";	
 	private String internalErrorErrorCode="Katavuccol.API.%s.InternalError";
-	private String categoryIdNotFoundErrorCode="Katavuccol.API.CreateCredentials.%s.Category.NotFound";
+	private String categoryIdNotFoundErrorCode="Katavuccol.API.CreateCredential.%s.Category.NotFound";
 	private String categoryTypeIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.NotFound";
-	private String categoryTypeExcitedMultipleEntryErrorCode="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.ExcitedMultiple";
-	private String categoryTypeDuplicateNotAllowedErrorCode= "Katavuccol.API.CreateCredentials.%s.CategoryTypeId.DuplicateNotAllowed";
+	private String categoryTypeExcitedMultipleEntryErrorCode="Katavuccol.API.CreateCredential.%s.CategoryTypeId.ExcitedMultiple";
+	private String categoryTypeDuplicateNotAllowedErrorCode= "Katavuccol.API.CreateCredential.%s.CategoryTypeId.DuplicateNotAllowed";
 	private String parentIdInValidErrorCode="Katavuccol.API.CreateCredentials.%s.ParentId.InValid";
-	private String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.SubEntryIsNotAllowed";
-	private String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.ParentId.NotFound";
+	private String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredential.%s.CategoryTypeId.SubEntryIsNotAllowed";
+	private String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.%s.ParentId.NotFound";
 	private String credentialSubEntryExceedLimitationErrorCode ="";
 	private String getCredentialMessageEntityEmptyErrorCode ="Katavuccol.API.GetCredentialsByUserId.%s.GetCredentialMessageEntity.Empty";
 	private String deleteCredentialRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.DeleteCredentialMessageEntity.Empty";
@@ -92,6 +92,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private String createCredentialUserEncryptKeyLong ="Katavuccol.API.CreateCredentials.%s.UserEncryptKey.ToLong";
 	private String getCredentialUserEncryptKeySmall= "Katavuccol.API.GetCredentialValueByUserId.%s.UserEncryptKey.ToShort";
 	private String getCredentialUserEncryptKeyLong ="Katavuccol.API.GetCredentialValueByUserId.%s.UserEncryptKey.ToLong";
+	private String createCredentialUserIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.NotFound";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -499,5 +500,10 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String getCredentialUserEncryptKeyLong() {		
 		return getCredentialUserEncryptKeyLong;
+	}
+
+	@Override
+	public String createCredentialUserIdNotFoundErrorCode() {		
+		return createCredentialUserIdNotFoundErrorCode;
 	}
 }

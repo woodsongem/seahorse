@@ -8,26 +8,14 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  *
  */
 public class CredentialRequest extends RequestBase {
-
-	private String categoryId;
+	
 	private String typeId;
 	private String value;	
 	private String description;
 	private String parentId;
 	private String encryptKey;
 	
-	/**
-	 * @return the categoryId
-	 */
-	public String getCategoryId() {
-		return categoryId;
-	}
-	/**
-	 * @param categoryId the categoryId to set
-	 */
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
+
 	/**
 	 * @return the typeid
 	 */

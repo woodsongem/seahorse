@@ -19,8 +19,9 @@ public class KatavuccolServiceFactory {
 		  }
 	 
 	public static IKatavuccolService getKatavuccolService() {		
-		Injector injector = Guice.createInjector(new ShardModules());
-		injector = injector.createChildInjector(new KatavuccolServiceModule());
-		return injector.getInstance(IKatavuccolService.class);		
+		Injector parent = Guice.createInjector(new ShardModules(),new UserCredentialModule(),new KatavuccolServiceModule());
+		//Injector child =parent.createChildInjector();
+		//Injector injector = child.createChildInjector();		
+		return parent.getInstance(IKatavuccolService.class);		
 	}	
 }

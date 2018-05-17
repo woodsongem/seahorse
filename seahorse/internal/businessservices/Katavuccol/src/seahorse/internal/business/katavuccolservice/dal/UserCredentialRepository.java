@@ -18,6 +18,7 @@ import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -57,7 +58,7 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 			while (!resultSet.isExhausted()) {
 				final Row userCredentialDAOResult = resultSet.one();
 				userCredentialDAO = userCredentialRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);
-				if(userCredentialDAO.getStatus() != KatavuccolConstant.ACTIVESTATUS)
+				if(!KatavuccolServiceUtility.isEqual(userCredentialDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
 				{
 					userCredentialDAO=new UserCredentialDAO();
 				}

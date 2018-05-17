@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.inject.Inject;
 
 import jersey.repackaged.com.google.common.collect.Collections2;
+import seahorse.internal.business.katavuccolservice.IUserCredentialService;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -34,6 +35,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialM
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
 
 
 /**
@@ -47,19 +49,22 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	private final IKatavuccolServiceRepository katavuccolServiceRepository;
 	private final Ikatavuccolredis katavuccolredis;
+	private final IUserCredentialService userCredentialService;
 	
 	@Inject
 	public KatavuccolServiceVerifier(IBaseVerifier baseVerifier,
 			IKatavuccolServiceVerifierMapper katavuccolServiceVerifierMapper,
 			IKatavuccolServiceErrorCode katavuccolServiceErrorCode, 
 			IKatavuccolServiceRepository katavuccolServiceRepository,
-			Ikatavuccolredis katavuccolredis)
+			Ikatavuccolredis katavuccolredis,
+			IUserCredentialService userCredentialService)
 	{
 		this.baseVerifier=baseVerifier;
 		this.katavuccolServiceVerifierMapper = katavuccolServiceVerifierMapper;
 		this.katavuccolServiceErrorCode = katavuccolServiceErrorCode;
 		this.katavuccolServiceRepository = katavuccolServiceRepository;
 		this.katavuccolredis=katavuccolredis;
+		this.userCredentialService=userCredentialService;
 	}
 	
 
@@ -220,7 +225,13 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isUserIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {		
+	public Result isUserIdValid(CredentialRequestMessageEntity credentialsRequestMessageEntity) {
+		UserCredentialMessageEntity userCredentialMessageEntity=userCredentialService.getUserCredential(credentialsRequestMessageEntity.getParsedUserId());
+		if(userCredentialMessageEntity == null || userCredentialMessageEntity.getUserId()==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "InValid user Id", "UserId", katavuccolServiceErrorCode.createCredentialUserIdNotFoundErrorCode());
+		}
+		
 		return new Result(ResultStatus.SUCCESS);
 	}
 
