@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.coldfishservice.dal.datacontracts;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
@@ -16,6 +17,8 @@ public class IncomeCategoryDAO extends BaseDAO {
 	private String description;	
 	private String status;
 	private String incomeMonth;
+	private UUID parentId;
+	private BigDecimal amount;
 	private int incomeYear;
 	/**
 	 * @return the id
@@ -89,6 +92,30 @@ public class IncomeCategoryDAO extends BaseDAO {
 	}
 	public void setIncomeMonth(String incomeMonth) {
 		this.incomeMonth = incomeMonth;
+	}
+	/**
+	 * @return the parentId
+	 */
+	public UUID getParentId() {
+		return parentId;
+	}
+	/**
+	 * @param parentId the parentId to set
+	 */
+	public void setParentId(UUID parentId) {
+		this.parentId = parentId;
+	}
+	/**
+	 * @return the amount
+	 */
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 	
 

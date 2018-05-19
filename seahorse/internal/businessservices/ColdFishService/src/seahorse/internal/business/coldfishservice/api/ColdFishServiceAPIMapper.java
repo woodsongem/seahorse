@@ -16,6 +16,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategory;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
@@ -29,8 +30,10 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessa
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -277,5 +280,40 @@ public class ColdFishServiceAPIMapper implements IColdFishServiceAPIMapper {
 		}
 		deleteIncomeCategoryResponse.setResultMessage(resultMessages);
 		return deleteIncomeCategoryResponse;		
+	}
+
+	@Override
+	public GetIncomeCategoryMessageEntity mapGetIncomeCategory(String userid, int incomeyear, String incomemonth,Map<String, String> headers) {	
+		GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity=new GetIncomeCategoryMessageEntity();
+		getIncomeCategoryMessageEntity.setUserId(userid);
+		getIncomeCategoryMessageEntity.setIncomeMonth(incomemonth);
+		getIncomeCategoryMessageEntity.setIncomeYear(incomeyear);
+		getIncomeCategoryMessageEntity.setHeaders(headers);
+		return getIncomeCategoryMessageEntity;
+	}
+
+	@Override
+	public List<IncomeCategory> mapIncomeCategory(List<IncomeCategoryMessageEntity> incomeCategoryMessageEntities) {
+		List<IncomeCategory> incomeCategorys=new ArrayList<>();
+		if(incomeCategoryMessageEntities.isEmpty())
+		{
+			return incomeCategorys;
+		}
+		for (IncomeCategoryMessageEntity incomeCategoryMessageEntity : incomeCategoryMessageEntities) {
+			IncomeCategory incomeCategory1=new IncomeCategory();
+			incomeCategory1.setAmount(incomeCategoryMessageEntity.getAmount());
+			incomeCategory1.setDescription(incomeCategoryMessageEntity.getDescription());
+			incomeCategory1.setCreatedDate(incomeCategoryMessageEntity.getCreatedDate());
+			incomeCategory1.setId(incomeCategoryMessageEntity.getId().toString());
+			incomeCategory1.setIncomeMonth(incomeCategoryMessageEntity.getIncomeMonth());
+			incomeCategory1.setIncomeYear(incomeCategoryMessageEntity.getIncomeYear());
+			incomeCategory1.setModifiedDate(incomeCategoryMessageEntity.getModifiedDate());
+			incomeCategory1.setName(incomeCategoryMessageEntity.getName());			
+			incomeCategory1.setParentId(incomeCategoryMessageEntity.getParsedParentid().toString());
+			incomeCategory1.setStatus(incomeCategoryMessageEntity.getStatus());
+			incomeCategory1.setUserId(incomeCategoryMessageEntity.getParsedUserId().toString());			
+			incomeCategorys.add(incomeCategory1);
+		}
+		return incomeCategorys;
 	}
 }

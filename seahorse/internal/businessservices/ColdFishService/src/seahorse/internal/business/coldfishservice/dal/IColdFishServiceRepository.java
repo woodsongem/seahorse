@@ -44,9 +44,13 @@ public interface IColdFishServiceRepository {
 
 	IncomeCategoryDAO createIncomeCategory(IncomeCategoryMessageEntity incomeDetailMessageEntity);
 
-	IncomeCategoryDAO getIncomeCategoryById(IncomeCategoryMessageEntity incomeCategory);
+	IncomeCategoryDAO getIncomeCategoryById(UUID incomeCategoryId);
 
 	void DeleteIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
 	
-	
+	List<IncomeCategoryDAO>  getIncomeCategoryByParentId(IncomeCategoryMessageEntity incomeCategory);
+
+	void deleteSubIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity);
+
+	List<IncomeCategoryDAO> getIncomeCategoryDetail(IncomeCategoryDAO incomeCategoryDAO);
 }

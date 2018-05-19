@@ -89,6 +89,8 @@ public class ColdFishServiceVerifierMapper implements IColdFishServiceVerifierMa
 		incomeCategoryMessageEntity.setIncomeYear(incomeCategoryDAO.getIncomeYear());
 		incomeCategoryMessageEntity.setParsedUserId(incomeCategoryDAO.getUserId());
 		incomeCategoryMessageEntity.setModifiedBy(incomeCategoryDAO.getModifiedBy());
+		incomeCategoryMessageEntity.setParsedParentid(incomeCategoryDAO.getParentId());
+		incomeCategoryMessageEntity.setAmount(incomeCategoryDAO.getAmount());
 		//incomeCategoryMessageEntity.setModifiedDate(incomeCategoryDAO.getModifiedDate());
 		return incomeCategoryMessageEntity;
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import seahorse.internal.business.coldfishservice.api.datacontracts.DeleteIncomeCategoryResponse;
+import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategory;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryRequest;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeCategoryResponse;
 import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeDetail;
@@ -18,8 +19,10 @@ import seahorse.internal.business.coldfishservice.api.datacontracts.IncomeTypeRe
 import seahorse.internal.business.coldfishservice.api.datacontracts.ResultMessage;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -60,5 +63,9 @@ public interface IColdFishServiceAPIMapper {
 	DeleteIncomeCategoryMessageEntity mapDeleteIncomeCategoryMessageEntity(String incomecategoryid,Map<String, String> headers);
 
 	DeleteIncomeCategoryResponse mapDeleteIncomeCategoryResponse(DeleteIncomeCategoryResponseMessageEntity deleteIncomeCategoryResponseMessageEntity);
+
+	GetIncomeCategoryMessageEntity mapGetIncomeCategory(String userid, int incomeyear, String incomemonth,Map<String, String> headers);
+
+	List<IncomeCategory> mapIncomeCategory(List<IncomeCategoryMessageEntity> incomeCategoryMessageEntity);
 
 }

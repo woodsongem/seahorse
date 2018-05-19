@@ -19,6 +19,7 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
@@ -230,7 +231,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeTypeId(),"IncomeTypeId", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(incomeTypeId))
+		if(ColdFishServiceUtility.isValidUUID(incomeTypeId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -244,7 +245,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyUseridErrorCode(),"UserId", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(userId))
+		if(ColdFishServiceUtility.isValidUUID(userId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -252,18 +253,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidUserIdErrorCode(),"Name", ResultStatus.ERROR);
 	}
 	
-	private Boolean isUUIDValid(String uuid)
-	{
-		if (uuid == null) {
-		 return false;
-		}
-		try {
-			UUID.fromString(uuid);
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
+	
 
 	@Override
 	public ResultMessageEntity validateGetIncomeDetailByUserId(GetIncomeDetailMessageEntity getincomeDetailMessageEntity) {
@@ -308,6 +298,11 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
 			return resultMessageEntity;
 		}	
+		
+		resultMessageEntity = isParentIdValid(incomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
 	
 		resultMessageEntity = isNameValid(incomeCategoryMessageEntity);
 		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
@@ -337,6 +332,22 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 		return resultMessageEntity;
 	}
 	
+	public ResultMessageEntity isParentIdValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity)
+	{
+		if(StringUtils.isBlank(incomeCategoryMessageEntity.getParentid()))
+		{
+			return	ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		
+		if(!ColdFishServiceUtility.isValidUUID(incomeCategoryMessageEntity.getParentid()))
+		{
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.inValidParentIdMessageEntityErrorCode(), "ParentId",	ResultStatus.ERROR);
+		}
+		incomeCategoryMessageEntity.setParsedParentid(UUID.fromString(incomeCategoryMessageEntity.getParentid()));
+		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+	
 	public ResultMessageEntity isStatusValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {	
 		if(StringUtils.isBlank(incomeCategoryMessageEntity.getStatus())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyStatusMessageEntityErrorCode(), "Status",	ResultStatus.ERROR);
@@ -356,6 +367,11 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	}
 	
 	public ResultMessageEntity isIncomeYearValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {	
+		if(!StringUtils.isBlank(incomeCategoryMessageEntity.getParentid()))
+		{
+			ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+		
 		if(!isIncomeYearValid(incomeCategoryMessageEntity.getIncomeYear())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeYearMessageEntityErrorCode(), "IncomeYear",	ResultStatus.ERROR);
 		}		
@@ -370,6 +386,11 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 	}
 
 	public  ResultMessageEntity isIncomeMonthValid(IncomeCategoryMessageEntity incomeCategoryMessageEntity) {
+		if(!StringUtils.isBlank(incomeCategoryMessageEntity.getParentid()))
+		{
+			ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}				
+		
 		if(StringUtils.isBlank(incomeCategoryMessageEntity.getIncomeMonth())){
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
 		}
@@ -461,7 +482,7 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeCategoryIdErrorCode(),"Id", ResultStatus.ERROR);
 		}
 		
-		if(isUUIDValid(incomeCategoryId))
+		if(ColdFishServiceUtility.isValidUUID(incomeCategoryId))
 		{
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
@@ -500,5 +521,67 @@ public class ColdFishServiceValidator implements IColdFishServiceValidator {
 			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
 		}
 		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyDeleteIncomeCategoryMessageEntityErrorCode(), "deleteIncomeCategoryMessageEntity",	ResultStatus.ERROR);
+	}
+
+	@Override
+	public ResultMessageEntity validateGetIncomeCategoryDetails(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity;
+
+		resultMessageEntity = isGetIncomeCategoryMessageEntityValid(getIncomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}	
+		
+		resultMessageEntity = isUserIdValid(getIncomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeMonthValid(getIncomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		resultMessageEntity = isIncomeYearValid(getIncomeCategoryMessageEntity);
+		if (resultMessageEntity.getResultStatus() != ResultStatus.SUCCESS) {
+			return resultMessageEntity;
+		}
+		
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isUserIdValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		ResultMessageEntity resultMessageEntity= isUserIdValid(getIncomeCategoryMessageEntity.getUserId());
+		if(resultMessageEntity.getResultStatus()==ResultStatus.SUCCESS)
+		{
+			getIncomeCategoryMessageEntity.setParsedUserId(UUID.fromString(getIncomeCategoryMessageEntity.getUserId()));			
+		}
+		return resultMessageEntity;
+	}
+
+	public ResultMessageEntity isIncomeYearValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {		
+		if(!isIncomeYearValid(getIncomeCategoryMessageEntity.getIncomeYear())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeYearMessageEntityErrorCode(), "IncomeYear",	ResultStatus.ERROR);
+		}		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isIncomeMonthValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {					
+		
+		if(StringUtils.isBlank(getIncomeCategoryMessageEntity.getIncomeMonth())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}
+		if(!isIncomeMonthValid(getIncomeCategoryMessageEntity.getIncomeMonth())){
+			return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.invalidIncomeMonthMessageEntityErrorCode(), "IncomeMonth",	ResultStatus.ERROR);
+		}		
+		return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+	}
+
+	public ResultMessageEntity isGetIncomeCategoryMessageEntityValid(GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		if (getIncomeCategoryMessageEntity != null) {
+			return ColdFishServiceUtility.getResultMessageEntity("", "", ResultStatus.SUCCESS);
+		}
+
+		return ColdFishServiceUtility.getResultMessageEntity(coldFishServiceErrorCode.emptyGetIncomeDetailMessageEntityErrorCode(), "GetIncomeDetailMessageEntity",ResultStatus.ERROR);
 	}
 }

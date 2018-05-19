@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.BoundStatement;
@@ -19,6 +20,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.coldfishservice.common.CassandraConnector;
 import seahorse.internal.business.coldfishservice.common.ICassandraConnector;
 import seahorse.internal.business.coldfishservice.common.IReadPropertiesFile;
+import seahorse.internal.business.coldfishservice.constants.Constant;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeCategoryDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncomeDetailDAO;
 import seahorse.internal.business.coldfishservice.dal.datacontracts.IncometypeDAO;
@@ -240,12 +242,12 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 	}
 
 	@Override
-	public IncomeCategoryDAO getIncomeCategoryById(IncomeCategoryMessageEntity incomeCategory) {
+	public IncomeCategoryDAO getIncomeCategoryById(UUID incomeCategoryId) {
 		IncomeCategoryDAO incomeCategoryDAO = new IncomeCategoryDAO();
 		try {
 			cassandraConnector.connect(null, 0,null);			
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYIDQUERY);
-			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeCategory);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapBoundStatement(preparedStatement,incomeCategoryId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
@@ -274,5 +276,62 @@ public class ColdFishServiceRepository implements IColdFishServiceRepository {
 			logger.error("Exception in getIncomeCategoryByUserId error=" + exception);
 			throw exception;
 		}			
+	}
+	@Override
+	public List<IncomeCategoryDAO> getIncomeCategoryByParentId(IncomeCategoryMessageEntity incomeCategory) {
+		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0,null);			
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYBYPARENTIDQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapGetIncomeCategoryBoundStatement(preparedStatement,incomeCategory);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incomeCategoryDAOResult = resultSet.one();
+				incomeCategoryDAOs.add(coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult));	
+				
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeCategoryByParentId error=" + exception);
+		}
+		return incomeCategoryDAOs;
+	}
+
+	@Override
+	public void deleteSubIncomeCategory(DeleteIncomeCategoryMessageEntity deleteIncomeCategoryMessageEntity) {
+		try {
+			cassandraConnector.connect(null, 0,null);			
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.DELETEPARENTINCOMECATEGORYBYIDQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapDeleteSubIncomeCategoryBoundStatement(preparedStatement,deleteIncomeCategoryMessageEntity);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {						
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeCategoryByUserId error=" + exception);
+			throw exception;
+		}			
+	}
+
+	@Override
+	public List<IncomeCategoryDAO> getIncomeCategoryDetail(IncomeCategoryDAO incomeCategoryDAO) {
+		List<IncomeCategoryDAO> incomeCategoryDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0,null);			
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GETINCOMECATEGORYQUERY);
+			BoundStatement bound=coldFishServiceRepositoryMapper.mapGetIncomeCategoryBoundStatement(preparedStatement,incomeCategoryDAO);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row incomeCategoryDAOResult = resultSet.one();
+				if(StringUtils.compareIgnoreCase(StringUtils.trim(incomeCategoryDAOResult.getString(DataBaseColumn.STATUS)),Constant.ACTIVESTATUS)==0)
+				{
+					incomeCategoryDAOs.add(coldFishServiceRepositoryMapper.mapIncomeCategoryDAO(incomeCategoryDAOResult));	
+				}								
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getIncomeCategoryByParentId error=" + exception);
+		}
+		return incomeCategoryDAOs;
 	}
 }

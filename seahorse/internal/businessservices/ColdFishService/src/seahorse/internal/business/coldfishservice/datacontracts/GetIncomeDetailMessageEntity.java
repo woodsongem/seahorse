@@ -6,17 +6,20 @@ package seahorse.internal.business.coldfishservice.datacontracts;
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.coldfishservice.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.coldfishservice.processors.datacontracts.UserCredentialMessageEntity;
 
 /**
  * @author sajanmje
  *
  */
-public class GetIncomeDetailMessageEntity {
+public class GetIncomeDetailMessageEntity extends BaseMessageEntity {
 	
 	private String userId;
 	private String id;
 	private UUID parsedUserId;
+	private int incomeYear;
+	private String incomeMonth;
 	private UserCredentialMessageEntity userCredential;
 	private List<IncomeDetailMessageEntity> incomeDetails;
 
@@ -88,5 +91,33 @@ public class GetIncomeDetailMessageEntity {
 	 */
 	public void setIncomeDetails(List<IncomeDetailMessageEntity> incomeDetails) {
 		this.incomeDetails = incomeDetails;
+	}
+
+	/**
+	 * @return the incomeMonth
+	 */
+	public String getIncomeMonth() {
+		return incomeMonth;
+	}
+
+	/**
+	 * @param incomeMonth the incomeMonth to set
+	 */
+	public void setIncomeMonth(String incomeMonth) {
+		this.incomeMonth = incomeMonth;
+	}
+
+	/**
+	 * @return the incomeYear
+	 */
+	public int getIncomeYear() {
+		return incomeYear;
+	}
+
+	/**
+	 * @param incomeYear the incomeYear to set
+	 */
+	public void setIncomeYear(int incomeYear) {
+		this.incomeYear = incomeYear;
 	}
 }

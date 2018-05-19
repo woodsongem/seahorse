@@ -4,13 +4,13 @@
 
 package seahorse.internal.business.coldfishservice.utilities;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.datastax.driver.core.LocalDate;
 
@@ -87,5 +87,34 @@ public class ColdFishServiceUtility {
 	public static LocalDate getCurrentDate() {
 		Date date = new Date();
 		return LocalDate.fromMillisSinceEpoch(date.getTime());
+	}
+	
+	public static boolean isValidUUID(String uuid)
+	{		
+		if (uuid == null) {
+		 return false;
+		}
+		try {
+			UUID.fromString(uuid);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;		
+	}
+	public static boolean isValidUUID(UUID uuid)
+	{		
+		if (uuid == null) {
+		 return false;
+		}
+		try {
+			String stringUUID=uuid.toString();
+			if(StringUtils.isBlank(stringUUID)) {
+				return false;
+			}
+			UUID.fromString(stringUUID);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;		
 	}
 }

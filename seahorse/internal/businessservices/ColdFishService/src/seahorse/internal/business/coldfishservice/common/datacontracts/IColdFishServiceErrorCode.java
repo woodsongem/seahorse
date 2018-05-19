@@ -72,4 +72,10 @@ public interface IColdFishServiceErrorCode {
 	String inValidStatusMessageEntityErrorCode();
 
 	String emptyDeleteIncomeCategoryMessageEntityErrorCode();
+
+	String inValidParentIdMessageEntityErrorCode();
+
+	String incomeCategoryAmountNotZero();
+
+	String emptyGetIncomeDetailMessageEntityErrorCode();	
 }

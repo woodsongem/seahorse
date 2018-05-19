@@ -3,8 +3,8 @@
  */
 package seahorse.internal.business.coldfishservice.common.datacontracts;
 
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -15,10 +15,11 @@ public class BaseMessageEntity extends ResultMessageEntity {
 
 	private UUID createdBy;
 	private UUID modifiedBy;
-	private LocalDateTime createdDate;
-	private LocalDateTime modifiedDate;
+	private Date createdDate;
+	private Date modifiedDate;
 	private String httpMethod;
 	private String ipAddress;
+	private Map<String, String> headers;
 
 	public UUID getCreatedBy() {
 		return createdBy;
@@ -36,19 +37,19 @@ public class BaseMessageEntity extends ResultMessageEntity {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalDateTime getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDateTime createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public LocalDateTime getModifiedDate() {
+	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate(LocalDateTime modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 
@@ -66,6 +67,20 @@ public class BaseMessageEntity extends ResultMessageEntity {
 
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
+	}
+
+	/**
+	 * @return the headers
+	 */
+	public Map<String, String> getHeaders() {
+		return headers;
+	}
+
+	/**
+	 * @param headers the headers to set
+	 */
+	public void setHeaders(Map<String, String> headers) {
+		this.headers = headers;
 	}
 
 }

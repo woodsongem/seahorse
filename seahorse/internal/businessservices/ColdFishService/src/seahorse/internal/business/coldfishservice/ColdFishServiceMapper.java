@@ -9,8 +9,10 @@ import seahorse.internal.business.coldfishservice.common.datacontracts.ResultMes
 import seahorse.internal.business.coldfishservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.DeleteIncomeCategoryResponseMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeDetailMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.GetIncomeTypeMessageEntity;
+import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryDetail;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeCategoryResponseMessageEntity;
 import seahorse.internal.business.coldfishservice.datacontracts.IncomeDetailMessageEntity;
@@ -152,5 +154,10 @@ public class ColdFishServiceMapper implements IColdFishServiceMapper {
 			deleteIncomeCategoryResponseMessageEntity.setHttpStatus(resultMessageEntity.getHttpStatus());
 		}
 		return deleteIncomeCategoryResponseMessageEntity;
+	}
+
+	@Override
+	public List<IncomeCategoryMessageEntity> mapIncomeCategoryMessageEntity(ResultMessageEntity resultMessageEntity,GetIncomeCategoryMessageEntity getIncomeCategoryMessageEntity) {
+		return getIncomeCategoryMessageEntity.getIncomeCategoryMessageEntity();
 	}
 }
