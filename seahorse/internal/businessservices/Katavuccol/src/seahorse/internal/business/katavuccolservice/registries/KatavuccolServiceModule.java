@@ -1,5 +1,3 @@
-
-
 package seahorse.internal.business.katavuccolservice.registries;
 
 import java.security.GeneralSecurityException;
@@ -7,36 +5,16 @@ import java.security.GeneralSecurityException;
 import com.google.crypto.tink.Config;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.inject.AbstractModule;
-import seahorse.internal.business.katavuccolservice.IKatavuccolService;
-import seahorse.internal.business.katavuccolservice.IKatavuccolServiceMapper;
-import seahorse.internal.business.katavuccolservice.KatavuccolService;
-import seahorse.internal.business.katavuccolservice.KatavuccolServiceMapper;
+import seahorse.internal.business.katavuccolservice.*;
 import seahorse.internal.business.katavuccolservice.api.IKatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapper;
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.Katavuccolredis;
-import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
-import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepositoryMapper;
-import seahorse.internal.business.katavuccolservice.dal.KatavuccolServiceRepository;
-import seahorse.internal.business.katavuccolservice.dal.KatavuccolServiceRepositoryMapper;
+import seahorse.internal.business.katavuccolservice.common.*;
+import seahorse.internal.business.katavuccolservice.dal.*;
 import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
 import seahorse.internal.business.katavuccolservice.postprocessors.KatavuccolServicePostProcessor;
-import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
-import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessorMapper;
-import seahorse.internal.business.katavuccolservice.processors.KatavuccolServiceProcessor;
-import seahorse.internal.business.katavuccolservice.processors.KatavuccolServiceProcessorMapper;
-import seahorse.internal.business.katavuccolservice.validators.BaseValidator;
-import seahorse.internal.business.katavuccolservice.validators.IBaseValidator;
-import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
-import seahorse.internal.business.katavuccolservice.validators.KatavuccolServiceValidator;
-import seahorse.internal.business.katavuccolservice.verifiers.BaseVerifier;
-import seahorse.internal.business.katavuccolservice.verifiers.IBaseVerifier;
-import seahorse.internal.business.katavuccolservice.verifiers.IKatavuccolServiceVerifier;
-import seahorse.internal.business.katavuccolservice.verifiers.IKatavuccolServiceVerifierMapper;
-import seahorse.internal.business.katavuccolservice.verifiers.KatavuccolServiceVerifier;
-import seahorse.internal.business.katavuccolservice.verifiers.KatavuccolServiceVerifierMapper;
+import seahorse.internal.business.katavuccolservice.processors.*;
+import seahorse.internal.business.katavuccolservice.validators.*;
+import seahorse.internal.business.katavuccolservice.verifiers.*;
 
 
 /**
