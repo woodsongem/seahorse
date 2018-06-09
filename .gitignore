@@ -22,3 +22,5 @@
 hs_err_pid*
 /.project
 /seahorse/internal/web/aspnetcore/KatavuccolPortal/.vs
+/seahorse/internal/web/aspnetcore/KatavuccolPortal/KatavuccolPortalWeb.BusinessService/obj
+/seahorse/internal/web/aspnetcore/KatavuccolPortal/KatavuccolPortalWeb.BusinessService/bin/Debug/netcoreapp2.1
