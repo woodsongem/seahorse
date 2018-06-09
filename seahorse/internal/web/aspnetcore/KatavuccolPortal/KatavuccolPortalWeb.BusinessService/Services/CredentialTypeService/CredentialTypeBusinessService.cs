@@ -13,6 +13,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
         private readonly ICredentialTypeBusinessServiceMapper credentialTypeBusinessServiceMapper;
         private readonly ICredentialTypeBusinessServiceValidator credentialTypeBusinessServiceValidator;
         private readonly ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier;
+        private readonly ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor;
+        private readonly ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor;
 
         #endregion
 
@@ -20,11 +22,15 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
         public CredentialTypeBusinessService(ICredentialTypeBusinessServiceMapper credentialTypeBusinessServiceMapper,
             ICredentialTypeBusinessServiceValidator credentialTypeBusinessServiceValidator,
-            ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier)
+            ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier,
+            ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor,
+            ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor)
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
             this.credentialTypeBusinessServiceValidator = credentialTypeBusinessServiceValidator;
             this.credentialTypeBusinessServiceVerifier = credentialTypeBusinessServiceVerifier;
+            this.credentialTypeBusinessServiceProcessor = credentialTypeBusinessServiceProcessor;
+            this.credentialTypeBusinessServicePostProcessor = credentialTypeBusinessServicePostProcessor;
         }
 
         #endregion
@@ -33,9 +39,50 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
         public CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
+            #region Setup
+
+            #endregion
+
+            #region Validator
+
+            Result result = credentialTypeBusinessServiceValidator.ValidatorCreateCredentialType(createCredentialTypeMsgEntity);
+
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+
+            #region Verifier
+
+            result = credentialTypeBusinessServiceVerifier.VerifyCreateCredentialType(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+
+            #region Processor
+
+            result = credentialTypeBusinessServiceProcessor.ProcessCredentialType(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+
+            #region PostProcessor
+
+            result = credentialTypeBusinessServicePostProcessor.PostProcessCredentialType(createCredentialTypeMsgEntity);
+
+            #endregion
+
             return new CreateCredentialTypeResMsgEntity();
         }
-        
+
         public CredentialTypeMsgEntity Get(string credentialTypeId)
         {
             return new CredentialTypeMsgEntity();

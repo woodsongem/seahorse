@@ -6,8 +6,8 @@ using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContr
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
-    public interface ICredentialTypeBusinessServiceValidator
+    public interface ICredentialTypeBusinessServicePostProcessor
     {
-        Result ValidatorCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+        Result PostProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
     }
 }

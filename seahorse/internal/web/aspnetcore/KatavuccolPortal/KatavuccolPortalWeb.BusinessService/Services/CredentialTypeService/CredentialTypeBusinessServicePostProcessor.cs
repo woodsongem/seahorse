@@ -6,8 +6,11 @@ using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContr
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
-    public interface ICredentialTypeBusinessServiceValidator
+    public class CredentialTypeBusinessServicePostProcessor : ICredentialTypeBusinessServicePostProcessor
     {
-        Result ValidatorCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+        public Result PostProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

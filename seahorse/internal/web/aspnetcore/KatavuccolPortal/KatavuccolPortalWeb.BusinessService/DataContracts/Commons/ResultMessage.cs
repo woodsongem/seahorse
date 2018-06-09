@@ -4,10 +4,7 @@ using System.Text;
 
 namespace KatavuccolPortalWeb.BusinessService.DataContracts.Commons
 {
-    public class Result
+    public class ResultMessage
     {
-        public ResultStatus ResultStatus { get; set; }
-
-        public List<ResultMessage> ResultMessage { get; set; }
     }
 }

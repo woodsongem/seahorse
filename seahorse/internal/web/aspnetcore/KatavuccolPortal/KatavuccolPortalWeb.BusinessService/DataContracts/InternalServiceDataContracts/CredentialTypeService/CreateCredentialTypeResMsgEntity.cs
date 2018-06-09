@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 
 namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService
 {
-    public class CreateCredentialTypeResMsgEntity
+    public class CreateCredentialTypeResMsgEntity : Result
     {
     }
 }
