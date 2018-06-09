@@ -4,4 +4,16 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataContracts\ExternalServiceDataContracts\CategoryService\" />
+    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialService\" />
+    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialTypeService\" />
+    <Folder Include="DataContracts\ExternalServiceDataContracts\LoginService\" />
+    <Folder Include="DataContracts\InternalServiceDataContracts\LoginService\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\aspnetcore_aop\Aop\Aop.csproj" />
+  </ItemGroup>
+
 </Project>
