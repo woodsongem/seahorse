@@ -17,6 +17,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
         private readonly ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier;
         private readonly ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor;
         private readonly ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor;
+        private readonly IBaseCredentialTypeService baseCredentialTypeService;
 
         #endregion
 
@@ -26,13 +27,15 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             ICredentialTypeBusinessServiceValidator credentialTypeBusinessServiceValidator,
             ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier,
             ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor,
-            ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor)
+            ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor,
+            IBaseCredentialTypeService baseCredentialTypeService)
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
             this.credentialTypeBusinessServiceValidator = credentialTypeBusinessServiceValidator;
             this.credentialTypeBusinessServiceVerifier = credentialTypeBusinessServiceVerifier;
             this.credentialTypeBusinessServiceProcessor = credentialTypeBusinessServiceProcessor;
             this.credentialTypeBusinessServicePostProcessor = credentialTypeBusinessServicePostProcessor;
+            this.baseCredentialTypeService = baseCredentialTypeService;
         }
 
         #endregion

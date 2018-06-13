@@ -1,6 +1,7 @@
 ﻿using System;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.BusinessService.Utilities;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator
 {
@@ -19,15 +20,30 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
 
         public Result IsCreateCredentialTypeMsgEntityvalid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            return new Result();
+            if (createCredentialTypeMsgEntity == null)
+            {
+                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
+                    message: "CreateCredentialTypeMsgEntity is null");
+            }
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
         public Result IsUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            return new Result();
+            if (string.IsNullOrWhiteSpace(createCredentialTypeMsgEntity.UserId))
+            {
+                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdIsEmpty.ToString(),
+                    message: "UserId is null");
+            }
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
         public Result IsNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            return new Result();
+            if (string.IsNullOrWhiteSpace(createCredentialTypeMsgEntity.Name))
+            {
+                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                    message: "Name is null");
+            }
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
 
         #endregion

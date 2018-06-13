@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.LoginService
 {
-    interface ILoginServiceBusinessServiceMapper
+    public class BaseLoginServiceBusinessService : IBaseLoginServiceBusinessService
     {
     }
 }
