@@ -4,10 +4,10 @@ using System.Text;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 
-namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
+namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier
 {
-    public interface ICredentialTypeBusinessServiceValidator
+    public interface ICredentialTypeBusinessServiceVerifier
     {
-        Result ValidatorCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+        Result VerifyCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
     }
 }

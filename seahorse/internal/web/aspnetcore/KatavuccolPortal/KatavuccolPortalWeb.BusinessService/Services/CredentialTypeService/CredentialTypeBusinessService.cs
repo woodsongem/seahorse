@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Mapper;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostProcessor;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
