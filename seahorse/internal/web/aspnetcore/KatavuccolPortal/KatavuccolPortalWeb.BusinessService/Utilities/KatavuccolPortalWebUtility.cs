@@ -26,5 +26,10 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
             });
             return resultMessages;
         }
+
+        internal static Result GetResult(ResultStatus resultStatus, object errorCode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

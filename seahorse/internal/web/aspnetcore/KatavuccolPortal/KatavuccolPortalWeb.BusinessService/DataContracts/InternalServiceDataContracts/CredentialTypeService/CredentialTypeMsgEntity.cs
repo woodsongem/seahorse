@@ -6,5 +6,8 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataC
 {
     public class CredentialTypeMsgEntity
     {
+        public string UserId { get; set; }
+
+        public string Name { get; set; }
     }
 }

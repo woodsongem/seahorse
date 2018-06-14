@@ -52,18 +52,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
-
-        public Result IsNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
-        {
-            List<CredentialTypeMsgEntity> credentialTypeMsgEntities = baseCredentialTypeService.GetCredentialTypeByUserId(true);
-            if (!credentialTypeMsgEntities.AnyWithNullCheck())
-            {
-                return new Result() { ResultStatus = ResultStatus.Success };
-            }
-
-
-            return new Result() { ResultStatus = ResultStatus.Success };
-        }
+       
 
         #endregion
     }
