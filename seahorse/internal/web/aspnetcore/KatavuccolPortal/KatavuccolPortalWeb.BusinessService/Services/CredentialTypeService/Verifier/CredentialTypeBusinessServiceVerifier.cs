@@ -1,20 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
-using KatavuccolPortalWeb.BusinessService.Services.LoginService;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
+using KatavuccolPortalWeb.BusinessService.Services.LoginService.Base;
+using KatavuccolPortalWeb.BusinessService.Utilities;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier
 {
     public class CredentialTypeBusinessServiceVerifier : ICredentialTypeBusinessServiceVerifier
     {
-        private readonly IBaseLoginServiceBusinessService baseLoginServiceBusinessService;
+        #region Local variables
 
-        public CredentialTypeBusinessServiceVerifier(IBaseLoginServiceBusinessService baseLoginServiceBusinessService)
+        private readonly IBaseLoginServiceBusinessService baseLoginServiceBusinessService;
+        private readonly IBaseCredentialTypeService baseCredentialTypeService;
+
+        #endregion
+
+        #region Constructor
+
+        public CredentialTypeBusinessServiceVerifier(
+            IBaseLoginServiceBusinessService baseLoginServiceBusinessService,
+            IBaseCredentialTypeService baseCredentialTypeService)
         {
             this.baseLoginServiceBusinessService = baseLoginServiceBusinessService;
+            this.baseCredentialTypeService = baseCredentialTypeService;
         }
+
+        #endregion
 
         #region Verify Executor
 
@@ -25,13 +39,32 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
         #endregion
 
+        #region Verifiers
+
         public Result IsUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            return new Result();
+            var userDetail = baseLoginServiceBusinessService.getUserDetail(createCredentialTypeMsgEntity.UserId);
+            if (userDetail == null)
+            {
+                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdInValid.ToString());
+            }
+            createCredentialTypeMsgEntity.UserDetail = userDetail;
+
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
+
         public Result IsNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            return new Result();
+            List<CredentialTypeMsgEntity> credentialTypeMsgEntities = baseCredentialTypeService.GetCredentialTypeByUserId(true);
+            if (!credentialTypeMsgEntities.AnyWithNullCheck())
+            {
+                return new Result() { ResultStatus = ResultStatus.Success };
+            }
+
+
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
+
+        #endregion
     }
 }
