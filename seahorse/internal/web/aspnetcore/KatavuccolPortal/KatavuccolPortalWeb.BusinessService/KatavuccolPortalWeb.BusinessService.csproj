@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="DataContracts\ExternalServiceDataContracts\CategoryService\" />
     <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialService\" />
-    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialTypeService\" />
     <Folder Include="DataContracts\ExternalServiceDataContracts\LoginService\" />
   </ItemGroup>
 

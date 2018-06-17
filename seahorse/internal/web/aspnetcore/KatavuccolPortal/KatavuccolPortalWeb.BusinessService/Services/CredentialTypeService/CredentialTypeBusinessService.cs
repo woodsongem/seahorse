@@ -1,5 +1,6 @@
 ﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Mapper;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostProcessor;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
