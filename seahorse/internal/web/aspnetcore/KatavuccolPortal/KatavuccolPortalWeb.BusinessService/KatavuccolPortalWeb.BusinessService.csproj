@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\shared\aspnetcore_aop\Aop\Aop.csproj" />
+    <ProjectReference Include="..\..\..\..\shared\KatavuccolClient\KatavuccolClient.csproj" />
   </ItemGroup>
 
 </Project>
