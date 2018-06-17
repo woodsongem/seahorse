@@ -1,15 +1,17 @@
-
-   CREATE TABLE credential (
-   	id timeuuid,
+CREATE TABLE credential (
     userid timeuuid,
+    id timeuuid,
     categoryid timeuuid,
-    credentialtypeid timeuuid,
     createdby timeuuid,
     createddate timestamp,
+    credentialtypeid timeuuid,
     description text,
+    encryptkey text,
     modifiedby timeuuid,
-    parentId UUID,
-    modifieddate timestamp,    
+    modifieddate timestamp,
+    parentid uuid,
     status text,
-    PRIMARY KEY((userid),id)
+    userencryptkey text,
+    value text,
+    PRIMARY KEY (userid, id)
 );
