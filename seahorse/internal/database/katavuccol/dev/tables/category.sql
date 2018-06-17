@@ -1,7 +1,6 @@
-
-   CREATE TABLE category (
-   	id timeuuid,
+CREATE TABLE category (
     userid timeuuid,
+    id timeuuid,
     createdby timeuuid,
     createddate timestamp,
     description text,
@@ -9,5 +8,5 @@
     modifieddate timestamp,
     name text,
     status text,
-    PRIMARY KEY((userid),id)
+    PRIMARY KEY (userid, id)
 );
