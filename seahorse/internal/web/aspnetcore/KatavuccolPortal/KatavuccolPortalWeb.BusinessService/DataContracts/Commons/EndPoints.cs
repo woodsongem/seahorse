@@ -1,7 +1,7 @@
 ﻿namespace KatavuccolPortalWeb.BusinessService.DataContracts.Commons
 {
-    public class OutPutResult : Result
+    public enum EndPoints
     {
-        public string Key { get; set; }
+        KatavuccolServiceUrl
     }
 }

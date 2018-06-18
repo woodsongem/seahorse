@@ -86,7 +86,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             #endregion
 
-            return new CreateCredentialTypeResMsgEntity();
+            return credentialTypeBusinessServiceMapper.MapCreateCredentialTypeResMsgEntity(createCredentialTypeMsgEntity, result);
         }
 
         public CredentialTypeMsgEntity Get(string credentialTypeId)

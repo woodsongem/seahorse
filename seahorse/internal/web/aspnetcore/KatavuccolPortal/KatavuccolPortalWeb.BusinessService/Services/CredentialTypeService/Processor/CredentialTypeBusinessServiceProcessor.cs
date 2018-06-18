@@ -26,14 +26,28 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
 
         #endregion
 
-        #region Processors
+        #region Executors
 
         public Result ProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
+            Result result = CredentialType(createCredentialTypeMsgEntity);
+
+            return result;
+        }
+
+        #endregion
+
+        #region Processors
+
+        public Result CredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
+        {
             CredentialTypeMsgEntity credentialTypeMsgEntity = credentialTypeBusinessServiceMapper.MapCredentialTypeMsgEntity(createCredentialTypeMsgEntity);
             OutPutResult result = baseCredentialTypeService.CreateCredentialType(credentialTypeMsgEntity);
-
-            throw new System.NotImplementedException();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                createCredentialTypeMsgEntity.Id = result.Key;
+            }
+            return result;
         }
 
         #endregion

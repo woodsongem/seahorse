@@ -9,5 +9,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
     public interface ICredentialTypeBusinessServiceProcessor
     {
         Result ProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+
+        Result CredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
     }
 }

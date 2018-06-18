@@ -55,7 +55,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
         public OutPutResult CreateCredentialType(CredentialTypeMsgEntity credentialTypeMsgEntity)
         {
             CredentialTypeRequestAPI credentialTypeRequestAPI = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestAPI(credentialTypeMsgEntity);
-            CredentialTypeRequestIPost credentialTypeRequestIPost = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestIPost(credentialTypeRequestAPI);
+            CredentialTypeRequestIPost credentialTypeRequestIPost = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestIPost(credentialTypeMsgEntity,credentialTypeRequestAPI);
             RestResponse restResponse = katavuccolClient.Post(credentialTypeRequestIPost);
 
             throw new NotImplementedException();

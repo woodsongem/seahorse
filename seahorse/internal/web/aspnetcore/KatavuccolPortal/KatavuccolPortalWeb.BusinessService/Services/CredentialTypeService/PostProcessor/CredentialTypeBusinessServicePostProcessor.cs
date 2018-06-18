@@ -10,7 +10,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pos
     {
         public Result PostProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            throw new NotImplementedException();
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
     }
 }
