@@ -47,7 +47,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
         {
             #region Setup
 
-            createCredentialTypeMsgEntity.Status= 
+            createCredentialTypeMsgEntity.Status = KatavuccolPortalWebConstants.ActiveStatus;
 
             #endregion
 
@@ -106,7 +106,9 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             #endregion
 
+            #region Verifier           
 
+            #endregion
 
             #region Processor
 

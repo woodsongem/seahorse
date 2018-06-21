@@ -8,6 +8,6 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataC
         public string Url => $"{CredentialTypeId}";
         public string CredentialTypeId { get; set; }
         public List<KeyValuePir> Headers { get; set; }
-        public string Endpoint { get; set; }
+        public string Endpoint { get; set; }        
     }
 }
