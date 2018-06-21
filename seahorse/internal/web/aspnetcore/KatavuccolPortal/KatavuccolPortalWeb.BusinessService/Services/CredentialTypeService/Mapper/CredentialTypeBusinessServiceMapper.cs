@@ -56,5 +56,14 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
             credentialTypeRequestIPost.UserId = credentialTypeMsgEntity.UserId;
             return credentialTypeRequestIPost;
         }
+
+        public GetCredentialTypeByIdIGet MapGetCredentialTypeByIdIGet(string credentialTypeId)
+        {
+            return new GetCredentialTypeByIdIGet
+            {
+                Endpoint = EndPoints.KatavuccolServiceUrl.ToString(),
+                CredentialTypeId = credentialTypeId
+            };            
+        }
     }
 }

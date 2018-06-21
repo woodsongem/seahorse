@@ -47,6 +47,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
         {
             #region Setup
 
+            createCredentialTypeMsgEntity.Status= 
+
             #endregion
 
             #region Validator
@@ -91,7 +93,27 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
         public CredentialTypeMsgEntity Get(string credentialTypeId)
         {
-            return new CredentialTypeMsgEntity();
+            #region Setup
+
+            #endregion
+
+            #region Validator
+
+            if (string.IsNullOrWhiteSpace(credentialTypeId))
+            {
+                return null;
+            }
+
+            #endregion
+
+
+
+            #region Processor
+
+            return baseCredentialTypeService.GetCredentialTypeById(credentialTypeId);
+
+            #endregion          
+
         }
 
         public Result Update(UpdateCredentialTypeMsgEntity updateCredentialTypeMsgEntity)

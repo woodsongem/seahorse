@@ -1,0 +1,4 @@
+﻿namespace KatavuccolPortalWeb.BusinessService.DataContracts
+{
+    
+}

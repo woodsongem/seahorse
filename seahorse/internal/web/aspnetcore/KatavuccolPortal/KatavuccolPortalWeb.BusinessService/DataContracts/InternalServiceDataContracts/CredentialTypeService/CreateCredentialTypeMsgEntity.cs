@@ -11,5 +11,6 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataC
         public string IsSubitemAllowed { get; set; }
         public UserDetailMsgEntity UserDetail { get; set; }
         public string Id { get; set; }
+        public string Status { get; set; }
     }
 }

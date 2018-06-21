@@ -12,5 +12,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
         CredentialTypeRequestAPI MapCredentialTypeRequestAPI(CredentialTypeMsgEntity credentialTypeMsgEntity);
         CreateCredentialTypeResMsgEntity MapCreateCredentialTypeResMsgEntity(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity, Result result);
         CredentialTypeRequestIPost MapCredentialTypeRequestIPost(CredentialTypeMsgEntity credentialTypeMsgEntity, CredentialTypeRequestAPI credentialTypeRequestAPI);
+        GetCredentialTypeByIdIGet MapGetCredentialTypeByIdIGet(string credentialTypeId);
     }
 }

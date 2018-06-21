@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using KatavuccolClient;
 using KatavuccolClient.DataContracts;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
@@ -8,6 +7,7 @@ using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContr
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialTypeService.KatavuccolClientRequest;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Mapper;
+using Newtonsoft.Json;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base
 {
@@ -43,10 +43,15 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
             throw new NotImplementedException();
         }
 
-        public List<CredentialTypeMsgEntity> GetCredentialTypeById(string credentialTypeId)
+        public CredentialTypeMsgEntity GetCredentialTypeById(string credentialTypeId)
         {
+            GetCredentialTypeByIdIGet getCredentialTypeByIdIGet = credentialTypeBusinessServiceMapper.MapGetCredentialTypeByIdIGet(credentialTypeId);
+            RestResponse restResponse = katavuccolClient.Get(getCredentialTypeByIdIGet);
+            CredentialTypeDetailAPI credentialTypeDetailAPI = JsonConvert.DeserializeObject<CredentialTypeDetailAPI>(restResponse.ResponseContent);
+
             throw new NotImplementedException();
         }
+
         public List<CredentialTypeMsgEntity> GetDeafultCredentialTyps()
         {
             throw new NotImplementedException();
@@ -55,7 +60,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
         public OutPutResult CreateCredentialType(CredentialTypeMsgEntity credentialTypeMsgEntity)
         {
             CredentialTypeRequestAPI credentialTypeRequestAPI = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestAPI(credentialTypeMsgEntity);
-            CredentialTypeRequestIPost credentialTypeRequestIPost = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestIPost(credentialTypeMsgEntity,credentialTypeRequestAPI);
+            CredentialTypeRequestIPost credentialTypeRequestIPost = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestIPost(credentialTypeMsgEntity, credentialTypeRequestAPI);
             RestResponse restResponse = katavuccolClient.Post(credentialTypeRequestIPost);
 
             throw new NotImplementedException();
