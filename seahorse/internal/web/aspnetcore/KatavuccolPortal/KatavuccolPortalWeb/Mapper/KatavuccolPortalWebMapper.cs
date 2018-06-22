@@ -12,7 +12,23 @@ namespace KatavuccolPortalWeb.Mapper
 
         public CredentialTypeModel MapCredentialTypeModel(CredentialTypeMsgEntity credentialTypeMsgEntity)
         {
-            throw new System.NotImplementedException();
+            if (credentialTypeMsgEntity == null)
+                return null;
+            
+            CredentialTypeModel credentialTypeModel = new CredentialTypeModel()
+            {
+                CreatedBy = credentialTypeMsgEntity.CreatedBy,
+                CreatedOn = credentialTypeMsgEntity.CreatedOn,
+                Description = credentialTypeMsgEntity.Description,
+                IsDuplicationAllowed = credentialTypeMsgEntity.IsDuplicationAllowed,
+                IsSubitemAllowed = credentialTypeMsgEntity.IsSubitemAllowed,
+                ModifiedBy = credentialTypeMsgEntity.ModifiedBy,
+                ModifiedOn = credentialTypeMsgEntity.ModifiedOn,
+                Name = credentialTypeMsgEntity.Name,
+                Status = credentialTypeMsgEntity.Status,
+                UserId = credentialTypeMsgEntity.UserId
+            };
+            return credentialTypeModel;
         }
     }
 }

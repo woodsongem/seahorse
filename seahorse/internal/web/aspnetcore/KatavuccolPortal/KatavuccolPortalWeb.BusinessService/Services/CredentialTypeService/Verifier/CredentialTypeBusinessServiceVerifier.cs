@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
@@ -52,7 +50,18 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
-       
+
+        public Result VerifyGetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            var credentialType = baseLoginServiceBusinessService.GetCredentialTypeById(getCredentialTypeMsgEntity.CredentialTypeId);
+            if (credentialType == null)
+            {
+                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail,errorCode:KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);
+            }
+            getCredentialTypeMsgEntity.CredentialType = credentialType;
+
+            return new Result() { ResultStatus = ResultStatus.Success };
+        }
 
         #endregion
     }

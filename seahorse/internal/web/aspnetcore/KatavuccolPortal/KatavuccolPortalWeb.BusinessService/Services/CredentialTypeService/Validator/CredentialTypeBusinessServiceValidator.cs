@@ -14,6 +14,22 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
             throw new NotImplementedException();
         }
 
+        public Result ValidatorGetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            Result result = IsGetCredentialTypeMsgEntityValid(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            result = IsCredentialTypeIdValid(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            return result;
+        }
+
         #endregion
 
         #region Validators
@@ -42,6 +58,22 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
             {
                 return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "Name is null");
+            }
+            return new Result() { ResultStatus = ResultStatus.Success };
+        }
+        public Result IsCredentialTypeIdValid(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            if (string.IsNullOrWhiteSpace(getCredentialTypeMsgEntity.CredentialTypeId))
+            {
+                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsEmpty);
+            }
+            return new Result() { ResultStatus = ResultStatus.Success };
+        }
+        public Result IsGetCredentialTypeMsgEntityValid(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            if (getCredentialTypeMsgEntity == null)
+            {
+                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.GetCredentialTypeMsgEntityIsEmpty);
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }
