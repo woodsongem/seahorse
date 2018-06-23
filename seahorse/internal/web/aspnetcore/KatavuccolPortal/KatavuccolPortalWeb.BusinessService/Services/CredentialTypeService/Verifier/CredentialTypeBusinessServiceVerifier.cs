@@ -35,6 +35,17 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             throw new NotImplementedException();
         }
 
+        public Result VerifyGetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            var result = GetCredentialType(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Verifiers
@@ -51,12 +62,12 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             return new Result() { ResultStatus = ResultStatus.Success };
         }
 
-        public Result VerifyGetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        public Result GetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
         {
             var credentialType = baseLoginServiceBusinessService.GetCredentialTypeById(getCredentialTypeMsgEntity.CredentialTypeId);
             if (credentialType == null)
             {
-                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail,errorCode:KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);
+                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);
             }
             getCredentialTypeMsgEntity.CredentialType = credentialType;
 

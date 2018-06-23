@@ -117,11 +117,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             #endregion
 
-            #region Processor
-
-            return baseCredentialTypeService.GetCredentialTypeById(getCredentialTypeMsgEntity);
-
-            #endregion          
+            return null;
 
         }
 
