@@ -64,7 +64,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
         public Result GetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
         {
-            var credentialType = baseLoginServiceBusinessService.GetCredentialTypeById(getCredentialTypeMsgEntity.CredentialTypeId);
+            var credentialType = baseCredentialTypeService.GetCredentialTypeById(getCredentialTypeMsgEntity.CredentialTypeId);
             if (credentialType == null)
             {
                 return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);

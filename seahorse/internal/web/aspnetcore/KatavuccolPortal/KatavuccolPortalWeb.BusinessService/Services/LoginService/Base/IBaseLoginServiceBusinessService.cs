@@ -5,7 +5,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.LoginService.Base
 {
     public interface IBaseLoginServiceBusinessService
     {
-        UserDetailMsgEntity getUserDetail(string userId);
-        CredentialTypeMsgEntity GetCredentialTypeById(string credentialTypeId);
+        UserDetailMsgEntity getUserDetail(string userId);       
     }
 }

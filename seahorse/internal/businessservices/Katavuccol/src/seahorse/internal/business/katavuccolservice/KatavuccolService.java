@@ -84,7 +84,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public List<Credential> getCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
+	public List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity) {
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateGetCredentials(getCredentialMessageEntity);
 	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -316,7 +316,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public CredentialValueDetail getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+	public CredentialValueDetail getCredentialValueByCredentialId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateGetCredentialValueByUserId(getCredentialValueMessageEntity);
@@ -337,5 +337,6 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		return katavuccolServiceMapper.mapCredentialValueDetail(result, getCredentialValueMessageEntity);
-	}
+	}	
+	
 }

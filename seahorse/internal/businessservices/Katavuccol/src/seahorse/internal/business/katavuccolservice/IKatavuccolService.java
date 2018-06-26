@@ -16,7 +16,7 @@ public interface IKatavuccolService {
 
 	CredentialResponseMessageEntity createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	List<Credential> getCredentials(GetCredentialMessageEntity getCredentialMessageEntity);
+	List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity);
 
 	UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
@@ -39,5 +39,6 @@ public interface IKatavuccolService {
 
 	List<Category> getCategory(GetCategoryMessageEntity getCategoryMessageEntity);
 
-	CredentialValueDetail getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	CredentialValueDetail getCredentialValueByCredentialId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	
 }

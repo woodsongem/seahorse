@@ -7,5 +7,6 @@ namespace KatavuccolPortalWeb.Mapper
     {
         CredentialTypeModel MapCredentialTypeModel(CredentialTypeMsgEntity credentialTypeMsgEntity);
         CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(CreateCredentialTypeModel createCredentialTypeModel);
+        GetCredentialTypeMsgEntity MapGetCredentialTypeMsgEntity(string id);
     }
 }

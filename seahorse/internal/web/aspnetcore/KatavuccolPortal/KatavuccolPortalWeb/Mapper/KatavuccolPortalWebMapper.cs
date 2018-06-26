@@ -30,5 +30,12 @@ namespace KatavuccolPortalWeb.Mapper
             };
             return credentialTypeModel;
         }
+
+        public GetCredentialTypeMsgEntity MapGetCredentialTypeMsgEntity(string id)
+        {
+            GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = new GetCredentialTypeMsgEntity();
+            getCredentialTypeMsgEntity.CredentialTypeId = id;
+            return getCredentialTypeMsgEntity;
+        }
     }
 }

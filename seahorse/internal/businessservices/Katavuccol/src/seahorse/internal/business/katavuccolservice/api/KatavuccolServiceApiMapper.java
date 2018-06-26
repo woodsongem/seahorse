@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
@@ -37,6 +38,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
@@ -81,8 +83,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	@Override
 	public CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CredentialRequest credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest) {
 		CredentialRequestMessageEntity credentialRequestMessageEntity=new CredentialRequestMessageEntity();
-		credentialRequestMessageEntity.setUserId(userid);
-		credentialRequestMessageEntity.setHttpRequest(httpRequest);
+		credentialRequestMessageEntity.setUserId(userid);		
 		credentialRequestMessageEntity.setCategoryId(categoryId);		
 		if(credentialRequest == null)
 		{
@@ -384,5 +385,19 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		getCredentialValueMessageEntity.setKey(getCredentialValueMessageEntity.getKey());
 		
 		return getCredentialValueMessageEntity;
+	}
+
+	@Override
+	public GetCredentialByUserIdMessageEntity mapGetCredentialByUserIdMessageEntity(String userid) {
+		GetCredentialByUserIdMessageEntity getCredentialByUserIdMessageEntity=new GetCredentialByUserIdMessageEntity();
+		getCredentialByUserIdMessageEntity.setUserId(userid);
+		return getCredentialByUserIdMessageEntity;
+	}
+
+	@Override
+	public CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid) {
+		CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=new CredentialTypeByUserIdMsgEntity();
+		credentialTypeByUserIdMsgEntity.setUserId(userid);
+		return credentialTypeByUserIdMsgEntity;
 	}
 }

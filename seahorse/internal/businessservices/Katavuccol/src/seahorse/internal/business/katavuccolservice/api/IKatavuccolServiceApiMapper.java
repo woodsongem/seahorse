@@ -6,6 +6,7 @@ package seahorse.internal.business.katavuccolservice.api;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
@@ -35,6 +36,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredenti
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
@@ -111,5 +113,9 @@ public interface IKatavuccolServiceApiMapper {
 
 	GetCredentialValueMessageEntity mapGetCredentialValueMessageEntity(String userid,String categoryId,String credentialId, 
 			HttpServletRequest httpRequest,GetCredentialValueRequest getCredentialValueRequest);
+
+	GetCredentialByUserIdMessageEntity mapGetCredentialByUserIdMessageEntity(String userid);
+
+	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid);
 
 }

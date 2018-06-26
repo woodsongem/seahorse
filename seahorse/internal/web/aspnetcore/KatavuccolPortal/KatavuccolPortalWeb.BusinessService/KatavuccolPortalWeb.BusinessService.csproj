@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <None Remove="Services\CredentialTypeService\Validator\CredentialTypeBusinessServiceValidator.cs~RF4c36008.TMP" />
+    <None Remove="Services\LoginService\Base\BaseLoginServiceBusinessService.cs~RF92074d.TMP" />
   </ItemGroup>
 
   <ItemGroup>

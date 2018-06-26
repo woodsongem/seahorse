@@ -28,3 +28,15 @@ hs_err_pid*
 /seahorse/internal/shared/aspnetcore_aop/Aop/obj
 /seahorse/internal/shared/KatavuccolClient/bin/Debug/netcoreapp2.1
 /seahorse/internal/shared/KatavuccolClient/obj
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/web.xml
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/server.xml
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/context.xml
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
+seahorse/internal/businessservices/Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
+seahorse/internal/businessservices/Servers/.project
+seahorse/internal/businessservices/Servers/.settings/org.eclipse.wst.server.core.prefs
+*.prefs
+seahorse/internal/businessservices/.recommenders/caches/identified-project-coordinates.json
+seahorse/internal/businessservices/.recommenders/caches/manual-mappings.json
+seahorse/internal/businessservices/applicationdetailservice/target/m2e-wtp/web-resources/META-INF/maven/ApplicationDetailService/ApplicationDetailService/pom.properties

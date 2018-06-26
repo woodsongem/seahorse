@@ -7,13 +7,14 @@ package seahorse.internal.business.katavuccolservice.dal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
+
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
-
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -24,7 +25,6 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDA
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
@@ -34,7 +34,7 @@ import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceU
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
- * @author sajanmje
+ * @author sajanmje 
  *
  */
 public class KatavuccolServiceRepository implements IKatavuccolServiceRepository {

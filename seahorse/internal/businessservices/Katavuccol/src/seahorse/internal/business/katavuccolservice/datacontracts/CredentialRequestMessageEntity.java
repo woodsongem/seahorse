@@ -5,8 +5,6 @@ package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.List;
 import java.util.UUID;
-import javax.servlet.http.HttpServletRequest;
-
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -22,8 +20,7 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private UUID parsedUserId;
 	private UUID parsedCategoryId;
 	private UUID parsedCredentialTypeId;
-	private UUID id;
-	private HttpServletRequest httpRequest;
+	private UUID id;	
 	private String description;
 	private CredentialTypeMessageEntity credentialType;
 	private CategoryMessageEntity category;
@@ -120,18 +117,8 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	public void setId(UUID id) {
 		this.id = id;
 	}
-	/**
-	 * @return the httpRequest
-	 */
-	public HttpServletRequest getHttpRequest() {
-		return httpRequest;
-	}
-	/**
-	 * @param httpRequest the httpRequest to set
-	 */
-	public void setHttpRequest(HttpServletRequest httpRequest) {
-		this.httpRequest = httpRequest;
-	}
+	
+	
 	/**
 	 * @return the parsedTypeId
 	 */

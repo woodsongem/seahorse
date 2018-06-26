@@ -6,10 +6,10 @@ namespace KatavuccolPortalWeb.BusinessService.Services.LoginService.Base
 {
     public class BaseLoginServiceBusinessService : IBaseLoginServiceBusinessService
     {
-        public CredentialTypeMsgEntity GetCredentialTypeById(string credentialTypeId)
+        public BaseLoginServiceBusinessService()
         {
-            throw new NotImplementedException();
-        }
+
+        }     
 
         public UserDetailMsgEntity getUserDetail(string userId)
         {
