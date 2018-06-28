@@ -13,6 +13,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
         private readonly ICategoryBusinessServiceMapper categoryBusinessServiceMapper;
         private readonly ICategoryBusinessServiceValidator categoryBusinessServiceValidator;
         private readonly ICategoryBusinessServiceVerifier categoryBusinessServiceVerifier;
+        private readonly ICategoryBusinessServiceProcessor categoryBusinessServiceProcessor;
 
         #endregion
 
@@ -20,24 +21,60 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
 
         public CategoryBusinessService(ICategoryBusinessServiceMapper categoryBusinessServiceMapper,
            ICategoryBusinessServiceValidator categoryBusinessServiceValidator,
-           ICategoryBusinessServiceVerifier categoryBusinessServiceVerifier)
+           ICategoryBusinessServiceVerifier categoryBusinessServiceVerifier, ICategoryBusinessServiceProcessor categoryBusinessServiceProcessor)
         {
             this.categoryBusinessServiceMapper = categoryBusinessServiceMapper;
             this.categoryBusinessServiceValidator = categoryBusinessServiceValidator;
             this.categoryBusinessServiceVerifier = categoryBusinessServiceVerifier;
+            this.categoryBusinessServiceProcessor = categoryBusinessServiceProcessor;
         }
 
         #endregion
 
         #region Operations
 
+
         public CreateCategoryBusinessResMsgEntity Create(CreateCategoryBusinessMsgEntity createCategoryBusinessMsgEntity)
         {
-            return new CreateCategoryBusinessResMsgEntity();
+            #region Validator
+
+            Result result = categoryBusinessServiceValidator.ValidatorCreateCategory(createCategoryBusinessMsgEntity);
+
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCategoryBusinessResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+
+            #region Verifier
+
+            result = categoryBusinessServiceVerifier.VerifyCreateCategory(createCategoryBusinessMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCategoryBusinessResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+            #region Processor
+
+            result = categoryBusinessServiceProcessor.ProcessCategoryType(createCategoryBusinessMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCategoryBusinessResMsgEntity () { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+            return categoryBusinessServiceMapper.MapCreateCategoryResMsgEntity(createCategoryBusinessMsgEntity, result);
         }
 
         public CategoryBusinessMsgEntity Get(string categoryId)
         {
+            if (string.IsNullOrWhiteSpace(categoryId))
+            {
+                return null;
+            }
+
             return new CategoryBusinessMsgEntity();
         }
 

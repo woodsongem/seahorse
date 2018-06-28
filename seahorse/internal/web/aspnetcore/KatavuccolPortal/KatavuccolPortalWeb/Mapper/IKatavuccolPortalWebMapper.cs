@@ -1,4 +1,6 @@
-﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CategoryService;
+using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.Models.CreateCategory;
 using KatavuccolPortalWeb.Models.CredentialType;
 
 namespace KatavuccolPortalWeb.Mapper
@@ -7,5 +9,10 @@ namespace KatavuccolPortalWeb.Mapper
     {
         CredentialTypeModel MapCredentialTypeModel(CredentialTypeMsgEntity credentialTypeMsgEntity);
         CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(CreateCredentialTypeModel createCredentialTypeModel);
+
+        CreateCategoryModel MapCreateCategoryModel(CategoryBusinessMsgEntity categoryBusinessMsgEntity);
+
+        CreateCategoryBusinessMsgEntity MapCreateCategoryMsgEntity(CreateCategoryModel createCategoryModel);
+
     }
 }

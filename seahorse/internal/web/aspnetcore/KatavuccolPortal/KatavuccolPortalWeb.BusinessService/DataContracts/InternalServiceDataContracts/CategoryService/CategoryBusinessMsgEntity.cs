@@ -6,5 +6,8 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataC
 {
     public class CategoryBusinessMsgEntity
     {
+        public string CategoryName { get; set; }
+        public string Description { get; set; }
+        public string UserId { get; set; }
     }
 }

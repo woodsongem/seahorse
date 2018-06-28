@@ -6,10 +6,10 @@ using System.Text;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
 {
-    public interface ICategoryBusinessServiceVerifier
+   public interface ICategoryBusinessServiceProcessor
     {
-        Result VerifyCreateCategory(CreateCategoryBusinessMsgEntity createCategoryBusinessMsgEntity);
+   Result ProcessCategoryType(CreateCategoryBusinessMsgEntity createCategoryBusinessMsgEntity);
 
-        Result IsNameValid(CreateCategoryBusinessMsgEntity createCategoryBusinessMsgEntity);
+        Result CreateCategoryType(CreateCategoryBusinessMsgEntity createCategoryBusinessMsgEntity);
     }
 }
