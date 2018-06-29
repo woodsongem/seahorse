@@ -52,7 +52,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
-<<<<<<< HEAD
 
         public Result GetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
         {
@@ -65,9 +64,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
-=======
-       
->>>>>>> afa07c257159bd85081f7f23eaaae79b9598760f
 
         #endregion
     }

@@ -37,7 +37,7 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
         public IActionResult Get(string id)
         {
             GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = katavuccolPortalWebMapper.MapGetCredentialTypeMsgEntity(id);
-            CredentialTypeMsgEntity credentialTypeMsgEntity = credentialTypeBusinessService.Get(getCredentialTypeMsgEntity);
+            CredentialTypeMsgEntity credentialTypeMsgEntity = credentialTypeBusinessService.Get(getCredentialTypeMsgEntity.CredentialTypeId);
             if (credentialTypeMsgEntity == null)
             {
                 return NotFound();
