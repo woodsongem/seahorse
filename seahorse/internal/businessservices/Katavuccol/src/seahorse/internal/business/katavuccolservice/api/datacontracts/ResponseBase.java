@@ -14,7 +14,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultM
  * @author sajanmje
  *
  */
-public class ResponseBase extends Base {
+public class ResponseBase extends BaseModel {
 	private List<ResultMessage> resultMessages;
 
 	/**

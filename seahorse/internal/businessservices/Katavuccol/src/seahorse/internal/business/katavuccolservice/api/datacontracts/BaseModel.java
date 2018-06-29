@@ -9,7 +9,7 @@ import java.util.Date;
  * @author sajanmje
  *
  */
-public class Base {
+public class BaseModel {
 
 	private String createdBy;
 	private String modifiedBy;

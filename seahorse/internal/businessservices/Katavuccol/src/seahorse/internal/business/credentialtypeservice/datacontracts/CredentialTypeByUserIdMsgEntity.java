@@ -4,6 +4,7 @@
 package seahorse.internal.business.credentialtypeservice.datacontracts;
 
 import java.util.List;
+import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.datacontracts.RequestMessageEntity;
@@ -15,7 +16,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.RequestMessage
 public class CredentialTypeByUserIdMsgEntity extends RequestMessageEntity {
 
 	private String userId;
-	private String parsedUserId;
+	private UUID parsedUserId;
 	private List<CredentialTypeModel> credentialType;
 
 	/**
@@ -35,14 +36,14 @@ public class CredentialTypeByUserIdMsgEntity extends RequestMessageEntity {
 	/**
 	 * @return the parsedUserId
 	 */
-	public String getParsedUserId() {
+	public UUID getParsedUserId() {
 		return parsedUserId;
 	}
 
 	/**
 	 * @param parsedUserId the parsedUserId to set
 	 */
-	public void setParsedUserId(String parsedUserId) {
+	public void setParsedUserId(UUID parsedUserId) {
 		this.parsedUserId = parsedUserId;
 	}
 

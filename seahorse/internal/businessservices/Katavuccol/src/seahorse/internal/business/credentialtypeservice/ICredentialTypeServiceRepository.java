@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.credentialtypeservice.dal;
+package seahorse.internal.business.credentialtypeservice;
 
 import java.util.List;
 import java.util.UUID;

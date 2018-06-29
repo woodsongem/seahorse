@@ -9,7 +9,7 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
  * @author sajanmje
  *
  */
-public class Category extends Base {
+public class Category extends BaseModel {
 
 	private String id;
 	private String name;

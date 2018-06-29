@@ -4,6 +4,7 @@
 package seahorse.internal.business.credentialtypeservice;
 
 import java.util.List;
+import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 
@@ -13,5 +14,5 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential
  */
 public interface IBaseCredentialTypeService {
 
-	List<CredentialTypeModel> getCredentialTypeByUserId(String parsedUserId);
+	List<CredentialTypeModel> getCredentialTypeByUserId(UUID parsedUserId);
 }

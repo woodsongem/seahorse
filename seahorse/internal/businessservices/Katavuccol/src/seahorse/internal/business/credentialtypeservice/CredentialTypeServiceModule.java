@@ -8,7 +8,9 @@ import java.security.GeneralSecurityException;
 import com.google.crypto.tink.Config;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.inject.AbstractModule;
-import seahorse.internal.business.credentialtypeservice.dal.*;
+
+import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 
 /**
  * @author admin
@@ -28,7 +30,7 @@ public class CredentialTypeServiceModule extends AbstractModule {
 		bind(IBaseCredentialTypeService.class).to(BaseCredentialTypeService.class);
 		bind(ICredentialTypeServiceRepository.class).to(CredentialTypeServiceRepository.class);
 		bind(ICredentialTypeServiceRepositoryMapper.class).to(CredentialTypeServiceRepositoryMapper.class);		
-		
+		bind(IKatavuccolServiceErrorCode.class).to(KatavuccolServiceErrorCode.class);
 		try {
 			DeterministicAeadConfig.init();
 		} catch (GeneralSecurityException e) {

@@ -9,7 +9,7 @@ import java.util.UUID;
  * @author sajanmje
  *
  */
-public class Credential extends Base {
+public class Credential extends BaseModel {
 
 	private String userId;
 	private String id;

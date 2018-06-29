@@ -9,6 +9,7 @@ package seahorse.internal.business.katavuccolservice.common;
  */
 public interface IKatavuccolServiceErrorCode {
 
+	String CredentialTypeByUserIdMsgEntityIsEmpty();
 	String createCredentialUserEncryptKeySmall();
 	String updateCredentialInValidUserIdErrorCode();
 	String internalError();
@@ -87,5 +88,8 @@ public interface IKatavuccolServiceErrorCode {
 	String createCredentialUserEncryptKeyLong();
 	String getCredentialUserEncryptKeySmall();
 	String getCredentialUserEncryptKeyLong();
-	String createCredentialUserIdNotFoundErrorCode();	
+	String createCredentialUserIdNotFoundErrorCode();
+	String userIdIsEmpty();	
+	String userIdInValidFormat();
+	String userIdNotFound();	
 }

@@ -16,5 +16,9 @@ public interface ICredentialTypeServiceValidator {
 	Result validGetCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 
 	Result validGetCredentialTypeById(CredentialTypeByIdMsgEntity credentialTypeByIdMsgEntity);
+	
+	Result IsCredentialTypeByUserIdMsgEntityValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
+	
+	Result IsUserIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 
 }

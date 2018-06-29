@@ -228,7 +228,7 @@ public class KatavuccolServiceApi {
 	
 
 	@GET
-	@Path("/{userid}/credentia/")
+	@Path("/{userid}/credentialtype")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserId(@PathParam("userid") String userid)
 	{
