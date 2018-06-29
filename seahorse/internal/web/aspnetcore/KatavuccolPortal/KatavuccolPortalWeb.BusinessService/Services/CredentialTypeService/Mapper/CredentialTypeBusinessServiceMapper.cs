@@ -26,7 +26,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
                 IsDuplicationAllowed = createCredentialTypeMsgEntity.IsDuplicationAllowed,
                 IsSubitemAllowed = createCredentialTypeMsgEntity.IsSubitemAllowed,
                 Name = createCredentialTypeMsgEntity.Name,
-                UserId = createCredentialTypeMsgEntity.UserId
+                UserId = createCredentialTypeMsgEntity.UserId   
             };
         }
 

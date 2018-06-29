@@ -91,7 +91,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             return credentialTypeBusinessServiceMapper.MapCreateCredentialTypeResMsgEntity(createCredentialTypeMsgEntity, result);
         }
 
-        public CredentialTypeMsgEntity Get(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        public CredentialTypeMsgEntity Get(string credentialTypeId)
         {
             #region Setup
 
@@ -99,8 +99,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             #region Validator
 
-            Result result = credentialTypeBusinessServiceValidator.ValidatorGetCredentialType(getCredentialTypeMsgEntity);
-            if (result.ResultStatus != ResultStatus.Success)
+            if (string.IsNullOrWhiteSpace(credentialTypeId))
             {
                 return null;
             }
@@ -109,15 +108,13 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             #region Verifier           
 
-            result = credentialTypeBusinessServiceVerifier.VerifyGetCredentialType(getCredentialTypeMsgEntity);
-            if (result.ResultStatus != ResultStatus.Success)
-            {
-                return null;
-            }
-
             #endregion
 
-            return null;
+            #region Processor
+
+            return baseCredentialTypeService.GetCredentialTypeById(credentialTypeId);
+
+            #endregion          
 
         }
 

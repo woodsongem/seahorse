@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
@@ -35,17 +37,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             throw new NotImplementedException();
         }
 
-        public Result VerifyGetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
-        {
-            var result = GetCredentialType(getCredentialTypeMsgEntity);
-            if (result.ResultStatus != ResultStatus.Success)
-            {
-                return result;
-            }
-
-            return result;
-        }
-
         #endregion
 
         #region Verifiers
@@ -61,6 +52,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+<<<<<<< HEAD
 
         public Result GetCredentialType(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
         {
@@ -73,6 +65,9 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+=======
+       
+>>>>>>> afa07c257159bd85081f7f23eaaae79b9598760f
 
         #endregion
     }
