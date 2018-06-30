@@ -52,7 +52,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		List<CredentialTypeModel> credentialTypeModels = new ArrayList<>();
 		try {
 			cassandraConnector.connect(null, 0,null);
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_ID_QUERY);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_USER_ID_QUERY);
 			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapCredentialTypeByUserIdBoundStatement(preparedStatement,userId);			
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();

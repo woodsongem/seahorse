@@ -240,6 +240,11 @@ public class KatavuccolServiceApi {
 			CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=katavuccolServiceApiMapper.mapCredentialTypeByUserIdMsgEntity(userid);
 			credentialTypeModel= credentialTypeService.getCredentialTypeByUserId(credentialTypeByUserIdMsgEntity);
 			httpStatus= Status.OK;
+			if(credentialTypeModel==null)
+			{
+				httpStatus=Status.BAD_REQUEST;
+			}
+			
 		}
 		catch (Exception ex) {			
 			logger.error(ex);

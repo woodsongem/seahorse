@@ -20,8 +20,9 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 
 	@Override
 	public BoundStatement mapCredentialTypeByUserIdBoundStatement(PreparedStatement preparedStatement, UUID userId) {
-		// TODO Auto-generated method stub
-		return null;
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		return bound;
 	}
 
 	@Override
