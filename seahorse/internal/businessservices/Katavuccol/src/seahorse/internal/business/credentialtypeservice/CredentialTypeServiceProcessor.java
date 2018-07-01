@@ -14,6 +14,7 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -23,14 +24,22 @@ import seahorse.internal.business.shared.aop.InjectLogger;
 public class CredentialTypeServiceProcessor implements ICredentialTypeServiceProcessor {
 
 	private final IBaseCredentialTypeService baseCredentialTypeService;
+	private final ICredentialTypeServiceRepository credentialTypeServiceRepository;
+	private final ICredentialTypeServiceMapper credentialTypeServiceMapper;
 	
 	@InjectLogger  
 	Logger logger;
 
 	@Inject
-	public CredentialTypeServiceProcessor(IBaseCredentialTypeService baseCredentialTypeService)
+	public CredentialTypeServiceProcessor(
+			IBaseCredentialTypeService baseCredentialTypeService,
+			ICredentialTypeServiceRepository credentialTypeServiceRepository,
+			ICredentialTypeServiceMapper credentialTypeServiceMapper
+			)
 	{
 		this.baseCredentialTypeService=baseCredentialTypeService;
+		this.credentialTypeServiceRepository=credentialTypeServiceRepository;
+		this.credentialTypeServiceMapper=credentialTypeServiceMapper;
 	}
 	
 	@Override
@@ -45,10 +54,21 @@ public class CredentialTypeServiceProcessor implements ICredentialTypeServicePro
 	
 	@Override
 	public Result processCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result=CreateCredentialType(createCredentialTypeMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return result;
+		}		
+		return result;
 	}
 	
+	@Override
+	public Result CreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		CredentialTypeDAO credentialTypeDAO =credentialTypeServiceMapper.MapcredentialTypeDAO(createCredentialTypeMsgEntity);
+		return credentialTypeServiceRepository.createCategoryType(credentialTypeDAO);
+	}
+	
+	@Override
 	public Result getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId)
 	{
 		List<CredentialTypeModel> credentialTypeModel=baseCredentialTypeService.getCredentialTypeByUserId(credentialTypeByUserId.getParsedUserId());

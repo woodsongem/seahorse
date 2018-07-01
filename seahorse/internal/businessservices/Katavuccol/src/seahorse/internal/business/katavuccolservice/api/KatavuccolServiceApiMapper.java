@@ -7,46 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeResponse;
+import seahorse.internal.business.credentialtypeservice.datacontracts.*;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.*;
 
 /**
  * @author sajanmje
@@ -326,13 +290,6 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		return credentialTypeRequestMessageEntity;
 	}
 
-	@Override
-	public CredentialTypeResponse mapCredentialTypeResponse(
-			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
-			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public UpdateCredentialTypeMessageEntity mapUpdateCredentialRequestMessageEntity(
@@ -400,4 +357,39 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		credentialTypeByUserIdMsgEntity.setUserId(userid);
 		return credentialTypeByUserIdMsgEntity;
 	}
+
+	@Override
+	public CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CredentialTypeRequest credentialTypeRequest,
+			String userid, HttpServletRequest httpRequest) {
+		CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=new CreateCredentialTypeMsgEntity();
+		createCredentialTypeMsgEntity.setUserId(userid);		
+		if(credentialTypeRequest == null)
+		{
+			return createCredentialTypeMsgEntity;
+		}
+		createCredentialTypeMsgEntity.setName(credentialTypeRequest.getName());
+		createCredentialTypeMsgEntity.setDescription(credentialTypeRequest.getDescription());
+		createCredentialTypeMsgEntity.setIsDuplicationAllowed(credentialTypeRequest.getIsDuplicationAllowed());
+		createCredentialTypeMsgEntity.setIsSubitemAllowed(credentialTypeRequest.getIsSubitemAllowed());
+		return createCredentialTypeMsgEntity;
+	}
+
+
+
+	@Override
+	public CreateCredentialTypeResponse mapCredentialTypeResponse(
+			CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
+			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CreateCredentialTypeResponse mapCredentialTypeResponse(
+			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
+			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

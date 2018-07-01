@@ -23,11 +23,11 @@ import seahorse.internal.business.shared.aop.InjectLogger;
  *
  */
 public class CredentialTypeService implements ICredentialTypeService {
-	private ICredentialTypeServiceMapper credentialTypeServiceMapper;
-	private ICredentialTypeServiceVerifier credentialTypeServiceVerifier;
-	private ICredentialTypeServiceValidator credentialTypeServiceValidator;
-	private ICredentialTypeServiceProcessor credentialTypeServiceProcessor;
-	private ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor;	
+	private final ICredentialTypeServiceMapper credentialTypeServiceMapper;
+	private final ICredentialTypeServiceVerifier credentialTypeServiceVerifier;
+	private final ICredentialTypeServiceValidator credentialTypeServiceValidator;
+	private final ICredentialTypeServiceProcessor credentialTypeServiceProcessor;
+	private final ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor;	
 	
 	@InjectLogger  Logger logger;
 

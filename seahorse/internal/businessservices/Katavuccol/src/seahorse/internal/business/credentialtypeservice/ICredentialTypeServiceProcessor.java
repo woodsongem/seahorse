@@ -16,5 +16,8 @@ public interface ICredentialTypeServiceProcessor {
 	Result processGetCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 
 	Result processCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
-
+	
+	Result CreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+	
+	Result getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 }

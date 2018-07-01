@@ -12,8 +12,7 @@ import java.util.UUID;
 public class CredentialTypeDAO extends BaseDAO {
 	private UUID id;
 	private String name;
-	private UUID userId;
-	private UUID categoryId;
+	private UUID userId;	
 	private String description;	
 	private String status;
 	private Boolean isDuplicationAllowed;
@@ -54,18 +53,6 @@ public class CredentialTypeDAO extends BaseDAO {
 	 */
 	public void setUserId(UUID userId) {
 		this.userId = userId;
-	}
-	/**
-	 * @return the categoryId
-	 */
-	public UUID getCategoryId() {
-		return categoryId;
-	}
-	/**
-	 * @param categoryId the categoryId to set
-	 */
-	public void setCategoryId(UUID categoryId) {
-		this.categoryId = categoryId;
 	}
 	/**
 	 * @return the description
