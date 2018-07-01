@@ -26,12 +26,15 @@ import org.apache.logging.log4j.Logger;
 
 import seahorse.internal.business.credentialservice.ICredentialService;
 import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
@@ -147,29 +150,29 @@ public class KatavuccolServiceApi {
 	}
 	
 	@POST
-	@Path("/{userid}/credentialtype")
+	@Path("/credentialtype/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredentialType(@PathParam("userid") String userid,CredentialTypeRequest credentialTypeRequest) {
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-		CredentialTypeResponse credentialTypeResponse=new CredentialTypeResponse();
+		CreateCredentialTypeResponse createCredentialTypeResponse=new CreateCredentialTypeResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity=katavuccolServiceApiMapper.mapCredentialTypeRequestMessageEntity(credentialTypeRequest,userid,httpRequest);
-			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=katavuccolServiceApiMapper.mapCreateCredentialTypeMsgEntity(credentialTypeRequest,userid,httpRequest);
+			ICredentialTypeService credentialTypeService = KatavuccolServiceFactory.getICredentialTypeService();
 			Map<String, String> headers=getHeaders(httpRequest);
-			credentialTypeRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
-			credentialTypeRequestMessageEntity.setHeaders(headers);
-			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity=katavuccolService.createCredentialType(credentialTypeRequestMessageEntity);
-			credentialTypeResponse=katavuccolServiceApiMapper.mapCredentialTypeResponse(credentialTypeResponseMessageEntity,credentialTypeRequestMessageEntity);
-			httpStatus = credentialTypeResponseMessageEntity.getHttpStatus();
+			createCredentialTypeMsgEntity.setHttpMethod(httpRequest.getMethod());
+			createCredentialTypeMsgEntity.setHeaders(headers);
+			CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity=credentialTypeService.Create(createCredentialTypeMsgEntity);
+			createCredentialTypeResponse=katavuccolServiceApiMapper.mapCredentialTypeResponse(createCredentialTypeResMsgEntity,createCredentialTypeMsgEntity);
+			httpStatus = createCredentialTypeResMsgEntity.getHttpStatus();
 		}
 		catch (Exception ex) {
-			if (credentialTypeResponse == null) {
-				credentialTypeResponse = getCredentialTypeResponse();
+			if (createCredentialTypeResponse == null) {
+				createCredentialTypeResponse = getCredentialTypeResponse();
 			}
 			logger.error(ex);
 		}
-		return Response.status(httpStatus).entity(credentialTypeResponse).build();
+		return Response.status(httpStatus).entity(createCredentialTypeResponse).build();
 	}	
 	
 	@PUT
@@ -228,7 +231,7 @@ public class KatavuccolServiceApi {
 	
 
 	@GET
-	@Path("/{userid}/credentialtype")
+	@Path("/credentialtype/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserId(@PathParam("userid") String userid)
 	{
@@ -456,13 +459,13 @@ public class KatavuccolServiceApi {
 		updateCategoryResponse.setResultMessages(resultMessage);
 		return updateCategoryResponse;
 	}
-	private CredentialTypeResponse getCredentialTypeResponse() {
+	private CreateCredentialTypeResponse getCredentialTypeResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		CredentialTypeResponse credentialTypeResponse = new CredentialTypeResponse();		
+		CreateCredentialTypeResponse createCredentialTypeResponse = new CreateCredentialTypeResponse();		
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
-		credentialTypeResponse.setResultMessages(resultMessage);
-		return credentialTypeResponse;
+		createCredentialTypeResponse.setResultMessages(resultMessage);
+		return createCredentialTypeResponse;
 	}
 	private UpdateCredentialTypeResponse getUpdateTypeCredentialResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();

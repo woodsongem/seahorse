@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -42,6 +43,12 @@ public class CredentialTypeServiceProcessor implements ICredentialTypeServicePro
 		return result;
 	}
 	
+	@Override
+	public Result processCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	public Result getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId)
 	{
 		List<CredentialTypeModel> credentialTypeModel=baseCredentialTypeService.getCredentialTypeByUserId(credentialTypeByUserId.getParsedUserId());
@@ -52,5 +59,7 @@ public class CredentialTypeServiceProcessor implements ICredentialTypeServicePro
 		credentialTypeByUserId.setCredentialType(credentialTypeModel);
 		return new Result(ResultStatus.SUCCESS);
 	}
+
+	
 
 }

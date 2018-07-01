@@ -8,6 +8,8 @@ import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.inject.Inject;
+
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
@@ -48,6 +50,47 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 		
 		return result;
 	}
+	@Override
+	public Result validCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		Result result;
+
+		result = isCreateCredentialTypeMsgEntityValid(createCredentialTypeMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(createCredentialTypeMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isNameValid(createCredentialTypeMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+				
+		return new Result(ResultStatus.SUCCESS);
+	}
+	public Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		Result result=profileServiceValidator.isUserIdValid(createCredentialTypeMsgEntity.getUserId());
+		if(result.getResultStatus() == ResultStatus.ERROR)
+		{
+			return result;
+		}
+		createCredentialTypeMsgEntity.setParsedUserId(UUID.fromString(createCredentialTypeMsgEntity.getUserId()));
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isCreateCredentialTypeMsgEntityValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(createCredentialTypeMsgEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.categoryRequestMessageEntityIsEmptyErrorCode());
+		}
+		
+		return result;
+	}
 
 	@Override
 	public Result validGetCredentialTypeById(CredentialTypeByIdMsgEntity credentialTypeByIdMsgEntity) {
@@ -74,4 +117,15 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 		return new Result(ResultStatus.SUCCESS);
 	}
 
+	
+	public Result isNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(StringUtils.isEmpty(createCredentialTypeMsgEntity.getName()))
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"categoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCategoryNameIsEmptyErrorCode());
+		}
+		
+		return result;
+	}
 }

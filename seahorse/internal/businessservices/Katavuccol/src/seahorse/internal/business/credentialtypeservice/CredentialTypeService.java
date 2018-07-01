@@ -3,16 +3,17 @@
  */
 package seahorse.internal.business.credentialtypeservice;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
+
+import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdResMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.shared.aop.InjectLogger;
@@ -42,6 +43,39 @@ public class CredentialTypeService implements ICredentialTypeService {
 		this.credentialTypeServiceValidator=credentialTypeServiceValidator;
 		this.credentialTypeServiceProcessor=credentialTypeServiceProcessor;
 		this.credentialTypeServicePostProcessor=credentialTypeServicePostProcessor;		
+	}
+	
+	public CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
+	{
+		//Set	
+		createCredentialTypeMsgEntity.setId(UUIDs.timeBased());
+		createCredentialTypeMsgEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+		createCredentialTypeMsgEntity.setCreatedDate(new Date());
+				
+		Result result=credentialTypeServiceValidator.validCreateCredentialType(createCredentialTypeMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return null;
+		}
+		
+		result=credentialTypeServiceVerifier.verifyCreateCredentialType(createCredentialTypeMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return null;
+		}
+		
+		result=	credentialTypeServiceProcessor.processCreateCredentialType(createCredentialTypeMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return null;
+		}	
+		result=	credentialTypeServicePostProcessor.postProcessCreateCredentialType(createCredentialTypeMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return null;
+		}
+		
+		return null;
 	}
 	
 	public List<CredentialTypeModel> getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId)
@@ -77,4 +111,6 @@ public class CredentialTypeService implements ICredentialTypeService {
 		return null;
 		
 	}
+	
+	
 }

@@ -6,6 +6,8 @@ package seahorse.internal.business.katavuccolservice.api;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
@@ -13,7 +15,7 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
@@ -90,7 +92,7 @@ public interface IKatavuccolServiceApiMapper {
 			String userid, 
 			HttpServletRequest httpRequest);
 
-	CredentialTypeResponse mapCredentialTypeResponse(
+	CreateCredentialTypeResponse mapCredentialTypeResponse(
 			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
 			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
 
@@ -117,5 +119,11 @@ public interface IKatavuccolServiceApiMapper {
 	GetCredentialByUserIdMessageEntity mapGetCredentialByUserIdMessageEntity(String userid);
 
 	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid);
+
+	CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CredentialTypeRequest credentialTypeRequest,String userid, 
+			HttpServletRequest httpRequest);
+
+	CreateCredentialTypeResponse mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
+			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
 }

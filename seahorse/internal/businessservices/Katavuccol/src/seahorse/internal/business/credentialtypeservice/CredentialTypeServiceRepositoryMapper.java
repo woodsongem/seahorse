@@ -11,6 +11,7 @@ import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.dal.DataBaseColumn;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
 /**
  * @author admin
@@ -40,6 +41,37 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		credentialTypeModel.setIsDuplicationAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISDUPLICATIONALLOWED));
 		credentialTypeModel.setIsSubitemAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED));		
 		return credentialTypeModel;
+	}
+
+	@Override
+	public CredentialTypeDAO mapCredentialTypeDAO(Row typeDAOResult) {
+		CredentialTypeDAO credentialTypeDAO = new CredentialTypeDAO();		
+		credentialTypeDAO.setCreatedBy(typeDAOResult.getUUID(DataBaseColumn.CREATEDBY));
+		credentialTypeDAO.setCreatedDate(typeDAOResult.getTimestamp(DataBaseColumn.CREATEDDATE));
+		credentialTypeDAO.setDescription(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_DESCRIPTION));
+		credentialTypeDAO.setId(typeDAOResult.getUUID(DataBaseColumn.ID));
+		credentialTypeDAO.setModifiedBy(typeDAOResult.getUUID(DataBaseColumn.MODIFIEDBY));
+		credentialTypeDAO.setModifiedDate(typeDAOResult.getTimestamp(DataBaseColumn.MODIFIEDDATE));
+		credentialTypeDAO.setName(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_NAME));		
+		credentialTypeDAO.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
+		credentialTypeDAO.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID));
+		credentialTypeDAO.setIsDuplicationAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISDUPLICATIONALLOWED));
+		credentialTypeDAO.setIsSubitemAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED));		
+		return credentialTypeDAO;
+	}
+
+	@Override
+	public BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CredentialTypeDAO credentialTypeDAO) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,credentialTypeDAO.getUserId());
+		bound.setString(DataBaseColumn.CREDENTIALTYPE_DESCRIPTION,credentialTypeDAO.getDescription());
+		bound.setString(DataBaseColumn.CREDENTIALTYPE_NAME,credentialTypeDAO.getName());
+		bound.setBool(DataBaseColumn.CREDENTIALTYPE_ISDUPLICATIONALLOWED,credentialTypeDAO.getIsDuplicationAllowed());
+		bound.setBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED,credentialTypeDAO.getIsSubitemAllowed());
+		bound.setString(DataBaseColumn.STATUS,credentialTypeDAO.getStatus());
+		bound.setUUID(DataBaseColumn.ID,credentialTypeDAO.getId());
+		
+		return bound;
 	}
 
 }

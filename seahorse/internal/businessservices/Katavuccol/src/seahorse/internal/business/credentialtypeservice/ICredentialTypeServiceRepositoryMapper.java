@@ -10,6 +10,7 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
 /**
  * @author admin
@@ -20,5 +21,9 @@ public interface ICredentialTypeServiceRepositoryMapper {
 	BoundStatement mapCredentialTypeByUserIdBoundStatement(PreparedStatement preparedStatement, UUID userId);
 
 	CredentialTypeModel mapCredentialTypeModel(Row typeDAOResult);
+
+	CredentialTypeDAO mapCredentialTypeDAO(Row typeDAOResult);
+
+	BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement, CredentialTypeDAO credentialTypeDAO);
 
 }

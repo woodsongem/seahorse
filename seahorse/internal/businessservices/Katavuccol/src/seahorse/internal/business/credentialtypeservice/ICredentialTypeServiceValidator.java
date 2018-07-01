@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.credentialtypeservice;
 
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -20,5 +21,13 @@ public interface ICredentialTypeServiceValidator {
 	Result IsCredentialTypeByUserIdMsgEntityValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 	
 	Result IsUserIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
+
+	Result validCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+	
+	Result isCreateCredentialTypeMsgEntityValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+	
+	Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+	
+	Result isNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
 }
