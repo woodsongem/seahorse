@@ -10,8 +10,8 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
 public class CredentialTypeRequest extends RequestBase {
 	private String name;
 	private String description;
-	private Boolean isDuplicationAllowed;
-	private Boolean isSubitemAllowed;
+	private Boolean isduplicationallowed;
+	private Boolean issubitemallowed;
 	
 	/**
 	 * @return the name
@@ -41,24 +41,24 @@ public class CredentialTypeRequest extends RequestBase {
 	 * @return the isDuplicationAllowed
 	 */
 	public Boolean getIsDuplicationAllowed() {
-		return isDuplicationAllowed;
+		return isduplicationallowed;
 	}
 	/**
 	 * @param isDuplicationAllowed the isDuplicationAllowed to set
 	 */
 	public void setIsDuplicationAllowed(Boolean isDuplicationAllowed) {
-		this.isDuplicationAllowed = isDuplicationAllowed;
+		this.isduplicationallowed = isDuplicationAllowed;
 	}
 	/**
 	 * @return the isSubitemAllowed
 	 */
 	public Boolean getIsSubitemAllowed() {
-		return isSubitemAllowed;
+		return issubitemallowed;
 	}
 	/**
 	 * @param isSubitemAllowed the isSubitemAllowed to set
 	 */
 	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
-		this.isSubitemAllowed = isSubitemAllowed;
+		this.issubitemallowed = isSubitemAllowed;
 	}
 }

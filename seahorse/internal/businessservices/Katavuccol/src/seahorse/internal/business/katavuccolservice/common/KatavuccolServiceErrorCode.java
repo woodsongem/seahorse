@@ -53,7 +53,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private static final String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialId.InValid";
 	private static final String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.{1}.CredentialTypeMessageEntity.Empty";
 	private static final String credentialTypeNameIsEmptyErrorCode = "Katavuccol.API.CredentialType.{1}.Name.Empty";
-	private static final String nameDuplicatedNotAllowed = "Katavuccol.API.%m.{1}.Name.DuplicateNotAllowed";
+	private static final String nameDuplicatedNotAllowed = "Katavuccol.API.{0}.{1}.Name.DuplicateNotAllowed";
 	private static final String createCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.{1}.CategoryRequestMessageEntity.Empty";
 	private static final String createCategoryEmptyUserIdErrorCode ="Katavuccol.API.CreateCategory.{1}.UserId.Empty";
 	private static final String createCategoryInValidUserIdErrorCode= "Katavuccol.API.CreateCategory.{1}.UserId.InValid";
@@ -64,7 +64,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private static final String deleteCategoryIdEmptyErrorCode ="Katavuccol.API.DeleteCategory.{1}.CategoryId.Empty";
 	private static final String deleteCategoryIdInValidErrorCode="Katavuccol.API.DeleteCategory.{1}.CategoryId.InValid";
 	private static final String deleteCategoryIdNotFoundErrorCode ="Katavuccol.API.DeleteCategory.{1}.CategoryId.NotFound";
-	private static final String createCredentialTypeMsgEntityIsEmpty ="Katavuccol.API.%m.{1}.CreateCredentialTypeMsgEntity.Empty";
+	private static final String createCredentialTypeMsgEntityIsEmpty ="Katavuccol.API.{0}.{1}.CreateCredentialTypeMsgEntity.Empty";
 	private static final String createCategoryNameIsEmptyErrorCode ="Katavuccol.API.CreateCategory.{1}.Name.Empty";
 	private static final String getCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCategory.{1}.GetCategoryMessageEntity.Empty";
 	private static final String getCategoryEmptyUserIdErrorCode ="Katavuccol.API.GetCategory.{1}.UserId.Empty";
@@ -93,8 +93,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private static final String getCredentialUserEncryptKeyLong ="Katavuccol.API.GetCredentialValueByUserId.{1}.UserEncryptKey.ToLong";
 	private static final String createCredentialUserIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.{1}.UserId.NotFound";
 	private static final String credentialTypeByUserIdMsgEntityIsEmptyErrorCode="Katavuccol.API.GetCredentialTypeByUserId.{1}.CredentialTypeByUserIdMsgEntity.Empty";
-	private static final String userIdIsEmptyErrorCode ="Katavuccol.API.{0}.%v.UserId.Empty";
-	private static final String userIdNotFound = "Katavuccol.API.{0}.%v.UserId.NotFound";
+	private static final String userIdIsEmptyErrorCode ="Katavuccol.API.{0}.{1}.UserId.Empty";
+	private static final String userIdNotFound = "Katavuccol.API.{0}.{1}.UserId.NotFound";
 	private static final String nameIsEmpty="Katavuccol.API.{0}.{1}.Name.IsEmpty";
 	
 	@Context

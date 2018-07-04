@@ -12,6 +12,7 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.datacontracts.*;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 
 /**
  * @author sajanmje
@@ -389,7 +390,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		}		
 		if(createCredentialTypeResMsgEntity.getId() !=null)
 		{
-			createCredentialTypeResponse.setId(createCredentialTypeResMsgEntity.getId().toString());
+			createCredentialTypeResponse.setId(KatavuccolServiceUtility.getString(createCredentialTypeResMsgEntity.getId()));
 		}
 		
 		if(createCredentialTypeResMsgEntity.getResultMessages() == null)

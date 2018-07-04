@@ -78,6 +78,7 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 			return result;
 		}
 		createCredentialTypeMsgEntity.setParsedUserId(UUID.fromString(createCredentialTypeMsgEntity.getUserId()));
+		createCredentialTypeMsgEntity.setCreatedBy(createCredentialTypeMsgEntity.getParsedUserId());
 		return new Result(ResultStatus.SUCCESS);
 	}
 

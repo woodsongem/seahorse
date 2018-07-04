@@ -54,6 +54,7 @@ public class CredentialTypeService implements ICredentialTypeService {
 		createCredentialTypeMsgEntity.setId(UUIDs.timeBased());
 		createCredentialTypeMsgEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
 		createCredentialTypeMsgEntity.setCreatedDate(new Date());
+		
 		if(createCredentialTypeMsgEntity.getIsDuplicationAllowed() == null)
 		{
 			createCredentialTypeMsgEntity.setIsDuplicationAllowed(false);
