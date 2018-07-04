@@ -11,93 +11,95 @@ import javax.ws.rs.core.Context;
  */
 public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 
-	private static final String userIdInValidFormat = "Katavuccol.API.%m.%s.UserId.InValidFormat";
-	private static final String passwordIsNullErrorCode="Katavuccol.API.CreateCredential.%s.Password.Empty";
-	private static final String passwordIsToShortErrorCode="Katavuccol.API.CreateCredential.%s.Password.ToShort";
-	private static final String passwordIsToLongErrorCode="Katavuccol.API.CreateCredential.%s.Password.ToLong";
-	private static final String categoryIdIsInValidErrorCode="Katavuccol.API.CreateCredential.%s.Category.InValid";
-	private static final String categoryIdIsEmptyErrorCode="Katavuccol.API.CreateCredential.%s.Category.Empty";
-	private static final String typeIdIsInValidErrorCode="Katavuccol.API.CreateCredential.%s.TypeId.InValid";
-	private static final String valueIsEmptyErrorCode="Katavuccol.API.CreateCredential.%s.Value.Empty";	
-	private static final String internalErrorErrorCode="Katavuccol.API.%s.InternalError";
-	private static final String categoryIdNotFoundErrorCode="Katavuccol.API.CreateCredential.%s.Category.NotFound";
-	private static final String categoryTypeIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.%s.CategoryTypeId.NotFound";
-	private static final String categoryTypeExcitedMultipleEntryErrorCode="Katavuccol.API.CreateCredential.%s.CategoryTypeId.ExcitedMultiple";
-	private static final String categoryTypeDuplicateNotAllowedErrorCode= "Katavuccol.API.CreateCredential.%s.CategoryTypeId.DuplicateNotAllowed";
-	private static final String parentIdInValidErrorCode="Katavuccol.API.CreateCredentials.%s.ParentId.InValid";
-	private static final String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredential.%s.CategoryTypeId.SubEntryIsNotAllowed";
-	private static final String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.%s.ParentId.NotFound";
+	private static final String userIdInValidFormat = "Katavuccol.API.{0}.{1}.UserId.InValidFormat";
+	private static final String passwordIsNullErrorCode="Katavuccol.API.CreateCredential.{1}.Password.Empty";
+	private static final String passwordIsToShortErrorCode="Katavuccol.API.CreateCredential.{1}.Password.ToShort";
+	private static final String passwordIsToLongErrorCode="Katavuccol.API.CreateCredential.{1}.Password.ToLong";
+	private static final String categoryIdIsInValidErrorCode="Katavuccol.API.CreateCredential.{1}.Category.InValid";
+	private static final String categoryIdIsEmptyErrorCode="Katavuccol.API.CreateCredential.{1}.Category.Empty";
+	private static final String typeIdIsInValidErrorCode="Katavuccol.API.CreateCredential.{1}.TypeId.InValid";
+	private static final String valueIsEmptyErrorCode="Katavuccol.API.CreateCredential.{1}.Value.Empty";	
+	private static final String internalErrorErrorCode="Katavuccol.API.{1}.InternalError";
+	private static final String categoryIdNotFoundErrorCode="Katavuccol.API.CreateCredential.{1}.Category.NotFound";
+	private static final String categoryTypeIdNotFoundErrorCode ="Katavuccol.API.CreateCredentials.{1}.CategoryTypeId.NotFound";
+	private static final String categoryTypeExcitedMultipleEntryErrorCode="Katavuccol.API.CreateCredential.{1}.CategoryTypeId.ExcitedMultiple";
+	private static final String categoryTypeDuplicateNotAllowedErrorCode= "Katavuccol.API.CreateCredential.{1}.CategoryTypeId.DuplicateNotAllowed";
+	private static final String parentIdInValidErrorCode="Katavuccol.API.CreateCredentials.{1}.ParentId.InValid";
+	private static final String categoryTypeSubEntryNotAllowedErrorCode="Katavuccol.API.CreateCredential.{1}.CategoryTypeId.SubEntryIsNotAllowed";
+	private static final String parentIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.{1}.ParentId.NotFound";
 	private static final String credentialSubEntryExceedLimitationErrorCode ="";
-	private static final String getCredentialMessageEntityEmptyErrorCode ="Katavuccol.API.GetCredentialsByUserId.%s.GetCredentialMessageEntity.Empty";
-	private static final String deleteCredentialRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.DeleteCredentialMessageEntity.Empty";
-	private static final String userIdEmptyErrorCode ="Katavuccol.API.%m.%s.UserId.Empty";
-	private static final String credentialIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.Empty";
-	private static final String credentialIdInValidErrorCode="Katavuccol.API.DeleteCredential.%s.CredentialId.InValid";
-	private static final String credentialIdNotFoundErrorCode ="Katavuccol.API.DeleteCredential.%s.CredentialId.NotFound";
-	private static final String updateCredentialMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.UpdateCredentialMessageEntity.Empty";
-	private static final String updateCredentialInValidUserIdErrorCode="Katavuccol.API.UpdateCredential.%s.UserId.InValid";
-	private static final String updateCredentialEmptyUserIdErrorCode ="Katavuccol.API.UpdateCredential.%s.UserId.Empty";
-	private static final String deleteCredentialEmptyUserIdErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.Empty";
-	private static final String deleteCredentialInValidUserIdErrorCode ="Katavuccol.API.DeleteCredential.%s.UserId.InValid";
-	private static final String getCredentialEmptyUserIdErrorCode="Katavuccol.API.GetCredential.%s.UserId.Empty";
-	private static final String getCredentialInValidUserIdErrorCode="Katavuccol.API.GetCredential.%s.UserId.InValid";
-	private static final String createCredentialEmptyUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.Empty";
-	private static final String createCredentialInValidUserIdErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.InValid";
-	private static final String updateCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCategory.%s.CategoryId.Empty";
-	private static final String updateCategoryIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
-	private static final String updateCategoryTypeIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.Empty";
-	private static final String updateCategoryTypeIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.InValid";
-	private static final String updateCategoryTypeIdNotFoundErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialTypeId.NotFound";
-	private static final String updateCredentialIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.%s.CredentialId.NotFound";
-	private static final String updateCredentialIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
-	private static final String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.InValid";
-	private static final String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.%s.CredentialTypeMessageEntity.Empty";
-	private static final String credentialTypeNameIsEmptyErrorCode = "Katavuccol.API.CredentialType.%s.Name.Empty";
-	private static final String credentialTypeDuplicateErrorCode = "Katavuccol.API.CredentialType.%s.Name.DuplicateNotAllowed";
-	private static final String createCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.CategoryRequestMessageEntity.Empty";
-	private static final String createCategoryEmptyUserIdErrorCode ="Katavuccol.API.CreateCategory.%s.UserId.Empty";
-	private static final String createCategoryInValidUserIdErrorCode= "Katavuccol.API.CreateCategory.%s.UserId.InValid";
-	private static final String categoryNameDuplicateErrorCode ="Katavuccol.API.CreateCategory.%s.Name.DuplicateNotAllowed";
-	private static final String deleteCategoryInValidUserIdErrorCode ="Katavuccol.API.DeleteCategory.%s.UserId.InValid";
-	private static final String deleteCategoryEmptyUserIdErrorCode ="Katavuccol.API.DeleteCategory.%s.UserId.Empty";
-	private static final String deleteCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCategory.%s.DeleteCategoryRequestMessageEntity.Empty";
-	private static final String deleteCategoryIdEmptyErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.Empty";
-	private static final String deleteCategoryIdInValidErrorCode="Katavuccol.API.DeleteCategory.%s.CategoryId.InValid";
-	private static final String deleteCategoryIdNotFoundErrorCode ="Katavuccol.API.DeleteCategory.%s.CategoryId.NotFound";
-	private static final String categoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.categoryRequestMessageEntity.Empty";
-	private static final String createCategoryNameIsEmptyErrorCode ="Katavuccol.API.CreateCategory.%s.Name.Empty";
-	private static final String getCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCategory.%s.GetCategoryMessageEntity.Empty";
-	private static final String getCategoryEmptyUserIdErrorCode ="Katavuccol.API.GetCategory.%s.UserId.Empty";
-	private static final String getCategoryInValidUserIdErrorCode= "Katavuccol.API.GetCategory.%s.UserId.InValid";
-	private static final String updateCategoryEmptyUserIdErrorCode ="Katavuccol.API.UpdateCategory.%s.UserId.Empty";
-	private static final String updateCategoryInValidUserIdErrorCode ="Katavuccol.API.UpdateCategory.%s.UserId.InValid";
-	private static final String updateCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCategory.%s.UpdateCategoryMessageEntity.Empty";
-	private static final String updateCredentialCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.%s.CredentialId.Empty";
-	private static final String updateCategoryInCategoryIdInValidErrorCode="Katavuccol.API.UpdateCategory.%s.CategoryId.InValid";
-	private static final String updateCategoryIdNotFoundErrorCode ="Katavuccol.API.UpdateCategory.%s.CategoryId.NotFound";
-	private static final String updateCategoryNameDuplicateErrorCode="Katavuccol.API.UpdateCategory.%s.Name.DuplicateNotAllowed";
-	private static final String getCredentialKeyisSmallErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.Key.TooSmall";
-	private static final String getCredentialValueInValidUserIdErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.UserId.InValid";
-	private static final String getCredentialValueEmptyUserIdErrorCode="Katavuccol.API.GetCredentialValueByUserId.%s.UserId.Empty";
-	private static final String getCredentialValueCategoryIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.Empty";
-	private static final String getCredentialValueCategoryIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.InValid";
-	private static final String getCredentialValueMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.GetCredentialValueMessageEntity.Empty";
-	private static final String getCredentialValueCategoryIdNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CategoryId.NotFound";
-	private static final String getCredentialValueCredentialNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.NotFound";
-	private static final String getCredentialValueCredentialIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.Empty";
-	private static final String getCredentialValueCredentialIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.%s.CredentialId.InValid";
-	private static final String createCredentialEncryptErrorCode ="Katavuccol.API.CreateCredentials.%s.Encrypt";
-	private static final String createCredentialUserEncryptKeySmall ="Katavuccol.API.CreateCredentials.%s.UserEncryptKey.ToShort";
-	private static final String createCredentialUserEncryptKeyLong ="Katavuccol.API.CreateCredentials.%s.UserEncryptKey.ToLong";
-	private static final String getCredentialUserEncryptKeySmall= "Katavuccol.API.GetCredentialValueByUserId.%s.UserEncryptKey.ToShort";
-	private static final String getCredentialUserEncryptKeyLong ="Katavuccol.API.GetCredentialValueByUserId.%s.UserEncryptKey.ToLong";
-	private static final String createCredentialUserIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.%s.UserId.NotFound";
-	private static final String credentialTypeByUserIdMsgEntityIsEmptyErrorCode="Katavuccol.API.GetCredentialTypeByUserId.%s.CredentialTypeByUserIdMsgEntity.Empty";
-	private static final String userIdIsEmptyErrorCode ="Katavuccol.API.%m.%v.UserId.Empty";
-	private static final String userIdNotFound = "Katavuccol.API.%m.%v.UserId.NotFound";
+	private static final String getCredentialMessageEntityEmptyErrorCode ="Katavuccol.API.GetCredentialsByUserId.{1}.GetCredentialMessageEntity.Empty";
+	private static final String deleteCredentialRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCredential.{1}.DeleteCredentialMessageEntity.Empty";
+	private static final String userIdEmptyErrorCode ="Katavuccol.API.{0}.{1}.UserId.Empty";
+	private static final String credentialIdEmptyErrorCode ="Katavuccol.API.DeleteCredential.{1}.CredentialId.Empty";
+	private static final String credentialIdInValidErrorCode="Katavuccol.API.DeleteCredential.{1}.CredentialId.InValid";
+	private static final String credentialIdNotFoundErrorCode ="Katavuccol.API.DeleteCredential.{1}.CredentialId.NotFound";
+	private static final String updateCredentialMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCredential.{1}.UpdateCredentialMessageEntity.Empty";
+	private static final String updateCredentialInValidUserIdErrorCode="Katavuccol.API.UpdateCredential.{1}.UserId.InValid";
+	private static final String updateCredentialEmptyUserIdErrorCode ="Katavuccol.API.UpdateCredential.{1}.UserId.Empty";
+	private static final String deleteCredentialEmptyUserIdErrorCode ="Katavuccol.API.DeleteCredential.{1}.UserId.Empty";
+	private static final String deleteCredentialInValidUserIdErrorCode ="Katavuccol.API.DeleteCredential.{1}.UserId.InValid";
+	private static final String getCredentialEmptyUserIdErrorCode="Katavuccol.API.GetCredential.{1}.UserId.Empty";
+	private static final String getCredentialInValidUserIdErrorCode="Katavuccol.API.GetCredential.{1}.UserId.InValid";
+	private static final String createCredentialEmptyUserIdErrorCode ="Katavuccol.API.CreateCredential.{1}.UserId.Empty";
+	private static final String createCredentialInValidUserIdErrorCode ="Katavuccol.API.CreateCredential.{1}.UserId.InValid";
+	private static final String updateCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCategory.{1}.CategoryId.Empty";
+	private static final String updateCategoryIdInValidErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialId.InValid";
+	private static final String updateCategoryTypeIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialTypeId.Empty";
+	private static final String updateCategoryTypeIdInValidErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialTypeId.InValid";
+	private static final String updateCategoryTypeIdNotFoundErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialTypeId.NotFound";
+	private static final String updateCredentialIdNotFoundErrorCode="Katavuccol.API.UpdateCredential.{1}.CredentialId.NotFound";
+	private static final String updateCredentialIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialId.Empty";
+	private static final String updateCredentialIdInValidErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialId.InValid";
+	private static final String credentialTypeMessageEntityIsEmptyErrorCode ="Katavuccol.API.CredentialType.{1}.CredentialTypeMessageEntity.Empty";
+	private static final String credentialTypeNameIsEmptyErrorCode = "Katavuccol.API.CredentialType.{1}.Name.Empty";
+	private static final String nameDuplicatedNotAllowed = "Katavuccol.API.%m.{1}.Name.DuplicateNotAllowed";
+	private static final String createCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.CreateCategory.{1}.CategoryRequestMessageEntity.Empty";
+	private static final String createCategoryEmptyUserIdErrorCode ="Katavuccol.API.CreateCategory.{1}.UserId.Empty";
+	private static final String createCategoryInValidUserIdErrorCode= "Katavuccol.API.CreateCategory.{1}.UserId.InValid";
+	private static final String categoryNameDuplicateErrorCode ="Katavuccol.API.CreateCategory.{1}.Name.DuplicateNotAllowed";
+	private static final String deleteCategoryInValidUserIdErrorCode ="Katavuccol.API.DeleteCategory.{1}.UserId.InValid";
+	private static final String deleteCategoryEmptyUserIdErrorCode ="Katavuccol.API.DeleteCategory.{1}.UserId.Empty";
+	private static final String deleteCategoryRequestMessageEntityIsEmptyErrorCode ="Katavuccol.API.DeleteCategory.{1}.DeleteCategoryRequestMessageEntity.Empty";
+	private static final String deleteCategoryIdEmptyErrorCode ="Katavuccol.API.DeleteCategory.{1}.CategoryId.Empty";
+	private static final String deleteCategoryIdInValidErrorCode="Katavuccol.API.DeleteCategory.{1}.CategoryId.InValid";
+	private static final String deleteCategoryIdNotFoundErrorCode ="Katavuccol.API.DeleteCategory.{1}.CategoryId.NotFound";
+	private static final String createCredentialTypeMsgEntityIsEmpty ="Katavuccol.API.%m.{1}.CreateCredentialTypeMsgEntity.Empty";
+	private static final String createCategoryNameIsEmptyErrorCode ="Katavuccol.API.CreateCategory.{1}.Name.Empty";
+	private static final String getCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCategory.{1}.GetCategoryMessageEntity.Empty";
+	private static final String getCategoryEmptyUserIdErrorCode ="Katavuccol.API.GetCategory.{1}.UserId.Empty";
+	private static final String getCategoryInValidUserIdErrorCode= "Katavuccol.API.GetCategory.{1}.UserId.InValid";
+	private static final String updateCategoryEmptyUserIdErrorCode ="Katavuccol.API.UpdateCategory.{1}.UserId.Empty";
+	private static final String updateCategoryInValidUserIdErrorCode ="Katavuccol.API.UpdateCategory.{1}.UserId.InValid";
+	private static final String updateCategoryMessageEntityIsEmptyErrorCode ="Katavuccol.API.UpdateCategory.{1}.UpdateCategoryMessageEntity.Empty";
+	private static final String updateCredentialCategoryIdEmptyErrorCode ="Katavuccol.API.UpdateCredential.{1}.CredentialId.Empty";
+	private static final String updateCategoryInCategoryIdInValidErrorCode="Katavuccol.API.UpdateCategory.{1}.CategoryId.InValid";
+	private static final String updateCategoryIdNotFoundErrorCode ="Katavuccol.API.UpdateCategory.{1}.CategoryId.NotFound";
+	private static final String updateCategoryNameDuplicateErrorCode="Katavuccol.API.UpdateCategory.{1}.Name.DuplicateNotAllowed";
+	private static final String getCredentialKeyisSmallErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.Key.TooSmall";
+	private static final String getCredentialValueInValidUserIdErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.UserId.InValid";
+	private static final String getCredentialValueEmptyUserIdErrorCode="Katavuccol.API.GetCredentialValueByUserId.{1}.UserId.Empty";
+	private static final String getCredentialValueCategoryIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CategoryId.Empty";
+	private static final String getCredentialValueCategoryIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CategoryId.InValid";
+	private static final String getCredentialValueMessageEntityIsEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.GetCredentialValueMessageEntity.Empty";
+	private static final String getCredentialValueCategoryIdNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CategoryId.NotFound";
+	private static final String getCredentialValueCredentialNotFoundErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CredentialId.NotFound";
+	private static final String getCredentialValueCredentialIdEmptyErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CredentialId.Empty";
+	private static final String getCredentialValueCredentialIdInValidErrorCode ="Katavuccol.API.GetCredentialValueByUserId.{1}.CredentialId.InValid";
+	private static final String createCredentialEncryptErrorCode ="Katavuccol.API.CreateCredentials.{1}.Encrypt";
+	private static final String createCredentialUserEncryptKeySmall ="Katavuccol.API.CreateCredentials.{1}.UserEncryptKey.ToShort";
+	private static final String createCredentialUserEncryptKeyLong ="Katavuccol.API.CreateCredentials.{1}.UserEncryptKey.ToLong";
+	private static final String getCredentialUserEncryptKeySmall= "Katavuccol.API.GetCredentialValueByUserId.{1}.UserEncryptKey.ToShort";
+	private static final String getCredentialUserEncryptKeyLong ="Katavuccol.API.GetCredentialValueByUserId.{1}.UserEncryptKey.ToLong";
+	private static final String createCredentialUserIdNotFoundErrorCode ="Katavuccol.API.CreateCredential.{1}.UserId.NotFound";
+	private static final String credentialTypeByUserIdMsgEntityIsEmptyErrorCode="Katavuccol.API.GetCredentialTypeByUserId.{1}.CredentialTypeByUserIdMsgEntity.Empty";
+	private static final String userIdIsEmptyErrorCode ="Katavuccol.API.{0}.%v.UserId.Empty";
+	private static final String userIdNotFound = "Katavuccol.API.{0}.%v.UserId.NotFound";
+	private static final String nameIsEmpty="Katavuccol.API.{0}.{1}.Name.IsEmpty";
 	
 	@Context
 	private HttpServletRequest httpRequest;
+	
 	
 	
 	@Override
@@ -314,8 +316,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	}
 
 	@Override
-	public String credentialTypeDuplicateErrorCode() {		
-		return credentialTypeDuplicateErrorCode;
+	public String nameDuplicatedNotAllowed() {		
+		return nameDuplicatedNotAllowed;
 	}
 
 	@Override
@@ -369,8 +371,8 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	}
 
 	@Override
-	public String categoryRequestMessageEntityIsEmptyErrorCode() {		
-		return categoryRequestMessageEntityIsEmptyErrorCode;
+	public String createCredentialTypeMsgEntityIsEmpty() {		
+		return createCredentialTypeMsgEntityIsEmpty;
 	}
 
 	@Override
@@ -529,5 +531,10 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String userIdNotFound() {		
 		return userIdNotFound;
+	}
+
+	@Override
+	public String NameIsEmpty() {		
+		return nameIsEmpty;
 	}
 }

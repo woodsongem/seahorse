@@ -51,7 +51,7 @@ public interface IKatavuccolServiceErrorCode {
 	String updateCredentialIdInValidErrorCode();
 	String credentialTypeMessageEntityIsEmptyErrorCode();
 	String credentialTypeNameIsEmptyErrorCode();
-	String credentialTypeDuplicateErrorCode();
+	String nameDuplicatedNotAllowed();
 	String createCategoryRequestMessageEntityIsEmptyErrorCode();
 	String createCategoryEmptyUserIdErrorCode();
 	String createCategoryInValidUserIdErrorCode();
@@ -62,7 +62,7 @@ public interface IKatavuccolServiceErrorCode {
 	String deleteCategoryIdEmptyErrorCode();
 	String deleteCategoryIdInValidErrorCode();
 	String deleteCategoryIdNotFoundErrorCode();
-	String categoryRequestMessageEntityIsEmptyErrorCode();
+	String createCredentialTypeMsgEntityIsEmpty();
 	String createCategoryNameIsEmptyErrorCode();
 	String getCategoryMessageEntityIsEmptyErrorCode();
 	String getCategoryEmptyUserIdErrorCode();
@@ -91,5 +91,6 @@ public interface IKatavuccolServiceErrorCode {
 	String createCredentialUserIdNotFoundErrorCode();
 	String userIdIsEmpty();	
 	String userIdInValidFormat();
-	String userIdNotFound();	
+	String userIdNotFound();
+	String NameIsEmpty();	
 }

@@ -6,6 +6,9 @@ package seahorse.internal.business.credentialtypeservice;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.utils.UUIDs;
@@ -51,31 +54,40 @@ public class CredentialTypeService implements ICredentialTypeService {
 		createCredentialTypeMsgEntity.setId(UUIDs.timeBased());
 		createCredentialTypeMsgEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
 		createCredentialTypeMsgEntity.setCreatedDate(new Date());
+		if(createCredentialTypeMsgEntity.getIsDuplicationAllowed() == null)
+		{
+			createCredentialTypeMsgEntity.setIsDuplicationAllowed(false);
+		}
+		
+		if(createCredentialTypeMsgEntity.getIsSubitemAllowed() == null)
+		{
+			createCredentialTypeMsgEntity.setIsSubitemAllowed(false);
+		}
 				
 		Result result=credentialTypeServiceValidator.validCreateCredentialType(createCredentialTypeMsgEntity);
 		if(result.getResultStatus() != ResultStatus.SUCCESS)
 		{
-			return null;
+			return credentialTypeServiceMapper.mapCreateCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
 		}
 		
 		result=credentialTypeServiceVerifier.verifyCreateCredentialType(createCredentialTypeMsgEntity);
 		if(result.getResultStatus() != ResultStatus.SUCCESS)
 		{
-			return null;
+			return credentialTypeServiceMapper.mapCreateCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
 		}
 		
 		result=	credentialTypeServiceProcessor.processCreateCredentialType(createCredentialTypeMsgEntity);
 		if(result.getResultStatus() != ResultStatus.SUCCESS)
 		{
-			return null;
+			return credentialTypeServiceMapper.mapCreateCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
 		}	
 		result=	credentialTypeServicePostProcessor.postProcessCreateCredentialType(createCredentialTypeMsgEntity);
 		if(result.getResultStatus() != ResultStatus.SUCCESS)
 		{
-			return null;
+			return credentialTypeServiceMapper.mapCreateCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
 		}
 		
-		return null;
+		return credentialTypeServiceMapper.mapCreateCredentialTypeResMsgEntity(result, createCredentialTypeMsgEntity);
 	}
 	
 	public List<CredentialTypeModel> getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId)

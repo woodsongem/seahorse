@@ -86,7 +86,7 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 		
 		if(createCredentialTypeMsgEntity==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.categoryRequestMessageEntityIsEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CreateCredentialTypeMsgEntity is null","CreateCredentialTypeMsgEntity",katavuccolServiceErrorCode.createCredentialTypeMsgEntityIsEmpty());
 		}
 		
 		return result;
@@ -123,7 +123,7 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 		
 		if(StringUtils.isEmpty(createCredentialTypeMsgEntity.getName()))
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"categoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCategoryNameIsEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Name is null","Name",katavuccolServiceErrorCode.NameIsEmpty());
 		}
 		
 		return result;

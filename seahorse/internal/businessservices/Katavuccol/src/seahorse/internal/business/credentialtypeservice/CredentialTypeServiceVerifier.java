@@ -80,9 +80,8 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 		 UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(createCredentialTypeMsgEntity.getParsedUserId());
 		  if(userMessageEntity==null)
 		  {
-				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",
-						"UserId",
-						katavuccolServiceErrorCode.userIdNotFound());
+				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is invalid",
+						"UserId",katavuccolServiceErrorCode.userIdNotFound());
 		  }
 		  
 		  return new Result(ResultStatus.SUCCESS);
@@ -109,16 +108,17 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 	public Result isNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
 		List<CredentialTypeDAO> CredentialTypeDAOs=credentialTypeServiceRepository.getCredentialTypeDAOByUserId(createCredentialTypeMsgEntity.getParsedUserId(),false);
-		List<CredentialTypeDAO> filterCategoryDAOs=
+		List<CredentialTypeDAO> filterCredentialTypeDAOs=
 										FluentIterable
 										.from(CredentialTypeDAOs)
 										.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),createCredentialTypeMsgEntity.getName()))
 										.toList();
-		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
+		if(filterCredentialTypeDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
+			return new Result(ResultStatus.SUCCESS);	
 		}
-		return new Result(ResultStatus.SUCCESS);
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is not allowed", "Name", katavuccolServiceErrorCode.nameDuplicatedNotAllowed());
+		
 	}
 
 	@Override

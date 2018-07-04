@@ -500,7 +500,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		
 		if(categoryRequestMessageEntity==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.categoryRequestMessageEntityIsEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCredentialTypeMsgEntityIsEmpty());
 		}
 		
 		return result;

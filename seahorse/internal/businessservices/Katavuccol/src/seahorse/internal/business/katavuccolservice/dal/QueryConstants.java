@@ -27,6 +27,6 @@ public class QueryConstants {
 	public static final String GET_UPDATE_CATEGORY_QUERY = "UPDATE category SET description=?, modifiedby=?, modifieddate=?, name=? where userid=? and id=?";
 	public static final String GET_USER_CREDENTIAL_BY_USERIDQUERY = "SELECT id, createdby, createddate, modifiedby, modifieddate, password, productitemid, status, username FROM usercredential where id=?";
 	public static final String GET_CATEGORY_TYPE_DETAILS_BY_USER_ID_QUERY = "SELECT userid, id, createdby, createddate, description, isduplicationallowed, issubitemallowed, modifiedby, modifieddate, name, status FROM credentialtype where userid=? ";
-	public static final String GET_CREATE_CREDENTIALTYPE_QUERY ="";
+	public static final String GET_CREATE_CREDENTIALTYPE_QUERY ="INSERT INTO credentialtype(userid, id, createdby, createddate, description, isduplicationallowed, issubitemallowed, name, status) VALUES (?,?,?,?,?,?,?,?,?)";
 	
 }

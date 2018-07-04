@@ -70,7 +70,8 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		bound.setBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED,credentialTypeDAO.getIsSubitemAllowed());
 		bound.setString(DataBaseColumn.STATUS,credentialTypeDAO.getStatus());
 		bound.setUUID(DataBaseColumn.ID,credentialTypeDAO.getId());
-		
+		bound.setUUID(DataBaseColumn.CREATEDBY,credentialTypeDAO.getCreatedBy());
+		bound.setTimestamp(DataBaseColumn.CREATEDDATE,credentialTypeDAO.getCreatedDate());
 		return bound;
 	}
 

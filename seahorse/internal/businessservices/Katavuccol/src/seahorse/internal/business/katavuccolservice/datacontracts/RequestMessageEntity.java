@@ -5,6 +5,8 @@ package seahorse.internal.business.katavuccolservice.datacontracts;
 
 import java.util.Map;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author admin
  *
@@ -13,8 +15,8 @@ public class RequestMessageEntity extends BaseRequestMessageEntity {
 	
 	private Map<String, String> headers;
 	private String httpMethod;
-	private String ipAddress;
-	
+	private String ipAddress;	
+	private Response.Status httpstatus;
 	/**
 	 * @return the headers
 	 */
@@ -50,5 +52,17 @@ public class RequestMessageEntity extends BaseRequestMessageEntity {
 	 */
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
+	}
+	/**
+	 * @return the httpstatus
+	 */
+	public Response.Status getHttpStatus() {
+		return httpstatus;
+	}
+	/**
+	 * @param httpstatus the httpstatus to set
+	 */
+	public void setHttpStatus(Response.Status httpstatus) {
+		this.httpstatus = httpstatus;
 	}
 }

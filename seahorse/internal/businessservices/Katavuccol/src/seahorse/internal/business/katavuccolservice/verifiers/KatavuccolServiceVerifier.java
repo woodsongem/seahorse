@@ -432,7 +432,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 										.toList();
 		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.nameDuplicatedNotAllowed());
 		}
 		return new Result(ResultStatus.SUCCESS);
 	}

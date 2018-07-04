@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.api;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -380,8 +381,31 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	public CreateCredentialTypeResponse mapCredentialTypeResponse(
 			CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
 			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		CreateCredentialTypeResponse createCredentialTypeResponse=new CreateCredentialTypeResponse();
+		
+		if(createCredentialTypeResMsgEntity == null)
+		{
+			return createCredentialTypeResponse;
+		}		
+		if(createCredentialTypeResMsgEntity.getId() !=null)
+		{
+			createCredentialTypeResponse.setId(createCredentialTypeResMsgEntity.getId().toString());
+		}
+		
+		if(createCredentialTypeResMsgEntity.getResultMessages() == null)
+		{
+			return	createCredentialTypeResponse;
+		}
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : createCredentialTypeResMsgEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(MessageFormat.format(resultMessageMS.getErrorCode(),createCredentialTypeMsgEntity.getHttpMethod(),"CreateCredentialType"));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		createCredentialTypeResponse.setResultMessages(resultMessages);		
+		
+		return	createCredentialTypeResponse;
 	}
 
 	@Override
