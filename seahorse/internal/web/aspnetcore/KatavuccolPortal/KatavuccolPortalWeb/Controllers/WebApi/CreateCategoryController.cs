@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CategoryService;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CategoryService;
 using KatavuccolPortalWeb.BusinessService.Services.CategoryService;
 using KatavuccolPortalWeb.Mapper;
 using KatavuccolPortalWeb.Models.CreateCategory;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KatavuccolPortalWeb.Controllers.WebApi
@@ -38,7 +33,7 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
         #region Actions
 
         // GET: api/CredentialType/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
             CategoryBusinessMsgEntity categoryBusinessMsgEntity = categoryBusinessService.Get(id);
@@ -60,8 +55,6 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
         }
 
         #endregion
-
-
 
     }
 }

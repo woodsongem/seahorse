@@ -33,7 +33,7 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
         #region Actions
 
         // GET: api/CredentialType/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
             GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = katavuccolPortalWebMapper.MapGetCredentialTypeMsgEntity(id);

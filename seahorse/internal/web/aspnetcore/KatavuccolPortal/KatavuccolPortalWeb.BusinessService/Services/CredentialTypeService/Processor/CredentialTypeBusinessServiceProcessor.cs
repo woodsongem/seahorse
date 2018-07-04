@@ -31,6 +31,10 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
         public Result ProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
             Result result = CredentialType(createCredentialTypeMsgEntity);
+            if(result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
 
             return result;
         }
