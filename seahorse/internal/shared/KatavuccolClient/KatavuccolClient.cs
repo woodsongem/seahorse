@@ -1,7 +1,9 @@
 ﻿using KatavuccolClient.DataContracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 namespace KatavuccolClient
 {
@@ -36,7 +38,7 @@ namespace KatavuccolClient
             RestResponse restResponse = new RestResponse();
             using (HttpClient httpClient = GetHttpClient(post.Headers, post.Endpoint))
             {
-                var response = httpClient.PostAsJsonAsync(post.Url, post.Request).Result;
+                var response = httpClient.PostAsync(post.Url, new StringContent(JsonConvert.SerializeObject(post.Request), Encoding.UTF8, "application/json")).Result;
                 restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
                 restResponse.ResponseContent = response.Content.ReadAsStringAsync().Result;
             }
@@ -48,7 +50,7 @@ namespace KatavuccolClient
             RestResponse restResponse = new RestResponse();
             using (HttpClient httpClient = GetHttpClient(put.Headers, put.Endpoint))
             {
-                var response = httpClient.PutAsJsonAsync(put.Url, put.Request).Result;
+                var response = httpClient.PutAsync(put.Url, new StringContent(JsonConvert.SerializeObject(put.Request), Encoding.UTF8, "application/json")).Result;
                 restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
                 restResponse.ResponseContent = response.Content.ReadAsStringAsync().Result;
             }
