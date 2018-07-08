@@ -10,6 +10,7 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.dal.DataBaseColumn;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
@@ -39,7 +40,8 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		credentialTypeModel.setStatus(typeDAOResult.getString(DataBaseColumn.STATUS));
 		credentialTypeModel.setUserId(typeDAOResult.getUUID(DataBaseColumn.USERID).toString());
 		credentialTypeModel.setIsDuplicationAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISDUPLICATIONALLOWED));
-		credentialTypeModel.setIsSubitemAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED));		
+		credentialTypeModel.setIsSubitemAllowed(typeDAOResult.getBool(DataBaseColumn.CREDENTIALTYPE_ISSUBITEMALLOWED));
+		credentialTypeModel.setType(typeDAOResult.getString(DataBaseColumn.CREDENTIALTYPE_TYPE));
 		return credentialTypeModel;
 	}
 
@@ -71,7 +73,14 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		bound.setString(DataBaseColumn.STATUS,credentialTypeDAO.getStatus());
 		bound.setUUID(DataBaseColumn.ID,credentialTypeDAO.getId());
 		bound.setUUID(DataBaseColumn.CREATEDBY,credentialTypeDAO.getCreatedBy());
-		bound.setTimestamp(DataBaseColumn.CREATEDDATE,credentialTypeDAO.getCreatedDate());
+		bound.setTimestamp(DataBaseColumn.CREATEDDATE,credentialTypeDAO.getCreatedDate());		
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapGetDefaultCredentialTypeDAOBoundStatement(PreparedStatement preparedStatement) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setString(DataBaseColumn.CREDENTIALTYPE_TYPE,KatavuccolConstant.DEFAULT);
 		return bound;
 	}
 

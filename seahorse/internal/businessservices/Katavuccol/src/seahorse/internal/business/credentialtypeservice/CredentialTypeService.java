@@ -8,13 +8,16 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.credentialtypeservice.datacontracts.*;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;

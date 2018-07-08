@@ -21,4 +21,6 @@ public interface ICredentialTypeServiceRepository {
 	List<CredentialTypeDAO> getCredentialTypeDAOByUserId(UUID userId,Boolean includeInActiveStatus);
 
 	OutPutResponse createCategoryType(CredentialTypeDAO credentialTypeDAO);	
+	
+	List<CredentialTypeDAO> getDefaultCredentialTypeDAO();
 }

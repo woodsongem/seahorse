@@ -16,6 +16,7 @@ public class CredentialTypeModel extends BaseModel {
 	private String status;
 	private Boolean isDuplicationAllowed;
 	private Boolean isSubitemAllowed;
+	private String type;
 	
 	/**
 	 * @return the id
@@ -112,5 +113,17 @@ public class CredentialTypeModel extends BaseModel {
 	 */
 	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
 		this.isSubitemAllowed = isSubitemAllowed;
+	}
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 }

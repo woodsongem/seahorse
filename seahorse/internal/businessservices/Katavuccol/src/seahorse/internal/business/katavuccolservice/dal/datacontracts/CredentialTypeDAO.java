@@ -16,7 +16,7 @@ public class CredentialTypeDAO extends BaseDAO {
 	private String description;	
 	private String status;
 	private Boolean isDuplicationAllowed;
-	private Boolean isSubitemAllowed;
+	private Boolean isSubitemAllowed;	
 	
 	/**
 	 * @return the id
@@ -102,5 +102,4 @@ public class CredentialTypeDAO extends BaseDAO {
 	public void setIsDuplicationAllowed(Boolean isDuplicationAllowed) {
 		this.isDuplicationAllowed = isDuplicationAllowed;
 	}
-
 }

@@ -24,4 +24,6 @@ public interface ICredentialTypeServiceVerifier {
 	Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 	
 	Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
+	
+	Result IsDefaultNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 }

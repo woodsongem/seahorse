@@ -10,10 +10,10 @@ namespace KatavuccolPortalWeb.Mapper
         public CreateCategoryModel MapCreateCategoryModel(CategoryBusinessMsgEntity categoryBusinessMsgEntity)
         {
             return new CreateCategoryModel
-                {
-                Description = categoryBusinessMsgEntity.Description ,
-                Name = categoryBusinessMsgEntity.CategoryName ,
-                UserId = categoryBusinessMsgEntity.UserId 
+            {
+                Description = categoryBusinessMsgEntity.Description,
+                Name = categoryBusinessMsgEntity.CategoryName,
+                UserId = categoryBusinessMsgEntity.UserId
             };
         }
 
@@ -21,15 +21,26 @@ namespace KatavuccolPortalWeb.Mapper
         {
             return new CreateCategoryBusinessMsgEntity
             {
-                CategoryName = createCategoryModel.Name ,
-                Description = createCategoryModel.Description ,
-                UserId = createCategoryModel.UserId 
+                CategoryName = createCategoryModel.Name,
+                Description = createCategoryModel.Description,
+                UserId = createCategoryModel.UserId
             };
         }
 
         public CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(CreateCredentialTypeModel createCredentialTypeModel)
         {
-            throw new System.NotImplementedException();
+            if (createCredentialTypeModel == null)
+            {
+                return null;
+            }
+            return new CreateCredentialTypeMsgEntity()
+            {
+                Description = createCredentialTypeModel.Description,
+                IsDuplicationAllowed = createCredentialTypeModel.IsDuplicationAllowed,
+                IsSubitemAllowed = createCredentialTypeModel.Issubitemallowed,
+                Name = createCredentialTypeModel.Name,                
+                UserId = createCredentialTypeModel.UserId
+            };
         }
 
         public CredentialTypeModel MapCredentialTypeModel(CredentialTypeMsgEntity credentialTypeMsgEntity)

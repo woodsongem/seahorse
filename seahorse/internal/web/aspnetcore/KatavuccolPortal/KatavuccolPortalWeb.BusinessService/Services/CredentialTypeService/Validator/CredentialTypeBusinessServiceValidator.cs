@@ -1,5 +1,4 @@
-﻿using System;
-using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Utilities;
 
@@ -11,7 +10,24 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
 
         public Result ValidatorCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            throw new NotImplementedException();
+            Result result = IsCreateCredentialTypeMsgEntityvalid(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            result = IsUserIdValid(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            result = IsNameValid(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            return result;
         }
 
         #endregion

@@ -34,7 +34,12 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
         public Result VerifyCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            throw new NotImplementedException();
+            Result result = IsUserIdValid(createCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+            return result;
         }
 
         #endregion

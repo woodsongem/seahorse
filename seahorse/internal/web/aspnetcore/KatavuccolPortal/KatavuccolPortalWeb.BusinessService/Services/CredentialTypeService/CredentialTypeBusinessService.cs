@@ -6,6 +6,7 @@ using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostPro
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier;
+using System;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
@@ -48,6 +49,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             #region Setup
 
             createCredentialTypeMsgEntity.Status = KatavuccolPortalWebConstants.ActiveStatus;
+            createCredentialTypeMsgEntity.CreatedOn = DateTime.UtcNow;
+            createCredentialTypeMsgEntity.CreatedBy = createCredentialTypeMsgEntity.UserId;
 
             #endregion
 

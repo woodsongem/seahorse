@@ -2,5 +2,7 @@
 {
     public enum RestResultStatus
     {
+        Success,
+        Fail
     }
 }

@@ -6,15 +6,12 @@ package seahorse.internal.business.credentialtypeservice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import org.apache.logging.log4j.Logger;
-
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
-
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
@@ -23,7 +20,6 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutR
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.QueryConstants;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
@@ -98,6 +94,27 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		}
 		return credentialTypeDAOs;
 	}
+	
+	public List<CredentialTypeDAO> getDefaultCredentialTypeDAO() {
+		List<CredentialTypeDAO> credentialTypeDAOs = new ArrayList<>();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DEFAULT_CATEGORY_TYPE_DETAILS_QUERY);
+			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapGetDefaultCredentialTypeDAOBoundStatement(preparedStatement);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				CredentialTypeDAO credentialTypeDAO = credentialTypeServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult);
+				credentialTypeDAOs.add(credentialTypeDAO);
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getDefaultCredentialTypeDAO error=" + exception);
+			throw exception;
+		}
+		return credentialTypeDAOs;
+	}
+	
 	@Override
 	public OutPutResponse createCategoryType(CredentialTypeDAO credentialTypeDAO) {
 		OutPutResponse outPutResponse=new OutPutResponse();

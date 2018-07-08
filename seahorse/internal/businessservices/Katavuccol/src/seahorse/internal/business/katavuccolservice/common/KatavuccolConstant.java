@@ -34,6 +34,7 @@ public class KatavuccolConstant {
 	public static final String DATEFORMAT = "yyyy-mm-dd HH:mm:ssZ";
 	public static final String CREDENTIAL_ENCRYPT_KEY = "credentialencryptkey";
 	public static final String CREDENTIAL_ENCRYPT_VALUE = "credentialencryptvalue";
+	public static final String UserType = "USER";
 	
 	
 	

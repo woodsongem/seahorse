@@ -70,8 +70,8 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 		result = isNameValid(createCredentialTypeMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
-		}
-				
+		}		
+	
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 	
@@ -108,6 +108,22 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 	public Result isNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
 		List<CredentialTypeDAO> CredentialTypeDAOs=credentialTypeServiceRepository.getCredentialTypeDAOByUserId(createCredentialTypeMsgEntity.getParsedUserId(),false);
+		List<CredentialTypeDAO> filterCredentialTypeDAOs=
+										FluentIterable
+										.from(CredentialTypeDAOs)
+										.filter(x-> KatavuccolServiceUtility.isEqual(x.getName(),createCredentialTypeMsgEntity.getName()))
+										.toList();
+		if(filterCredentialTypeDAOs.isEmpty())
+		{
+			return new Result(ResultStatus.SUCCESS);	
+		}
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is not allowed", "Name", katavuccolServiceErrorCode.nameDuplicatedNotAllowed());
+		
+	}
+	
+	public Result IsDefaultNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
+	{
+		List<CredentialTypeDAO> CredentialTypeDAOs=credentialTypeServiceRepository.getDefaultCredentialTypeDAO();
 		List<CredentialTypeDAO> filterCredentialTypeDAOs=
 										FluentIterable
 										.from(CredentialTypeDAOs)

@@ -26,4 +26,6 @@ public interface ICredentialTypeServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement, CredentialTypeDAO credentialTypeDAO);
 
+	BoundStatement mapGetDefaultCredentialTypeDAOBoundStatement(PreparedStatement preparedStatement);
+
 }
