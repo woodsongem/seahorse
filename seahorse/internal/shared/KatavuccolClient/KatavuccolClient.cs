@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 
@@ -57,14 +58,18 @@ namespace KatavuccolClient
             return restResponse;
         }
 
-        public HttpClient GetHttpClient(List<KeyValuePir> Headers, string endPoint)
+        public HttpClient GetHttpClient(List<KeyValuePir> headers, string endPoint)
         {
-            var httpClient = new HttpClient();
-            foreach (var header in Headers)
+            var httpClient = new HttpClient();           
+            httpClient.BaseAddress = new Uri(endPoint);
+            if(headers.Any())
+            {
+                return httpClient;
+            }
+            foreach (var header in headers)
             {
                 httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
             }
-            httpClient.BaseAddress = new Uri(endPoint);
             return httpClient;
         }
     }
