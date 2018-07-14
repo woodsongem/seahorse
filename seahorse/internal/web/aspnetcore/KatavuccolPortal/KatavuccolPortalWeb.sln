@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aop", "..\..\..\shared\aspn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KatavuccolClient", "..\..\..\shared\KatavuccolClient\KatavuccolClient.csproj", "{795E5FCE-D61F-4901-9038-0DDAC344C80F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatavuccolPortalWeb", "KatavuccolPortalWeb\KatavuccolPortalWeb.csproj", "{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatavuccolPortalWeb", "KatavuccolPortalWeb\KatavuccolPortalWeb.csproj", "{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

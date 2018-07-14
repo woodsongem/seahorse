@@ -6,7 +6,6 @@ using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostPro
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier;
-using System;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
@@ -20,7 +19,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
         private readonly ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor;
         private readonly ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor;
         private readonly IBaseCredentialTypeService baseCredentialTypeService;
-        //private readonly IConfiguration configuration;
 
         #endregion
 
@@ -31,9 +29,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier,
             ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor,
             ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor,
-            IBaseCredentialTypeService baseCredentialTypeService//,
-            //IConfiguration configuration
-            )
+            IBaseCredentialTypeService baseCredentialTypeService)
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
             this.credentialTypeBusinessServiceValidator = credentialTypeBusinessServiceValidator;
@@ -41,7 +37,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             this.credentialTypeBusinessServiceProcessor = credentialTypeBusinessServiceProcessor;
             this.credentialTypeBusinessServicePostProcessor = credentialTypeBusinessServicePostProcessor;
             this.baseCredentialTypeService = baseCredentialTypeService;
-            //this.configuration = configuration;
         }
 
         #endregion
@@ -53,8 +48,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             #region Setup
 
             createCredentialTypeMsgEntity.Status = KatavuccolPortalWebConstants.ActiveStatus;
-            createCredentialTypeMsgEntity.CreatedOn = DateTime.UtcNow;
-            createCredentialTypeMsgEntity.CreatedBy = createCredentialTypeMsgEntity.UserId;
 
             #endregion
 

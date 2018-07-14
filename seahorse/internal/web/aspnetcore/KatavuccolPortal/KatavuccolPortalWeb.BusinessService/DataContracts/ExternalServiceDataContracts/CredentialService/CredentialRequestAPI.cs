@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialService
+namespace KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialService
 {
-    public class CredentialMsgEntity
+  public   class CredentialRequestAPI
     {
-        public  string categoryId { get; set; }
+        public string categoryId { get; set; }
         public string typeId { get; set; }
         public string value { get; set; }
         public string description { get; set; }

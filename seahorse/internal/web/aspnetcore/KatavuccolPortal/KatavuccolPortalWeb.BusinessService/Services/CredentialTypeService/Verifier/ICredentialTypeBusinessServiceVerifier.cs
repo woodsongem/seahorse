@@ -9,6 +9,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
     public interface ICredentialTypeBusinessServiceVerifier
     {
         Result VerifyCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+
         Result IsUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
     }
 }

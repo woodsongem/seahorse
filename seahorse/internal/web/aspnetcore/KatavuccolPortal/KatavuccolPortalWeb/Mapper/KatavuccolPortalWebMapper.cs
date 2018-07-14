@@ -1,6 +1,8 @@
 ﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CategoryService;
+using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.Models.CreateCategory;
+using KatavuccolPortalWeb.Models.Credential;
 using KatavuccolPortalWeb.Models.CredentialType;
 
 namespace KatavuccolPortalWeb.Mapper
@@ -10,10 +12,10 @@ namespace KatavuccolPortalWeb.Mapper
         public CreateCategoryModel MapCreateCategoryModel(CategoryBusinessMsgEntity categoryBusinessMsgEntity)
         {
             return new CreateCategoryModel
-            {
-                Description = categoryBusinessMsgEntity.Description,
-                Name = categoryBusinessMsgEntity.CategoryName,
-                UserId = categoryBusinessMsgEntity.UserId
+                {
+                Description = categoryBusinessMsgEntity.Description ,
+                Name = categoryBusinessMsgEntity.CategoryName ,
+                UserId = categoryBusinessMsgEntity.UserId 
             };
         }
 
@@ -21,25 +23,28 @@ namespace KatavuccolPortalWeb.Mapper
         {
             return new CreateCategoryBusinessMsgEntity
             {
-                CategoryName = createCategoryModel.Name,
-                Description = createCategoryModel.Description,
-                UserId = createCategoryModel.UserId
+                CategoryName = createCategoryModel.Name ,
+                Description = createCategoryModel.Description ,
+                UserId = createCategoryModel.UserId 
             };
         }
 
         public CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(CreateCredentialTypeModel createCredentialTypeModel)
         {
-            if (createCredentialTypeModel == null)
+            throw new System.NotImplementedException();
+        }
+
+       
+
+        public CredentialModel MapCredentialMsgEntityModel(CredentialMsgEntity credentialMsgEntity)
+        {
+            return new CredentialModel
             {
-                return null;
-            }
-            return new CreateCredentialTypeMsgEntity()
-            {
-                Description = createCredentialTypeModel.Description,
-                IsDuplicationAllowed = createCredentialTypeModel.IsDuplicationAllowed,
-                IsSubitemAllowed = createCredentialTypeModel.Issubitemallowed,
-                Name = createCredentialTypeModel.Name,                
-                UserId = createCredentialTypeModel.UserId
+                categoryId = credentialMsgEntity.categoryId ,
+                description = credentialMsgEntity.description ,
+                parentId = credentialMsgEntity.parentId ,
+                typeId = credentialMsgEntity.typeId ,
+                value = credentialMsgEntity.value 
             };
         }
 
@@ -53,6 +58,18 @@ namespace KatavuccolPortalWeb.Mapper
             GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = new GetCredentialTypeMsgEntity();
             getCredentialTypeMsgEntity.CredentialTypeId = id;
             return getCredentialTypeMsgEntity;
+        }
+
+       public  CreateCredentialMsgEntity MapCredentialMsgEntity(CredentialModel credentialModel)
+        {
+            return new CreateCredentialMsgEntity
+            {
+                categoryId = credentialModel.categoryId ,
+                description = credentialModel.description ,
+                parentId = credentialModel.parentId ,
+                typeId = credentialModel.typeId ,
+                value = credentialModel.value 
+            };
         }
     }
 }

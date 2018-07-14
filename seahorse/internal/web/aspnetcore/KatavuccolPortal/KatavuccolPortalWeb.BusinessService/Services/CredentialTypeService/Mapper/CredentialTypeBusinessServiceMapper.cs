@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialTypeService.KatavuccolClientRequest;
@@ -24,7 +26,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
                 IsDuplicationAllowed = createCredentialTypeMsgEntity.IsDuplicationAllowed,
                 IsSubitemAllowed = createCredentialTypeMsgEntity.IsSubitemAllowed,
                 Name = createCredentialTypeMsgEntity.Name,
-                UserId = createCredentialTypeMsgEntity.UserId
+                UserId = createCredentialTypeMsgEntity.UserId   
             };
         }
 
@@ -35,9 +37,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
                 description = credentialTypeMsgEntity.Description,
                 isDuplicationAllowed = credentialTypeMsgEntity.IsDuplicationAllowed,
                 isSubitemAllowed = credentialTypeMsgEntity.IsSubitemAllowed,
-                name = credentialTypeMsgEntity.Name,
-                createdBy = credentialTypeMsgEntity.UserId,
-                createdDate = DateTime.UtcNow
+                name = credentialTypeMsgEntity.Name
             };
         }
 
@@ -63,7 +63,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
             {
                 Endpoint = EndPoints.KatavuccolServiceUrl.ToString(),
                 CredentialTypeId = credentialTypeId
-            };
+            };            
         }
     }
 }
