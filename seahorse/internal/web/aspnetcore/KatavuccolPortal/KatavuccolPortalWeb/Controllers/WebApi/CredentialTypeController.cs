@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using KatavuccolPortalWeb.BusinessService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
@@ -11,6 +12,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using System.Net.Http;
+=======
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService;
+using KatavuccolPortalWeb.Mapper;
+using KatavuccolPortalWeb.Models.CredentialType;
+using Microsoft.AspNetCore.Mvc;
+>>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
 
 namespace KatavuccolPortalWeb.Controllers.WebApi
 {
@@ -41,12 +49,20 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
         #region Actions
 
         // GET: api/CredentialType/5
+<<<<<<< HEAD
         [HttpGet]
         [Route("api/CredentialType/{userid}/{id}")]
         public IActionResult Get(string userid, string id)
         {
             GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = katavuccolPortalWebMapper.MapGetCredentialTypeMsgEntity(userid,id);
             CredentialTypeMsgEntity credentialTypeMsgEntity = credentialTypeBusinessService.GetCredentialTypeById(getCredentialTypeMsgEntity);
+=======
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
+        {
+            GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = katavuccolPortalWebMapper.MapGetCredentialTypeMsgEntity(id);
+            CredentialTypeMsgEntity credentialTypeMsgEntity = credentialTypeBusinessService.Get(getCredentialTypeMsgEntity.CredentialTypeId);
+>>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
             if (credentialTypeMsgEntity == null)
             {
                 return NotFound();
@@ -57,6 +73,7 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
 
         // POST: api/CredentialType
         [HttpPost]
+<<<<<<< HEAD
         [Route("api/CredentialType/{userid}")]
         public HttpResponseMessage Post(string userid, [FromBody] CreateCredentialTypeModel createCredentialTypeModel)
         {
@@ -75,6 +92,13 @@ namespace KatavuccolPortalWeb.Controllers.WebApi
                 var result = KatavuccolPortalWebUtility.GetOutputResult(ResultStatus.Fail.ToString(), KatavuccolPortalWebErrorCode.InternalError, "internal error");
                 return new HttpResponseMessage() { StatusCode = httpStatusCode, Content = KatavuccolPortalUtility.GetHttpContent(result) };
             }
+=======
+        public void Post([FromBody] CreateCredentialTypeModel createCredentialTypeModel)
+        {
+            CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity = katavuccolPortalWebMapper.MapCreateCredentialTypeMsgEntity(createCredentialTypeModel);
+            CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity = credentialTypeBusinessService.Create(createCredentialTypeMsgEntity);
+
+>>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
         }
 
         // PUT: api/CredentialType/5

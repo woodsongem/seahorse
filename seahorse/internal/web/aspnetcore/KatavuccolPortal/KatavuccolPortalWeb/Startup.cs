@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using KatavuccolClient;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
@@ -15,11 +16,13 @@ using KatavuccolPortalWeb.BusinessService.Services.LoginService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.LoginService.Verifier;
 using KatavuccolPortalWeb.BusinessService.Utilities.AppSettings;
 using KatavuccolPortalWeb.Mapper;
+=======
+>>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -39,6 +42,7 @@ namespace KatavuccolPortalWeb
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+<<<<<<< HEAD
             services.AddTransient<IKatavuccolPortalWebMapper, KatavuccolPortalWebMapper>();
             services.AddTransient<ICredentialTypeBusinessService, CredentialTypeBusinessService>();
             services.AddTransient<ICredentialTypeBusinessServiceMapper, CredentialTypeBusinessServiceMapper>();
@@ -59,9 +63,12 @@ namespace KatavuccolPortalWeb
             services.AddTransient<IKatavuccolPortalWebAppSettings, KatavuccolPortalWebAppSettings>();
 
             // In production, the Angular files will be served from this directory
+=======
+            // In production, the React files will be served from this directory
+>>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/build";
             });
         }
 
@@ -91,14 +98,11 @@ namespace KatavuccolPortalWeb
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
         }

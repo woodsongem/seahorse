@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialService\" />
     <Folder Include="DataContracts\ExternalServiceDataContracts\LoginService\" />
   </ItemGroup>
 

@@ -33,7 +33,36 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
 
         public CreateCredentialResMsgEntity Create(CreateCredentialMsgEntity createCredentialMsgEntity)
         {
-            return new CreateCredentialResMsgEntity();
+            #region Validator
+
+            Result result = credentialBusinessServiceValidator.ValidatorCredential(createCredentialMsgEntity);
+
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCredentialResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+
+            #region Verifier
+
+            result = categoryBusinessServiceVerifier.VerifyCreateCredential(createCredentialMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return new CreateCredentialResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            }
+
+            #endregion
+            //#region Processor
+
+            //result = categoryBusinessServiceProcessor.ProcessCategoryType(createCredentialMsgEntity);
+            //if (result.ResultStatus != ResultStatus.Success)
+            //{
+            //    return new CreateCategoryBusinessResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+            //}
+
+            //#endregion
+            return credentialBusinessServiceMapper.MapCredentialResMsgEntity(createCredentialMsgEntity, result);
         }
 
         public CredentialMsgEntity Get(string credentialId)
