@@ -416,5 +416,13 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id) {
+		CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=new CredentialTypeByUserIdMsgEntity();
+		credentialTypeByUserIdMsgEntity.setUserId(userid);
+		credentialTypeByUserIdMsgEntity.setId(id);
+		return credentialTypeByUserIdMsgEntity;
+	}
 	
 }

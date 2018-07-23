@@ -23,4 +23,6 @@ public interface ICredentialTypeServiceRepository {
 	OutPutResponse createCategoryType(CredentialTypeDAO credentialTypeDAO);	
 	
 	List<CredentialTypeDAO> getDefaultCredentialTypeDAO();
+	
+	CredentialTypeModel getCredentialTypeByUserIdAndId(UUID userId,UUID id);
 }

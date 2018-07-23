@@ -52,7 +52,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
         {
             CredentialTypeRequestIPost credentialTypeRequestIPost = new CredentialTypeRequestIPost();
             credentialTypeRequestIPost.Request = credentialTypeRequestAPI;
-            credentialTypeRequestIPost.Endpoint = EndPoints.KatavuccolServiceUrl.ToString();
+            credentialTypeRequestIPost.Endpoint = EndPoints.KatavuccolAPIUrl.ToString();
             credentialTypeRequestIPost.UserId = credentialTypeMsgEntity.UserId;
             return credentialTypeRequestIPost;
         }
@@ -61,7 +61,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
         {
             return new GetCredentialTypeByIdIGet
             {
-                Endpoint = EndPoints.KatavuccolServiceUrl.ToString(),
+                Endpoint = EndPoints.KatavuccolAPIUrl.ToString(),
                 CredentialTypeId = credentialTypeId
             };
         }

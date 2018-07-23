@@ -1,11 +1,13 @@
 ﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace KatavuccolPortalWeb.BusinessService.Utilities
 {
-    public class KatavuccolPortalWebUtility
+    public class KatavuccolPortalUtility
     {
         public static Result GetResult(ResultStatus resultStatus = ResultStatus.Success, string errorCode = null, string message = null)
         {
@@ -27,9 +29,14 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
             return resultMessages;
         }
 
-        internal static Result GetResult(ResultStatus resultStatus, object errorCode)
+        public static Result GetResult(ResultStatus resultStatus, object errorCode)
         {
             throw new NotImplementedException();
         }
+        public static HttpContent GetHttpContent(object value)
+        {
+            return new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json");
+        }
+        
     }
 }

@@ -17,6 +17,8 @@ public class CredentialTypeByUserIdMsgEntity extends RequestMessageEntity {
 
 	private String userId;
 	private UUID parsedUserId;
+	private String id;
+	private UUID parsedId;
 	private List<CredentialTypeModel> credentialType;
 
 	/**
@@ -59,5 +61,33 @@ public class CredentialTypeByUserIdMsgEntity extends RequestMessageEntity {
 	 */
 	public void setCredentialType(List<CredentialTypeModel> credentialType) {
 		this.credentialType = credentialType;
+	}
+
+	/**
+	 * @return the parsedId
+	 */
+	public UUID getParsedId() {
+		return parsedId;
+	}
+
+	/**
+	 * @param parsedId the parsedId to set
+	 */
+	public void setParsedId(UUID parsedId) {
+		this.parsedId = parsedId;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 }

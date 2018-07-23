@@ -126,4 +126,6 @@ public interface IKatavuccolServiceApiMapper {
 	CreateCredentialTypeResponse mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
 			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
+	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id);
+
 }

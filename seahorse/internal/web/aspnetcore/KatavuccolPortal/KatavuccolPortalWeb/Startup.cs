@@ -13,6 +13,7 @@ using KatavuccolPortalWeb.BusinessService.Services.LoginService.PostProcessor;
 using KatavuccolPortalWeb.BusinessService.Services.LoginService.Processor;
 using KatavuccolPortalWeb.BusinessService.Services.LoginService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.LoginService.Verifier;
+using KatavuccolPortalWeb.BusinessService.Utilities.AppSettings;
 using KatavuccolPortalWeb.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +56,7 @@ namespace KatavuccolPortalWeb
             services.AddTransient<ILoginServiceBusinessServiceProcessor, LoginServiceBusinessServiceProcessor>();
             services.AddTransient<ILoginServiceBusinessServicePostProcessor, LoginServiceBusinessServicePostProcessor>();
             services.AddTransient<IBaseLoginServiceBusinessService, BaseLoginServiceBusinessService>();
+            services.AddTransient<IKatavuccolPortalWebAppSettings, KatavuccolPortalWebAppSettings>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

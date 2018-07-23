@@ -33,7 +33,8 @@ public class CredentialTypeService implements ICredentialTypeService {
 	private final ICredentialTypeServiceVerifier credentialTypeServiceVerifier;
 	private final ICredentialTypeServiceValidator credentialTypeServiceValidator;
 	private final ICredentialTypeServiceProcessor credentialTypeServiceProcessor;
-	private final ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor;	
+	private final ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor;
+	private final ICredentialTypeServiceRepository credentialTypeServiceRepository;
 	
 	@InjectLogger  Logger logger;
 
@@ -42,13 +43,15 @@ public class CredentialTypeService implements ICredentialTypeService {
 			ICredentialTypeServiceVerifier credentialTypeServiceVerifier,
 			ICredentialTypeServiceValidator credentialTypeServiceValidator,
 			ICredentialTypeServiceProcessor credentialTypeServiceProcessor,
-			ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor)
+			ICredentialTypeServicePostProcessor credentialTypeServicePostProcessor,
+			ICredentialTypeServiceRepository credentialTypeServiceRepository)
 	{
 		this.credentialTypeServiceMapper=credentialTypeServiceMapper;
 		this.credentialTypeServiceVerifier=credentialTypeServiceVerifier;
 		this.credentialTypeServiceValidator=credentialTypeServiceValidator;
 		this.credentialTypeServiceProcessor=credentialTypeServiceProcessor;
-		this.credentialTypeServicePostProcessor=credentialTypeServicePostProcessor;		
+		this.credentialTypeServicePostProcessor=credentialTypeServicePostProcessor;	
+		this.credentialTypeServiceRepository=credentialTypeServiceRepository;
 	}
 	
 	public CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
@@ -126,6 +129,16 @@ public class CredentialTypeService implements ICredentialTypeService {
 		
 		return null;
 		
+	}
+
+	@Override
+	public CredentialTypeModel getCredentialTypeByUserIdAndId(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity) {
+		Result result=credentialTypeServiceValidator.validGetCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return null;
+		}
+		return	credentialTypeServiceRepository.getCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity.getParsedUserId(), credentialTypeByUserIdMsgEntity.getParsedId());
 	}
 	
 	

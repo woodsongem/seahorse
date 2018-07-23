@@ -71,6 +71,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		}
 		return credentialTypeModels;
 	}
+	
 	public List<CredentialTypeDAO> getCredentialTypeDAOByUserId(UUID userId,Boolean includeInActiveStatus) {
 		List<CredentialTypeDAO> credentialTypeDAOs = new ArrayList<>();
 		try {
@@ -125,5 +126,28 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return outPutResponse;	
+	}
+
+	public CredentialTypeModel getCredentialTypeByUserIdAndId(UUID userId,UUID id) {
+		CredentialTypeModel credentialTypeModel=new CredentialTypeModel();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_USERID_AND_ID_QUERY);
+			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapgetCredentialTypeByUserIdAndIdBoundStatement(preparedStatement,userId,id);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				credentialTypeModel = credentialTypeServiceRepositoryMapper.mapCredentialTypeModel(typeDAOResult);	
+				if(!KatavuccolServiceUtility.isEqual(credentialTypeModel.getStatus(), KatavuccolConstant.ACTIVESTATUS))
+				{
+					credentialTypeModel=null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialTypeByUserId error=" + exception);
+			throw exception;
+		}
+		return credentialTypeModel;
 	}
 }

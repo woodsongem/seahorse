@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Net;
 
 namespace KatavuccolPortalWeb.BusinessService.DataContracts.Commons
 {
@@ -9,5 +8,7 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.Commons
         public ResultStatus ResultStatus { get; set; }
 
         public List<ResultMessage> ResultMessage { get; set; }
+
+        public HttpStatusCode? statusCodes { get; set; }
     }
 }

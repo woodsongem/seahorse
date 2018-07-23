@@ -84,4 +84,12 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		return bound;
 	}
 
+	@Override
+	public BoundStatement mapgetCredentialTypeByUserIdAndIdBoundStatement(PreparedStatement preparedStatement,UUID userId, UUID id) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,userId);
+		bound.setUUID(DataBaseColumn.ID,id);
+		return bound;
+	}
+
 }

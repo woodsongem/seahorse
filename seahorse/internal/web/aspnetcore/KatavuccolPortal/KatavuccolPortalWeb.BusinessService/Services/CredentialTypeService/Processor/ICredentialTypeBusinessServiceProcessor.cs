@@ -11,5 +11,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
         Result ProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
         Result CredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+        Result ProcessGetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);
     }
 }

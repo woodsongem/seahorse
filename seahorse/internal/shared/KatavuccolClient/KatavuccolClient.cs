@@ -1,4 +1,6 @@
 ﻿using KatavuccolClient.DataContracts;
+using KatavuccolPortal.Shared.Extension;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,13 @@ namespace KatavuccolClient
 {
     public class KatavuccolClient : IKatavuccolClient
     {
+        private readonly IConfiguration configuration;
+
+        public KatavuccolClient(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         public RestResponse Delete(IDelete delete)
         {
             RestResponse restResponse = new RestResponse();
@@ -61,8 +70,8 @@ namespace KatavuccolClient
         public HttpClient GetHttpClient(List<KeyValuePir> headers, string endPoint)
         {
             var httpClient = new HttpClient();           
-            httpClient.BaseAddress = new Uri(endPoint);
-            if(headers.Any())
+            httpClient.BaseAddress = new Uri(configuration[endPoint]);
+            if(!headers.AnyWithNullCheck())
             {
                 return httpClient;
             }

@@ -28,4 +28,6 @@ public interface ICredentialTypeServiceRepositoryMapper {
 
 	BoundStatement mapGetDefaultCredentialTypeDAOBoundStatement(PreparedStatement preparedStatement);
 
+	BoundStatement mapgetCredentialTypeByUserIdAndIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID id);
+
 }

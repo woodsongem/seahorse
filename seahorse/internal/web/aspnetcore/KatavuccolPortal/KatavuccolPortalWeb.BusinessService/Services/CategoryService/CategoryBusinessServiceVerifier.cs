@@ -15,7 +15,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
         {   
             if (string.IsNullOrWhiteSpace(createCategoryBusinessMsgEntity.CategoryName ))
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "CategoryName is null");
             }
             
@@ -31,7 +31,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
                 string details = CallRestMethod(url);
                 if (details == createCategoryBusinessMsgEntity.CategoryName)
                 {
-                    return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CategoryNameExists.ToString(),
+                    return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CategoryNameExists.ToString(),
                         message: "CategoryName already exists");
                 }
 

@@ -71,6 +71,64 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 				
 		return new Result(ResultStatus.SUCCESS);
 	}
+	
+	@Override
+	public Result validGetCredentialTypeByUserIdAndId(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity) {
+		Result result;
+
+		result = isCreateCredentialTypeMsgEntityValid(credentialTypeByUserIdMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isUserIdValid(credentialTypeByUserIdMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isIdValid(credentialTypeByUserIdMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
+	
+	public Result isCreateCredentialTypeMsgEntityValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity) {
+		Result result=new Result(ResultStatus.SUCCESS);		
+		
+		if(credentialTypeByUserIdMsgEntity==null)
+		{
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CredentialTypeByUserIdMsgEntity is null","CredentialTypeByUserIdMsgEntity",katavuccolServiceErrorCode.credentialTypeByUserIdMsgEntityIsEmpty());
+		}
+		
+		return result;
+	}
+
+	public Result isUserIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity) {
+		Result result=profileServiceValidator.isUserIdValid(credentialTypeByUserIdMsgEntity.getUserId());
+		if(result.getResultStatus() == ResultStatus.ERROR)
+		{
+			return result;
+		}
+		credentialTypeByUserIdMsgEntity.setParsedUserId(UUID.fromString(credentialTypeByUserIdMsgEntity.getUserId()));		
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	public Result isIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity) {
+		Result result=new Result();
+		result.setResultStatus(ResultStatus.SUCCESS);
+		if (StringUtils.isBlank(credentialTypeByUserIdMsgEntity.getId())) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CredentialTypeId is null","Id",katavuccolServiceErrorCode.credentialTypeIdIsEmpty());
+		}
+		
+		if(KatavuccolServiceUtility.isValidUUID(credentialTypeByUserIdMsgEntity.getId()))
+		{
+			credentialTypeByUserIdMsgEntity.setParsedId(UUID.fromString(credentialTypeByUserIdMsgEntity.getId()));		
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CredentialTypeId is invalid","Id",katavuccolServiceErrorCode.credentialTypeIdIsInValid());
+	}
+
 	public Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
 		Result result=profileServiceValidator.isUserIdValid(createCredentialTypeMsgEntity.getUserId());
 		if(result.getResultStatus() == ResultStatus.ERROR)
@@ -129,4 +187,6 @@ public class CredentialTypeServiceValidator implements ICredentialTypeServiceVal
 		
 		return result;
 	}
+
+	
 }

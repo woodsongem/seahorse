@@ -14,7 +14,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
         {
             if (string.IsNullOrWhiteSpace(createCategoryBusinessMsgEntity.CategoryName ))
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "CategoryName is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -24,7 +24,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
         {
             if (createCategoryBusinessMsgEntity == null)
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
                     message: "CreateCategorymsgEntity is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };

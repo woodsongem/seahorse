@@ -6,7 +6,9 @@ using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostPro
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier;
+using Microsoft.AspNetCore.Http;
 using System;
+using System.Net;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
@@ -32,7 +34,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor,
             ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor,
             IBaseCredentialTypeService baseCredentialTypeService//,
-            //IConfiguration configuration
+                                                                //IConfiguration configuration
             )
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
@@ -64,7 +66,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 
             if (result.ResultStatus != ResultStatus.Success)
             {
-                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+                return new CreateCredentialTypeResMsgEntity() { statusCodes = HttpStatusCode.BadRequest, ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
             }
 
             #endregion
@@ -74,7 +76,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             result = credentialTypeBusinessServiceVerifier.VerifyCreateCredentialType(createCredentialTypeMsgEntity);
             if (result.ResultStatus != ResultStatus.Success)
             {
-                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+                return new CreateCredentialTypeResMsgEntity() { statusCodes = HttpStatusCode.Forbidden, ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
             }
 
             #endregion
@@ -84,7 +86,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             result = credentialTypeBusinessServiceProcessor.ProcessCredentialType(createCredentialTypeMsgEntity);
             if (result.ResultStatus != ResultStatus.Success)
             {
-                return new CreateCredentialTypeResMsgEntity() { ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
+                return new CreateCredentialTypeResMsgEntity() { statusCodes = HttpStatusCode.Forbidden, ResultStatus = result.ResultStatus, ResultMessage = result.ResultMessage };
             }
 
             #endregion
@@ -98,30 +100,51 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             return credentialTypeBusinessServiceMapper.MapCreateCredentialTypeResMsgEntity(createCredentialTypeMsgEntity, result);
         }
 
-        public CredentialTypeMsgEntity Get(string credentialTypeId)
+        public CredentialTypeMsgEntity GetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
         {
             #region Setup
+            
 
             #endregion
 
             #region Validator
 
-            if (string.IsNullOrWhiteSpace(credentialTypeId))
+            Result result = credentialTypeBusinessServiceValidator.ValidGetCredentialTypeById(getCredentialTypeMsgEntity);
+
+            if (result.ResultStatus != ResultStatus.Success)
             {
-                return null;
+               
             }
 
             #endregion
 
-            #region Verifier           
+            #region Verifier
+
+            result = credentialTypeBusinessServiceVerifier.VerifyGetCredentialTypeById(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                
+            }
 
             #endregion
 
             #region Processor
 
-            return baseCredentialTypeService.GetCredentialTypeById(credentialTypeId);
+            result = credentialTypeBusinessServiceProcessor.ProcessGetCredentialTypeById(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                
+            }
 
-            #endregion          
+            #endregion
+
+            #region PostProcessor
+
+            result = credentialTypeBusinessServicePostProcessor.PostProcessGetCredentialTypeById(getCredentialTypeMsgEntity);
+
+            #endregion
+
+            return getCredentialTypeMsgEntity.CredentialType;
 
         }
 

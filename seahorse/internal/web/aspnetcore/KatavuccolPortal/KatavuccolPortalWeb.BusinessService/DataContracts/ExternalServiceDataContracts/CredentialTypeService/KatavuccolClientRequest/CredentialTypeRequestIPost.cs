@@ -6,7 +6,7 @@ namespace KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataC
     public class CredentialTypeRequestIPost : IPost
     {
         public object Request { get; set; }
-        public string Url => $"/credentialtype/{UserId}";
+        public string Url => $"/Katavuccol/credentialtype/{UserId}";
         public List<KeyValuePir> Headers { get; set; }
         public string Endpoint { get; set; }
         public string UserId { get; set; }

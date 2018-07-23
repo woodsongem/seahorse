@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using KatavuccolClient;
 using KatavuccolClient.DataContracts;
+using KatavuccolPortal.Shared.Extension;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.CredentialTypeService.KatavuccolClientRequest;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Mapper;
+using KatavuccolPortalWeb.BusinessService.Utilities;
 using Newtonsoft.Json;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base
@@ -62,7 +64,33 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
             CredentialTypeRequestAPI credentialTypeRequestAPI = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestAPI(credentialTypeMsgEntity);
             CredentialTypeRequestIPost credentialTypeRequestIPost = credentialTypeBusinessServiceMapper.MapCredentialTypeRequestIPost(credentialTypeMsgEntity, credentialTypeRequestAPI);
             RestResponse restResponse = katavuccolClient.Post(credentialTypeRequestIPost);
-            return new OutPutResult() { };
+            CredentialTypeResponseAPI credentialTypeResponseAPI = JsonConvert.DeserializeObject<CredentialTypeResponseAPI>(restResponse.ResponseContent);
+            OutPutResult outPutResult = new OutPutResult();
+            if (credentialTypeResponseAPI == null)
+            {
+                outPutResult.ResultStatus = ResultStatus.Fail;
+                outPutResult.ResultMessage = new List<ResultMessage>
+                {
+                    new ResultMessage() { ErrorCode = KatavuccolPortalWebErrorCode.InternalError }
+                };
+                return outPutResult;
+            }
+
+            if (credentialTypeResponseAPI.resultMessages.AnyWithNullCheck())
+            {
+                outPutResult.ResultStatus = ResultStatus.Fail;
+                outPutResult.ResultMessage = credentialTypeResponseAPI.resultMessages.ToResultMsgEntity();
+                return outPutResult;
+            }
+            outPutResult.Key = credentialTypeResponseAPI.id;
+            return outPutResult;
+        }
+
+        public OutPutResult GetCredentialTypeByUserIdAndId(string userId, string credentialTypeId)
+        {
+            GetCredentialTypeByUserIdAndIdIGet getCredentialTypeByUserIdAndIdIGet = credentialTypeBusinessServiceMapper.MapGetCredentialTypeByIdIGet(credentialTypeId);
+            RestResponse restResponse = katavuccolClient.Get(getCredentialTypeByUserIdAndIdIGet);
+            CredentialTypeDetailAPI credentialTypeDetailAPI = JsonConvert.DeserializeObject<CredentialTypeDetailAPI>(restResponse.ResponseContent);
         }
 
         #endregion

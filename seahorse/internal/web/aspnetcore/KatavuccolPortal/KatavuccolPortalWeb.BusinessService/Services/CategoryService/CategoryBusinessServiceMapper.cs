@@ -41,7 +41,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CategoryService
         {
             CreateCategoryRequestIPost createCategoryRequestIPost = new CreateCategoryRequestIPost();
             createCategoryRequestIPost.Request = createCategoryRequestAPI;
-            createCategoryRequestIPost.Endpoint = EndPoints.KatavuccolServiceUrl.ToString();
+            createCategoryRequestIPost.Endpoint = EndPoints.KatavuccolAPIUrl.ToString();
             createCategoryRequestIPost.UserId  = categoryBusinessMsgEntity.UserId  ;
             return createCategoryRequestIPost;
         }

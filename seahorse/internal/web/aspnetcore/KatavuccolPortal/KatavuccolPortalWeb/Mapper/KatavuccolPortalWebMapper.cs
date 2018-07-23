@@ -1,7 +1,9 @@
 ﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CategoryService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.Models.Base;
 using KatavuccolPortalWeb.Models.CreateCategory;
 using KatavuccolPortalWeb.Models.CredentialType;
+using KatavuccolPortalWeb.Utilities;
 
 namespace KatavuccolPortalWeb.Mapper
 {
@@ -27,7 +29,7 @@ namespace KatavuccolPortalWeb.Mapper
             };
         }
 
-        public CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(CreateCredentialTypeModel createCredentialTypeModel)
+        public CreateCredentialTypeMsgEntity MapCreateCredentialTypeMsgEntity(string userid, CreateCredentialTypeModel createCredentialTypeModel)
         {
             if (createCredentialTypeModel == null)
             {
@@ -38,8 +40,8 @@ namespace KatavuccolPortalWeb.Mapper
                 Description = createCredentialTypeModel.Description,
                 IsDuplicationAllowed = createCredentialTypeModel.IsDuplicationAllowed,
                 IsSubitemAllowed = createCredentialTypeModel.Issubitemallowed,
-                Name = createCredentialTypeModel.Name,                
-                UserId = createCredentialTypeModel.UserId
+                Name = createCredentialTypeModel.Name,
+                UserId = userid
             };
         }
 
@@ -48,11 +50,25 @@ namespace KatavuccolPortalWeb.Mapper
             throw new System.NotImplementedException();
         }
 
-        public GetCredentialTypeMsgEntity MapGetCredentialTypeMsgEntity(string id)
+        public GetCredentialTypeMsgEntity MapGetCredentialTypeMsgEntity(string userid,string id)
         {
-            GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = new GetCredentialTypeMsgEntity();
-            getCredentialTypeMsgEntity.CredentialTypeId = id;
+            GetCredentialTypeMsgEntity getCredentialTypeMsgEntity = new GetCredentialTypeMsgEntity
+            {
+                CredentialTypeId = id,
+                UserId= userid
+            };
             return getCredentialTypeMsgEntity;
+        }
+
+        public OutputResultModel MapOutputResult(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity)
+        {
+            OutputResultModel outputResult = new OutputResultModel
+            {
+                ResultStatus = createCredentialTypeResMsgEntity.ResultStatus.ToString(),
+                ResultMessage = createCredentialTypeResMsgEntity.ResultMessage.ToResultMessageModel(),
+                Key = createCredentialTypeResMsgEntity.Key
+            };
+            return outputResult;
         }
     }
 }

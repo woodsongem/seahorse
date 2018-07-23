@@ -9,5 +9,10 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         Result IsCreateCredentialTypeMsgEntityvalid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
         Result IsNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
         Result IsUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+        Result ValidGetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);
+        Result IsCredentialTypeIdValid(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);        
+        Result IsUserIdValid(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);        
+        Result IsGetCredentialTypeMsgEntityValid(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);
+        
     }
 }

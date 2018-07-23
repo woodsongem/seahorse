@@ -30,4 +30,12 @@ public interface ICredentialTypeServiceValidator {
 	
 	Result isNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
+	Result validGetCredentialTypeByUserIdAndId(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);
+	
+	Result isCreateCredentialTypeMsgEntityValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);
+
+	Result isUserIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);
+	
+	Result isIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);	
+
 }

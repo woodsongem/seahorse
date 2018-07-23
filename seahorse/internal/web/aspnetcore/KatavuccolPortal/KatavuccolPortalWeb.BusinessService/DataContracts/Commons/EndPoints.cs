@@ -2,6 +2,6 @@
 {
     public enum EndPoints
     {
-        KatavuccolServiceUrl
+        KatavuccolAPIUrl
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.LoginService.Base;
@@ -42,6 +39,11 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             return result;
         }
 
+        public Result VerifyGetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            return new Result() { ResultStatus = ResultStatus.Success };
+        }
+
         #endregion
 
         #region Verifiers
@@ -51,7 +53,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             var userDetail = baseLoginServiceBusinessService.getUserDetail(createCredentialTypeMsgEntity.UserId);
             if (userDetail == null)
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdInValid.ToString());
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdInValid.ToString());
             }
             createCredentialTypeMsgEntity.UserDetail = userDetail;
 
@@ -63,12 +65,14 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
             var credentialType = baseCredentialTypeService.GetCredentialTypeById(getCredentialTypeMsgEntity.CredentialTypeId);
             if (credentialType == null)
             {
-                return KatavuccolPortalWebUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);
+                return KatavuccolPortalUtility.GetResult(ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsInValid);
             }
             getCredentialTypeMsgEntity.CredentialType = credentialType;
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
+
 
         #endregion
     }

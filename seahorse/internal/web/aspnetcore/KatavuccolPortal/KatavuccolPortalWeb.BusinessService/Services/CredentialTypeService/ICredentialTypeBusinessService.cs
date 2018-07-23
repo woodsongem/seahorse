@@ -7,7 +7,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
     {
         CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
         
-        CredentialTypeMsgEntity Get(string credentialTypeId);
+        CredentialTypeMsgEntity GetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity);
         
         Result Update(UpdateCredentialTypeMsgEntity updateCredentialTypeMsgEntity);
         

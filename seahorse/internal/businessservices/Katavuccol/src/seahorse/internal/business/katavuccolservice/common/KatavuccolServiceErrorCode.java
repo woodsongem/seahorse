@@ -96,6 +96,9 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private static final String userIdIsEmptyErrorCode ="Katavuccol.API.{0}.{1}.UserId.Empty";
 	private static final String userIdNotFound = "Katavuccol.API.{0}.{1}.UserId.NotFound";
 	private static final String nameIsEmpty="Katavuccol.API.{0}.{1}.Name.IsEmpty";
+	private static final String credentialTypeByUserIdMsgEntityIsEmpty = "CredentialType.API.{0}.{1}.CredentialTypeByUserIdMsgEntity.IsEmpty";
+	private static final String credentialTypeIdIsEmpty = "CredentialType.API.{0}.{1}.CredentialTypeId.Empty";
+	private static final String credentialTypeIdIsInValid = "CredentialType.API.{0}.{1}.CredentialTypeId.InValid";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -536,5 +539,20 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String NameIsEmpty() {		
 		return nameIsEmpty;
+	}
+
+	@Override
+	public String credentialTypeByUserIdMsgEntityIsEmpty() {
+		return credentialTypeByUserIdMsgEntityIsEmpty;
+	}
+
+	@Override
+	public String credentialTypeIdIsEmpty() {		
+		return credentialTypeIdIsEmpty;
+	}
+
+	@Override
+	public String credentialTypeIdIsInValid() {		
+		return credentialTypeIdIsInValid;
 	}
 }

@@ -12,5 +12,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
         CredentialTypeMsgEntity GetCredentialTypeById(string credentialTypeId);
         List<CredentialTypeMsgEntity> GetDeafultCredentialTyps();
         OutPutResult CreateCredentialType(CredentialTypeMsgEntity credentialTypeMsgEntity);
+        OutPutResult GetCredentialTypeByUserIdAndId(string userId, string credentialTypeId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+﻿using System;
+using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Mapper;
@@ -31,11 +32,32 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
         public Result ProcessCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
             Result result = CredentialType(createCredentialTypeMsgEntity);
-            if(result.ResultStatus != ResultStatus.Success)
+            if (result.ResultStatus != ResultStatus.Success)
             {
                 return result;
             }
 
+            return result;
+        }
+
+        public Result ProcessGetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            Result result = GetCredentialTypeById(getCredentialTypeMsgEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            return result;
+        }
+
+        public Result GetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
+        {
+            OutPutResult result = baseCredentialTypeService.GetCredentialTypeByUserIdAndId(getCredentialTypeMsgEntity.UserId, getCredentialTypeMsgEntity.UserId);
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                
+            }
             return result;
         }
 
@@ -53,6 +75,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Pro
             }
             return result;
         }
+
+
 
         #endregion
     }
