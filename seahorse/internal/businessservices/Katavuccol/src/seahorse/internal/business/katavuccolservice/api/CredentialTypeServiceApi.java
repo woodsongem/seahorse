@@ -150,11 +150,12 @@ public class CredentialTypeServiceApi {
 			httpStatus= Status.OK;
 			if(credentialTypeModel==null)
 			{
-				httpStatus=Status.BAD_REQUEST;
+				credentialTypeModel=new  ArrayList<>();
 			}
 			
 		}
-		catch (Exception ex) {			
+		catch (Exception ex) {	
+			httpStatus= Status.INTERNAL_SERVER_ERROR;
 			logger.error(ex);
 		}
 		return Response.status(httpStatus).entity(credentialTypeModel).build();
