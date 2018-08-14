@@ -243,4 +243,13 @@ public class KatavuccolServiceUtility {
 		}
 	  return cp;
 	}
+	public static String ToString(Object value)
+	{
+		if(value==null)
+		{
+			return null;
+		}
+		return value.toString();
+		
+	}
 }
