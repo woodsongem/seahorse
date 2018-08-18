@@ -10,6 +10,7 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCred
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
@@ -105,7 +106,7 @@ public interface IKatavuccolServiceApiMapper {
 			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
 
 	DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
-			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity,
 			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
 
 	DeleteCredentialTypeReqMsgEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,

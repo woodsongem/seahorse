@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -73,6 +74,17 @@ public class CredentialTypeServiceMapper implements ICredentialTypeServiceMapper
 		deleteCredentialTypeResMsgEntity.setResultMessages(result.getResultMessages());
 		deleteCredentialTypeResMsgEntity.setHttpStatus(badRequest);
 		return deleteCredentialTypeResMsgEntity;
+	}
+
+	@Override
+	public CredentialTypeDAO mapCredentialTypeDAO(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		CredentialTypeDAO credentialTypeDAO=new CredentialTypeDAO();
+		credentialTypeDAO.setUserId(deleteCredentialTypeReqMsgEntity.getParsedUserId());
+		credentialTypeDAO.setId(deleteCredentialTypeReqMsgEntity.getParsedCredentialTypeId());
+		credentialTypeDAO.setStatus(deleteCredentialTypeReqMsgEntity.getStatus());
+		credentialTypeDAO.setModifiedBy(deleteCredentialTypeReqMsgEntity.getModifiedBy());
+		credentialTypeDAO.setModifiedDate(deleteCredentialTypeReqMsgEntity.getModifiedDate());
+		return credentialTypeDAO;
 	}
 
 }

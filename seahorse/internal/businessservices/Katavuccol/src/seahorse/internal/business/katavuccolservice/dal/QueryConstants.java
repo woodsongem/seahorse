@@ -30,5 +30,6 @@ public class QueryConstants {
 	public static final String GET_CATEGORY_TYPE_DETAILS_BY_USERID_AND_ID_QUERY = "SELECT userid, id, createdby, createddate, description, isduplicationallowed, issubitemallowed, modifiedby, modifieddate, name, status FROM credentialtype where userid=? AND id=?";
 	public static final String GET_CREATE_CREDENTIALTYPE_QUERY ="INSERT INTO credentialtype(userid, id, createdby, createddate, description, isduplicationallowed, issubitemallowed, name, status) VALUES (?,?,?,?,?,?,?,?,?)";	
 	public static final String GET_DEFAULT_CATEGORY_TYPE_DETAILS_QUERY = "SELECT userid, id, createdby, createddate, description, isduplicationallowed, issubitemallowed, modifiedby, modifieddate, name, status,type FROM credentialtype where type=? ";
+	public static final String GET_DELETE_CREDENTIAL_TYPE_QUERY = "UPDATE credentialtype SET modifiedby=?, modifieddate=?,status=? where id=? and userid=? ";
 	
 }

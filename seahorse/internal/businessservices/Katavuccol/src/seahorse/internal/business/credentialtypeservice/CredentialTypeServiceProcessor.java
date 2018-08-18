@@ -11,6 +11,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
@@ -61,6 +62,15 @@ public class CredentialTypeServiceProcessor implements ICredentialTypeServicePro
 		}		
 		return result;
 	}
+	@Override
+	public Result processDeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		Result result=DeleteCredentialType(deleteCredentialTypeReqMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return result;
+		}		
+		return result;
+	}
 	
 	@Override
 	public Result CreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
@@ -81,5 +91,11 @@ public class CredentialTypeServiceProcessor implements ICredentialTypeServicePro
 	}
 
 	
+	
+	@Override
+	public Result DeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity)
+	{
+		return baseCredentialTypeService.DeleteCredentialTypeByUserIdAndId(deleteCredentialTypeReqMsgEntity);
+	}
 
 }

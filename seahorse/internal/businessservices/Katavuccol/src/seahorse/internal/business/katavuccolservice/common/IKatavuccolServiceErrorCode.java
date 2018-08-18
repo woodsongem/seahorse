@@ -96,5 +96,6 @@ public interface IKatavuccolServiceErrorCode {
 	String credentialTypeByUserIdMsgEntityIsEmpty();
 	String credentialTypeIdIsEmpty();
 	String credentialTypeIdIsInValid();
-	String deleteCredentialTypeRequestMessageEntityIsEmpty();	
+	String deleteCredentialTypeRequestMessageEntityIsEmpty();
+	String CredentialTypeIsNotFound();	
 }

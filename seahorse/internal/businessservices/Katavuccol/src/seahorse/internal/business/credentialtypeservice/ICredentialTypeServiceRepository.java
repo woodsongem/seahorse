@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
 /**
@@ -25,4 +26,8 @@ public interface ICredentialTypeServiceRepository {
 	List<CredentialTypeDAO> getDefaultCredentialTypeDAO();
 	
 	CredentialTypeModel getCredentialTypeByUserIdAndId(UUID userId,UUID id);
+	
+	CredentialTypeDAO getCredentialTypeDAOByUserIdAndId(UUID userId,UUID id);
+
+	Result deleteCredentialType(CredentialTypeDAO credentialTypeDAO);
 }

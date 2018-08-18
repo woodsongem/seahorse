@@ -30,4 +30,6 @@ public interface ICredentialTypeServiceRepositoryMapper {
 
 	BoundStatement mapgetCredentialTypeByUserIdAndIdBoundStatement(PreparedStatement preparedStatement, UUID userId,UUID id);
 
+	BoundStatement mapDeleteCredentialTypeBoundStatement(PreparedStatement preparedStatement,CredentialTypeDAO credentialTypeDAO);
+
 }

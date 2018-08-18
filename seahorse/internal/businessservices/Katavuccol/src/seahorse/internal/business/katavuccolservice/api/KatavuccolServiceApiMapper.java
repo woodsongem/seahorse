@@ -311,10 +311,18 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
-			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
-			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+			DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity,
+			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		DeleteCredentialTypeResponse deleteCredentialTypeResponse=new DeleteCredentialTypeResponse();
+		List<ResultMessage> resultMessages = new ArrayList<>();
+		for (ResultMessage resultMessageMS : deleteCredentialTypeReqMsgEntity.getResultMessages()) {
+			ResultMessage resultMessage = new ResultMessage();
+			resultMessage.setErrorCode(String.format(resultMessageMS.getErrorCode(),deleteCredentialTypeReqMsgEntity.getHttpMethod(),"DeleteCredentialType"));
+			resultMessage.setParameter(resultMessageMS.getParameter());
+			resultMessages.add(resultMessage);
+		}
+		deleteCredentialTypeResponse.setResultMessages(resultMessages);
+		return deleteCredentialTypeResponse;
 	}
 
 	@Override

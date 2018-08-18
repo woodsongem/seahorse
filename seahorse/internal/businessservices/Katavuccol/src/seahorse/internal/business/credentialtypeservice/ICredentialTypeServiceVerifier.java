@@ -29,4 +29,8 @@ public interface ICredentialTypeServiceVerifier {
 	Result IsDefaultNameValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
 	Result verifyDeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
+	
+	Result isUserIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
+	
+	Result isCredentialTypeIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
 }

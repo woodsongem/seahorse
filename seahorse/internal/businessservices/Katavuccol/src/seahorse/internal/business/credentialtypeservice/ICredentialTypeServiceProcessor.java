@@ -23,4 +23,6 @@ public interface ICredentialTypeServiceProcessor {
 	Result getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
 
 	Result processDeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
+	
+	Result DeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
 }

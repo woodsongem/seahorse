@@ -158,7 +158,7 @@ public class CredentialTypeService implements ICredentialTypeService {
 		
 		//Set	
 		deleteCredentialTypeReqMsgEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
-		deleteCredentialTypeReqMsgEntity.setCreatedDate(new Date());
+		deleteCredentialTypeReqMsgEntity.setModifiedDate(new Date());
 		
 		Result result=credentialTypeServiceValidator.validDeleteCredentialType(deleteCredentialTypeReqMsgEntity);
 		if(result.getResultStatus() != ResultStatus.SUCCESS)

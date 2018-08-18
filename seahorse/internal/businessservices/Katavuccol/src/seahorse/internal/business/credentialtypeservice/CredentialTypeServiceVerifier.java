@@ -5,6 +5,8 @@ package seahorse.internal.business.credentialtypeservice;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
 import com.google.common.collect.FluentIterable;
 import com.google.inject.Inject;
 
@@ -78,11 +80,24 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 	@Override
 	public Result verifyDeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		Result result;
+		result = isUserIdValid(deleteCredentialTypeReqMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		result = isCredentialTypeIdValid(deleteCredentialTypeReqMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		
+		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
 
 	
+	
+	
+
 	@Override
 	public Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
 		 UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(createCredentialTypeMsgEntity.getParsedUserId());
@@ -147,9 +162,43 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 
 	@Override
 	public Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(credentialTypeRequestMessageEntity.getParsedUserId());
+		  if(userMessageEntity==null)
+		  {
+				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",
+						"UserId",
+						katavuccolServiceErrorCode.userIdNotFound());
+		  }
+		  
+		return new Result(ResultStatus.SUCCESS);
 	}
-
+	
+	@Override
+	public Result isUserIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(deleteCredentialTypeReqMsgEntity.getParsedUserId());
+		  if(userMessageEntity==null)
+		  {
+				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",
+						"UserId",
+						katavuccolServiceErrorCode.userIdNotFound());
+		  }
+		  
+	   return new Result(ResultStatus.SUCCESS);
+	}
+	
+	@Override
+	public Result isCredentialTypeIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		CredentialTypeDAO credentialTypeDAO=credentialTypeServiceRepository.getCredentialTypeDAOByUserIdAndId(deleteCredentialTypeReqMsgEntity.getParsedUserId(),
+				deleteCredentialTypeReqMsgEntity.getParsedCredentialTypeId());
+		deleteCredentialTypeReqMsgEntity.setHttpStatus(Status.NOT_FOUND);
+		 if(credentialTypeDAO==null)
+		  {
+				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Credential type is not found",
+						"UserId",
+						katavuccolServiceErrorCode.CredentialTypeIsNotFound());
+		  }
+		
+		return new Result(ResultStatus.SUCCESS);
+	}
 	
 }

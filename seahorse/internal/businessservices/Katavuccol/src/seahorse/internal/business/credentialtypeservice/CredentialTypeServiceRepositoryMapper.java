@@ -93,4 +93,15 @@ public class CredentialTypeServiceRepositoryMapper implements ICredentialTypeSer
 		return bound;
 	}
 
+	@Override
+	public BoundStatement mapDeleteCredentialTypeBoundStatement(PreparedStatement preparedStatement,CredentialTypeDAO credentialTypeDAO) {
+		BoundStatement bound = preparedStatement.bind();		
+		bound.setUUID(DataBaseColumn.USERID,credentialTypeDAO.getUserId());
+		bound.setUUID(DataBaseColumn.ID,credentialTypeDAO.getId());
+		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE, credentialTypeDAO.getModifiedDate());
+		bound.setUUID(DataBaseColumn.MODIFIEDBY, credentialTypeDAO.getModifiedBy());
+		bound.setString(DataBaseColumn.STATUS,credentialTypeDAO.getStatus());
+		return bound;
+	}
+
 }

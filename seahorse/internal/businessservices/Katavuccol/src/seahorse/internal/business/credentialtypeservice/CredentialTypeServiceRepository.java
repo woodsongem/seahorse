@@ -17,6 +17,7 @@ import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.QueryConstants;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
@@ -48,6 +49,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		this.readPropertiesFile=readPropertiesFile;
 	}
 	
+	@Override
 	public List<CredentialTypeModel> getCredentialTypeByUserId(UUID userId,Boolean includeInActiveStatus) {
 		List<CredentialTypeModel> credentialTypeModels = new ArrayList<>();
 		try {
@@ -72,6 +74,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		return credentialTypeModels;
 	}
 	
+	@Override
 	public List<CredentialTypeDAO> getCredentialTypeDAOByUserId(UUID userId,Boolean includeInActiveStatus) {
 		List<CredentialTypeDAO> credentialTypeDAOs = new ArrayList<>();
 		try {
@@ -96,6 +99,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		return credentialTypeDAOs;
 	}
 	
+	@Override
 	public List<CredentialTypeDAO> getDefaultCredentialTypeDAO() {
 		List<CredentialTypeDAO> credentialTypeDAOs = new ArrayList<>();
 		try {
@@ -128,6 +132,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 		return outPutResponse;	
 	}
 
+	@Override
 	public CredentialTypeModel getCredentialTypeByUserIdAndId(UUID userId,UUID id) {
 		CredentialTypeModel credentialTypeModel=new CredentialTypeModel();
 		try {
@@ -149,5 +154,47 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 			throw exception;
 		}
 		return credentialTypeModel;
+	}
+	
+	@Override
+	public CredentialTypeDAO getCredentialTypeDAOByUserIdAndId(UUID userId,UUID id) {
+		CredentialTypeDAO credentialTypeDAO=new CredentialTypeDAO();
+		try {
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_USERID_AND_ID_QUERY);
+			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapgetCredentialTypeByUserIdAndIdBoundStatement(preparedStatement,userId,id);			
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row typeDAOResult = resultSet.one();
+				credentialTypeDAO = credentialTypeServiceRepositoryMapper.mapCredentialTypeDAO(typeDAOResult);	
+				if(!KatavuccolServiceUtility.isEqual(credentialTypeDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
+				{
+					credentialTypeDAO=null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialTypeByUserId error=" + exception);
+			throw exception;
+		}
+		return credentialTypeDAO;
+	}
+
+	@Override
+	public Result deleteCredentialType(CredentialTypeDAO credentialTypeDAO) {
+		Result result=new Result();
+		try {
+			
+			cassandraConnector.connect(null, 0,null);
+			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DELETE_CREDENTIAL_TYPE_QUERY);
+			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapDeleteCredentialTypeBoundStatement(preparedStatement,credentialTypeDAO);
+			cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();		
+			
+		} catch (Exception exception) {
+			logger.error("Exception in getCredentialTypeByUserId error=" + exception);
+			throw exception;
+		}
+		return result;
 	}
 }

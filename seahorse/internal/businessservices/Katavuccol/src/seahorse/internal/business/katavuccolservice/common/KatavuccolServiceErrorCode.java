@@ -100,6 +100,7 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	private static final String credentialTypeIdIsEmpty = "CredentialType.API.{0}.{1}.CredentialTypeId.Empty";
 	private static final String credentialTypeIdIsInValid = "CredentialType.API.{0}.{1}.CredentialTypeId.InValid";
 	private static final String deleteCredentialTypeRequestMessageEntityIsEmpty="CredentialType.API.{0}.{1}.DeleteCredentialTypeRequestMessageEntity.IsEmpty";
+	private static final String credentialTypeIsNotFound="CredentialType.API.{0}.{1}.CredentialTypeId.NotFound";
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -560,5 +561,10 @@ public class KatavuccolServiceErrorCode implements IKatavuccolServiceErrorCode {
 	@Override
 	public String deleteCredentialTypeRequestMessageEntityIsEmpty() {
 		return deleteCredentialTypeRequestMessageEntityIsEmpty;
+	}
+
+	@Override
+	public String CredentialTypeIsNotFound() {
+		return credentialTypeIsNotFound;
 	}
 }
