@@ -7,6 +7,9 @@ import java.util.List;
 
 import seahorse.internal.business.credentialtypeservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
 
 /**
  * @author admin
@@ -21,4 +24,8 @@ public interface ICredentialTypeService {
 	CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
 	CredentialTypeModel getCredentialTypeByUserIdAndId(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);
+
+	UpdateCredentialResponseMessageEntity updateCredentialType(UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
+
+	DeleteCredentialTypeResMsgEntity deleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
 }

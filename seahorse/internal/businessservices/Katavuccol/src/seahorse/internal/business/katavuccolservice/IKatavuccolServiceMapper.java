@@ -20,7 +20,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValu
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
@@ -44,9 +44,9 @@ public interface IKatavuccolServiceMapper {
 
 	List<Credential> mapCredentials(Result result, GetCredentialMessageEntity getCredentialMessageEntity);
 
-	DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result, Status badRequest);
+	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result, Status badRequest);
 
-	DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,
+	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,
 			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
 	UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result, Status badRequest);

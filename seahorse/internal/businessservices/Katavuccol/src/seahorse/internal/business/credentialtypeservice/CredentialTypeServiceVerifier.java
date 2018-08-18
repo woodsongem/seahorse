@@ -11,6 +11,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
@@ -74,6 +75,13 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 	}
+	
+	@Override
+	public Result verifyDeleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	@Override
 	public Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
@@ -143,4 +151,5 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 		return null;
 	}
 
+	
 }

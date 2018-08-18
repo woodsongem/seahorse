@@ -9,6 +9,6 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author sajanmje
  *
  */
-public class DeleteCredentialTypeRequestMessageEntity extends BaseMessageEntity {
+public class DeleteCredentialResMsgEntity extends BaseMessageEntity  {
 
 }

@@ -23,7 +23,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValu
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
@@ -106,8 +106,8 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,Status badRequest) {
-		DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResponseMessageEntity();
+	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,Status badRequest) {
+		DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResMsgEntity();
 		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
 		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
 		deleteCredentialResponseMessageEntity.setHttpStatus(badRequest);
@@ -115,8 +115,8 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
-		DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResponseMessageEntity();
+	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResMsgEntity();
 		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
 		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
 		deleteCredentialResponseMessageEntity.setHttpStatus(Status.OK);		

@@ -10,6 +10,8 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -130,7 +132,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		//Set
 		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
 		deleteCredentialMessageEntity.setModifiedDate(new Date());
@@ -287,7 +289,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity deleteCredentialType(DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

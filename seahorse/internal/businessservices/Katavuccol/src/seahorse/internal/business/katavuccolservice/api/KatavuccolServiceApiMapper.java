@@ -158,7 +158,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public DeleteCredentialResponse mapDeleteCredentialResponse(
-			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
 			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
 		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
 		if(deleteCredentialResponseMessageEntity == null || deleteCredentialResponseMessageEntity.getResultMessages() == null)
@@ -311,17 +311,20 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
-			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
-			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
+			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DeleteCredentialTypeRequestMessageEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,
+	public DeleteCredentialTypeReqMsgEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,
 			String credentialTypeId, HttpServletRequest httpRequest) {
-		// TODO Auto-generated method stub
-		return null;
+		DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity=new DeleteCredentialTypeReqMsgEntity();
+		deleteCredentialTypeRequestMessageEntity.setUserId(userid);
+		deleteCredentialTypeRequestMessageEntity.setCredentialTypeId(credentialTypeId);
+		deleteCredentialTypeRequestMessageEntity.setHttpRequest(httpRequest);
+		return deleteCredentialTypeRequestMessageEntity;
 	}
 
 	@Override

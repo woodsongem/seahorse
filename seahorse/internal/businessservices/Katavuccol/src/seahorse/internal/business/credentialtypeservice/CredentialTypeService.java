@@ -18,10 +18,15 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCred
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -120,6 +125,7 @@ public class CredentialTypeService implements ICredentialTypeService {
 		return credentialTypeByUserId.getCredentialType();
 		
 	}
+	
 	public CredentialTypeMsgEntity getCredentialTypeById(CredentialTypeByIdMsgEntity credentialTypeByIdMsgEntity)
 	{		
 		
@@ -140,6 +146,35 @@ public class CredentialTypeService implements ICredentialTypeService {
 		}
 		return	credentialTypeServiceRepository.getCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity.getParsedUserId(), credentialTypeByUserIdMsgEntity.getParsedId());
 	}
-	
-	
+
+	@Override
+	public UpdateCredentialResponseMessageEntity updateCredentialType(UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteCredentialTypeResMsgEntity deleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		
+		//Set	
+		deleteCredentialTypeReqMsgEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
+		deleteCredentialTypeReqMsgEntity.setCreatedDate(new Date());
+		
+		Result result=credentialTypeServiceValidator.validDeleteCredentialType(deleteCredentialTypeReqMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
+		}
+		result=credentialTypeServiceVerifier.verifyDeleteCredentialType(deleteCredentialTypeReqMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.BAD_REQUEST);
+		}
+		result=	credentialTypeServiceProcessor.processDeleteCredentialType(deleteCredentialTypeReqMsgEntity);
+		if(result.getResultStatus() != ResultStatus.SUCCESS)
+		{
+			return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.FORBIDDEN);
+		}
+		return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.FORBIDDEN);
+	}
 }

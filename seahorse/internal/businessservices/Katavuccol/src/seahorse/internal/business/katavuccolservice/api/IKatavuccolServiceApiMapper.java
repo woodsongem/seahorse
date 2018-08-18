@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
@@ -35,8 +36,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CredentialType
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialTypeRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
@@ -70,7 +70,7 @@ public interface IKatavuccolServiceApiMapper {
 
 	DeleteCredentialRequestMessageEntity mapDeleteCredentialRequestMessageEntity(String userid,String categoryId, String credentialId,HttpServletRequest httpRequest);
 
-	DeleteCredentialResponse mapDeleteCredentialResponse(DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	DeleteCredentialResponse mapDeleteCredentialResponse(DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
 
 	CategoryRequestMessageEntity mapCategoryRequestMessageEntity(CategoryRequest categoryRequest, String userid, HttpServletRequest httpRequest);
 
@@ -105,10 +105,10 @@ public interface IKatavuccolServiceApiMapper {
 			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
 
 	DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
-			DeleteCredentialResponseMessageEntity deleteCredentialResponseMessageEntity,
-			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity);
+			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
+			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
 
-	DeleteCredentialTypeRequestMessageEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,
+	DeleteCredentialTypeReqMsgEntity mapDeleteCredentialTypeRequestMessageEntity(String userid,
 			String credentialTypeId, HttpServletRequest httpRequest);
 
 	GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest);

@@ -29,6 +29,7 @@ import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.datacontracts.*;
@@ -211,12 +212,12 @@ public class KatavuccolServiceApi {
 		DeleteCredentialTypeResponse deleteCredentialTypeResponse=new DeleteCredentialTypeResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialTypeRequestMessageEntity(userid,credentialTypeId,httpRequest);
+			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialTypeRequestMessageEntity(userid,credentialTypeId,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			deleteCredentialTypeRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
 			deleteCredentialTypeRequestMessageEntity.setHeaders(headers);
-			DeleteCredentialResponseMessageEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredentialType(deleteCredentialTypeRequestMessageEntity);
+			DeleteCredentialResMsgEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredentialType(deleteCredentialTypeRequestMessageEntity);
 			deleteCredentialTypeResponse=katavuccolServiceApiMapper.mapDeleteCredentialTypeResponse(deleteCredentialResponseMessageEntity,deleteCredentialTypeRequestMessageEntity);
 			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
 		}
@@ -325,7 +326,7 @@ public class KatavuccolServiceApi {
 			Map<String, String> headers=getHeaders(httpRequest);
 			deleteCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
 			deleteCredentialMessageEntity.setHeaders(headers);
-			DeleteCredentialResponseMessageEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredential(deleteCredentialMessageEntity);
+			DeleteCredentialResMsgEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredential(deleteCredentialMessageEntity);
 			deleteCredentialResponse=katavuccolServiceApiMapper.mapDeleteCredentialResponse(deleteCredentialResponseMessageEntity,deleteCredentialMessageEntity);
 			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
 		}
