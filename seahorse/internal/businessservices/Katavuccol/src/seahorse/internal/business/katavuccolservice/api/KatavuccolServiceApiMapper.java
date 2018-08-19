@@ -314,6 +314,12 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 			DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity,
 			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
 		DeleteCredentialTypeResponse deleteCredentialTypeResponse=new DeleteCredentialTypeResponse();
+	
+		if(deleteCredentialTypeReqMsgEntity.getResultMessages()== null)
+		{
+			return deleteCredentialTypeResponse;	
+		}
+		
 		List<ResultMessage> resultMessages = new ArrayList<>();
 		for (ResultMessage resultMessageMS : deleteCredentialTypeReqMsgEntity.getResultMessages()) {
 			ResultMessage resultMessage = new ResultMessage();

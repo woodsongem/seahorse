@@ -87,4 +87,23 @@ public class CredentialTypeServiceMapper implements ICredentialTypeServiceMapper
 		return credentialTypeDAO;
 	}
 
+	@Override
+	public DeleteCredentialTypeResMsgEntity mapDeleteCredentialTypeResMsgEntity(Result result,DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
+		DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity=new DeleteCredentialTypeResMsgEntity();
+		deleteCredentialTypeResMsgEntity.setResultStatus(result.getResultStatus());
+		deleteCredentialTypeResMsgEntity.setResultMessages(result.getResultMessages());
+		deleteCredentialTypeResMsgEntity.setHttpStatus(Status.OK);	
+		if (deleteCredentialTypeReqMsgEntity.getHttpStatus() == null) {
+			if (result.getResultStatus() == ResultStatus.SUCCESS)
+				deleteCredentialTypeResMsgEntity.setHttpStatus(Status.OK);
+			else
+				deleteCredentialTypeResMsgEntity.setHttpStatus(Status.FORBIDDEN);
+		}
+		else
+		{
+			deleteCredentialTypeResMsgEntity.setHttpStatus(deleteCredentialTypeReqMsgEntity.getHttpStatus());
+		}
+		return deleteCredentialTypeResMsgEntity;
+	}
+
 }

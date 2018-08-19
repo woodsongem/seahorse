@@ -175,6 +175,6 @@ public class CredentialTypeService implements ICredentialTypeService {
 		{
 			return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.FORBIDDEN);
 		}
-		return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.FORBIDDEN);
+		return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result,deleteCredentialTypeReqMsgEntity);
 	}
 }

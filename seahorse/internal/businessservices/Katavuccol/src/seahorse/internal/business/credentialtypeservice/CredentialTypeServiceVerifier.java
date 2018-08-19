@@ -190,12 +190,13 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	public Result isCredentialTypeIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
 		CredentialTypeDAO credentialTypeDAO=credentialTypeServiceRepository.getCredentialTypeDAOByUserIdAndId(deleteCredentialTypeReqMsgEntity.getParsedUserId(),
 				deleteCredentialTypeReqMsgEntity.getParsedCredentialTypeId());
-		deleteCredentialTypeReqMsgEntity.setHttpStatus(Status.NOT_FOUND);
+		
 		 if(credentialTypeDAO==null)
 		  {
-				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Credential type is not found",
-						"UserId",
-						katavuccolServiceErrorCode.CredentialTypeIsNotFound());
+			 deleteCredentialTypeReqMsgEntity.setHttpStatus(Status.NOT_FOUND);
+			 return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Credential type is not found",
+					"UserId",
+					katavuccolServiceErrorCode.CredentialTypeIsNotFound());
 		  }
 		
 		return new Result(ResultStatus.SUCCESS);

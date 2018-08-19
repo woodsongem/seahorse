@@ -218,7 +218,7 @@ public class KatavuccolServiceApi {
 			deleteCredentialTypeRequestMessageEntity.setHttpMethod(httpRequest.getMethod());
 			deleteCredentialTypeRequestMessageEntity.setHeaders(headers);
 			DeleteCredentialResMsgEntity	deleteCredentialResponseMessageEntity=katavuccolService.deleteCredentialType(deleteCredentialTypeRequestMessageEntity);
-			deleteCredentialTypeResponse=katavuccolServiceApiMapper.mapDeleteCredentialTypeResponse(deleteCredentialResponseMessageEntity,deleteCredentialTypeRequestMessageEntity);
+			//deleteCredentialTypeResponse=katavuccolServiceApiMapper.mapDeleteCredentialTypeResponse(deleteCredentialResponseMessageEntity,deleteCredentialTypeRequestMessageEntity);
 			httpStatus = deleteCredentialResponseMessageEntity.getHttpStatus();
 		}
 		catch (Exception ex) {

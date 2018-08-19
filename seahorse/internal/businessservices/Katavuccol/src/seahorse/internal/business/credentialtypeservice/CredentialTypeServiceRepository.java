@@ -158,7 +158,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 	
 	@Override
 	public CredentialTypeDAO getCredentialTypeDAOByUserIdAndId(UUID userId,UUID id) {
-		CredentialTypeDAO credentialTypeDAO=new CredentialTypeDAO();
+		CredentialTypeDAO credentialTypeDAO= null;
 		try {
 			cassandraConnector.connect(null, 0,null);
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_CATEGORY_TYPE_DETAILS_BY_USERID_AND_ID_QUERY);
@@ -184,7 +184,7 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 	public Result deleteCredentialType(CredentialTypeDAO credentialTypeDAO) {
 		Result result=new Result();
 		try {
-			
+			result.setResultStatus(ResultStatus.SUCCESS);
 			cassandraConnector.connect(null, 0,null);
 			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(QueryConstants.GET_DELETE_CREDENTIAL_TYPE_QUERY);
 			BoundStatement bound=credentialTypeServiceRepositoryMapper.mapDeleteCredentialTypeBoundStatement(preparedStatement,credentialTypeDAO);
@@ -192,7 +192,8 @@ public class CredentialTypeServiceRepository implements ICredentialTypeServiceRe
 			cassandraConnector.close();		
 			
 		} catch (Exception exception) {
-			logger.error("Exception in getCredentialTypeByUserId error=" + exception);
+			
+			logger.error("Exception in deleteCredentialType error=" + exception);
 			throw exception;
 		}
 		return result;

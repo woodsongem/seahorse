@@ -29,4 +29,6 @@ public interface ICredentialTypeServiceMapper {
 
 	CredentialTypeDAO mapCredentialTypeDAO(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
 
+	DeleteCredentialTypeResMsgEntity mapDeleteCredentialTypeResMsgEntity(Result result,DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity);
+
 }
