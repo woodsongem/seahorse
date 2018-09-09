@@ -3,10 +3,68 @@
  */
 package seahorse.internal.business.categoryservice;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Response.Status;
+
+import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
+import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
+import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
+
 /**
  * @author admin
  *
  */
 public interface ICategoryServiceMapper {
+	CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result, Status badRequest);
+
+	CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result,CategoryRequestMessageEntity categoryRequestMessageEntity);
+
+	DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result, Status badRequest);
+
+	DeleteCategoryResponseMessageEntity mapDeleteCategoryResponseMessageEntity(Result result,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+
+	List<CategoryModel> mapCategory(Result result, GetCategoryMessageEntity getCategoryMessageEntity);
+
+	List<Category> mapCategory(Result result, Status forbidden);
+
+	UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result, Status badRequest);
+
+	UpdateCategoryResponseMessageEntity mapUpdateCategoryResponseMessageEntity(Result result,UpdateCategoryMessageEntity updateCategoryMessageEntity);
+
+	Credential mapCategory(Result result, GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+
+	CategoryRequestMessageEntity mapCategoryRequestMessageEntity(CategoryRequest categoryRequest, String userid,HttpServletRequest httpRequest);
+
+	CategoryResponse mapCategoryResponse(CategoryResponseMessageEntity categoryResponseMessageEntity,CategoryRequestMessageEntity categoryMessageEntity);
+
+	DeleteCategoryRequestMessageEntity mapDeleteCategoryRequestMessageEntity(String userid, String categoryId,HttpServletRequest httpRequest);
+
+	DeleteCategoryResponse mapDeleteCategoryResponse(DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+
+	UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(UpdateCategoryRequest updateCategoryRequest,String userid, String categoryId, HttpServletRequest httpRequest);
+
+	UpdateCategoryResponse mapUpdateCategoryResponse(UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,UpdateCategoryMessageEntity updateCategoryMessageEntity);
+
+	GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest);
+
+	CategoryMessageEntity mapCategoryMessageEntity(CategoryDAO categoryDAO);
 
 }
