@@ -41,3 +41,5 @@ seahorse/internal/businessservices/.recommenders/caches/identified-project-coord
 seahorse/internal/businessservices/.recommenders/caches/manual-mappings.json
 seahorse/internal/businessservices/applicationdetailservice/target/m2e-wtp/web-resources/META-INF/maven/ApplicationDetailService/ApplicationDetailService/pom.properties
 seahorse/internal/database/katavuccol/dev/tables/category.sql
+seahorse/.DS_Store
+.DS_Store
