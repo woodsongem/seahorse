@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.categoryservice;
 
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
@@ -15,7 +15,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
  */
 public interface ICategoryServiceVerifier {
 
-	Result verifyCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	Result verifyCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity);
 	Result verifyDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	Result isCategoryIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	Result isUserIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);

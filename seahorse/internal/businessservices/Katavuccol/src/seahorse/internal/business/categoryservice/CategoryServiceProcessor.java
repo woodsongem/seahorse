@@ -37,7 +37,7 @@ public class CategoryServiceProcessor implements ICategoryServiceProcessor {
 	}
 
 	@Override
-	public Result processorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result processorCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result;
 		result=createCategory(categoryRequestMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -48,7 +48,7 @@ public class CategoryServiceProcessor implements ICategoryServiceProcessor {
 	}
 
 	@Override
-	public Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result createCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		categoryRequestMessageEntity.setId(UUIDs.timeBased());
 		OutPutResponse outPutResponse=categoryServiceRepository.createCategory(categoryRequestMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)

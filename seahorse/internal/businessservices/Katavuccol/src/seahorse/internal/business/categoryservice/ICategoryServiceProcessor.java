@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.categoryservice;
 
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 
@@ -13,7 +13,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
  */
 public interface ICategoryServiceProcessor {
 
-	Result createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	Result createCategory(CreateCategoryMessageEntity categoryRequestMessageEntity);
 
 	Result processorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	
@@ -27,5 +27,5 @@ public interface ICategoryServiceProcessor {
 	
 	Result updateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);
 
-	Result processorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	Result processorCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity);
 }

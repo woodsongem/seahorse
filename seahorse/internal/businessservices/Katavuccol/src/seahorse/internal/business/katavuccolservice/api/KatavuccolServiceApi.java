@@ -24,6 +24,9 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
 import seahorse.internal.business.credentialservice.ICredentialService;
 import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
@@ -83,7 +86,7 @@ public class KatavuccolServiceApi {
 	public Response deleteCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId) 
 	{
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-		DeleteCategoryResponse deleteCategoryResponse=new DeleteCategoryResponse();
+		DeleteCategoryResponseModel deleteCategoryResponse=new DeleteCategoryResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
 			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity=katavuccolServiceApiMapper.mapDeleteCategoryRequestMessageEntity(userid,categoryId,httpRequest);
@@ -107,10 +110,10 @@ public class KatavuccolServiceApi {
 	@PUT
 	@Path("/{userid}/category/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId,UpdateCategoryRequest updateCategoryRequest) 
+	public Response updateCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId,UpdateCategoryRequestModel updateCategoryRequest) 
 	{
 		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
-		UpdateCategoryResponse updateCategoryResponse=new UpdateCategoryResponse();
+		UpdateCategoryResponseModel updateCategoryResponse=new UpdateCategoryResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
 			UpdateCategoryMessageEntity updateCategoryMessageEntity=katavuccolServiceApiMapper.mapUpdateCategoryRequestMessageEntity(updateCategoryRequest,userid,categoryId,httpRequest);
@@ -443,18 +446,18 @@ public class KatavuccolServiceApi {
 		categoryResponse.setResultMessages(resultMessage);
 		return categoryResponse;
 	}
-	private DeleteCategoryResponse getDeleteCategoryResponse() {
+	private DeleteCategoryResponseModel getDeleteCategoryResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		DeleteCategoryResponse deleteCategoryResponse = new DeleteCategoryResponse();		
+		DeleteCategoryResponseModel deleteCategoryResponse = new DeleteCategoryResponseModel();		
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
 		deleteCategoryResponse.setResultMessages(resultMessage);
 		return deleteCategoryResponse;
 	}
 	
-	private UpdateCategoryResponse getUpdateCategoryResponse() {
+	private UpdateCategoryResponseModel getUpdateCategoryResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		UpdateCategoryResponse updateCategoryResponse = new UpdateCategoryResponse();		
+		UpdateCategoryResponseModel updateCategoryResponse = new UpdateCategoryResponseModel();		
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
 		updateCategoryResponse.setResultMessages(resultMessage);

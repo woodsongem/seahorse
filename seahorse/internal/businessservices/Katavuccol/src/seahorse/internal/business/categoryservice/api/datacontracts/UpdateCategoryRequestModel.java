@@ -1,13 +1,15 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.categoryservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.RequestBase;
 
 /**
  * @author sajanmje
  *
  */
-public class UpdateCategoryRequest extends RequestBase {
+public class UpdateCategoryRequestModel extends RequestBase {
 
 	private String name;	
 	private String description;

@@ -47,7 +47,7 @@ public class CategoryService implements  ICategoryService {
 	}
 
 	@Override
-	public CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public CreateCategoryResponseMessageEntity createCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		//Set
 		categoryRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
 		categoryRequestMessageEntity.setCreatedDate(new Date());		

@@ -36,7 +36,7 @@ public class CategoryServiceVerifier implements ICategoryServiceVerifier {
 	}
 
 	@Override
-	public Result verifyCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result verifyCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result;
 
 		result = isUserIdValid(categoryRequestMessageEntity);
@@ -52,11 +52,11 @@ public class CategoryServiceVerifier implements ICategoryServiceVerifier {
 		return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS, "", "", "");
 	}
 
-	public Result isUserIdValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result isUserIdValid(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result isNameValid(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		List<CategoryDAO> categoryDAOs = categoryServiceRepository
 				.getCategoryDetailByUserId(categoryRequestMessageEntity.getParsedUserId());
 		List<CategoryDAO> filterCategoryDAOs = FluentIterable.from(categoryDAOs)

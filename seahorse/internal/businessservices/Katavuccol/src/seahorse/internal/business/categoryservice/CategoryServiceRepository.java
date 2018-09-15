@@ -14,7 +14,7 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
@@ -71,7 +71,7 @@ public class CategoryServiceRepository implements ICategoryServiceRepository {
 	}
 
 	@Override
-	public OutPutResponse createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public OutPutResponse createCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		OutPutResponse outPutResponse = new OutPutResponse();
 		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);

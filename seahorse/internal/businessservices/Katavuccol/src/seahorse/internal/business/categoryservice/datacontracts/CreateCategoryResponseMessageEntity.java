@@ -11,7 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author SMJE
  *
  */
-public class CategoryResponseMessageEntity extends BaseMessageEntity {
+public class CreateCategoryResponseMessageEntity extends BaseMessageEntity {
 
 	private UUID id;
 

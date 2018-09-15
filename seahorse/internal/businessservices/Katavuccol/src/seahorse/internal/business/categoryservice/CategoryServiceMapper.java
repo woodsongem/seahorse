@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.CategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryResponseMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
@@ -21,9 +24,6 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -38,8 +38,8 @@ import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialV
  */
 public class CategoryServiceMapper implements ICategoryServiceMapper {
 	@Override
-	public CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result, Status badRequest) {
-		CategoryResponseMessageEntity categoryResponseMessageEntity = new CategoryResponseMessageEntity();
+	public CreateCategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result, Status badRequest) {
+		CreateCategoryResponseMessageEntity categoryResponseMessageEntity = new CreateCategoryResponseMessageEntity();
 		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
 		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());
 		categoryResponseMessageEntity.setHttpStatus(badRequest);
@@ -47,9 +47,9 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	}
 
 	@Override
-	public CategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result,CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public CreateCategoryResponseMessageEntity mapCategoryResponseMessageEntity(Result result,CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
-		CategoryResponseMessageEntity categoryResponseMessageEntity = new CategoryResponseMessageEntity();
+		CreateCategoryResponseMessageEntity categoryResponseMessageEntity = new CreateCategoryResponseMessageEntity();
 		categoryResponseMessageEntity.setResultStatus(result.getResultStatus());
 		categoryResponseMessageEntity.setResultMessages(result.getResultMessages());
 		categoryResponseMessageEntity.setHttpStatus(Status.OK);
@@ -160,10 +160,10 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	}
 
 	@Override
-	public CategoryRequestMessageEntity mapCategoryRequestMessageEntity(CategoryRequest categoryRequest, String userid,
+	public CreateCategoryMessageEntity mapCategoryRequestMessageEntity(CategoryRequest categoryRequest, String userid,
 			HttpServletRequest httpRequest) {
 		// TODO Auto-generated method stub
-		CategoryRequestMessageEntity categoryRequestMessageEntity = new CategoryRequestMessageEntity();
+		CreateCategoryMessageEntity categoryRequestMessageEntity = new CreateCategoryMessageEntity();
 		categoryRequestMessageEntity.setUserId(userid);
 		categoryRequestMessageEntity.setName(categoryRequest.getName());
 		categoryRequestMessageEntity.setDescription(categoryRequest.getDescription());
@@ -171,8 +171,8 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	}
 
 	@Override
-	public CategoryResponse mapCategoryResponse(CategoryResponseMessageEntity categoryResponseMessageEntity,
-			CategoryRequestMessageEntity categoryMessageEntity) {
+	public CategoryResponse mapCategoryResponse(CreateCategoryResponseMessageEntity categoryResponseMessageEntity,
+			CreateCategoryMessageEntity categoryMessageEntity) {
 		// TODO Auto-generated method stub
 		CategoryResponse categoryResponse = new CategoryResponse();
 		if (categoryResponseMessageEntity == null) {
@@ -208,11 +208,11 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	}
 
 	@Override
-	public DeleteCategoryResponse mapDeleteCategoryResponse(
+	public DeleteCategoryResponseModel mapDeleteCategoryResponse(
 			DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,
 			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
-		DeleteCategoryResponse deleteCategoryResponse = new DeleteCategoryResponse();
+		DeleteCategoryResponseModel deleteCategoryResponse = new DeleteCategoryResponseModel();
 		if (deleteCategoryResponseMessageEntity == null
 				|| deleteCategoryResponseMessageEntity.getResultMessages() == null) {
 			return deleteCategoryResponse;
@@ -233,7 +233,7 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 
 	@Override
 	public UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(
-			UpdateCategoryRequest updateCategoryRequest, String userid, String categoryId,
+			UpdateCategoryRequestModel updateCategoryRequest, String userid, String categoryId,
 			HttpServletRequest httpRequest) {
 		// TODO Auto-generated method stub
 		UpdateCategoryMessageEntity updateCategoryMessageEntity = new UpdateCategoryMessageEntity();
@@ -248,11 +248,11 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	}
 
 	@Override
-	public UpdateCategoryResponse mapUpdateCategoryResponse(
+	public UpdateCategoryResponseModel mapUpdateCategoryResponse(
 			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
 			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
 		// TODO Auto-generated method stub
-		UpdateCategoryResponse updateCategoryResponse = new UpdateCategoryResponse();
+		UpdateCategoryResponseModel updateCategoryResponse = new UpdateCategoryResponseModel();
 		if (updateCategoryResponseMessageEntity == null
 				|| updateCategoryResponseMessageEntity.getResultMessages() == null) {
 			return updateCategoryResponse;

@@ -32,7 +32,7 @@ public class CategoryServiceValidator implements ICategoryServiceValidator {
 	}
 
 	@Override
-	public Result validateCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result validateCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result;
 
 		result = isCategoryRequestMessageEntityValid(categoryRequestMessageEntity);
@@ -51,7 +51,7 @@ public class CategoryServiceValidator implements ICategoryServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isCategoryRequestMessageEntityValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result isCategoryRequestMessageEntityValid(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result = new Result(ResultStatus.SUCCESS);
 
 		if (categoryRequestMessageEntity == null) {
@@ -76,7 +76,7 @@ public class CategoryServiceValidator implements ICategoryServiceValidator {
 				katavuccolServiceErrorCode.deleteCategoryIdInValidErrorCode());
 	}
 
-	public Result isUserIdValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result isUserIdValid(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result;
 
 		result = isUserIdValid(categoryRequestMessageEntity.getUserId(),
@@ -104,7 +104,7 @@ public class CategoryServiceValidator implements ICategoryServiceValidator {
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Invalid user id", "UserId", errorCode);
 	}
 
-	public Result isNameValid(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result isNameValid(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		Result result = new Result(ResultStatus.SUCCESS);
 
 		if (StringUtils.isEmpty(categoryRequestMessageEntity.getName())) {

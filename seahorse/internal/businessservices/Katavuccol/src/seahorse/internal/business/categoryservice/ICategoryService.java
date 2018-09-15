@@ -14,7 +14,7 @@ import seahorse.internal.business.categoryservice.api.datacontracts.CategoryMode
  */
 public interface ICategoryService {
 	
-	CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	CreateCategoryResponseMessageEntity createCategory(CreateCategoryMessageEntity categoryRequestMessageEntity);
 	
 	DeleteCategoryResponseMessageEntity deleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -222,10 +225,10 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public DeleteCategoryResponse mapDeleteCategoryResponse(
+	public DeleteCategoryResponseModel mapDeleteCategoryResponse(
 			DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,
 			DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity) {
-		DeleteCategoryResponse deleteCategoryResponse=new DeleteCategoryResponse();
+		DeleteCategoryResponseModel deleteCategoryResponse=new DeleteCategoryResponseModel();
 		if(deleteCategoryResponseMessageEntity == null || deleteCategoryResponseMessageEntity.getResultMessages() == null)
 		{
 			return deleteCategoryResponse;
@@ -245,7 +248,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(
-			UpdateCategoryRequest updateCategoryRequest, String userid, String categoryId,
+			UpdateCategoryRequestModel updateCategoryRequest, String userid, String categoryId,
 			HttpServletRequest httpRequest) {
 		UpdateCategoryMessageEntity updateCategoryMessageEntity=new UpdateCategoryMessageEntity();
 		updateCategoryMessageEntity.setUserId(userid);
@@ -260,10 +263,10 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public UpdateCategoryResponse mapUpdateCategoryResponse(
+	public UpdateCategoryResponseModel mapUpdateCategoryResponse(
 			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
 			UpdateCategoryMessageEntity updateCategoryMessageEntity) {
-		UpdateCategoryResponse updateCategoryResponse=new UpdateCategoryResponse();
+		UpdateCategoryResponseModel updateCategoryResponse=new UpdateCategoryResponseModel();
 		if(updateCategoryResponseMessageEntity == null || updateCategoryResponseMessageEntity.getResultMessages() == null)
 		{
 			return updateCategoryResponse;

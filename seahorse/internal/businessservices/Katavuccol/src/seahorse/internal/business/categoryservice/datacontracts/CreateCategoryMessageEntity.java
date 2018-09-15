@@ -11,7 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author SMJE
  *
  */
-public class CategoryRequestMessageEntity extends BaseMessageEntity {
+public class CreateCategoryMessageEntity extends BaseMessageEntity {
 
 	private String name;
 	private String userId;

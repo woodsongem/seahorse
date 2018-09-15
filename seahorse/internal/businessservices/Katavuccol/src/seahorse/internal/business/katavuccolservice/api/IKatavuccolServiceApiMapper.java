@@ -6,6 +6,9 @@ package seahorse.internal.business.katavuccolservice.api;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
+import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
@@ -18,12 +21,9 @@ import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeRequest;
@@ -79,12 +79,12 @@ public interface IKatavuccolServiceApiMapper {
 
 	DeleteCategoryRequestMessageEntity mapDeleteCategoryRequestMessageEntity(String userid, String categoryId,HttpServletRequest httpRequest);
 
-	DeleteCategoryResponse mapDeleteCategoryResponse(DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
+	DeleteCategoryResponseModel mapDeleteCategoryResponse(DeleteCategoryResponseMessageEntity deleteCategoryResponseMessageEntity,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
-	UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(UpdateCategoryRequest updateCategoryRequest,
+	UpdateCategoryMessageEntity mapUpdateCategoryRequestMessageEntity(UpdateCategoryRequestModel updateCategoryRequest,
 			String userid, String categoryId, HttpServletRequest httpRequest);
 
-	UpdateCategoryResponse mapUpdateCategoryResponse(
+	UpdateCategoryResponseModel mapUpdateCategoryResponse(
 			UpdateCategoryResponseMessageEntity updateCategoryResponseMessageEntity,
 			UpdateCategoryMessageEntity updateCategoryMessageEntity);
 

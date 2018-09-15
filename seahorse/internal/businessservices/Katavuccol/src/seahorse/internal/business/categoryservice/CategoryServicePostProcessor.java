@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.categoryservice;
 
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -16,7 +16,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 public class CategoryServicePostProcessor implements ICategoryServicePostProcessor {
 
 	@Override
-	public Result postProcessorCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public Result postProcessorCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return new Result(ResultStatus.SUCCESS);
 	}

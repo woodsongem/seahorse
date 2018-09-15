@@ -10,7 +10,7 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.dal.DataBaseColumn;
@@ -66,7 +66,7 @@ public class CategoryServiceRepositoryMapper implements ICategoryServiceReposito
 	}
 
 	@Override
-	public BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CategoryRequestMessageEntity categoryRequestMessageEntity) {
+	public BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CreateCategoryMessageEntity categoryRequestMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();
 		bound.setUUID(DataBaseColumn.ID,categoryRequestMessageEntity.getId());
 		bound.setUUID(DataBaseColumn.USERID,categoryRequestMessageEntity.getParsedUserId());

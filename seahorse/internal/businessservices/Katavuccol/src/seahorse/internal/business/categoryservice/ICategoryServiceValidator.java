@@ -12,7 +12,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
  */
 public interface ICategoryServiceValidator {
 
-	Result validateCreateCategory(CategoryRequestMessageEntity categoryRequestMessageEntity);
+	Result validateCreateCategory(CreateCategoryMessageEntity categoryRequestMessageEntity);
 	Result validateDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	Result isDeleteCategoryRequestMessageEntityValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	Result isUserIdValid(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);

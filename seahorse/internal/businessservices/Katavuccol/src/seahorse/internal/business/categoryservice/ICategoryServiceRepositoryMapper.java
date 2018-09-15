@@ -8,7 +8,7 @@ import java.util.UUID;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
-import seahorse.internal.business.categoryservice.datacontracts.CategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
@@ -23,7 +23,7 @@ public interface ICategoryServiceRepositoryMapper {
 	CategoryDAO mapCategoryDAO(Row categoryDAOResult);
 	String getCategoryDetailByUserIdQuery(UUID userId);
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID categoryId, UUID userId);
-	BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CategoryRequestMessageEntity categoryRequestMessageEntity);
+	BoundStatement mapBoundStatementRequest(PreparedStatement preparedStatement,CreateCategoryMessageEntity categoryRequestMessageEntity);
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCategoryMessageEntity updateCategoryMessageEntity);	
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement, UUID userId);

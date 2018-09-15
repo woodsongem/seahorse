@@ -1,14 +1,16 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.categoryservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.RequestBase;
 
 /**
- * @author sajanmje
+ * @author SMJE
  *
  */
-public class CategoryRequest extends RequestBase {
-	
+public class CreateCategoryRequestModel extends RequestBase {
+
 	private String name;	
 	private String description;
 	/**
@@ -35,5 +37,4 @@ public class CategoryRequest extends RequestBase {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 }
