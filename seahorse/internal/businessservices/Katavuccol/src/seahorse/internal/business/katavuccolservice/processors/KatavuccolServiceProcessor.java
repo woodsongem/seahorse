@@ -13,6 +13,11 @@ import com.datastax.driver.core.utils.UUIDs;
 import com.google.common.collect.FluentIterable;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
@@ -23,14 +28,9 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDA
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolEncryption;
 
 

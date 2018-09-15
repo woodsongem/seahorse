@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response.Status;
 
+import com.google.api.client.auth.oauth2.Credential;
+
 import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
@@ -23,7 +25,6 @@ import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryRe
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;

@@ -3,13 +3,22 @@
  */
 package seahorse.internal.business.credentialservice;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.ws.rs.core.Response.Status;
+
 import org.apache.logging.log4j.Logger;
+
+import com.datastax.driver.core.utils.UUIDs;
+import com.google.api.client.auth.oauth2.Credential;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
+import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValueDetail;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
-
+import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -46,5 +55,115 @@ public class CredentialService implements ICredentialService {
 		result=credentialServiceProcessor.processorGetCredentialsByUserId(getCredentialByUserIdMessageEntity);
 		result=credentialServicePostProcessor.postProcessorGetCredentialsByUserId(getCredentialByUserIdMessageEntity);
 		return null;
+	}
+	
+	@Override
+	public CredentialResponseMessageEntity createCredential(CreateCredentialRequestMessageEntity credentialRequestMessageEntity) {
+
+		//Set	
+		credentialRequestMessageEntity.setId(UUIDs.timeBased());
+		credentialRequestMessageEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+		credentialRequestMessageEntity.setCreatedDate(new Date());
+		credentialRequestMessageEntity.setIsCredentialNull(false);
+		
+		//Validator	    
+	    Result result = credentialServiceValidator.validateCreateCredentials(credentialRequestMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = credentialServiceVerifier.verifyCreateCredentials(credentialRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorCreateCredentials(credentialRequestMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.postProcessorCreateCredentials(credentialRequestMessageEntity);
+				
+		return katavuccolServiceMapper.mapCredentialResponseMessageEntity(result, credentialRequestMessageEntity);
+	}
+
+	@Override
+	public List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity) {
+		//Validator	    
+	    Result result = credentialServiceValidator.validateGetCredentials(getCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+	    
+	    //Verifier
+	    result = credentialServiceVerifier.verifyGetCredentials(getCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return new ArrayList<>();
+		}
+		
+		return katavuccolServiceMapper.mapCredentials(result, getCredentialMessageEntity);
+	}
+
+	@Override
+	public UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
+		//Set		
+		updateCredentialMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = credentialServiceValidator.validateUpdateCredential(updateCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = credentialServiceVerifier.verifyUpdateCredential(updateCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorUpdateCredential(updateCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.postProcessorUpdateCredential(updateCredentialMessageEntity);
+				
+		return katavuccolServiceMapper.mapUpdateCredentialResponseMessageEntity(result, updateCredentialMessageEntity);	
+	}
+
+	@Override
+	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+		//Set
+		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
+		deleteCredentialMessageEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = credentialServiceValidator.validateDeleteCredential(deleteCredentialMessageEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+	    //Verifier
+	    result = credentialServiceVerifier.verifyDeleteCredential(deleteCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.BAD_REQUEST);
+		}
+		
+		//Processor
+		result=katavuccolServiceProcessor.processorDeleteCredential(deleteCredentialMessageEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, Status.FORBIDDEN);
+		}
+		
+		//Post Processor
+		Result postresult=katavuccolServicePostProcessor.postProcessorDeleteCredential(deleteCredentialMessageEntity);
+				
+		return katavuccolServiceMapper.mapDeleteCredentialResponseMessageEntity(result, deleteCredentialMessageEntity);	
+		
 	}
 }

@@ -1,15 +1,15 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.credentialservice.api.datacontracts;
 
-import java.util.UUID;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.BaseModel;
 
 /**
  * @author sajanmje
  *
  */
-public class Credential extends BaseModel {
+public class CredentialModel extends BaseModel {
 
 	private String userId;
 	private String id;

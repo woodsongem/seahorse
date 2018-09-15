@@ -6,7 +6,6 @@ package seahorse.internal.business.categoryservice.datacontracts;
 import java.util.UUID;
 
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
 
 /**
  * @author sajanmje

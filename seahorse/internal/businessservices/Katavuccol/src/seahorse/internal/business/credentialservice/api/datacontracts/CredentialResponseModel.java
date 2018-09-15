@@ -1,13 +1,15 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.credentialservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.ResponseBase;
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialResponse extends ResponseBase {
+public class CredentialResponseModel extends ResponseBase {
 	private String id;
 
 	/**

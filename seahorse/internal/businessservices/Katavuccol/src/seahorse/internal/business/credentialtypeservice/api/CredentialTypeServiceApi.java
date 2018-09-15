@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeRequestModel;
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeResponseModel;
@@ -43,7 +44,6 @@ import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapp
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 /**

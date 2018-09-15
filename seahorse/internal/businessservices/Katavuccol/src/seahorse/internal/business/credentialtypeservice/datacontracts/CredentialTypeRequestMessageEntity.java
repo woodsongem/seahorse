@@ -1,36 +1,26 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.credentialtypeservice.datacontracts;
 
 import java.util.UUID;
+
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialTypeMessageEntity extends BaseMessageEntity {
-
+public class CredentialTypeRequestMessageEntity extends BaseMessageEntity {
 	private UUID id;
 	private String name;
-	private UUID userId;	
-	private String description;	
-	private String status;
+	private String description;
+	private String userId;
+	private UUID parsedUserId;	
 	private Boolean isDuplicationAllowed;
 	private Boolean isSubitemAllowed;
-	/**
-	 * @return the id
-	 */
-	public UUID getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(UUID id) {
-		this.id = id;
-	}
+	private String status;
+	
 	/**
 	 * @return the name
 	 */
@@ -44,18 +34,6 @@ public class CredentialTypeMessageEntity extends BaseMessageEntity {
 		this.name = name;
 	}
 	/**
-	 * @return the userId
-	 */
-	public UUID getUserId() {
-		return userId;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(UUID userId) {
-		this.userId = userId;
-	}	
-	/**
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -68,16 +46,28 @@ public class CredentialTypeMessageEntity extends BaseMessageEntity {
 		this.description = description;
 	}
 	/**
-	 * @return the status
+	 * @return the userId
 	 */
-	public String getStatus() {
-		return status;
+	public String getUserId() {
+		return userId;
 	}
 	/**
-	 * @param status the status to set
+	 * @param userId the userId to set
 	 */
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the parsedUserId
+	 */
+	public UUID getParsedUserId() {
+		return parsedUserId;
+	}
+	/**
+	 * @param parsedUserId the parsedUserId to set
+	 */
+	public void setParsedUserId(UUID parsedUserId) {
+		this.parsedUserId = parsedUserId;
 	}
 	/**
 	 * @return the isDuplicationAllowed
@@ -102,5 +92,29 @@ public class CredentialTypeMessageEntity extends BaseMessageEntity {
 	 */
 	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
 		this.isSubitemAllowed = isSubitemAllowed;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/**
+	 * @return the id
+	 */
+	public UUID getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(UUID id) {
+		this.id = id;
 	}
 }

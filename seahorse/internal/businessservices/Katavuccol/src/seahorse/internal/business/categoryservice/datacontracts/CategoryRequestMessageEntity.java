@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.categoryservice.datacontracts;
 
 import java.util.UUID;
 
@@ -11,14 +11,40 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author sajanmje
  *
  */
-public class CategoryMessageEntity extends BaseMessageEntity {
+public class CategoryRequestMessageEntity extends BaseMessageEntity {
 
-	private UUID id;
 	private String name;
-	private UUID userId;
-	private String description;	
-	private String status;	
+	private String userId;
+	private UUID id;	
+	private UUID parsedUserId;
+	private String description;
+	private String status;
 	
+	
+	/**
+	 * @return the categoryName
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param categoryName the categoryName to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	/**
 	 * @return the id
 	 */
@@ -32,28 +58,16 @@ public class CategoryMessageEntity extends BaseMessageEntity {
 		this.id = id;
 	}
 	/**
-	 * @return the name
+	 * @return the parsedUserId
 	 */
-	public String getName() {
-		return name;
+	public UUID getParsedUserId() {
+		return parsedUserId;
 	}
 	/**
-	 * @param name the name to set
+	 * @param parsedUserId the parsedUserId to set
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the userId
-	 */
-	public UUID getUserId() {
-		return userId;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(UUID userId) {
-		this.userId = userId;
+	public void setParsedUserId(UUID parsedUserId) {
+		this.parsedUserId = parsedUserId;
 	}
 	/**
 	 * @return the description

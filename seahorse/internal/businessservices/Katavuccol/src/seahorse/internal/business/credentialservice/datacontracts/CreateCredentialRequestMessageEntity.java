@@ -1,17 +1,20 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.credentialservice.datacontracts;
 
 import java.util.List;
 import java.util.UUID;
+
+import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialRequestMessageEntity extends BaseMessageEntity {
+public class CreateCredentialRequestMessageEntity extends BaseMessageEntity {
 
 	private String categoryId;
 	private String typeId;
@@ -22,7 +25,7 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	private UUID parsedCredentialTypeId;
 	private UUID id;	
 	private String description;
-	private CredentialTypeMessageEntity credentialType;
+	private CredentialTypeMsgEntity credentialType;
 	private CategoryMessageEntity category;
 	private String status;
 	private List<CredentialMessageEntity> credential;
@@ -146,13 +149,13 @@ public class CredentialRequestMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credentialType
 	 */
-	public CredentialTypeMessageEntity getCredentialType() {
+	public CredentialTypeMsgEntity getCredentialType() {
 		return credentialType;
 	}
 	/**
 	 * @param credentialType the credentialType to set
 	 */
-	public void setCredentialType(CredentialTypeMessageEntity credentialType) {
+	public void setCredentialType(CredentialTypeMsgEntity credentialType) {
 		this.credentialType = credentialType;
 	}
 	/**

@@ -15,6 +15,10 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
+
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
@@ -26,10 +30,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.aop.InjectLogger;
 

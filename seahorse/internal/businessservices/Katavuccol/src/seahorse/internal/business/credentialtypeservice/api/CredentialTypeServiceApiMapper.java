@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeRequestModel;
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeResponseModel;
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.DeleteCredentialTypeResponseModel;
@@ -20,7 +21,6 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCred
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 
 /**

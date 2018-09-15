@@ -7,6 +7,9 @@ package seahorse.internal.business.katavuccolservice.dal;
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
@@ -14,10 +17,7 @@ import seahorse.internal.business.katavuccolservice.dal.datacontracts.Credential
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
 /**
  * @author sajanmje
  *

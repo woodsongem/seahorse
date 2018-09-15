@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.credentialservice.datacontracts;
 
 import java.util.List;
 import java.util.UUID;

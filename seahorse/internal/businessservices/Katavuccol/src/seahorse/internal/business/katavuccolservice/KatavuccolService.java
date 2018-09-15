@@ -11,6 +11,15 @@ import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeRequestMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeResponseMessageEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;

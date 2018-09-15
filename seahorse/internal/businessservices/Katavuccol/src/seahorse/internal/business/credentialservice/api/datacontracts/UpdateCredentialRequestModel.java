@@ -1,13 +1,15 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.credentialservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.RequestBase;
 
 /**
  * @author sajanmje
  *
  */
-public class UpdateCredentialRequest extends RequestBase {	
+public class UpdateCredentialRequestModel extends RequestBase {	
 	private String value;	
 	private String description;	
 	private String credentialTypeId;

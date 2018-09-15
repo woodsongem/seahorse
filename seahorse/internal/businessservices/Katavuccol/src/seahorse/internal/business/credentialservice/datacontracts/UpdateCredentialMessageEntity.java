@@ -1,11 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.credentialservice.datacontracts;
 
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
