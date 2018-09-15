@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeResponseModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -50,7 +51,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CredentialRequest credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest) {
+	public CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CreateCredentialRequestModel credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest) {
 		CredentialRequestMessageEntity credentialRequestMessageEntity=new CredentialRequestMessageEntity();
 		credentialRequestMessageEntity.setUserId(userid);		
 		credentialRequestMessageEntity.setCategoryId(categoryId);		
@@ -106,25 +107,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		return	credentialsResponse;
 	}
 
-	@Override
-	public UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(
-			UpdateCredentialRequest updateCredentialRequest, 
-			String userid, 
-			String categoryId,
-			String credentialId,
-			HttpServletRequest httpRequest) {
-		UpdateCredentialMessageEntity updateCredentialRequestMessageEntity=new UpdateCredentialMessageEntity();
-		if(updateCredentialRequest == null)
-		{
-			return updateCredentialRequestMessageEntity;
-		}		
-		updateCredentialRequestMessageEntity.setUserId(userid);
-		updateCredentialRequestMessageEntity.setCredentialId(credentialId);
-		updateCredentialRequestMessageEntity.setValue(updateCredentialRequest.getValue());
-		updateCredentialRequestMessageEntity.setDescription(updateCredentialRequest.getDescription());		
-		updateCredentialRequestMessageEntity.setCredentialTypeId(updateCredentialRequest.getCredentialTypeId());
-		return updateCredentialRequestMessageEntity;
-	}
+
 
 	@Override
 	public UpdateCredentialResponse mapUpdateCredentialResponse(
@@ -285,7 +268,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(CredentialTypeRequest credentialTypeRequest, String userid, HttpServletRequest httpRequest) {
+	public CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(CreateCredentialTypeRequestModel credentialTypeRequest, String userid, HttpServletRequest httpRequest) {
 		CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity=new CredentialTypeRequestMessageEntity();
 		credentialTypeRequestMessageEntity.setUserId(userid);
 		credentialTypeRequestMessageEntity.setName(credentialTypeRequest.getName());
@@ -298,14 +281,14 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 	@Override
 	public UpdateCredentialTypeMessageEntity mapUpdateCredentialRequestMessageEntity(
-			UpdateCredentialTypeRequest updateCredentialTypeRequest, String userid, String credentialId,
+			UpdateCredentialTypeRequestModel updateCredentialTypeRequest, String userid, String credentialId,
 			HttpServletRequest httpRequest) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UpdateCredentialTypeResponse mapUpdateCredentialTypeResponse(
+	public UpdateCredentialTypeResponseModel mapUpdateCredentialTypeResponse(
 			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
 			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity) {
 		// TODO Auto-generated method stub
@@ -313,10 +296,10 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
+	public DeleteCredentialTypeResponseModel mapDeleteCredentialTypeResponse(
 			DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity,
 			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
-		DeleteCredentialTypeResponse deleteCredentialTypeResponse=new DeleteCredentialTypeResponse();
+		DeleteCredentialTypeResponseModel deleteCredentialTypeResponse=new DeleteCredentialTypeResponseModel();
 	
 		if(deleteCredentialTypeReqMsgEntity.getResultMessages()== null)
 		{
@@ -381,7 +364,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CredentialTypeRequest credentialTypeRequest,
+	public CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest,
 			String userid, HttpServletRequest httpRequest) {
 		CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=new CreateCredentialTypeMsgEntity();
 		createCredentialTypeMsgEntity.setUserId(userid);		
@@ -399,10 +382,10 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
 
 	@Override
-	public CreateCredentialTypeResponse mapCredentialTypeResponse(
+	public CreateCredentialTypeResponseModel mapCredentialTypeResponse(
 			CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
 			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
-		CreateCredentialTypeResponse createCredentialTypeResponse=new CreateCredentialTypeResponse();
+		CreateCredentialTypeResponseModel createCredentialTypeResponse=new CreateCredentialTypeResponseModel();
 		
 		if(createCredentialTypeResMsgEntity == null)
 		{
@@ -430,7 +413,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public CreateCredentialTypeResponse mapCredentialTypeResponse(
+	public CreateCredentialTypeResponseModel mapCredentialTypeResponse(
 			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
 			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub

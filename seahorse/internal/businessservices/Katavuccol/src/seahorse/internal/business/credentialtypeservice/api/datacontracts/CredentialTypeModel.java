@@ -1,7 +1,9 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.credentialtypeservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.BaseModel;
 
 /**
  * @author admin

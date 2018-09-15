@@ -17,10 +17,10 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCred
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialRequest;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialRequestModel;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeResponse;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeRequestModel;
+import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeResponseModel;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
@@ -57,7 +57,7 @@ public interface IKatavuccolServiceApiMapper {
 
 	CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity);
 
-	CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CredentialRequest credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest);
+	CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CreateCredentialRequestModel credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest);
 
 	GetCredentialMessageEntity mapGetCredentialMessageEntity(String userid,String categoryId, HttpServletRequest httpRequest);
 
@@ -65,7 +65,7 @@ public interface IKatavuccolServiceApiMapper {
 
 	CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity, CredentialRequestMessageEntity credentialMessageEntity);
 
-	UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(UpdateCredentialRequest updateCredentialRequest, String userid,String categoryId, String credentialId,HttpServletRequest httpRequest);
+	//UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(UpdateCredentialRequest updateCredentialRequest, String userid,String categoryId, String credentialId,HttpServletRequest httpRequest);
 
 	UpdateCredentialResponse mapUpdateCredentialResponse(UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
@@ -89,23 +89,23 @@ public interface IKatavuccolServiceApiMapper {
 			UpdateCategoryMessageEntity updateCategoryMessageEntity);
 
 	CredentialTypeRequestMessageEntity mapCredentialTypeRequestMessageEntity(
-			CredentialTypeRequest credentialTypeRequest, 
+			CreateCredentialTypeRequestModel credentialTypeRequest, 
 			String userid, 
 			HttpServletRequest httpRequest);
 
-	CreateCredentialTypeResponse mapCredentialTypeResponse(
+	CreateCredentialTypeResponseModel mapCredentialTypeResponse(
 			CredentialTypeResponseMessageEntity credentialTypeResponseMessageEntity,
 			CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity);
 
 	UpdateCredentialTypeMessageEntity mapUpdateCredentialRequestMessageEntity(
-			UpdateCredentialTypeRequest updateCredentialTypeRequest, String userid, String credentialId,
+			UpdateCredentialTypeRequestModel updateCredentialTypeRequest, String userid, String credentialId,
 			HttpServletRequest httpRequest);
 
-	UpdateCredentialTypeResponse mapUpdateCredentialTypeResponse(
+	UpdateCredentialTypeResponseModel mapUpdateCredentialTypeResponse(
 			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,
 			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
 
-	DeleteCredentialTypeResponse mapDeleteCredentialTypeResponse(
+	DeleteCredentialTypeResponseModel mapDeleteCredentialTypeResponse(
 			DeleteCredentialTypeResMsgEntity deleteCredentialTypeResMsgEntity,
 			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
 
@@ -121,10 +121,10 @@ public interface IKatavuccolServiceApiMapper {
 
 	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid);
 
-	CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CredentialTypeRequest credentialTypeRequest,String userid, 
+	CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest,String userid, 
 			HttpServletRequest httpRequest);
 
-	CreateCredentialTypeResponse mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
+	CreateCredentialTypeResponseModel mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
 			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
 	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id);

@@ -1,13 +1,15 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.api.datacontracts;
+package seahorse.internal.business.credentialtypeservice.api.datacontracts;
+
+import seahorse.internal.business.katavuccolservice.api.datacontracts.RequestBase;
 
 /**
  * @author sajanmje
  *
  */
-public class CredentialTypeRequest extends RequestBase {
+public class CreateCredentialTypeRequestModel extends RequestBase {
 	private String name;
 	private String description;
 	private Boolean isduplicationallowed;

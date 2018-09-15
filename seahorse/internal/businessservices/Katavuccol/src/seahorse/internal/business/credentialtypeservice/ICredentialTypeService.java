@@ -5,11 +5,16 @@ package seahorse.internal.business.credentialtypeservice;
 
 import java.util.List;
 
-import seahorse.internal.business.credentialtypeservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
 import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
 
 /**
  * @author admin

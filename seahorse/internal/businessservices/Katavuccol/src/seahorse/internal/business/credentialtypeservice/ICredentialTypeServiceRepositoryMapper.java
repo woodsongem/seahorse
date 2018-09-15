@@ -9,7 +9,7 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
 /**

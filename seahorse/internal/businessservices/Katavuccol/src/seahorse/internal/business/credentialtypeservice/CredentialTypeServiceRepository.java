@@ -6,13 +6,16 @@ package seahorse.internal.business.credentialtypeservice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
+
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
+
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
 import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;

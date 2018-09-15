@@ -10,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialTypeModel;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
