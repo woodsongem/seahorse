@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.credentialcategoryservice.api;
+package seahorse.internal.business.categoryservice.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRespon
  * @author SMJE
  *
  */
-public class CredentialCategoryServiceApiMapper implements ICredentialCategoryServiceApiMapper {
+public class CategoryServiceApiMapper implements ICategoryServiceApiMapper {
 
 	@Override
 	public CreateCategoryMessageEntity mapCategoryRequestMessageEntity(CreateCategoryRequestModel createCategoryRequestModel, String userId,HttpServletRequest httpRequest) {

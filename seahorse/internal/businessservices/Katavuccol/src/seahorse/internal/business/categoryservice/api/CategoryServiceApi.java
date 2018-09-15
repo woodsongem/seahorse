@@ -1,4 +1,4 @@
-package seahorse.internal.business.credentialcategoryservice.api;
+package seahorse.internal.business.categoryservice.api;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -34,8 +34,8 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultM
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 @Path("/CategoryService")
-public class CredentialCategoryServiceApi {
-	private static final Logger logger = LogManager.getLogger(CredentialCategoryServiceApi.class);
+public class CategoryServiceApi {
+	private static final Logger logger = LogManager.getLogger(CategoryServiceApi.class);
 	
 	@Context
 	private HttpServletRequest httpRequest;
@@ -44,7 +44,7 @@ public class CredentialCategoryServiceApi {
 	@Path("/{userid}/category")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCategory(@PathParam("userid") String userid,CreateCategoryRequestModel createCategoryRequestModel) {
-		ICredentialCategoryServiceApiMapper credentialCategoryServiceApiMapper=new CredentialCategoryServiceApiMapper();
+		ICategoryServiceApiMapper credentialCategoryServiceApiMapper=new CategoryServiceApiMapper();
 		CreateCategoryResponseModel createCategoryResponseModel=new CreateCategoryResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
@@ -71,7 +71,7 @@ public class CredentialCategoryServiceApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteCategory(@PathParam("userid") String userid,@PathParam("id") String categoryId) 
 	{
-		ICredentialCategoryServiceApiMapper credentialCategoryServiceApiMapper=new CredentialCategoryServiceApiMapper();
+		ICategoryServiceApiMapper credentialCategoryServiceApiMapper=new CategoryServiceApiMapper();
 		DeleteCategoryResponseModel deleteCategoryResponse=new DeleteCategoryResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
