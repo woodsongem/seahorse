@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.datacontracts;
+package seahorse.internal.business.credentialservice.datacontracts;
 
 import java.util.UUID;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
@@ -11,7 +11,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMes
  * @author sajanmje
  *
  */
-public class CredentialResponseMessageEntity extends BaseMessageEntity {
+public class CreateCredentialResponseMessageEntity extends BaseMessageEntity {
 
 	private UUID id;
 

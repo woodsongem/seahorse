@@ -1,9 +1,11 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.dal.datacontracts;
+package seahorse.internal.business.credentialservice.dal.datacontracts;
 
 import java.util.UUID;
+
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.BaseDAO;
 
 /**
  * @author sajanmje

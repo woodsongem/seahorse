@@ -12,8 +12,6 @@ import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMe
 import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryResponseMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
 
 /**
  * @author SMJE

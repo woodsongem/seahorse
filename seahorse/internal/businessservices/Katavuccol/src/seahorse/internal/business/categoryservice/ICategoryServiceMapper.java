@@ -8,10 +8,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response.Status;
 
+import com.google.api.client.auth.oauth2.Credential;
+
 import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
+import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryResponseMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
@@ -19,14 +22,12 @@ import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRe
 import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 
 /**
  * @author admin
@@ -66,5 +67,8 @@ public interface ICategoryServiceMapper {
 	GetCategoryMessageEntity mapGetCategoryMessageEntity(String userid, HttpServletRequest httpRequest);
 
 	CategoryMessageEntity mapCategoryMessageEntity(CategoryDAO categoryDAO);
+
+	//com.google.api.client.auth.oauth2.Credential mapCategory(Result result,
+			//seahorse.internal.business.credentialservice.datacontracts.GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 
 }

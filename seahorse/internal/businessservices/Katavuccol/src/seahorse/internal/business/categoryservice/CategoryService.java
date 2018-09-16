@@ -6,6 +6,7 @@ package seahorse.internal.business.categoryservice;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
@@ -15,6 +16,7 @@ import seahorse.internal.business.categoryservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
 
@@ -156,5 +158,11 @@ public class CategoryService implements  ICategoryService {
 		}
 		
 		return categoryServiceMapper.mapCategory(result, getCategoryMessageEntity);
+	}
+
+	@Override
+	public CategoryMessageEntity getCategoryDetailById(UUID parsedCategoryId, UUID parsedUserId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

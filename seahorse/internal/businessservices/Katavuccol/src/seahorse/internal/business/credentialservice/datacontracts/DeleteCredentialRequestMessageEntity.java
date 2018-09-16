@@ -5,6 +5,7 @@ package seahorse.internal.business.credentialservice.datacontracts;
 
 import java.util.UUID;
 
+import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -18,7 +19,7 @@ public class DeleteCredentialRequestMessageEntity extends BaseMessageEntity {
 	private UUID parsedUserId;
 	private UUID parsedCredentialId;
 	private String status;
-	private CredentialMessageEntity credentialMessageEntity;
+	private CredentialDAO credentialMessageEntity;
 	
 	/**
 	 * @return the userId
@@ -83,13 +84,13 @@ public class DeleteCredentialRequestMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credentialDAO
 	 */
-	public CredentialMessageEntity getCredential() {
+	public CredentialDAO getCredential() {
 		return credentialMessageEntity;
 	}
 	/**
 	 * @param credentialDAO the credentialDAO to set
 	 */
-	public void setCredential(CredentialMessageEntity credentialMessageEntity) {
+	public void setCredential(CredentialDAO credentialMessageEntity) {
 		this.credentialMessageEntity = credentialMessageEntity;
 	}
 	/**

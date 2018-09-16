@@ -5,6 +5,7 @@ package seahorse.internal.business.credentialtypeservice;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
@@ -26,6 +27,7 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCred
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
 
 /**
@@ -175,5 +177,11 @@ public class CredentialTypeService implements ICredentialTypeService {
 			return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result, Status.FORBIDDEN);
 		}
 		return credentialTypeServiceMapper.mapDeleteCredentialTypeResMsgEntity(result,deleteCredentialTypeReqMsgEntity);
+	}
+
+	@Override
+	public CredentialTypeMsgEntity getCredentialTypeById(UUID parsedCredentialTypeId, UUID parsedUserId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

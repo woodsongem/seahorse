@@ -28,26 +28,12 @@ import org.apache.logging.log4j.Logger;
 import com.google.api.client.auth.oauth2.Credential;
 
 import seahorse.internal.business.credentialservice.ICredentialService;
-import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialRequestModel;
-import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialResponseModel;
-import seahorse.internal.business.credentialservice.api.datacontracts.DeleteCredentialResponse;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.credentialservice.api.datacontracts.*;
+import seahorse.internal.business.credentialservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.IKatavuccolService;
-import seahorse.internal.business.katavuccolservice.api.IKatavuccolServiceApiMapper;
-import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApi;
-import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapper;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValueDetail;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 /**
@@ -56,7 +42,7 @@ import seahorse.internal.business.katavuccolservice.registries.KatavuccolService
  */
 public class CredentialServiceApi {
 
-	private static final Logger logger = LogManager.getLogger(KatavuccolServiceApi.class);
+	private static final Logger logger = LogManager.getLogger(CredentialServiceApi.class);
 	@Context
 	private HttpServletRequest httpRequest;
 
@@ -66,18 +52,17 @@ public class CredentialServiceApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredential(@PathParam("userid") String userid, @PathParam("categoryid") String categoryid,
 			CreateCredentialRequestModel credentialsRequest) {
-		IKatavuccolServiceApiMapper katavuccolServiceApiMapper = new KatavuccolServiceApiMapper();
+		CredentialServiceApiMapper credentialServiceApiMapper = new CredentialServiceApiMapper();
 		CreateCredentialResponseModel credentialsResponse = new CreateCredentialResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CredentialRequestMessageEntity credentialMessageEntity = katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest, userid, categoryid, httpRequest);
-			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			CreateCredentialRequestMessageEntity credentialMessageEntity = credentialServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest, userid, categoryid, httpRequest);
+			ICredentialService credentialService = KatavuccolServiceFactory.getICredentialService();
 			Map<String, String> headers = getHeaders(httpRequest);
 			credentialMessageEntity.setHttpMethod(httpRequest.getMethod());
 			credentialMessageEntity.setHeaders(headers);
-			CredentialResponseMessageEntity credentialsResMessageEntity = katavuccolService
-					.createCredential(credentialMessageEntity);
-			credentialsResponse = katavuccolServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity,
+			CreateCredentialResponseMessageEntity credentialsResMessageEntity = credentialService.createCredential(credentialMessageEntity);
+			credentialsResponse = credentialServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity,
 					credentialMessageEntity);
 			httpStatus = credentialsResMessageEntity.getHttpStatus();
 		} catch (Exception ex) {

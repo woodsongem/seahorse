@@ -3,8 +3,12 @@
  */
 package seahorse.internal.business.credentialservice;
 
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
 
 /**
  * @author admin
@@ -13,5 +17,37 @@ import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialB
 public interface ICredentialServiceVerifier {
 
 	Result verifyGetCredentialsByUserId(GetCredentialByUserIdMessageEntity getCredentialByUserIdMessageEntity);
+
+	Result verifyCreateCredentials(CreateCredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	Result isUserIdValid(CreateCredentialRequestMessageEntity credentialsRequestMessageEntity);
+
+	Result isCategoryIdValid(CreateCredentialRequestMessageEntity credentialsRequestMessageEntity);
+
+	Result isCredentialTypeIdValid(CreateCredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	Result isCredentialTypeDuplicateAllowedValid(CreateCredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	Result isCredentialTypeSubItemAllowedValid(CreateCredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	Result isEncryptValid(CreateCredentialRequestMessageEntity credentialRequestMessageEntity);
+
+	Result verifyUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	Result isCredentialIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	Result isCategoryIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	Result isCredentialTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+
+	Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+
+	Result verifyGetCredentials(GetCredentialMessageEntity getCredentialMessageEntity);
 
 }

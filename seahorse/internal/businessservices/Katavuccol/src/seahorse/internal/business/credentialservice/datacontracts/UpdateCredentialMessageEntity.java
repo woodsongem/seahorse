@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMessageEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
@@ -25,9 +27,9 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	private UUID parsedCategoryId;
 	private String credentialTypeId;
 	private UUID parsedCredentialTypeId;
-	private CredentialTypeMessageEntity credentialType;
+	private CredentialTypeMsgEntity credentialType;
 	private CategoryMessageEntity category;
-	private List<CredentialMessageEntity> credential;
+	private List<CredentialDAO> credential;
 	
 	/**
 	 * @return the userId
@@ -152,13 +154,13 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credentialType
 	 */
-	public CredentialTypeMessageEntity getCredentialType() {
+	public CredentialTypeMsgEntity getCredentialType() {
 		return credentialType;
 	}
 	/**
 	 * @param credentialType the credentialType to set
 	 */
-	public void setCredentialType(CredentialTypeMessageEntity credentialType) {
+	public void setCredentialType(CredentialTypeMsgEntity credentialType) {
 		this.credentialType = credentialType;
 	}
 	/**
@@ -176,13 +178,13 @@ public class UpdateCredentialMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credential
 	 */
-	public List<CredentialMessageEntity> getCredential() {
+	public List<CredentialDAO> getCredential() {
 		return credential;
 	}
 	/**
 	 * @param credential the credential to set
 	 */
-	public void setCredential(List<CredentialMessageEntity> credential) {
+	public void setCredential(List<CredentialDAO> credential) {
 		this.credential = credential;
 	}
 }

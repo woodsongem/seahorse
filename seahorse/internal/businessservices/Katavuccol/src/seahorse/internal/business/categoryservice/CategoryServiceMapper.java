@@ -15,6 +15,7 @@ import seahorse.internal.business.categoryservice.api.datacontracts.CategoryMode
 import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
 import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
+import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryResponseMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
@@ -22,6 +23,7 @@ import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRe
 import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
 import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialValueMessageEntity;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
 import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
@@ -30,8 +32,6 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
 
 /**
  * @author admin
@@ -156,8 +156,9 @@ public class CategoryServiceMapper implements ICategoryServiceMapper {
 	@Override
 	public Credential mapCategory(Result result, GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 		// TODO Auto-generated method stub
-		Credential credential = new Credential();
-		return credential;
+		//Credential credential = new Credential();
+		//return credential;
+		return null;
 	}
 
 	@Override

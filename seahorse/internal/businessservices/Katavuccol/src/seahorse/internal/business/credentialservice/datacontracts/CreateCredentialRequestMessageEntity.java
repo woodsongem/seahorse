@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
@@ -28,7 +29,7 @@ public class CreateCredentialRequestMessageEntity extends BaseMessageEntity {
 	private CredentialTypeMsgEntity credentialType;
 	private CategoryMessageEntity category;
 	private String status;
-	private List<CredentialMessageEntity> credential;
+	private List<CredentialDAO> credential;
 	private Boolean isCredentialNull;
 	private String parentCredentialId;
 	private UUID parsedParentCredentialId;
@@ -185,13 +186,13 @@ public class CreateCredentialRequestMessageEntity extends BaseMessageEntity {
 	/**
 	 * @return the credential
 	 */
-	public List<CredentialMessageEntity> getCredential() {
+	public List<CredentialDAO> getCredential() {
 		return credential;
 	}
 	/**
 	 * @param credential the credential to set
 	 */
-	public void setCredential(List<CredentialMessageEntity> credential) {
+	public void setCredential(List<CredentialDAO> credential) {
 		this.credential = credential;
 	}
 	/**
