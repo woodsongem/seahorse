@@ -6,8 +6,8 @@ package seahorse.internal.business.credentialservice.datacontracts;
 import java.util.List;
 import java.util.UUID;
 
+import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
 
 /**
  * @author sajanmje

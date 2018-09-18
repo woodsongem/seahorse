@@ -275,7 +275,7 @@ public class KatavuccolServiceApi {
 		CredentialResponse credentialsResponse=new CredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CredentialRequestMessageEntity credentialMessageEntity=katavuccolServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest,userid,categoryid,httpRequest);
+			CredentialRequestMessageEntity credentialMessageEntity=katavuccolServiceApiMapper.mapCreateCredentialRequestMessageEntity(credentialsRequest,userid,categoryid,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			credentialMessageEntity.setHttpMethod(httpRequest.getMethod());

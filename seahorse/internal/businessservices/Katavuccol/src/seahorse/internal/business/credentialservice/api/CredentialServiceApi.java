@@ -52,26 +52,25 @@ public class CredentialServiceApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCredential(@PathParam("userid") String userid, @PathParam("categoryid") String categoryid,
 			CreateCredentialRequestModel credentialsRequest) {
-		CredentialServiceApiMapper credentialServiceApiMapper = new CredentialServiceApiMapper();
-		CreateCredentialResponseModel credentialsResponse = new CreateCredentialResponseModel();
+		ICredentialServiceApiMapper credentialServiceApiMapper = new CredentialServiceApiMapper();
+		CreateCredentialResponseModel createCredentialResponseModel = new CreateCredentialResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CreateCredentialRequestMessageEntity credentialMessageEntity = credentialServiceApiMapper.mapCredentialRequestMessageEntity(credentialsRequest, userid, categoryid, httpRequest);
+			CreateCredentialRequestMessageEntity credentialMessageEntity = credentialServiceApiMapper.mapCreateCredentialRequestMessageEntity(credentialsRequest, userid, categoryid, httpRequest);
 			ICredentialService credentialService = KatavuccolServiceFactory.getICredentialService();
 			Map<String, String> headers = getHeaders(httpRequest);
 			credentialMessageEntity.setHttpMethod(httpRequest.getMethod());
 			credentialMessageEntity.setHeaders(headers);
-			CreateCredentialResponseMessageEntity credentialsResMessageEntity = credentialService.createCredential(credentialMessageEntity);
-			credentialsResponse = credentialServiceApiMapper.mapCredentialsResponse(credentialsResMessageEntity,
-					credentialMessageEntity);
-			httpStatus = credentialsResMessageEntity.getHttpStatus();
+			CreateCredentialResponseMessageEntity createCredentialResponseMessageEntity = credentialService.createCredential(credentialMessageEntity);
+			createCredentialResponseModel = credentialServiceApiMapper.mapCreateCredentialResponseMessageEntity(createCredentialResponseMessageEntity,credentialMessageEntity);
+			httpStatus = createCredentialResponseMessageEntity.getHttpStatus();
 		} catch (Exception ex) {
-			if (credentialsResponse == null) {
-				credentialsResponse = getCredentialsResponse();
+			if (createCredentialResponseModel == null) {
+				createCredentialResponseModel = getCredentialsResponse();
 			}
 			logger.error(ex);
 		}
-		return Response.status(httpStatus).entity(credentialsResponse).build();
+		return Response.status(httpStatus).entity(createCredentialResponseModel).build();
 	}
 
 	// @PUT ==> /income/category
@@ -79,22 +78,18 @@ public class CredentialServiceApi {
 	@Path("/{userid}/{categoryid}/credential/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateCredential(@PathParam("userid") String userid, @PathParam("categoryid") String categoryid,
-			@PathParam("id") String credentialId, UpdateCredentialRequest updateCredentialRequest) {
-		IKatavuccolServiceApiMapper katavuccolServiceApiMapper = new KatavuccolServiceApiMapper();
-		UpdateCredentialResponse updateCredentialResponse = new UpdateCredentialResponse();
+			@PathParam("id") String credentialId, UpdateCredentialRequestModel updateCredentialRequest) {
+		ICredentialServiceApiMapper credentialServiceApiMapper = new CredentialServiceApiMapper();
+		UpdateCredentialResponseModel updateCredentialResponse = new UpdateCredentialResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			UpdateCredentialMessageEntity updateCredentialMessageEntity = katavuccolServiceApiMapper
-					.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest, userid, categoryid, credentialId,
-							httpRequest);
-			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
+			UpdateCredentialMessageEntity updateCredentialMessageEntity = credentialServiceApiMapper.mapUpdateCredentialRequestMessageEntity(updateCredentialRequest, userid, categoryid, credentialId,httpRequest);
+			ICredentialService credentialService = KatavuccolServiceFactory.getICredentialService();
 			Map<String, String> headers = getHeaders(httpRequest);
 			updateCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());
 			updateCredentialMessageEntity.setHeaders(headers);
-			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity = katavuccolService
-					.updateCredential(updateCredentialMessageEntity);
-			updateCredentialResponse = katavuccolServiceApiMapper
-					.mapUpdateCredentialResponse(updateCredentialResponseMessageEntity, updateCredentialMessageEntity);
+			UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity = credentialService.updateCredential(updateCredentialMessageEntity);
+			updateCredentialResponse = credentialServiceApiMapper.mapUpdateCredentialResponse(updateCredentialResponseMessageEntity, updateCredentialMessageEntity);
 			httpStatus = updateCredentialResponseMessageEntity.getHttpStatus();
 		} catch (Exception ex) {
 			if (updateCredentialResponse == null) {
@@ -206,22 +201,22 @@ public class CredentialServiceApi {
 		return mapheaders;
 	}
 
-	public CredentialResponse getCredentialsResponse() {
+	public CreateCredentialResponseModel getCredentialsResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		CredentialResponse credentialsResponse = new CredentialResponse();
+		CreateCredentialResponseModel createCredentialResponseModel = new CreateCredentialResponseModel();
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
-		credentialsResponse.setResultMessages(resultMessage);
-		return credentialsResponse;
+		createCredentialResponseModel.setResultMessages(resultMessage);
+		return createCredentialResponseModel;
 	}
 
-	public UpdateCredentialResponse getUpdateCredentialResponse() {
+	public UpdateCredentialResponseModel getUpdateCredentialResponse() {
 		IKatavuccolServiceErrorCode katavuccolServiceErrorCode = new KatavuccolServiceErrorCode();
-		UpdateCredentialResponse updateCredentialResponse = new UpdateCredentialResponse();
+		UpdateCredentialResponseModel updateCredentialResponseModel = new UpdateCredentialResponseModel();
 		ResultMessage resultMessage = new ResultMessage();
 		resultMessage.setErrorCode(katavuccolServiceErrorCode.internalError());
-		updateCredentialResponse.setResultMessages(resultMessage);
-		return updateCredentialResponse;
+		updateCredentialResponseModel.setResultMessages(resultMessage);
+		return updateCredentialResponseModel;
 	}
 
 	public DeleteCredentialResponse getDeleteCredentialResponse() {

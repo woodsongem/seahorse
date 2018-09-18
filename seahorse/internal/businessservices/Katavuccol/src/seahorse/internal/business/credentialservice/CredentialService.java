@@ -165,6 +165,6 @@ public class CredentialService implements ICredentialService {
 			return new ArrayList<>();
 		}
 		
-		return credentialServiceMapper.mapCredentials(result, getCredentialMessageEntity);
+		return credentialServiceMapper.mapCredential(result, getCredentialMessageEntity);
 	}
 }

@@ -3,10 +3,29 @@
  */
 package seahorse.internal.business.credentialservice.api;
 
+import javax.servlet.http.HttpServletRequest;
+
+import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialRequestModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialResponseModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.UpdateCredentialRequestModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.UpdateCredentialResponseModel;
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialResponseMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
+
 /**
  * @author SMJE
  *
  */
 public interface ICredentialServiceApiMapper {
+
+	CreateCredentialRequestMessageEntity mapCreateCredentialRequestMessageEntity(CreateCredentialRequestModel credentialsRequest, String userid, String categoryid,HttpServletRequest httpRequest);
+
+	CreateCredentialResponseModel mapCreateCredentialResponseMessageEntity(CreateCredentialResponseMessageEntity createCredentialResponseMessageEntity,CreateCredentialRequestMessageEntity credentialMessageEntity);
+
+	UpdateCredentialMessageEntity mapUpdateCredentialRequestMessageEntity(UpdateCredentialRequestModel updateCredentialRequest, String userid, String categoryid, String credentialId,HttpServletRequest httpRequest);
+
+	UpdateCredentialResponseModel mapUpdateCredentialResponse(UpdateCredentialResponseMessageEntity updateCredentialResponseMessageEntity,UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
 }
