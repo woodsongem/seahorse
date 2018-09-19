@@ -4,7 +4,7 @@
 package seahorse.internal.business.credentialservice;
 
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -33,7 +33,7 @@ public class CredentialServicePostProcessor implements ICredentialServicePostPro
 	}
 
 	@Override
-	public Result postProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result postProcessorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

@@ -331,7 +331,7 @@ public class KatavuccolServiceApi {
 		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialRequestMessageEntity(userid,categoryid,credentialId,httpRequest);
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity=katavuccolServiceApiMapper.mapDeleteCredentialRequestMessageEntity(userid,categoryid,credentialId,httpRequest);
 			IKatavuccolService katavuccolService = KatavuccolServiceFactory.getKatavuccolService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			deleteCredentialMessageEntity.setHttpMethod(httpRequest.getMethod());

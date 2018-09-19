@@ -27,7 +27,7 @@ public class KatavuccolServicePostProcessor implements IKatavuccolServicePostPro
 	}
 
 	@Override
-	public Result postProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result postProcessorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		
 		return new Result(ResultStatus.SUCCESS);
 	}

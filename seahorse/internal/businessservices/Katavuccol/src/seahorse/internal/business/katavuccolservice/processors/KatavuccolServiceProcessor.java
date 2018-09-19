@@ -66,7 +66,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	@Override
-	public Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		OutPutResponse outPutResponse=katavuccolServiceRepository.deleteCredential(deleteCredentialMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{

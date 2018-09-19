@@ -4,7 +4,7 @@
 package seahorse.internal.business.credentialservice;
 
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -25,8 +25,8 @@ public interface ICredentialServiceProcessor {
 
 	Result updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	Result deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 }

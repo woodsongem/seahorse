@@ -141,7 +141,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		//Set
 		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
 		deleteCredentialMessageEntity.setModifiedDate(new Date());

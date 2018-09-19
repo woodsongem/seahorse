@@ -14,7 +14,7 @@ import seahorse.internal.business.categoryservice.ICategoryService;
 import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
 import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
@@ -135,7 +135,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	}
 	
 	@Override
-	public Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 
 		result = isUserIdValid(deleteCredentialMessageEntity);
@@ -373,7 +373,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	
 	
 	@Override
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		UserCredentialMessageEntity userCredentialMessageEntity=userCredentialService.getUserCredential(deleteCredentialMessageEntity.getParsedUserId());
 		if(userCredentialMessageEntity == null || userCredentialMessageEntity.getUserId()==null)
 		{
@@ -384,7 +384,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	}
 	
 	@Override
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		CredentialDAO  credentialDAO=credentialServiceRepository.getCredentialById(deleteCredentialMessageEntity);
 		if(credentialDAO == null)
 		{

@@ -39,11 +39,11 @@ public interface IKatavuccolServiceVerifier {
 	
 	Result isCredentialValid(GetCredentialMessageEntity getCredentialMessageEntity);
 
-	Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 	
-	Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result verifyUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 	

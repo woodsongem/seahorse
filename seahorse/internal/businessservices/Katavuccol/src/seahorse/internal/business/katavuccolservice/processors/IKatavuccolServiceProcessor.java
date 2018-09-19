@@ -23,7 +23,7 @@ public interface IKatavuccolServiceProcessor {
 
 	Result processorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result processorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 	

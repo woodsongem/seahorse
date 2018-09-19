@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.inject.Inject;
 
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
@@ -107,7 +107,7 @@ public class CredentialServiceValidator implements ICredentialServiceValidator {
 	}
 	
 	@Override
-	public Result validateDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result validateDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 		result = isDeleteCredentialRequestMessageEntityValid(deleteCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -133,7 +133,7 @@ public class CredentialServiceValidator implements ICredentialServiceValidator {
 
 	
 	@Override
-	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);		
 		
 		if(deleteCredentialMessageEntity==null)
@@ -145,7 +145,7 @@ public class CredentialServiceValidator implements ICredentialServiceValidator {
 	}
 	
 	@Override
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;		
 		
 		result = isUserIdValid(deleteCredentialMessageEntity.getUserId(),
@@ -161,7 +161,7 @@ public class CredentialServiceValidator implements ICredentialServiceValidator {
 	}
 	
 	@Override
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		
 		if(StringUtils.isEmpty(deleteCredentialMessageEntity.getCredentialId()))
 		{

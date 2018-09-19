@@ -141,8 +141,8 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	}
 
 	@Override
-	public DeleteCredentialRequestMessageEntity mapDeleteCredentialRequestMessageEntity(String userid,String categoryId,String credentialId, HttpServletRequest httpRequest) {
-		DeleteCredentialRequestMessageEntity deleteCredentialRequestMessageEntity=new DeleteCredentialRequestMessageEntity();
+	public DeleteCredentialMessageEntity mapDeleteCredentialRequestMessageEntity(String userid,String categoryId,String credentialId, HttpServletRequest httpRequest) {
+		DeleteCredentialMessageEntity deleteCredentialRequestMessageEntity=new DeleteCredentialMessageEntity();
 		deleteCredentialRequestMessageEntity.setUserId(userid);
 		deleteCredentialRequestMessageEntity.setCategoryId(categoryId);
 		deleteCredentialRequestMessageEntity.setCredentialId(credentialId);		
@@ -152,7 +152,7 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 	@Override
 	public DeleteCredentialResponse mapDeleteCredentialResponse(
 			DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		DeleteCredentialResponse deleteCredentialResponse=new DeleteCredentialResponse();
 		if(deleteCredentialResponseMessageEntity == null || deleteCredentialResponseMessageEntity.getResultMessages() == null)
 		{

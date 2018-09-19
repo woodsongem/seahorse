@@ -47,7 +47,7 @@ public interface IKatavuccolServiceMapper {
 	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result, Status badRequest);
 
 	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result, Status badRequest);
 

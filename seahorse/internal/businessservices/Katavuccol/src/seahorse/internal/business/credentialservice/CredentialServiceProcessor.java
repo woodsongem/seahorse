@@ -13,7 +13,7 @@ import com.google.inject.Inject;
 import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.CredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMessageEntity;
@@ -60,7 +60,7 @@ public class CredentialServiceProcessor implements ICredentialServiceProcessor {
 	}
 	
 	@Override
-	public Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result=deleteCredential(deleteCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
@@ -70,7 +70,7 @@ public class CredentialServiceProcessor implements ICredentialServiceProcessor {
 	}
 	
 	@Override
-	public Result deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity)
+	public Result deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity)
 	{
 		OutPutResponse outPutResponse=credentialServiceRepository.deleteCredential(deleteCredentialMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)

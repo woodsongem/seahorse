@@ -3,16 +3,23 @@
  */
 package seahorse.internal.business.credentialservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.core.Response.Status;
 
+import seahorse.internal.business.credentialservice.api.datacontracts.CredentialModel;
+import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialResponseMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialResMsgEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
 
 /**
  * @author admin
@@ -87,7 +94,7 @@ public class CredentialServiceMapper implements ICredentialServiceMapper {
 	}
 
 	@Override
-	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResMsgEntity();
 		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
 		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());
@@ -103,6 +110,33 @@ public class CredentialServiceMapper implements ICredentialServiceMapper {
 			deleteCredentialResponseMessageEntity.setHttpStatus(deleteCredentialResponseMessageEntity.getHttpStatus());
 		}
 		return deleteCredentialResponseMessageEntity;
+	}
+
+	@Override
+	public List<CredentialModel> mapCredential(Result result, GetCredentialMessageEntity getCredentialMessageEntity) {
+		List<CredentialModel> credentials=new ArrayList<>();
+		
+		if(getCredentialMessageEntity.getCredentialDAO() == null || getCredentialMessageEntity.getCredentialDAO().isEmpty())
+		{
+			return credentials;
+		}
+		
+		for (CredentialDAO credentialDAO : getCredentialMessageEntity.getCredentialDAO()) {
+			CredentialModel credential=new CredentialModel();
+			credential.setCategoryId(KatavuccolServiceUtility.getString(credentialDAO.getCategoryId()));
+			credential.setCreatedBy(KatavuccolServiceUtility.getString(credentialDAO.getCreatedBy()));
+			credential.setCreatedDate(credentialDAO.getCreatedDate());
+			credential.setCredentialTypeId(KatavuccolServiceUtility.getString(credentialDAO.getCredentialTypeId()));
+			credential.setDescription(credentialDAO.getDescription());
+			credential.setId(KatavuccolServiceUtility.getString(credentialDAO.getId()));
+			credential.setModifiedBy(KatavuccolServiceUtility.getString(credentialDAO.getModifiedBy()));
+			credential.setModifiedDate(credentialDAO.getModifiedDate());
+			credential.setParentId(KatavuccolServiceUtility.getString(credentialDAO.getParentId()));
+			credential.setStatus(credentialDAO.getStatus());
+			credential.setUserId(KatavuccolServiceUtility.getString(credentialDAO.getUserId()));
+			credentials.add(credential);
+		}		
+		return credentials;
 	}
 
 }

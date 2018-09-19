@@ -208,7 +208,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	}
 	
 	@Override
-	public CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public CredentialDAO getCredentialById(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		CredentialDAO credentialDAO =null;
 		try {
 			cassandraConnector.connect(null, 0,null);
@@ -231,7 +231,7 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 	}
 
 	@Override
-	public OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public OutPutResponse deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		OutPutResponse outPutResponse=new OutPutResponse();
 		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0,null);

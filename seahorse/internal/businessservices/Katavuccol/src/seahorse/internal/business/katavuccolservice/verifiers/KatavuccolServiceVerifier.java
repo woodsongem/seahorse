@@ -265,7 +265,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	@Override
-	public Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 
 		result = isUserIdValid(deleteCredentialMessageEntity);
@@ -280,7 +280,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(deleteCredentialMessageEntity);
 		if(credentialDAO == null)
 		{
@@ -292,7 +292,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 

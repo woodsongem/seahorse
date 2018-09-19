@@ -4,7 +4,7 @@
 package seahorse.internal.business.credentialservice;
 
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
@@ -42,11 +42,11 @@ public interface ICredentialServiceVerifier {
 
 	Result isCredentialTypeIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result verifyGetCredentials(GetCredentialMessageEntity getCredentialMessageEntity);
 

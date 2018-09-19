@@ -240,7 +240,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	@Override
-	public Result validateDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result validateDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 		result = isDeleteCredentialRequestMessageEntityValid(deleteCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -258,7 +258,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		
 		if(StringUtils.isEmpty(deleteCredentialMessageEntity.getCredentialId()))
 		{
@@ -275,7 +275,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}		
 	}
 
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;		
 		
 		result = isUserIdValid(deleteCredentialMessageEntity.getUserId(),
@@ -290,7 +290,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return result;
 	}
 
-	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);		
 		
 		if(deleteCredentialMessageEntity==null)

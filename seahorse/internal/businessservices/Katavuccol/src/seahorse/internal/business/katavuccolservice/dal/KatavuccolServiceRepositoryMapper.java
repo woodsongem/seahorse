@@ -177,7 +177,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());
@@ -186,7 +186,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());

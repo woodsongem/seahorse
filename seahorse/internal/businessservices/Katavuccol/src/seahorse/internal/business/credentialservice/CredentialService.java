@@ -12,9 +12,9 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 
 import com.datastax.driver.core.utils.UUIDs;
-import com.google.api.client.auth.oauth2.Credential;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.credentialservice.api.datacontracts.CredentialModel;
 import seahorse.internal.business.credentialservice.datacontracts.*;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
@@ -121,7 +121,7 @@ public class CredentialService implements ICredentialService {
 	}
 
 	@Override
-	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		//Set
 		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
 		deleteCredentialMessageEntity.setModifiedDate(new Date());
@@ -152,7 +152,7 @@ public class CredentialService implements ICredentialService {
 	}
 
 	@Override
-	public List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity) {
+	public List<CredentialModel> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity) {
 		//Validator	    
 	    Result result = credentialServiceValidator.validateGetCredentials(getCredentialMessageEntity);
 	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -166,5 +166,11 @@ public class CredentialService implements ICredentialService {
 		}
 		
 		return credentialServiceMapper.mapCredential(result, getCredentialMessageEntity);
+	}
+
+	@Override
+	public CredentialValueDetail getCredentialValueByCredentialId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

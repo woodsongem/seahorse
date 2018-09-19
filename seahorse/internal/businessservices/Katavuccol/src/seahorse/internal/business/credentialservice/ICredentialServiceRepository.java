@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 
@@ -24,8 +24,8 @@ public interface ICredentialServiceRepository {
 
 	OutPutResponse updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	CredentialDAO getCredentialById(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	OutPutResponse deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 }

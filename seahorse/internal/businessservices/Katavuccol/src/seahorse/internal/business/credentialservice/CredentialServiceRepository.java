@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import seahorse.internal.business.credentialservice.dal.datacontracts.CredentialDAO;
 import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
 import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
 
@@ -37,13 +37,13 @@ public class CredentialServiceRepository implements ICredentialServiceRepository
 	}
 
 	@Override
-	public CredentialDAO getCredentialById(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public CredentialDAO getCredentialById(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public OutPutResponse deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public OutPutResponse deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -115,7 +115,7 @@ public class KatavuccolServiceMapper implements IKatavuccolServiceMapper {
 	}
 
 	@Override
-	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		DeleteCredentialResMsgEntity deleteCredentialResponseMessageEntity=new DeleteCredentialResMsgEntity();
 		deleteCredentialResponseMessageEntity.setResultStatus(result.getResultStatus());
 		deleteCredentialResponseMessageEntity.setResultMessages(result.getResultMessages());

@@ -30,7 +30,7 @@ public interface IKatavuccolService {
 
 	UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryMessageEntity);
 
