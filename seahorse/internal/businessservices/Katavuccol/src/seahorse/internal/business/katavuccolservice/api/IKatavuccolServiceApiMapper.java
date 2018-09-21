@@ -3,59 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.api;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
-import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CategoryResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialRequestModel;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeRequestModel;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.CreateCredentialTypeResponseModel;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.DeleteCredentialTypeResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.GetCredentialValueRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialResponse;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeRequest;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.UpdateCredentialTypeResponse;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResMsgEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialByUserIdMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialTypeMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceApiMapper {	
 
-	CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity);
+	/*CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity);
 
 	CredentialRequestMessageEntity mapCredentialRequestMessageEntity(CreateCredentialRequestModel credentialRequest,String userid,String categoryId, HttpServletRequest httpRequest);
 
@@ -127,6 +81,6 @@ public interface IKatavuccolServiceApiMapper {
 	CreateCredentialTypeResponseModel mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,
 			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 
-	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id);
+	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id);*/
 
 }

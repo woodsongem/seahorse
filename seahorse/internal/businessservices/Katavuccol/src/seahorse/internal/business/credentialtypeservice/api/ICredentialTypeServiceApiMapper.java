@@ -13,6 +13,7 @@ import seahorse.internal.business.credentialtypeservice.api.datacontracts.Update
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.UpdateCredentialTypeResponseModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
@@ -41,5 +42,9 @@ public interface ICredentialTypeServiceApiMapper {
 
 	DeleteCredentialTypeReqMsgEntity mapDeleteCredentialTypeRequestMessageEntity(String userid, String credentialTypeId,
 			HttpServletRequest httpRequest);
+
+	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid);
+
+	CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id);
 
 }

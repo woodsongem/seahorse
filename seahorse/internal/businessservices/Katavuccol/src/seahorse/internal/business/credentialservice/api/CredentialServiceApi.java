@@ -25,12 +25,24 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.api.client.auth.oauth2.Credential;
-
 import seahorse.internal.business.credentialservice.ICredentialService;
-import seahorse.internal.business.credentialservice.api.datacontracts.*;
-import seahorse.internal.business.credentialservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.IKatavuccolService;
+import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialRequestModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.CreateCredentialResponseModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.CredentialModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.DeleteCredentialResponse;
+import seahorse.internal.business.credentialservice.api.datacontracts.GetCredentialValueRequest;
+import seahorse.internal.business.credentialservice.api.datacontracts.UpdateCredentialRequestModel;
+import seahorse.internal.business.credentialservice.api.datacontracts.UpdateCredentialResponseModel;
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialRequestMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.CreateCredentialResponseMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.CredentialValueDetail;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.DeleteCredentialResMsgEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialByUserIdMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.GetCredentialValueMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -40,6 +52,7 @@ import seahorse.internal.business.katavuccolservice.registries.KatavuccolService
  * @author SMJE
  *
  */
+@Path("/credentialservice")
 public class CredentialServiceApi {
 
 	private static final Logger logger = LogManager.getLogger(CredentialServiceApi.class);

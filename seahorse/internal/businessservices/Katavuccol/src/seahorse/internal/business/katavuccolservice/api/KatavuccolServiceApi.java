@@ -3,51 +3,7 @@
  */
 package seahorse.internal.business.katavuccolservice.api;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.credentialservice.ICredentialService;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
-import seahorse.internal.business.katavuccolservice.IKatavuccolService;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 
 /**
  * @author sajanmje
@@ -57,7 +13,7 @@ import seahorse.internal.business.katavuccolservice.registries.KatavuccolService
 @Path("/")
 public class KatavuccolServiceApi {
 
-	private static final Logger logger = LogManager.getLogger(KatavuccolServiceApi.class);
+	/*private static final Logger logger = LogManager.getLogger(KatavuccolServiceApi.class);
 	@Context
 	private HttpServletRequest httpRequest;
 	
@@ -494,5 +450,5 @@ public class KatavuccolServiceApi {
 		deleteCredentialTypeResponse.setResultMessages(resultMessage);
 		return deleteCredentialTypeResponse;
 	}
-
+*/
 }

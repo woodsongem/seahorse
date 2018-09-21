@@ -3,35 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.api;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
-import seahorse.internal.business.categoryservice.api.datacontracts.DeleteCategoryResponseModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryRequestModel;
-import seahorse.internal.business.categoryservice.api.datacontracts.UpdateCategoryResponseModel;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.api.datacontracts.CreateCredentialTypeResponseModel;
-import seahorse.internal.business.credentialtypeservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccolservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 
-	@Override
+	/*@Override
 	public CredentialResponse mapCredentialsResponse(CredentialResponseMessageEntity credentialsResMessageEntity) {
 		CredentialResponse credentialsResponse=new CredentialResponse();
 		if(credentialsResMessageEntity == null)
@@ -434,5 +412,5 @@ public class KatavuccolServiceApiMapper implements IKatavuccolServiceApiMapper {
 		credentialTypeByUserIdMsgEntity.setId(id);
 		return credentialTypeByUserIdMsgEntity;
 	}
-	
+	*/
 }

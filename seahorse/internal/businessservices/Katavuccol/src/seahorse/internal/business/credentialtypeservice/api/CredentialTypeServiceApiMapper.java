@@ -17,6 +17,7 @@ import seahorse.internal.business.credentialtypeservice.api.datacontracts.Update
 import seahorse.internal.business.credentialtypeservice.api.datacontracts.UpdateCredentialTypeResponseModel;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
@@ -117,6 +118,16 @@ public class CredentialTypeServiceApiMapper implements ICredentialTypeServiceApi
 		deleteCredentialTypeRequestMessageEntity.setCredentialTypeId(credentialTypeId);
 		deleteCredentialTypeRequestMessageEntity.setHttpRequest(httpRequest);
 		return deleteCredentialTypeRequestMessageEntity;
+	}
+	@Override
+	public CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

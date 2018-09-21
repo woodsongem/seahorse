@@ -17,6 +17,7 @@ public class CategoryServiceModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
+		
 		bind(ICategoryService.class).to(CategoryService.class);
 		bind(ICategoryServiceValidator.class).to(CategoryServiceValidator.class);
 		bind(ICategoryServiceVerifier.class).to(CategoryServiceVerifier.class);

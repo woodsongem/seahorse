@@ -4,43 +4,13 @@
 
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import org.apache.logging.log4j.Logger;
-
-import com.datastax.driver.core.BoundStatement;
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Row;
-import com.google.inject.Inject;
-
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
-import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
-import seahorse.internal.business.shared.aop.InjectLogger;
-
 /**
  * @author sajanmje 
  *
  */
 public class KatavuccolServiceRepository implements IKatavuccolServiceRepository {
 
-	private final IKatavuccolServiceRepositoryMapper katavuccolServiceRepositoryMapper;
+	/*private final IKatavuccolServiceRepositoryMapper katavuccolServiceRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
 
@@ -288,5 +258,5 @@ public class KatavuccolServiceRepository implements IKatavuccolServiceRepository
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();		
 		return result;
-	}
+	}*/
 }

@@ -12,7 +12,6 @@ import seahorse.internal.business.credentialservice.CredentialServiceModule;
 import seahorse.internal.business.credentialservice.ICredentialService;
 import seahorse.internal.business.credentialtypeservice.CredentialTypeServiceModule;
 import seahorse.internal.business.credentialtypeservice.ICredentialTypeService;
-import seahorse.internal.business.katavuccolservice.IKatavuccolService;
 import seahorse.internal.business.profileservice.IProfileService;
 import seahorse.internal.business.profileservice.ProfileServiceModule;
 import seahorse.internal.business.shared.aop.ShardModules;
@@ -25,14 +24,7 @@ public class KatavuccolServiceFactory {
 
 	 private KatavuccolServiceFactory() {
 		    throw new IllegalStateException("KatavuccolServiceFactory class");
-		  }
-	 
-	public static IKatavuccolService getKatavuccolService() {		
-		Injector parent = Guice.createInjector(new ShardModules(),new UserCredentialModule(),new KatavuccolServiceModule());
-		//Injector child =parent.createChildInjector();
-		//Injector injector = child.createChildInjector();		
-		return parent.getInstance(IKatavuccolService.class);		
-	}	
+		  }	
 	
 	public static ICredentialService getICredentialService()
 	{

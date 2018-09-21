@@ -3,43 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.ws.rs.core.Response.Status;
-import org.apache.logging.log4j.Logger;
-import com.datastax.driver.core.utils.UUIDs;
-import com.google.inject.Inject;
-
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeResponseMessageEntity;
-import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
-import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
-import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
-import seahorse.internal.business.katavuccolservice.verifiers.IKatavuccolServiceVerifier;
-import seahorse.internal.business.shared.aop.InjectLogger;
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolService implements IKatavuccolService {
 
-	private IKatavuccolServiceMapper katavuccolServiceMapper;
+	/*private IKatavuccolServiceMapper katavuccolServiceMapper;
 	private IKatavuccolServiceVerifier katavuccolServiceVerifier;
 	private IKatavuccolServiceValidator katavuccolServiceValidator;
 	private IKatavuccolServiceProcessor katavuccolServiceProcessor;
@@ -348,6 +318,6 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		return katavuccolServiceMapper.mapCredentialValueDetail(result, getCredentialValueMessageEntity);
-	}	
+	}	*/
 	
 }

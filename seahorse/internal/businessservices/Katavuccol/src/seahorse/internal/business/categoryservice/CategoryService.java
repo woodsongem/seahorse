@@ -11,14 +11,22 @@ import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.Logger;
+
 import com.google.inject.Inject;
-import seahorse.internal.business.categoryservice.datacontracts.*;
+
+import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
+import seahorse.internal.business.categoryservice.datacontracts.CategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.CreateCategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryResponseMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.GetCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
+import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryResponseMessageEntity;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
-import seahorse.internal.business.categoryservice.api.datacontracts.CategoryModel;
 
 /**
  * @author admin

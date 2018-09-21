@@ -4,28 +4,13 @@
 
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.util.UUID;
-import com.datastax.driver.core.BoundStatement;
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.Row;
-
-import seahorse.internal.business.categoryservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.categoryservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceRepositoryMapper {
 	
-	String getCategoryDetailByIdQuery(UUID categoryId,UUID userId);
+	/*String getCategoryDetailByIdQuery(UUID categoryId,UUID userId);
 
 	CategoryDAO mapCategoryDAO(Row categoryDAOResult);
 
@@ -68,4 +53,5 @@ public interface IKatavuccolServiceRepositoryMapper {
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCategoryMessageEntity updateCategoryMessageEntity);	
+*/
 }

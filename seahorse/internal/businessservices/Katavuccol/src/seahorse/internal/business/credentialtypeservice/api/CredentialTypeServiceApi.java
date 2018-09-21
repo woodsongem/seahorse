@@ -51,7 +51,7 @@ import seahorse.internal.business.katavuccolservice.registries.KatavuccolService
  *
  */
 
-@Path("/CredentialTypeService")
+@Path("/credentialtypeservice")
 public class CredentialTypeServiceApi {
 	
 	private static final Logger logger = LogManager.getLogger(CredentialTypeServiceApi.class);
@@ -143,12 +143,12 @@ public class CredentialTypeServiceApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserId(@PathParam("userid") String userid)
 	{
-		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		ICredentialTypeServiceApiMapper credentialTypeServiceApiMapper=new CredentialTypeServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		List<CredentialTypeModel> credentialTypeModel=new ArrayList<>();
 		try {
 			ICredentialTypeService credentialTypeService = KatavuccolServiceFactory.getICredentialTypeService();
-			CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=katavuccolServiceApiMapper.mapCredentialTypeByUserIdMsgEntity(userid);
+			CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=credentialTypeServiceApiMapper.mapCredentialTypeByUserIdMsgEntity(userid);
 			credentialTypeModel= credentialTypeService.getCredentialTypeByUserId(credentialTypeByUserIdMsgEntity);
 			httpStatus= Status.OK;
 			if(credentialTypeModel==null)
@@ -164,16 +164,16 @@ public class CredentialTypeServiceApi {
 		return Response.status(httpStatus).entity(credentialTypeModel).build();
 	}
 	@GET
-	@Path("/{userid}/{id}")
+	@Path("/{userid}/credentialtype/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserIdAndId(@PathParam("userid") String userid,@PathParam("id") String id)
 	{
-		IKatavuccolServiceApiMapper katavuccolServiceApiMapper=new KatavuccolServiceApiMapper();
+		ICredentialTypeServiceApiMapper credentialTypeServiceApiMapper=new CredentialTypeServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		CredentialTypeModel credentialTypeModel=new CredentialTypeModel();
 		try {
 			ICredentialTypeService credentialTypeService = KatavuccolServiceFactory.getICredentialTypeService();
-			CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=katavuccolServiceApiMapper.mapCredentialTypeByUserIdMsgEntity(userid,id);
+			CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=credentialTypeServiceApiMapper.mapCredentialTypeByUserIdMsgEntity(userid,id);
 			credentialTypeModel= credentialTypeService.getCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity);
 			httpStatus= Status.OK;
 			if(credentialTypeModel==null || credentialTypeModel.getId()==null)
