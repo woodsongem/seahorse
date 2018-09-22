@@ -21,7 +21,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.profileservice.IBaseProfileService;
-import seahorse.internal.business.profileservice.datacontracts.UserMessageEntity;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -98,7 +98,7 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 
 	@Override
 	public Result isUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity) {
-		 UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(createCredentialTypeMsgEntity.getParsedUserId());
+		 UserProfileMsgEntity userMessageEntity=baseProfileService.getUserDetail(createCredentialTypeMsgEntity.getParsedUserId());
 		  if(userMessageEntity==null)
 		  {
 				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is invalid",
@@ -116,7 +116,7 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 	public Result isUserIdValid(CredentialTypeByUserIdMsgEntity credentialTypeByUserId)
 	{
-	  UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(credentialTypeByUserId.getParsedUserId());
+	  UserProfileMsgEntity userMessageEntity=baseProfileService.getUserDetail(credentialTypeByUserId.getParsedUserId());
 	  if(userMessageEntity==null)
 	  {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",
@@ -160,7 +160,7 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 
 	@Override
 	public Result isUserIdValid(CredentialTypeRequestMessageEntity credentialTypeRequestMessageEntity) {
-		UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(credentialTypeRequestMessageEntity.getParsedUserId());
+		UserProfileMsgEntity userMessageEntity=baseProfileService.getUserDetail(credentialTypeRequestMessageEntity.getParsedUserId());
 		  if(userMessageEntity==null)
 		  {
 				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",
@@ -173,7 +173,7 @@ public class CredentialTypeServiceVerifier implements ICredentialTypeServiceVeri
 	
 	@Override
 	public Result isUserIdValid(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeReqMsgEntity) {
-		UserMessageEntity userMessageEntity=baseProfileService.getUserDetail(deleteCredentialTypeReqMsgEntity.getParsedUserId());
+		UserProfileMsgEntity userMessageEntity=baseProfileService.getUserDetail(deleteCredentialTypeReqMsgEntity.getParsedUserId());
 		  if(userMessageEntity==null)
 		  {
 				return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId is null",

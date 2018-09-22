@@ -31,6 +31,8 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
+import seahorse.internal.business.profileservice.IProfileService;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -41,7 +43,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	private final ICredentialServiceRepository credentialServiceRepository;
 	private final Ikatavuccolredis katavuccolredis;
-	private final IUserCredentialService userCredentialService;
+	private final IProfileService profileService;
 	private final ICategoryService categoryService;
 	private final ICredentialTypeService credentialTypeService;
 	
@@ -51,7 +53,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 			IKatavuccolServiceErrorCode katavuccolServiceErrorCode, 
 			ICredentialServiceRepository credentialServiceRepository,
 			Ikatavuccolredis katavuccolredis,
-			IUserCredentialService userCredentialService,
+			IProfileService profileService,
 			ICategoryService categoryService,
 			ICredentialTypeService credentialTypeService)
 	{
@@ -59,7 +61,7 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 		this.katavuccolServiceErrorCode = katavuccolServiceErrorCode;
 		this.credentialServiceRepository = credentialServiceRepository;
 		this.katavuccolredis=katavuccolredis;
-		this.userCredentialService=userCredentialService;
+		this.profileService=profileService;
 		this.categoryService=categoryService;
 		this.credentialTypeService=credentialTypeService;
 	}
@@ -202,8 +204,8 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	
 	@Override
 	public Result isUserIdValid(UpdateCredentialMessageEntity updateCredentialMessageEntity) {
-		UserCredentialMessageEntity userCredentialMessageEntity=userCredentialService.getUserCredential(updateCredentialMessageEntity.getParsedUserId());
-		if(userCredentialMessageEntity == null || userCredentialMessageEntity.getUserId()==null)
+		UserProfileMsgEntity userProfileMsgEntity=profileService.getUserProfileMsgEntityByUserId(updateCredentialMessageEntity.getParsedUserId());
+		if(userProfileMsgEntity == null || userProfileMsgEntity.getUserId()==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "InValid user Id", "UserId", katavuccolServiceErrorCode.createCredentialUserIdNotFoundErrorCode());
 		}
@@ -243,8 +245,8 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	
 	@Override
 	public Result isUserIdValid(CreateCredentialRequestMessageEntity credentialsRequestMessageEntity) {
-		UserCredentialMessageEntity userCredentialMessageEntity=userCredentialService.getUserCredential(credentialsRequestMessageEntity.getParsedUserId());
-		if(userCredentialMessageEntity == null || userCredentialMessageEntity.getUserId()==null)
+		UserProfileMsgEntity userProfileMsgEntity=profileService.getUserProfileMsgEntityByUserId(credentialsRequestMessageEntity.getParsedUserId());
+		if(userProfileMsgEntity == null || userProfileMsgEntity.getUserId()==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "InValid user Id", "UserId", katavuccolServiceErrorCode.createCredentialUserIdNotFoundErrorCode());
 		}
@@ -374,8 +376,8 @@ public class CredentialServiceVerifier implements ICredentialServiceVerifier {
 	
 	@Override
 	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
-		UserCredentialMessageEntity userCredentialMessageEntity=userCredentialService.getUserCredential(deleteCredentialMessageEntity.getParsedUserId());
-		if(userCredentialMessageEntity == null || userCredentialMessageEntity.getUserId()==null)
+		UserProfileMsgEntity userProfileMsgEntity=profileService.getUserProfileMsgEntityByUserId(deleteCredentialMessageEntity.getParsedUserId());
+		if(userProfileMsgEntity == null || userProfileMsgEntity.getUserId()==null)
 		{
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "InValid user Id", "UserId", katavuccolServiceErrorCode.createCredentialUserIdNotFoundErrorCode());
 		}

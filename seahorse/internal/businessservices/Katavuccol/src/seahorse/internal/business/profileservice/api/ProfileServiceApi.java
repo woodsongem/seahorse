@@ -67,13 +67,13 @@ public class ProfileServiceApi {
 	@GET
 	@Path("/profile/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUserProfile(@PathParam("userid") String userid) {
+	public Response getUserProfileByUserId(@PathParam("userid") String userid) {
 		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-		List<UserProfileModel> userProfileModels = new ArrayList<>();
+		UserProfileModel userProfileModel = new UserProfileModel();
 		try {
 			IProfileService profileService = KatavuccolServiceFactory.getIProfileService();
-			userProfileModels=profileService.getUserProfile(userid);
+			userProfileModel=profileService.getUserProfileByUserId(userid);
 		} catch (Exception ex) {
 
 		}

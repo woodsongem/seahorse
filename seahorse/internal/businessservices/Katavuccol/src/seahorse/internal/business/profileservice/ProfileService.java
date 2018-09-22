@@ -3,9 +3,10 @@
  */
 package seahorse.internal.business.profileservice;
 
-import java.util.List;
+import java.util.UUID;
 
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -14,7 +15,11 @@ import seahorse.internal.business.profileservice.api.datacontracts.UserProfileMo
 public class ProfileService implements IProfileService {
 
 	@Override
-	public List<UserProfileModel> getUserProfile(String userid) {
+	public UserProfileModel getUserProfileByUserId(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public UserProfileMsgEntity getUserProfileMsgEntityByUserId(UUID userid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

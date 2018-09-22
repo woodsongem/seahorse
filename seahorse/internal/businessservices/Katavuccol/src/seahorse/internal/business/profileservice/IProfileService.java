@@ -3,9 +3,10 @@
  */
 package seahorse.internal.business.profileservice;
 
-import java.util.List;
+import java.util.UUID;
 
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -13,6 +14,8 @@ import seahorse.internal.business.profileservice.api.datacontracts.UserProfileMo
  */
 public interface IProfileService {
 
-	List<UserProfileModel> getUserProfile(String userid);
+	UserProfileModel getUserProfileByUserId(String userid);
+	
+	UserProfileMsgEntity getUserProfileMsgEntityByUserId(UUID userid);
 
 }

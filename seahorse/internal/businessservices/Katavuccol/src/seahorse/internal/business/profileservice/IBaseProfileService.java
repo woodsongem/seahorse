@@ -5,7 +5,7 @@ package seahorse.internal.business.profileservice;
 
 import java.util.UUID;
 
-import seahorse.internal.business.profileservice.datacontracts.UserMessageEntity;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -13,6 +13,6 @@ import seahorse.internal.business.profileservice.datacontracts.UserMessageEntity
  */
 public interface IBaseProfileService {
 
-	UserMessageEntity getUserDetail(UUID parsedUserId);
+	UserProfileMsgEntity getUserDetail(UUID parsedUserId);
 
 }
