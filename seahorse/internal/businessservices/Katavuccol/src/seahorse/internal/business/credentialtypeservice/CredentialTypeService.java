@@ -144,7 +144,7 @@ public class CredentialTypeService implements ICredentialTypeService {
 		{
 			return null;
 		}
-		return	credentialTypeServiceRepository.getCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity.getParsedUserId(), credentialTypeByUserIdMsgEntity.getParsedId());
+		return credentialTypeServiceRepository.getCredentialTypeByUserIdAndId(credentialTypeByUserIdMsgEntity.getParsedUserId(), credentialTypeByUserIdMsgEntity.getParsedId());
 	}
 
 	@Override

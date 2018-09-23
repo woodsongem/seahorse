@@ -20,6 +20,7 @@ public class CredentialTypeByUserIdMsgEntity extends RequestMessageEntity {
 	private String id;
 	private UUID parsedId;
 	private List<CredentialTypeModel> credentialType;
+	public CredentialTypeModel CredentialTypes;
 
 	/**
 	 * @return the userId

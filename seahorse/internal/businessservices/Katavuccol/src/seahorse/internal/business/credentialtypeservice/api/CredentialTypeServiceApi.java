@@ -164,7 +164,7 @@ public class CredentialTypeServiceApi {
 		return Response.status(httpStatus).entity(credentialTypeModel).build();
 	}
 	@GET
-	@Path("/{userid}/credentialtype/{id}")
+	@Path("/credentialtype/{id}?userid={userid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserIdAndId(@PathParam("userid") String userid,@PathParam("id") String id)
 	{

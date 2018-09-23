@@ -16,7 +16,6 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.Credential
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
 
 /**
  * @author admin
