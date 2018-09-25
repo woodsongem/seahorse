@@ -31,14 +31,13 @@ import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceU
 public class CredentialTypeServiceApiMapper implements ICredentialTypeServiceApiMapper {
 
 	@Override
-	public CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest,
-			String userid, HttpServletRequest httpRequest) {
+	public CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest, HttpServletRequest httpRequest) {
 		CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=new CreateCredentialTypeMsgEntity();
-		createCredentialTypeMsgEntity.setUserId(userid);		
-		if(credentialTypeRequest == null)
+		if(credentialTypeRequest==null)
 		{
 			return createCredentialTypeMsgEntity;
 		}
+		createCredentialTypeMsgEntity.setUserId(credentialTypeRequest.getUserId());		
 		createCredentialTypeMsgEntity.setName(credentialTypeRequest.getName());
 		createCredentialTypeMsgEntity.setDescription(credentialTypeRequest.getDescription());
 		createCredentialTypeMsgEntity.setIsDuplicationAllowed(credentialTypeRequest.getIsDuplicationAllowed());
@@ -126,8 +125,10 @@ public class CredentialTypeServiceApiMapper implements ICredentialTypeServiceApi
 	}
 	@Override
 	public CredentialTypeByUserIdMsgEntity mapCredentialTypeByUserIdMsgEntity(String userid, String id) {
-		// TODO Auto-generated method stub
-		return null;
+		CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity=new CredentialTypeByUserIdMsgEntity();
+		credentialTypeByUserIdMsgEntity.setUserId(userid);
+		credentialTypeByUserIdMsgEntity.setId(id);
+		return credentialTypeByUserIdMsgEntity;
 	}
 
 }

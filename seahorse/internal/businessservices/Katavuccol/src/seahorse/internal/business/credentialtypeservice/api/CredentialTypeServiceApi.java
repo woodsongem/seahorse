@@ -39,8 +39,6 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.Credential
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
-import seahorse.internal.business.katavuccolservice.api.IKatavuccolServiceApiMapper;
-import seahorse.internal.business.katavuccolservice.api.KatavuccolServiceApiMapper;
 import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -59,14 +57,14 @@ public class CredentialTypeServiceApi {
 	private HttpServletRequest httpRequest;
 
 	@POST
-	@Path("/{userid}")
+	@Path("/credentialtype")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createCredentialType(@PathParam("userid") String userid,CreateCredentialTypeRequestModel credentialTypeRequest) {
+	public Response createCredentialType(CreateCredentialTypeRequestModel credentialTypeRequest) {
 		ICredentialTypeServiceApiMapper credentialTypeServiceApiMapper=new CredentialTypeServiceApiMapper();
 		CreateCredentialTypeResponseModel createCredentialTypeResponse=new CreateCredentialTypeResponseModel();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		try {
-			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=credentialTypeServiceApiMapper.mapCreateCredentialTypeMsgEntity(credentialTypeRequest,userid,httpRequest);
+			CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity=credentialTypeServiceApiMapper.mapCreateCredentialTypeMsgEntity(credentialTypeRequest,httpRequest);
 			ICredentialTypeService credentialTypeService = KatavuccolServiceFactory.getICredentialTypeService();
 			Map<String, String> headers=getHeaders(httpRequest);
 			createCredentialTypeMsgEntity.setHttpMethod(httpRequest.getMethod());
@@ -164,7 +162,7 @@ public class CredentialTypeServiceApi {
 		return Response.status(httpStatus).entity(credentialTypeModel).build();
 	}
 	@GET
-	@Path("/credentialtype/{id}?userid={userid}")
+	@Path("/credentialtype/{id}/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCredentialTypeByUserIdAndId(@PathParam("userid") String userid,@PathParam("id") String id)
 	{
@@ -179,6 +177,7 @@ public class CredentialTypeServiceApi {
 			if(credentialTypeModel==null || credentialTypeModel.getId()==null)
 			{
 				httpStatus=Status.BAD_REQUEST;
+				credentialTypeModel=new CredentialTypeModel();
 			}
 			
 		}

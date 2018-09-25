@@ -24,7 +24,7 @@ import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCred
  */
 public interface ICredentialTypeServiceApiMapper {
 
-	CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest, String userid, HttpServletRequest httpRequest);
+	CreateCredentialTypeMsgEntity mapCreateCredentialTypeMsgEntity(CreateCredentialTypeRequestModel credentialTypeRequest, HttpServletRequest httpRequest);
 
 	CreateCredentialTypeResponseModel mapCredentialTypeResponse(CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity,CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
 

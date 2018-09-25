@@ -3,9 +3,6 @@
  */
 package seahorse.internal.business.profileservice.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -22,11 +19,14 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 import seahorse.internal.business.profileservice.IProfileService;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
+import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
 
 /**
  * @author SMJE
@@ -43,8 +43,25 @@ public class ProfileServiceApi {
 	@Path("/profile")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createUserProfile(CreateProfileRequestModel createProfileRequestModel) {
-		return null;
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		Result result = new Result();
+		try {
+			IProfileService profileService = KatavuccolServiceFactory.getIProfileService();
+			CreateUserProfileMsgEntity createUserProfileMsgEntity=profileServiceApiMapper.MapCreateUserProfileMsgEntity(createProfileRequestModel);
+			result=profileService.createUserProfile(createUserProfileMsgEntity);
+			if(result==null)
+			{
+				result=new OutPutResponse();
+			}
+			else
+			{
+				httpStatus=result.getHttpStatus();
+			}
+		} catch (Exception ex) {
 
+		}
+		return Response.status(httpStatus).entity(result).build();
 	}
 
 	@PUT
@@ -78,6 +95,5 @@ public class ProfileServiceApi {
 
 		}
 		return null;
-
 	}
 }

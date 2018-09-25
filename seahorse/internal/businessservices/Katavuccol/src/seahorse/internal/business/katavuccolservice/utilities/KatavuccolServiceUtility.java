@@ -31,6 +31,7 @@ import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.crypto.tink.daead.DeterministicAeadFactory;
 import com.google.crypto.tink.daead.DeterministicAeadKeyTemplates;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
@@ -42,6 +43,7 @@ import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultS
  */
 public class KatavuccolServiceUtility {
 
+	private static Gson gson_object;
 	private KatavuccolServiceUtility() {
 		  throw new IllegalAccessError("KatavuccolServiceUtility class");
 	}
@@ -146,6 +148,7 @@ public class KatavuccolServiceUtility {
 		
 		return source.equals(des);
 	}
+	
 	public static String getString(Object value)
 	{
 		Gson gson = new Gson();
@@ -160,6 +163,7 @@ public class KatavuccolServiceUtility {
 		}
 		return value.toString();
 	}
+	
 	public static boolean isEqual(String source, String des)
 	{
 		if(source == null || des == null)
@@ -169,6 +173,7 @@ public class KatavuccolServiceUtility {
 		
 		return source.equals(des);
 	}
+	
 	public static Map<String,String> encrypt(String key,String value)
 	{
 		String encryptValue = null;
@@ -208,6 +213,7 @@ public class KatavuccolServiceUtility {
 		result.put(KatavuccolConstant.CREDENTIAL_ENCRYPT_VALUE, encryptValue);
 	  return result;
 	}
+	
 	public static String decrypt(String encryptKey,String value,String userkey)
 	{
 		String cp = null;
@@ -243,6 +249,7 @@ public class KatavuccolServiceUtility {
 		}
 	  return cp;
 	}
+	
 	public static String ToString(Object value)
 	{
 		if(value==null)
@@ -251,5 +258,15 @@ public class KatavuccolServiceUtility {
 		}
 		return value.toString();
 		
+	}
+
+	public static Gson getGson()
+	{
+		if(gson_object==null)
+		{
+			gson_object = new GsonBuilder().create();
+		}
+		
+		return gson_object;
 	}
 }

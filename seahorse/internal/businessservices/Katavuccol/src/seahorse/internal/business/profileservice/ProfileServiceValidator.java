@@ -11,6 +11,9 @@ import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErr
 import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
+import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
+import seahorse.internal.business.profileservice.datacontracts.DeleteUserProfileMsgEntity;
+import seahorse.internal.business.profileservice.datacontracts.UpdateUserProfileMsgEntity;
 
 /**
  * @author admin
@@ -42,5 +45,23 @@ public class ProfileServiceValidator implements IProfileServiceValidator {
 		}
 		
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"Invalid user id","UserId",katavuccolServiceErrorCode.userIdInValidFormat());
+	}
+
+	@Override
+	public Result validCreateUserProfile(CreateUserProfileMsgEntity createUserProfileMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result validDeleteUserProfile(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result validDeleteUserProfile(UpdateUserProfileMsgEntity updateUserProfileMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

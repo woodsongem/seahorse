@@ -14,6 +14,7 @@ public class CreateCredentialTypeRequestModel extends RequestBase {
 	private String description;
 	private Boolean isduplicationallowed;
 	private Boolean issubitemallowed;
+	private String userId;
 	
 	/**
 	 * @return the name
@@ -62,5 +63,17 @@ public class CreateCredentialTypeRequestModel extends RequestBase {
 	 */
 	public void setIsSubitemAllowed(Boolean isSubitemAllowed) {
 		this.issubitemallowed = isSubitemAllowed;
+	}
+	/**
+	 * @return the userId
+	 */
+	public String getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 }

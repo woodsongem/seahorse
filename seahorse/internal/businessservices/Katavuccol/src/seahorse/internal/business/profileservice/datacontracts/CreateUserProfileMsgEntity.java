@@ -1,22 +1,24 @@
 /**
  * 
  */
-package seahorse.internal.business.profileservice.api.datacontracts;
+package seahorse.internal.business.profileservice.datacontracts;
 
-import seahorse.internal.business.katavuccolservice.api.datacontracts.BaseModel;
+import java.util.UUID;
+
+import seahorse.internal.business.katavuccolservice.common.datacontracts.BaseMessageEntity;
 
 /**
  * @author SMJE
  *
  */
-public class CreateProfileRequestModel extends BaseModel {
+public class CreateUserProfileMsgEntity extends BaseMessageEntity {
 
+	private UUID id;
 	private String userName;
 	private String password;
 	private String productItemId;
 	private String emailAddress;
 	private String phoneNumber;
-	
 	/**
 	 * @return the userName
 	 */
@@ -76,5 +78,17 @@ public class CreateProfileRequestModel extends BaseModel {
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	/**
+	 * @return the id
+	 */
+	public UUID getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(UUID id) {
+		this.id = id;
 	}
 }

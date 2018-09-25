@@ -3,15 +3,21 @@
  */
 package seahorse.internal.business.credentialtypeservice;
 
+import java.util.UUID;
+
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeEndpoints;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
 import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.external.datacontracts.UserProfileModelExAPI;
+import seahorse.internal.business.credentialtypeservice.rest.datacontracts.GetUserProfileIGet;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
+import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 
 /**
  * @author admin
@@ -100,6 +106,20 @@ public class CredentialTypeServiceMapper implements ICredentialTypeServiceMapper
 			deleteCredentialTypeResMsgEntity.setHttpStatus(deleteCredentialTypeReqMsgEntity.getHttpStatus());
 		}
 		return deleteCredentialTypeResMsgEntity;
+	}
+
+	@Override
+	public GetUserProfileIGet MapGetUserProfileIGet(UUID parsedUserId) {
+		GetUserProfileIGet getUserProfileIGet=new GetUserProfileIGet();
+		getUserProfileIGet.setUserId(parsedUserId.toString());
+		getUserProfileIGet.setEndpoint(CredentialTypeEndpoints.profileserviceendpoint.toString());
+		return getUserProfileIGet;
+	}
+
+	@Override
+	public UserProfileMsgEntity MapUserProfileMsgEntity(UserProfileModelExAPI userProfileModelExAPI) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
