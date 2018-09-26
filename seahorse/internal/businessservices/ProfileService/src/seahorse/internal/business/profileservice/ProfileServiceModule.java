@@ -4,11 +4,10 @@
 package seahorse.internal.business.profileservice;
 
 import java.security.GeneralSecurityException;
+
 import com.google.crypto.tink.Config;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.inject.AbstractModule;
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceErrorCode;
 
 /**
  * @author admin

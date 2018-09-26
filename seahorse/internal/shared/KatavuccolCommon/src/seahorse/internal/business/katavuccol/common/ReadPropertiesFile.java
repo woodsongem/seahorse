@@ -12,8 +12,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
 
-import seahorse.internal.business.shared.aop.InjectLogger;
-
 /**
  * @author sajanmje
  *

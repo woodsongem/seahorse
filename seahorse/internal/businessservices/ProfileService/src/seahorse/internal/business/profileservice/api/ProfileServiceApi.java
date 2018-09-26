@@ -19,14 +19,12 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.registries.KatavuccolServiceFactory;
 import seahorse.internal.business.profileservice.IProfileService;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
 import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
 
 /**
  * @author SMJE

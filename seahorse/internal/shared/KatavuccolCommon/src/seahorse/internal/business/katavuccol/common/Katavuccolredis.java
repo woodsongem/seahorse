@@ -11,8 +11,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import seahorse.internal.business.katavuccol.common.IReadPropertiesFile;
 import seahorse.internal.business.katavuccol.common.ReadPropertiesFile;
-import seahorse.internal.business.katavuccol.common.datacontracts.Result;
-import seahorse.internal.business.katavuccol.common.datacontracts.ResultStatus;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
 
 /**
  * @author sajanmje

@@ -11,10 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.datastax.driver.core.LocalDate;
 import com.google.gson.Gson;
 
-import seahorse.internal.business.katavuccol.common.datacontracts.Result;
-import seahorse.internal.business.katavuccol.common.datacontracts.ResultMessage;
-import seahorse.internal.business.katavuccol.common.datacontracts.ResultMessageEntity;
-import seahorse.internal.business.katavuccol.common.datacontracts.ResultStatus;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
+
+
 
 /**
  * @author sajanmje

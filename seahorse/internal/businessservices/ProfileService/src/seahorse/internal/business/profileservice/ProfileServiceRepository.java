@@ -5,12 +5,9 @@ package seahorse.internal.business.profileservice;
 
 import java.util.UUID;
 
-import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
-import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
 import seahorse.internal.business.profileservice.dal.datacontracts.UserCredentialDAO;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
 
 /**
  * @author admin

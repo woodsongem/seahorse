@@ -5,13 +5,12 @@ package seahorse.internal.business.profileservice;
 
 import java.util.UUID;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
 import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
 import seahorse.internal.business.profileservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.profileservice.datacontracts.UpdateUserProfileMsgEntity;
 import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
 
 /**
  * @author admin
