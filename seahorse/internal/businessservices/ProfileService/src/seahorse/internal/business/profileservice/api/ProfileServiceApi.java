@@ -20,11 +20,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import seahorse.internal.business.profileservice.IProfileService;
+import seahorse.internal.business.profileservice.ProfileServiceFactory;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
 import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
+import seahorse.internal.business.usercredentialservice.IUserCredentialService;
+import seahorse.internal.business.usercredentialservice.UserCredentialServiceFactory;
 
 /**
  * @author SMJE
@@ -45,9 +48,9 @@ public class ProfileServiceApi {
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		Result result = new Result();
 		try {
-			IProfileService profileService = KatavuccolServiceFactory.getIProfileService();
+			IUserCredentialService userCredentialService=UserCredentialServiceFactory.getIUserCredentialService();
 			CreateUserProfileMsgEntity createUserProfileMsgEntity=profileServiceApiMapper.MapCreateUserProfileMsgEntity(createProfileRequestModel);
-			result=profileService.createUserProfile(createUserProfileMsgEntity);
+			result=userCredentialService.createUserCredential(createUserProfileMsgEntity);
 			if(result==null)
 			{
 				result=new OutPutResponse();

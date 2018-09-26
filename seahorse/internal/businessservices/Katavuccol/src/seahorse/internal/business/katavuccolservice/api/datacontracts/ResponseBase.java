@@ -6,6 +6,7 @@ package seahorse.internal.business.katavuccolservice.api.datacontracts;
 import java.util.ArrayList;
 import java.util.List;
 import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultMessage;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseModel;
 
 /**
  * @author sajanmje
