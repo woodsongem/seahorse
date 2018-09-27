@@ -4,7 +4,8 @@
 package seahorse.internal.business.profileservice.api;
 
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
-import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 
 /**
  * @author SMJE
@@ -13,18 +14,24 @@ import seahorse.internal.business.profileservice.datacontracts.CreateUserProfile
 public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 
 	@Override
-	public CreateUserProfileMsgEntity MapCreateUserProfileMsgEntity(CreateProfileRequestModel createProfileRequestModel) {
-		CreateUserProfileMsgEntity createUserProfileMsgEntity = new CreateUserProfileMsgEntity();
-		if(createProfileRequestModel==null)
-		{
-			return createUserProfileMsgEntity;
+	public CreateUserCredentialMsgEntity MapCreateUserCredentialMsgEntity(CreateProfileRequestModel createProfileRequestModel) {
+		CreateUserCredentialMsgEntity createUserCredentialMsgEntity = new CreateUserCredentialMsgEntity();
+		if (createProfileRequestModel == null) {
+			return createUserCredentialMsgEntity;
 		}
-		createUserProfileMsgEntity.setUserName(createProfileRequestModel.getUserName());
-		createUserProfileMsgEntity.setPassword(createProfileRequestModel.getPassword());
-		createUserProfileMsgEntity.setEmailAddress(createProfileRequestModel.getEmailAddress());
-		createUserProfileMsgEntity.setPhoneNumber(createProfileRequestModel.getPhoneNumber());
-		createUserProfileMsgEntity.setProductItemId(createProfileRequestModel.getProductItemId());
-		return createUserProfileMsgEntity;
+		createUserCredentialMsgEntity.setUsername(createProfileRequestModel.getUserName());
+		createUserCredentialMsgEntity.setPassword(createProfileRequestModel.getPassword());
+		createUserCredentialMsgEntity.setEmailAddress(createProfileRequestModel.getEmailAddress());
+		createUserCredentialMsgEntity.setPhoneNumber(createProfileRequestModel.getPhoneNumber());
+		createUserCredentialMsgEntity.setProductItemId(createProfileRequestModel.getProductItemId());
+		return createUserCredentialMsgEntity;
+	}
+
+	@Override
+	public GetUserCredentialByUserIdMsgEntity MapGetUserCredentialByUserIdMsgEntity(String userid) {
+		GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity=new GetUserCredentialByUserIdMsgEntity();
+		getUserCredentialByUserIdMsgEntity.setUserId(userid);
+		return getUserCredentialByUserIdMsgEntity;
 	}
 
 }

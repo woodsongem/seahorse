@@ -19,15 +19,15 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import seahorse.internal.business.profileservice.IProfileService;
-import seahorse.internal.business.profileservice.ProfileServiceFactory;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
+import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
-import seahorse.internal.business.profileservice.datacontracts.CreateUserProfileMsgEntity;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
 import seahorse.internal.business.usercredentialservice.IUserCredentialService;
 import seahorse.internal.business.usercredentialservice.UserCredentialServiceFactory;
+import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 
 /**
  * @author SMJE
@@ -48,16 +48,14 @@ public class ProfileServiceApi {
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		Result result = new Result();
 		try {
-			IUserCredentialService userCredentialService=UserCredentialServiceFactory.getIUserCredentialService();
-			CreateUserProfileMsgEntity createUserProfileMsgEntity=profileServiceApiMapper.MapCreateUserProfileMsgEntity(createProfileRequestModel);
-			result=userCredentialService.createUserCredential(createUserProfileMsgEntity);
-			if(result==null)
-			{
-				result=new OutPutResponse();
-			}
-			else
-			{
-				httpStatus=result.getHttpStatus();
+			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
+			CreateUserCredentialMsgEntity createUserProfileMsgEntity = profileServiceApiMapper
+					.MapCreateUserCredentialMsgEntity(createProfileRequestModel);
+			result = userCredentialService.createUserCredential(createUserProfileMsgEntity);
+			if (result == null) {
+				result = new OutPutResponse();
+			} else {
+				httpStatus = createUserProfileMsgEntity.getHttpStatus();
 			}
 		} catch (Exception ex) {
 
@@ -88,13 +86,18 @@ public class ProfileServiceApi {
 	public Response getUserProfileByUserId(@PathParam("userid") String userid) {
 		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-		UserProfileModel userProfileModel = new UserProfileModel();
+		UserCredentialModel userCredentialModel = new UserCredentialModel();
 		try {
-			IProfileService profileService = KatavuccolServiceFactory.getIProfileService();
-			userProfileModel=profileService.getUserProfileByUserId(userid);
+			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
+			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper
+					.MapGetUserCredentialByUserIdMsgEntity(userid);
+			userCredentialModel = userCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity);
+			if (userCredentialModel == null) {
+				httpStatus = Status.NOT_FOUND;
+			}
 		} catch (Exception ex) {
-
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
 		}
-		return null;
+		return Response.status(httpStatus).entity(userCredentialModel).build();
 	}
 }

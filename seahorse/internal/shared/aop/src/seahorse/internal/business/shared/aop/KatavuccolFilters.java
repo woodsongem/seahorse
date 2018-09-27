@@ -13,7 +13,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class KatavuccolFilters extends ResourceConfig{
 	
 	public KatavuccolFilters() {
-               
+		
         register(AopLoggingRequestFilter.class);
     }
 

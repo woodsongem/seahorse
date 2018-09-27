@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.shared.aop.datacontracts;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 
 /**
  * @author SMJE
