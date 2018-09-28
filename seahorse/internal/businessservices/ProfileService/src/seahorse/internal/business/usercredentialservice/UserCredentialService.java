@@ -88,8 +88,7 @@ public class UserCredentialService implements IUserCredentialService {
 	}
 
 	@Override
-	public UserCredentialModel getUserCredentialByUserId(
-			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
+	public UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
 		return null;
 
 	}

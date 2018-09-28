@@ -49,8 +49,7 @@ public class ProfileServiceApi {
 		Result result = new Result();
 		try {
 			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
-			CreateUserCredentialMsgEntity createUserProfileMsgEntity = profileServiceApiMapper
-					.MapCreateUserCredentialMsgEntity(createProfileRequestModel);
+			CreateUserCredentialMsgEntity createUserProfileMsgEntity = profileServiceApiMapper.MapCreateUserCredentialMsgEntity(createProfileRequestModel);
 			result = userCredentialService.createUserCredential(createUserProfileMsgEntity);
 			if (result == null) {
 				result = new OutPutResponse();

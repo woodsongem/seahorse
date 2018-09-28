@@ -9,6 +9,12 @@ import com.google.crypto.tink.Config;
 import com.google.crypto.tink.daead.DeterministicAeadConfig;
 import com.google.inject.AbstractModule;
 
+import seahorse.internal.business.shared.katavuccol.common.CassandraConnector;
+import seahorse.internal.business.shared.katavuccol.common.ICassandraConnector;
+import seahorse.internal.business.shared.katavuccol.common.IReadPropertiesFile;
+import seahorse.internal.business.shared.katavuccol.common.ReadPropertiesFile;
+
+
 /**
  * @author SMJE
  *
@@ -23,6 +29,9 @@ public class UserCredentialServiceModule extends AbstractModule {
 		bind(IUserCredentialServiceProcessor.class).to(UserCredentialServiceProcessor.class);
 		bind(IUserCredentialServicePostProcessor.class).to(UserCredentialServicePostProcessor.class);
 		bind(IUserCredentialServiceMapper.class).to(UserCredentialServiceMapper.class);
+		bind(IUserCredentialRepository.class).to(UserCredentialRepository.class);
+		bind(IReadPropertiesFile.class).to(ReadPropertiesFile.class);
+		bind(ICassandraConnector.class).to(CassandraConnector.class);
 
 		try {
 			DeterministicAeadConfig.init();

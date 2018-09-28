@@ -14,16 +14,9 @@ public class ShardModules extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		@Override
-		protected void configure() {
-			LoggingEventHandler loggingEventHandler = new LoggingEventHandler();
-			bindInterceptor(Matchers.any(), Matchers.annotatedWith(Report.class), loggingEventHandler);
-			bindListener(Matchers.any(), new Log4JTypeListener());
-			bind(IReadPropertiesFile.class).to(ReadPropertiesFile.class);
-			bind(ICassandraConnector.class).to(CassandraConnector.class);
-			
-		}
+		LoggingEventHandler loggingEventHandler = new LoggingEventHandler();
+		bindInterceptor(Matchers.any(), Matchers.annotatedWith(Report.class), loggingEventHandler);
+		bindListener(Matchers.any(), new Log4JTypeListener());
 		
 	}
-
 }
