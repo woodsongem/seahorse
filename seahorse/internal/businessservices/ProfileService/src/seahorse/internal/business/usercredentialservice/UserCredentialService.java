@@ -5,10 +5,6 @@ package seahorse.internal.business.usercredentialservice;
 
 import java.util.Date;
 
-import javax.ws.rs.core.Response.Status;
-
-import org.apache.logging.log4j.Logger;
-
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 

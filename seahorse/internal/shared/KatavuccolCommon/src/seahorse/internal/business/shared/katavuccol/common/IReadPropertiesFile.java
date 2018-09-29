@@ -3,8 +3,6 @@ package seahorse.internal.business.shared.katavuccol.common;
  * 
  */
 
-import java.io.IOException;
-
 /**
  * @author sajanmje
  *
