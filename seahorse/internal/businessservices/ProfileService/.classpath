@@ -27,7 +27,16 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolCommonDatacontracts"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolCommonDatacontracts">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolCommon">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolAop"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

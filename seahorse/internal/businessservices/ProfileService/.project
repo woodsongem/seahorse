@@ -3,6 +3,9 @@
 	<name>ProfileService</name>
 	<comment></comment>
 	<projects>
+		<project>KatavuccolAop</project>
+		<project>KatavuccolCommon</project>
+		<project>KatavuccolCommonDatacontracts</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
