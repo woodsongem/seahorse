@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.phoneservice.app;
+package seahorse.internal.business.profileservice.api;
 
 import org.glassfish.jersey.server.ResourceConfig;
 

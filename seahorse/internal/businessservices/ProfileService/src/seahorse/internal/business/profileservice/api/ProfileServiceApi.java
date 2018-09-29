@@ -22,8 +22,8 @@ import org.apache.logging.log4j.Logger;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
-import seahorse.internal.business.profileservice.api.datacontracts.UserProfileModel;
-import seahorse.internal.business.shared.katavuccol.common.datacontracts.*;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.usercredentialservice.IUserCredentialService;
 import seahorse.internal.business.usercredentialservice.UserCredentialServiceFactory;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
@@ -33,7 +33,7 @@ import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCre
  * @author SMJE
  *
  */
-@Path("/profileservice")
+@Path("/")
 public class ProfileServiceApi {
 
 	private static final Logger logger = LogManager.getLogger(ProfileServiceApi.class);
