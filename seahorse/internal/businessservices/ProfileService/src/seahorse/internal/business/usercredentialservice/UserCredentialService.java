@@ -5,6 +5,8 @@ package seahorse.internal.business.usercredentialservice;
 
 import java.util.Date;
 
+import javax.ws.rs.core.Response.Status;
+
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
@@ -25,7 +27,7 @@ public class UserCredentialService implements IUserCredentialService {
 	private final IUserCredentialServiceValidator userCredentialServiceValidator;
 	private final IUserCredentialServiceVerifier userCredentialServiceVerifier;
 
-	 //@InjectLogger Logger logger;
+	// @InjectLogger Logger logger;
 
 	@Inject
 	public UserCredentialService(IUserCredentialServiceMapper userCredentialServiceMapper,
@@ -43,28 +45,32 @@ public class UserCredentialService implements IUserCredentialService {
 	@Override
 	public Result createUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
 		// Set
-		createUserCredentialMsgEntity.setId(UUIDs.timeBased());
-		createUserCredentialMsgEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
-		createUserCredentialMsgEntity.setCreatedDate(new Date());
-
+		if (createUserCredentialMsgEntity != null) {
+			createUserCredentialMsgEntity.setId(UUIDs.timeBased());
+			createUserCredentialMsgEntity.setStatus(KatavuccolConstant.ACTIVESTATUS);
+			createUserCredentialMsgEntity.setCreatedDate(new Date());
+		}
 
 		Result result = userCredentialServiceValidator.validCreateUserCredential(createUserCredentialMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			createUserCredentialMsgEntity.setHttpStatus(Status.BAD_REQUEST);
 			return result;
 		}
 
 		result = userCredentialServiceVerifier.verifyCreateUserCredential(createUserCredentialMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			createUserCredentialMsgEntity.setHttpStatus(Status.BAD_REQUEST);
 			return result;
 		}
 
 		result = userCredentialServiceProcessor.processCreateUserCredential(createUserCredentialMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			createUserCredentialMsgEntity.setHttpStatus(Status.BAD_REQUEST);
 			return result;
 		}
 		result = userCredentialServicePostProcessor.postProcessCreateUserCredential(createUserCredentialMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
-			return result;
+			//Log error
 		}
 
 		return result;
@@ -84,7 +90,8 @@ public class UserCredentialService implements IUserCredentialService {
 	}
 
 	@Override
-	public UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
+	public UserCredentialModel getUserCredentialByUserId(
+			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
 		return null;
 
 	}

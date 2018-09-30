@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
+import com.google.inject.Inject;
 
 import seahorse.internal.business.shared.katavuccol.common.ICassandraConnector;
 import seahorse.internal.business.shared.katavuccol.common.IReadPropertiesFile;
@@ -25,6 +26,7 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
 
+	@Inject
 	public UserCredentialRepository(IUserCredentialServiceRepositoryMapper userCredentialServiceRepositoryMapper,
 			ICassandraConnector cassandraConnector, IReadPropertiesFile readPropertiesFile) {
 		this.userCredentialServiceRepositoryMapper = userCredentialServiceRepositoryMapper;

@@ -15,10 +15,11 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 
 	@Override
 	public CreateUserCredentialMsgEntity MapCreateUserCredentialMsgEntity(CreateProfileRequestModel createProfileRequestModel) {
-		CreateUserCredentialMsgEntity createUserCredentialMsgEntity = new CreateUserCredentialMsgEntity();
+		
 		if (createProfileRequestModel == null) {
-			return createUserCredentialMsgEntity;
+			return null;
 		}
+		CreateUserCredentialMsgEntity createUserCredentialMsgEntity = new CreateUserCredentialMsgEntity();
 		createUserCredentialMsgEntity.setUsername(createProfileRequestModel.getUserName());
 		createUserCredentialMsgEntity.setPassword(createProfileRequestModel.getPassword());
 		createUserCredentialMsgEntity.setEmailAddress(createProfileRequestModel.getEmailAddress());

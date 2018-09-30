@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import com.google.inject.Inject;
+
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
@@ -15,6 +17,7 @@ public class UserCredentialServiceProcessor implements IUserCredentialServicePro
 
 	private final IBaseUserCredentialService baseUserCredentialService;
 
+	@Inject
 	public UserCredentialServiceProcessor(IBaseUserCredentialService baseUserCredentialService) {
 		this.baseUserCredentialService = baseUserCredentialService;
 	}

@@ -3,8 +3,8 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
 import seahorse.internal.business.profileservice.common.ProfileServiceUtility;
-import seahorse.internal.business.profileservice.datacontracts.ProfileServiceErrorCode;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
