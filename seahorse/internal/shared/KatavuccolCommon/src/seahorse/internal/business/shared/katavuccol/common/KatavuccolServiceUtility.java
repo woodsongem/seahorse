@@ -60,6 +60,19 @@ public class KatavuccolServiceUtility {
 		return result;
 	}
 	
+	public static Result getResult(ResultStatus resultStatus, String parameters, String errorCode) {
+		Result result=new Result();
+		result.setResultStatus(resultStatus);
+		if(StringUtils.isEmpty(errorCode)) {
+			return result;	
+		}
+		ResultMessage resultMessage=new ResultMessage();
+		resultMessage.setErrorCode(errorCode);
+		resultMessage.setParameter(parameters);
+		result.setResultMessage(resultMessage);
+		return result;
+	}
+	
 
 	public static <E extends Enum<E>> boolean isInEnum(String value, Class<E> enumClass) {
 		for (E e : enumClass.getEnumConstants()) {

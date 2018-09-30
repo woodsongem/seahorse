@@ -14,7 +14,6 @@ import seahorse.internal.business.shared.katavuccol.common.ICassandraConnector;
 import seahorse.internal.business.shared.katavuccol.common.IReadPropertiesFile;
 import seahorse.internal.business.shared.katavuccol.common.ReadPropertiesFile;
 
-
 /**
  * @author SMJE
  *
@@ -32,6 +31,8 @@ public class UserCredentialServiceModule extends AbstractModule {
 		bind(IUserCredentialRepository.class).to(UserCredentialRepository.class);
 		bind(IReadPropertiesFile.class).to(ReadPropertiesFile.class);
 		bind(ICassandraConnector.class).to(CassandraConnector.class);
+		bind(IBaseUserCredentialService.class).to(BaseUserCredentialService.class);
+		bind(IUserCredentialServiceRepositoryMapper.class).to(UserCredentialServiceRepositoryMapper.class);
 
 		try {
 			DeterministicAeadConfig.init();

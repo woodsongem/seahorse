@@ -14,4 +14,8 @@ public interface IUserCredentialServiceVerifier {
 
 	Result verifyCreateUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
 
+	Result IsUserNameValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
+	Result IsProductItemValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
 }

@@ -14,4 +14,10 @@ public interface IUserCredentialServiceValidator {
 
 	Result validCreateUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
 
+	Result isCreateUserCredentialMsgEntityValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
+	Result isUserNameValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
+	Result isPasswordValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
 }

@@ -4,6 +4,7 @@
 package seahorse.internal.business.usercredentialservice;
 
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
 
 /**
@@ -14,8 +15,7 @@ public class UserCredentialServicePostProcessor implements IUserCredentialServic
 
 	@Override
 	public Result postProcessCreateUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

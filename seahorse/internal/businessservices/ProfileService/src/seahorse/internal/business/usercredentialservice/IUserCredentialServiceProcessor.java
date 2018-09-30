@@ -14,4 +14,6 @@ public interface IUserCredentialServiceProcessor {
 
 	Result processCreateUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
 
+	Result CreateUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
 }
