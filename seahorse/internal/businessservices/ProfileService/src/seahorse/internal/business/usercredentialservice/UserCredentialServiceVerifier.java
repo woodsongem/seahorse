@@ -58,7 +58,7 @@ public class UserCredentialServiceVerifier implements IUserCredentialServiceVeri
 
 	@Override
 	public Result IsProductItemValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
-		return null;
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 }

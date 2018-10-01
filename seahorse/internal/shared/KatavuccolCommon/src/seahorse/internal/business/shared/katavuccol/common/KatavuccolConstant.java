@@ -12,9 +12,9 @@ public class KatavuccolConstant {
 		throw new IllegalAccessError("Constant class");
 	}
 
-	public static final String CASSANDRAPORT = "KatavuccolService.CassandraPort";
-	public static final String CASSANDRASERVE = "KatavuccolService.CassandraServer";
-	public static final String CASSANDRAKEYSPACENAME = "KatavuccolService.KeySpaceName";
+	public static final String CASSANDRAPORT = "CassandraPort";
+	public static final String CASSANDRASERVE = "CassandraServer";
+	public static final String CASSANDRAKEYSPACENAME = "KeySpaceName";
 	public static final String DEFAULTPRODUCTITEM = "Seahorse";	
 	public static final String DEFAULT = "DEFAULT";
 	public static final String IPADDRESS="ipaddress";

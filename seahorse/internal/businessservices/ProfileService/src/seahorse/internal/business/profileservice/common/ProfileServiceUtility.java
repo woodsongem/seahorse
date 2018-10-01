@@ -14,13 +14,14 @@ public class ProfileServiceUtility {
 
 	public static boolean isUserNameValid(String username) {
 
-		if (username.length() <= 4 || username.length() >= 31) {
+		if (username.length() <= 7 || username.length() >= 29) {
 			return false;
 		}
-		Pattern pattern = Pattern.compile("[a-zA-Z0-9]_");
-		Matcher matcher = pattern.matcher(username);
+		String pattern="^[a-zA-Z][a-zA-Z0-9_]{7,29}$";
+		Pattern patterndata = Pattern.compile(pattern);
+		Matcher matcher = patterndata.matcher(username);
 
-		if (!matcher.matches()) {
+		if (!matcher.find()) {
 			return false;
 		}
 

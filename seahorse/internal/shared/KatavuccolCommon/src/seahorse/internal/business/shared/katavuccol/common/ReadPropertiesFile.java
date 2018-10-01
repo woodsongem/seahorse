@@ -22,7 +22,7 @@ public class ReadPropertiesFile implements IReadPropertiesFile {
 	public String getProperties(String key) throws Exception {
 		Properties properties = new Properties();
 		// Get the inputStream
-		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("KatavuccolService.properties");
+		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("service.properties");
 		try {
 			properties.load(inputStream);
 		} catch (Exception e) {

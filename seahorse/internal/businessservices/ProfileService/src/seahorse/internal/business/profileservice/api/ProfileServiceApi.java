@@ -51,23 +51,26 @@ public class ProfileServiceApi {
 		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
 		Result result = new Result();
+		CreateUserCredentialMsgEntity createUserProfileMsgEntity = null;
 		try {
 			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
-			CreateUserCredentialMsgEntity createUserProfileMsgEntity = profileServiceApiMapper
-					.MapCreateUserCredentialMsgEntity(createProfileRequestModel);
+			createUserProfileMsgEntity = profileServiceApiMapper.MapCreateUserCredentialMsgEntity(createProfileRequestModel);
 			result = userCredentialService.createUserCredential(createUserProfileMsgEntity);
 			if (result == null) {
 				result = new OutPutResponse();
 			} else {
 				if (result.getResultStatus() == ResultStatus.ERROR) {
-					ReplaceErrorCode(result,ProfileServiceConstants.CreateUserProfileMethodName);
+					ReplaceErrorCode(result, ProfileServiceConstants.CreateUserProfileMethodName);
 				}
-				httpStatus = createUserProfileMsgEntity.getHttpStatus();
+				httpStatus = createUserProfileMsgEntity.getHttpStatus() == null ? Status.INTERNAL_SERVER_ERROR
+						: createUserProfileMsgEntity.getHttpStatus();
 			}
 		} catch (Exception ex) {
-			String error=ex.toString();
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
 		}
-		return Response.status(httpStatus).entity(result).build();
+		OutPutResponse response = profileServiceApiMapper.MapOutPutResponse(result, createUserProfileMsgEntity,
+				httpRequest);
+		return Response.status(httpStatus).entity(response).build();
 	}
 
 	@PUT

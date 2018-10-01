@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolservice.utilities;
+package seahorse.internal.business.shared.katavuccol.common;
 
 /**
  * @author sajanmje

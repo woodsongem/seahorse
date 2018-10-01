@@ -68,11 +68,11 @@ public class UserCredentialService implements IUserCredentialService {
 			createUserCredentialMsgEntity.setHttpStatus(Status.BAD_REQUEST);
 			return result;
 		}
-		result = userCredentialServicePostProcessor.postProcessCreateUserCredential(createUserCredentialMsgEntity);
-		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+		Result postResult = userCredentialServicePostProcessor.postProcessCreateUserCredential(createUserCredentialMsgEntity);
+		if (postResult.getResultStatus() != ResultStatus.SUCCESS) {
 			//Log error
 		}
-
+		createUserCredentialMsgEntity.setHttpStatus(Status.OK);
 		return result;
 
 	}
