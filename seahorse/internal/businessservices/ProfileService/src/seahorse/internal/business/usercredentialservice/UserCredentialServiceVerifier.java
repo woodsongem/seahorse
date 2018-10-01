@@ -47,11 +47,9 @@ public class UserCredentialServiceVerifier implements IUserCredentialServiceVeri
 
 	@Override
 	public Result IsUserNameValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
-		UserCredentialMsgEntity userCredentialMsgEntity = baseUserCredentialService
-				.getUserCredentialByUserName(createUserCredentialMsgEntity.getUsername());
+		UserCredentialMsgEntity userCredentialMsgEntity = baseUserCredentialService.getUserCredentialByUserName(createUserCredentialMsgEntity.getUsername());
 		if (userCredentialMsgEntity != null) {
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserName",
-					ProfileServiceErrorCode.UserNameIsNotAvailable);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserName",ProfileServiceErrorCode.UserNameDuplicate);
 		}
 		return new Result(ResultStatus.SUCCESS);
 	}

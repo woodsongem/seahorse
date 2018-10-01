@@ -10,6 +10,7 @@ package seahorse.internal.business.katavuccolservice.dal;
  */
 public class KatavuccolServiceRepository implements IKatavuccolServiceRepository {
 
+	
 	/*private final IKatavuccolServiceRepositoryMapper katavuccolServiceRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;

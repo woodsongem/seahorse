@@ -5,6 +5,7 @@ package seahorse.internal.business.usercredentialservice;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
@@ -15,5 +16,9 @@ import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCr
 public interface IUserCredentialServiceRepositoryMapper {
 
 	BoundStatement mapUserCredentialBoundStatement(PreparedStatement preparedStatement,UserCredentialDAO userCredentialDAO);
+
+	BoundStatement mapGetUserCredentialByUserNameBoundStatement(PreparedStatement preparedStatement,UserCredentialDAO userCredentialDAO);
+
+	UserCredentialDAO mapUserCredentialDAO(Row userCredentialDAOResult);
 
 }

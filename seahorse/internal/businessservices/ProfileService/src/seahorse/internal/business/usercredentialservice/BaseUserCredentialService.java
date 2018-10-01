@@ -27,14 +27,16 @@ public class BaseUserCredentialService implements IBaseUserCredentialService {
 
 	@Override
 	public UserCredentialMsgEntity getUserCredentialByUserName(String username) {
-		return null;
-		// TODO Auto-generated method stub
+		UserCredentialDAO userCredentialDAO = userCredentialServiceMapper.mapUserCredentialDAO(username);
+		UserCredentialDAO resUserCredentialDAO = userCredentialRepository.getUserCredentialByUserName(userCredentialDAO);
+		return userCredentialServiceMapper.MapUserCredentialMsgEntity(resUserCredentialDAO);
 
 	}
 
 	@Override
 	public Result createUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
-		UserCredentialDAO userCredentialDAO = userCredentialServiceMapper.mapUserCredentialDAO(createUserCredentialMsgEntity);
+		UserCredentialDAO userCredentialDAO = userCredentialServiceMapper
+				.mapUserCredentialDAO(createUserCredentialMsgEntity);
 		return userCredentialRepository.createUserCredential(userCredentialDAO);
 	}
 
