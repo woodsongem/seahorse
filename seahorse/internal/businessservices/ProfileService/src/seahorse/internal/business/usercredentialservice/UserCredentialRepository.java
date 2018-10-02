@@ -13,6 +13,7 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.katavuccol.common.ICassandraConnector;
 import seahorse.internal.business.shared.katavuccol.common.IReadPropertiesFile;
@@ -32,7 +33,7 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 	private final IUserCredentialServiceRepositoryMapper userCredentialServiceRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
-	
+
 	@InjectLogger
 	Logger logger;
 
@@ -55,8 +56,10 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 		OutPutResponse outPutResponse = new OutPutResponse();
 		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
-		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_CREATE_USER_CREDENTIAL_QUERY);
-		BoundStatement bound = userCredentialServiceRepositoryMapper.mapUserCredentialBoundStatement(preparedStatement,userCredentialDAO);
+		PreparedStatement preparedStatement = cassandraConnector.getSession()
+				.prepare(UserCredentialServiceQueryConstants.GET_CREATE_USER_CREDENTIAL_QUERY);
+		BoundStatement bound = userCredentialServiceRepositoryMapper.mapUserCredentialBoundStatement(preparedStatement,
+				userCredentialDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return outPutResponse;
@@ -77,25 +80,47 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 
 	@Override
 	public UserCredentialDAO getUserCredentialByUserName(UserCredentialDAO userCredentialDAO) {
-		UserCredentialDAO resUserCredentialDAO=null;
+		UserCredentialDAO resUserCredentialDAO = null;
 		try {
-			cassandraConnector.connect(null, 0,null);
-			PreparedStatement preparedStatement=cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_USERCREDENTIAL_BY_USERNAME_QUERY);
-			BoundStatement bound=userCredentialServiceRepositoryMapper.mapGetUserCredentialByUserNameBoundStatement(preparedStatement,userCredentialDAO);
+			cassandraConnector.connect(null, 0, null);
+			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_USERCREDENTIAL_BY_USERNAME_QUERY);
+			BoundStatement bound = userCredentialServiceRepositoryMapper.mapGetUserCredentialByUserNameBoundStatement(preparedStatement, userCredentialDAO);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row userCredentialDAOResult = resultSet.one();
 				resUserCredentialDAO = userCredentialServiceRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);
-				if(!KatavuccolServiceUtility.isEqual(resUserCredentialDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS))
-				{
-					resUserCredentialDAO=null;
+				if (!KatavuccolServiceUtility.isEqual(resUserCredentialDAO.getStatus(),KatavuccolConstant.ACTIVESTATUS)) {
+					resUserCredentialDAO = null;
 				}
 			}
 		} catch (Exception exception) {
 			logger.error("Exception in getUserCredentialByUserName error=" + exception);
 		}
 		return resUserCredentialDAO;
+	}
+
+	@Override
+	public UserCredentialModel getUserCredentialModelByUserId(UUID userId) {
+		UserCredentialModel userCredentialModel = null;
+		try {
+			cassandraConnector.connect(null, 0, null);
+			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_USERCREDENTIAL_BY_USERID_QUERY);
+			BoundStatement bound = userCredentialServiceRepositoryMapper.mapgetUserCredentialModelByUserIdBoundStatement(preparedStatement, userId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row userCredentialDAOResult = resultSet.one();
+				userCredentialModel = userCredentialServiceRepositoryMapper.mapUserCredentialModel(userCredentialDAOResult);
+				if (!KatavuccolServiceUtility.isEqual(userCredentialModel.getStatus(),KatavuccolConstant.ACTIVESTATUS)) {
+					userCredentialModel = null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getUserCredentialModelByUserId error=" + exception);
+		}
+		return userCredentialModel;
+
 	}
 
 }

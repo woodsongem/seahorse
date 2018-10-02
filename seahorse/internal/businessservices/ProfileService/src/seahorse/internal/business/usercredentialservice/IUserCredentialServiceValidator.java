@@ -20,4 +20,6 @@ public interface IUserCredentialServiceValidator {
 
 	Result isPasswordValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
 
+	Result isProductItemIdValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
+
 }

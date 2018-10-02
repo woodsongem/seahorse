@@ -99,8 +99,7 @@ public class ProfileServiceApi {
 		UserCredentialModel userCredentialModel = new UserCredentialModel();
 		try {
 			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
-			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper
-					.MapGetUserCredentialByUserIdMsgEntity(userid);
+			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper.MapGetUserCredentialByUserIdMsgEntity(userid);
 			userCredentialModel = userCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity);
 			if (userCredentialModel == null) {
 				httpStatus = Status.NOT_FOUND;
@@ -114,8 +113,7 @@ public class ProfileServiceApi {
 	public void ReplaceErrorCode(Result result, String methodName) {
 		for (ResultMessage resultMessage : result.getResultMessages()) {
 			if (!KatavuccolServiceUtility.isNullOrWhitespace(resultMessage.getErrorCode())) {
-				resultMessage
-						.setErrorCode(String.format(resultMessage.getErrorCode(), httpRequest.getMethod(), methodName));
+				resultMessage.setErrorCode(String.format(resultMessage.getErrorCode(), httpRequest.getMethod(), methodName));
 			}
 		}
 	}

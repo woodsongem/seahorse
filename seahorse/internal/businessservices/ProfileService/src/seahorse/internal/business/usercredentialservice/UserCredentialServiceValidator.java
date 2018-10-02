@@ -3,6 +3,8 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import java.util.UUID;
+
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
 import seahorse.internal.business.profileservice.common.ProfileServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
@@ -30,13 +32,30 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 		if (result.getResultStatus() == ResultStatus.ERROR) {
 			return result;
 		}
+
+		result = isProductItemIdValid(createUserCredentialMsgEntity);
+		if (result.getResultStatus() == ResultStatus.ERROR) {
+			return result;
+		}
+
 		return result;
+	}
+
+	@Override
+	public Result isProductItemIdValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
+		if (KatavuccolServiceUtility.isNullOrWhitespace(createUserCredentialMsgEntity.getProductItemId())) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",ProfileServiceErrorCode.ProductItemIdIsEmpty);
+		}
+		if (!KatavuccolServiceUtility.isValidUUID(createUserCredentialMsgEntity.getProductItemId())) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",ProfileServiceErrorCode.ProductItemIdIsInValid);
+		}
+		createUserCredentialMsgEntity.setParsedProductItemId(UUID.fromString(createUserCredentialMsgEntity.getProductItemId()));
+		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
 	public Result isCreateUserCredentialMsgEntityValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
 		if (createUserCredentialMsgEntity == null) {
-
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "CreateUserCredentialMsgEntity",
 					ProfileServiceErrorCode.CreateUserCredentialMsgEntityIsEmpty);
 		}

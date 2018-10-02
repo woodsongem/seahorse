@@ -3,10 +3,13 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import java.util.UUID;
+
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
+import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
 /**
@@ -30,8 +33,7 @@ public class UserCredentialServiceRepositoryMapper implements IUserCredentialSer
 	}
 
 	@Override
-	public BoundStatement mapGetUserCredentialByUserNameBoundStatement(PreparedStatement preparedStatement,
-			UserCredentialDAO userCredentialDAO) {
+	public BoundStatement mapGetUserCredentialByUserNameBoundStatement(PreparedStatement preparedStatement,UserCredentialDAO userCredentialDAO) {
 		BoundStatement bound = preparedStatement.bind();
 		bound.setString(UserCredentialDataBaseColumn.USERNAME, userCredentialDAO.getUsername());
 		return bound;
@@ -50,6 +52,25 @@ public class UserCredentialServiceRepositoryMapper implements IUserCredentialSer
 		userCredentialDAO.setPassword(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.PASSWORD));
 		userCredentialDAO.setProductItemId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.PRODUCTITEMID));
 		return userCredentialDAO;
+	}
+
+	@Override
+	public BoundStatement mapgetUserCredentialModelByUserIdBoundStatement(PreparedStatement preparedStatement,UUID userId) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(UserCredentialDataBaseColumn.ID, userId);
+		return bound;
+	}
+
+	@Override
+	public UserCredentialModel mapUserCredentialModel(Row userCredentialDAOResult) {
+		UserCredentialModel userCredentialModel = new UserCredentialModel();
+		userCredentialModel.setCreatedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.CREATEDDATE));
+		userCredentialModel.setId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.ID));
+		userCredentialModel.setModifiedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.MODIFIEDDATE));
+		userCredentialModel.setStatus(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.STATUS));
+		userCredentialModel.setUserName(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.USERNAME));
+		userCredentialModel.setProductItemId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.PRODUCTITEMID));
+		return userCredentialModel;
 	}
 
 }

@@ -4,6 +4,7 @@
 package seahorse.internal.business.usercredentialservice;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
@@ -12,6 +13,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolConstant;
+import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.*;
@@ -26,7 +28,7 @@ public class UserCredentialService implements IUserCredentialService {
 	private final IUserCredentialServiceProcessor userCredentialServiceProcessor;
 	private final IUserCredentialServiceValidator userCredentialServiceValidator;
 	private final IUserCredentialServiceVerifier userCredentialServiceVerifier;
-
+	private final IBaseUserCredentialService baseUserCredentialService;
 	// @InjectLogger Logger logger;
 
 	@Inject
@@ -34,12 +36,14 @@ public class UserCredentialService implements IUserCredentialService {
 			IUserCredentialServicePostProcessor userCredentialServicePostProcessor,
 			IUserCredentialServiceProcessor userCredentialServiceProcessor,
 			IUserCredentialServiceValidator userCredentialServiceValidator,
-			IUserCredentialServiceVerifier userCredentialServiceVerifier) {
+			IUserCredentialServiceVerifier userCredentialServiceVerifier,
+			IBaseUserCredentialService baseUserCredentialService) {
 		this.userCredentialServiceMapper = userCredentialServiceMapper;
 		this.userCredentialServicePostProcessor = userCredentialServicePostProcessor;
 		this.userCredentialServiceProcessor = userCredentialServiceProcessor;
 		this.userCredentialServiceValidator = userCredentialServiceValidator;
 		this.userCredentialServiceVerifier = userCredentialServiceVerifier;
+		this.baseUserCredentialService = baseUserCredentialService;
 	}
 
 	@Override
@@ -68,9 +72,10 @@ public class UserCredentialService implements IUserCredentialService {
 			createUserCredentialMsgEntity.setHttpStatus(Status.BAD_REQUEST);
 			return result;
 		}
-		Result postResult = userCredentialServicePostProcessor.postProcessCreateUserCredential(createUserCredentialMsgEntity);
+		Result postResult = userCredentialServicePostProcessor
+				.postProcessCreateUserCredential(createUserCredentialMsgEntity);
 		if (postResult.getResultStatus() != ResultStatus.SUCCESS) {
-			//Log error
+			// Log error
 		}
 		createUserCredentialMsgEntity.setHttpStatus(Status.OK);
 		return result;
@@ -90,9 +95,14 @@ public class UserCredentialService implements IUserCredentialService {
 	}
 
 	@Override
-	public UserCredentialModel getUserCredentialByUserId(
-			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
-		return null;
+	public UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
+		if (getUserCredentialByUserIdMsgEntity == null) {
 
+		}
+		if (!KatavuccolServiceUtility.isValidUUID(getUserCredentialByUserIdMsgEntity.getUserId())) {
+
+		}
+		getUserCredentialByUserIdMsgEntity.setParsedUserId(UUID.fromString(getUserCredentialByUserIdMsgEntity.getUserId()));
+		return baseUserCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
 	}
 }
