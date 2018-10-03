@@ -103,6 +103,7 @@ public class ProfileServiceApi {
 			userCredentialModel = userCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity);
 			if (userCredentialModel == null) {
 				httpStatus = Status.NOT_FOUND;
+				userCredentialModel=new UserCredentialModel();
 			}
 		} catch (Exception ex) {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
