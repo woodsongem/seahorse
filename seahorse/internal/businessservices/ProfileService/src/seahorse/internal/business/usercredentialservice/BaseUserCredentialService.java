@@ -11,6 +11,7 @@ import seahorse.internal.business.profileservice.api.datacontracts.UserCredentia
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.UserCredentialMsgEntity;
 
 /**
@@ -43,8 +44,20 @@ public class BaseUserCredentialService implements IBaseUserCredentialService {
 	}
 
 	@Override
-	public UserCredentialModel getUserCredentialByUserId(UUID parsedUserId) {
+	public UserCredentialModel getUserCredentialModelByUserId(UUID parsedUserId) {
 		return userCredentialRepository.getUserCredentialModelByUserId(parsedUserId);
+	}
+
+	@Override
+	public UserCredentialMsgEntity getUserCredentialByUserId(UUID parsedUserId) {
+		UserCredentialDAO userCredentialDAO= userCredentialRepository.getUserCredentialByUserId(parsedUserId);
+		return userCredentialServiceMapper.MapUserCredentialMsgEntity(userCredentialDAO);
+	}
+
+	@Override
+	public Result deleteUserCredential(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		UserCredentialDAO userCredentialDAO = userCredentialServiceMapper.mapUserCredentialDAO(deleteUserProfileMsgEntity);
+		return userCredentialRepository.deleteUserCredential(userCredentialDAO);
 	}
 
 }

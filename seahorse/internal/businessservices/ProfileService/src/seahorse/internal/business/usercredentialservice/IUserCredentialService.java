@@ -25,6 +25,6 @@ public interface IUserCredentialService {
 
 	UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity);
 
-	UserCredentialModel deleteUserProfile(DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity);
+	Result deleteUserProfile(DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity);
 
 }

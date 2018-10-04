@@ -10,6 +10,7 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
 import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
+import seahorse.internal.business.shared.katavuccol.common.KatavuccolConstant;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
 /**
@@ -71,6 +72,23 @@ public class UserCredentialServiceRepositoryMapper implements IUserCredentialSer
 		userCredentialModel.setUserName(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.USERNAME));
 		userCredentialModel.setProductItemId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.PRODUCTITEMID));
 		return userCredentialModel;
+	}
+
+	@Override
+	public BoundStatement mapGetUserCredentialByUserIdBoundStatement(PreparedStatement preparedStatement, UUID userId) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(UserCredentialDataBaseColumn.ID, userId);
+		return bound;
+	}
+
+	@Override
+	public BoundStatement mapDeleteUserCredentialBoundStatement(PreparedStatement preparedStatement, UserCredentialDAO userCredentialDAO) {
+		BoundStatement bound = preparedStatement.bind();
+		bound.setUUID(UserCredentialDataBaseColumn.ID, userCredentialDAO.getId());
+		bound.setString(UserCredentialDataBaseColumn.STATUS,userCredentialDAO.getStatus());
+		bound.setUUID(UserCredentialDataBaseColumn.MODIFIEDBY,userCredentialDAO.getModifiedBy());
+		bound.setTimestamp(UserCredentialDataBaseColumn.MODIFIEDDATE,userCredentialDAO.getModifiedDate());
+		return bound;
 	}
 
 }

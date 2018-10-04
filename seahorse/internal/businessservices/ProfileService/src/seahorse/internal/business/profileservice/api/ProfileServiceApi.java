@@ -89,20 +89,20 @@ public class ProfileServiceApi {
 	public Response deleteUserProfile(@PathParam("userid") String userid) {
 		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
 		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
-		UserCredentialModel userCredentialModel = new UserCredentialModel();
+		Result result = new Result();
 		try {
 			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
 			DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper.MapDeleteUserProfileMsgEntity(userid);
-			userCredentialModel = userCredentialService.deleteUserProfile(getUserCredentialByUserIdMsgEntity);
-			if (userCredentialModel == null) {
+			result = userCredentialService.deleteUserProfile(getUserCredentialByUserIdMsgEntity);
+			if (result == null) {
 				httpStatus = Status.NOT_FOUND;
-				userCredentialModel = new UserCredentialModel();
+				result = new Result();
 			}
 		} catch (Exception ex) {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
 			logger.error("ProfileServiceApi::deleteUserProfile Exception=" + ex);
 		}
-		return Response.status(httpStatus).entity(userCredentialModel).build();
+		return Response.status(httpStatus).entity(result).build();
 
 	}
 

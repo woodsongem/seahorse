@@ -11,6 +11,7 @@ import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtil
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 
 /**
  * @author SMJE
@@ -42,14 +43,54 @@ public class UserCredentialServiceValidator implements IUserCredentialServiceVal
 	}
 
 	@Override
+	public Result validDeleteUserProfile(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		Result result = isDeleteUserProfileMsgEntityValid(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() == ResultStatus.ERROR) {
+			return result;
+		}
+		result = isUserIdValid(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() == ResultStatus.ERROR) {
+			return result;
+		}
+		return result;
+	}
+
+	@Override
+	public Result isUserIdValid(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		if (KatavuccolServiceUtility.isNullOrWhitespace(deleteUserProfileMsgEntity.getUserId())) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId",
+					ProfileServiceErrorCode.UserIdIsEmpty);
+		}
+		if (!KatavuccolServiceUtility.isValidUUID(deleteUserProfileMsgEntity.getUserId())) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId",
+					ProfileServiceErrorCode.UserIdIsInValid);
+		}
+		deleteUserProfileMsgEntity.setParsedUserId(UUID.fromString(deleteUserProfileMsgEntity.getUserId()));
+		deleteUserProfileMsgEntity.setModifiedBy(deleteUserProfileMsgEntity.getParsedUserId());
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result isDeleteUserProfileMsgEntityValid(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		if (deleteUserProfileMsgEntity == null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "DeleteUserProfileMsgEntity",
+					ProfileServiceErrorCode.DeleteUserProfileMsgEntityIsEmpty);
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
 	public Result isProductItemIdValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
 		if (KatavuccolServiceUtility.isNullOrWhitespace(createUserCredentialMsgEntity.getProductItemId())) {
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",ProfileServiceErrorCode.ProductItemIdIsEmpty);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",
+					ProfileServiceErrorCode.ProductItemIdIsEmpty);
 		}
 		if (!KatavuccolServiceUtility.isValidUUID(createUserCredentialMsgEntity.getProductItemId())) {
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",ProfileServiceErrorCode.ProductItemIdIsInValid);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "ProductItemId",
+					ProfileServiceErrorCode.ProductItemIdIsInValid);
 		}
-		createUserCredentialMsgEntity.setParsedProductItemId(UUID.fromString(createUserCredentialMsgEntity.getProductItemId()));
+		createUserCredentialMsgEntity
+				.setParsedProductItemId(UUID.fromString(createUserCredentialMsgEntity.getProductItemId()));
 		return new Result(ResultStatus.SUCCESS);
 	}
 

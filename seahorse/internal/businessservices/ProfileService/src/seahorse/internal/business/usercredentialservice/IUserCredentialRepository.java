@@ -19,7 +19,7 @@ public interface IUserCredentialRepository {
 
 	Result createUserCredential(UserCredentialDAO userCredentialDAO);
 
-	Result deleteUserCredential(UUID userId);
+	Result deleteUserCredential(UserCredentialDAO userCredentialDAO);
 
 	Result updateUserCredential(UserCredentialDAO userCredentialDAO);
 

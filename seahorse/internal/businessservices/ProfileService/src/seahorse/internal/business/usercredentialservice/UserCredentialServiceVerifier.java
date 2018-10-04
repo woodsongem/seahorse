@@ -10,6 +10,7 @@ import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtil
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.UserCredentialMsgEntity;
 
 /**
@@ -44,6 +45,24 @@ public class UserCredentialServiceVerifier implements IUserCredentialServiceVeri
 
 		return result;
 	}
+	
+	@Override
+	public Result verifyDeleteUserProfile(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		Result result = IsUserIdValid(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() == ResultStatus.ERROR) {
+			return result;
+		}
+		return result;
+	}
+
+	@Override
+	public Result IsUserIdValid(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		UserCredentialMsgEntity userCredentialMsgEntity = baseUserCredentialService.getUserCredentialByUserId(deleteUserProfileMsgEntity.getParsedUserId());
+		if (userCredentialMsgEntity != null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserName",ProfileServiceErrorCode.UserNameDuplicate);
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
 
 	@Override
 	public Result IsUserNameValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
@@ -58,5 +77,7 @@ public class UserCredentialServiceVerifier implements IUserCredentialServiceVeri
 	public Result IsProductItemValid(CreateUserCredentialMsgEntity createUserCredentialMsgEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
+
+
 
 }

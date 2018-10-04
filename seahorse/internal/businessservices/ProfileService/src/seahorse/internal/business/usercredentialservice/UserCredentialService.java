@@ -95,7 +95,8 @@ public class UserCredentialService implements IUserCredentialService {
 	}
 
 	@Override
-	public UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
+	public UserCredentialModel getUserCredentialByUserId(
+			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity) {
 		if (getUserCredentialByUserIdMsgEntity == null) {
 
 		}
@@ -105,18 +106,30 @@ public class UserCredentialService implements IUserCredentialService {
 		getUserCredentialByUserIdMsgEntity
 				.setParsedUserId(UUID.fromString(getUserCredentialByUserIdMsgEntity.getUserId()));
 		return baseUserCredentialService
-				.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
+				.getUserCredentialModelByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
 	}
 
 	@Override
-	public UserCredentialModel deleteUserProfile(DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity) {
-		if (getUserCredentialByUserIdMsgEntity == null) {
-
+	public Result deleteUserProfile(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		// Set
+		if (deleteUserProfileMsgEntity != null) {
+			deleteUserProfileMsgEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
+			deleteUserProfileMsgEntity.setModifiedDate(new Date());
 		}
-		if (!KatavuccolServiceUtility.isValidUUID(getUserCredentialByUserIdMsgEntity.getUserId())) {
 
+		Result result = userCredentialServiceValidator.validDeleteUserProfile(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
 		}
-		getUserCredentialByUserIdMsgEntity.setParsedUserId(UUID.fromString(getUserCredentialByUserIdMsgEntity.getUserId()));
-		return baseUserCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
+		result = userCredentialServiceVerifier.verifyDeleteUserProfile(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = userCredentialServiceProcessor.processDeleteUserProfile(deleteUserProfileMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+
+		return result;
 	}
 }

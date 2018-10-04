@@ -15,6 +15,8 @@ public class DeleteUserProfileMsgEntity extends BaseMessageEntity {
 
 	private String userId;
 	private UUID parsedUserId;
+	private String status;
+	
 	/**
 	 * @return the parsedUserId
 	 */
@@ -38,5 +40,17 @@ public class DeleteUserProfileMsgEntity extends BaseMessageEntity {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

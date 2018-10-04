@@ -47,8 +47,24 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 
 	@Override
 	public UserCredentialDAO getUserCredentialByUserId(UUID userId) {
-		return null;
-
+		UserCredentialDAO resUserCredentialDAO = null;
+		try {
+			cassandraConnector.connect(null, 0, null);
+			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_USERCREDENTIAL_BY_USERID_QUERY);
+			BoundStatement bound = userCredentialServiceRepositoryMapper.mapGetUserCredentialByUserIdBoundStatement(preparedStatement, userId);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row userCredentialDAOResult = resultSet.one();
+				resUserCredentialDAO = userCredentialServiceRepositoryMapper.mapUserCredentialDAO(userCredentialDAOResult);
+				if (!KatavuccolServiceUtility.isEqual(resUserCredentialDAO.getStatus(),KatavuccolConstant.ACTIVESTATUS)) {
+					resUserCredentialDAO = null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in getUserCredentialByUserId error=" + exception);
+		}
+		return resUserCredentialDAO;
 	}
 
 	@Override
@@ -67,9 +83,15 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 	}
 
 	@Override
-	public Result deleteUserCredential(UUID userId) {
-		return null;
-
+	public Result deleteUserCredential(UserCredentialDAO userCredentialDAO) {
+		OutPutResponse outPutResponse = new OutPutResponse();
+		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
+		cassandraConnector.connect(null, 0, null);
+		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(UserCredentialServiceQueryConstants.GET_DELETE_USER_CREDENTIAL_QUERY);
+		BoundStatement bound = userCredentialServiceRepositoryMapper.mapDeleteUserCredentialBoundStatement(preparedStatement,userCredentialDAO);
+		cassandraConnector.getSession().execute(bound);
+		cassandraConnector.close();
+		return outPutResponse;
 	}
 
 	@Override

@@ -28,4 +28,8 @@ public interface IUserCredentialServiceRepositoryMapper {
 
 	UserCredentialModel mapUserCredentialModel(Row userCredentialDAOResult);
 
+	BoundStatement mapGetUserCredentialByUserIdBoundStatement(PreparedStatement preparedStatement, UUID userId);
+
+	BoundStatement mapDeleteUserCredentialBoundStatement(PreparedStatement preparedStatement, UserCredentialDAO userCredentialDAO);
+
 }

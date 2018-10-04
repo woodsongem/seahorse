@@ -7,6 +7,7 @@ import seahorse.internal.business.profileservice.common.ProfileServiceConstants;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolEncryption;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.UserCredentialMsgEntity;
 
 /**
@@ -51,6 +52,16 @@ public class UserCredentialServiceMapper implements IUserCredentialServiceMapper
 		userCredentialMsgEntity.setModifiedBy(resUserCredentialDAO.getModifiedBy());
 		userCredentialMsgEntity.setModifiedDate(resUserCredentialDAO.getModifiedDate());
 		return userCredentialMsgEntity;
+	}
+
+	@Override
+	public UserCredentialDAO mapUserCredentialDAO(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity) {
+		UserCredentialDAO userCredentialDAO = new UserCredentialDAO();
+		userCredentialDAO.setStatus(deleteUserProfileMsgEntity.getStatus());
+		userCredentialDAO.setId(deleteUserProfileMsgEntity.getParsedUserId());
+		userCredentialDAO.setModifiedBy(deleteUserProfileMsgEntity.getParsedUserId());
+		userCredentialDAO.setModifiedDate(deleteUserProfileMsgEntity.getModifiedDate());
+		return userCredentialDAO;
 	}
 
 }
