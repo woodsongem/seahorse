@@ -9,6 +9,7 @@ import seahorse.internal.business.profileservice.api.datacontracts.CreateProfile
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 
 /**
@@ -22,5 +23,7 @@ public interface IProfileServiceApiMapper {
 	GetUserCredentialByUserIdMsgEntity MapGetUserCredentialByUserIdMsgEntity(String userid);
 
 	OutPutResponse MapOutPutResponse(Result result, CreateUserCredentialMsgEntity createUserProfileMsgEntity, HttpServletRequest httpRequest);
+
+	DeleteUserProfileMsgEntity MapDeleteUserProfileMsgEntity(String userid);
 
 }

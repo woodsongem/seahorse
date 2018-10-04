@@ -31,6 +31,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 import seahorse.internal.business.usercredentialservice.IUserCredentialService;
 import seahorse.internal.business.usercredentialservice.UserCredentialServiceFactory;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 
 /**
@@ -67,9 +68,9 @@ public class ProfileServiceApi {
 			}
 		} catch (Exception ex) {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::createUserProfile Exception=" + ex);
 		}
-		OutPutResponse response = profileServiceApiMapper.MapOutPutResponse(result, createUserProfileMsgEntity,
-				httpRequest);
+		OutPutResponse response = profileServiceApiMapper.MapOutPutResponse(result, createUserProfileMsgEntity,httpRequest);
 		return Response.status(httpStatus).entity(response).build();
 	}
 
@@ -86,7 +87,22 @@ public class ProfileServiceApi {
 	@Path("/profile/{userid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteUserProfile(@PathParam("userid") String userid) {
-		return null;
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		UserCredentialModel userCredentialModel = new UserCredentialModel();
+		try {
+			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
+			DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper.MapDeleteUserProfileMsgEntity(userid);
+			userCredentialModel = userCredentialService.deleteUserProfile(getUserCredentialByUserIdMsgEntity);
+			if (userCredentialModel == null) {
+				httpStatus = Status.NOT_FOUND;
+				userCredentialModel = new UserCredentialModel();
+			}
+		} catch (Exception ex) {
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::deleteUserProfile Exception=" + ex);
+		}
+		return Response.status(httpStatus).entity(userCredentialModel).build();
 
 	}
 
@@ -99,14 +115,16 @@ public class ProfileServiceApi {
 		UserCredentialModel userCredentialModel = new UserCredentialModel();
 		try {
 			IUserCredentialService userCredentialService = UserCredentialServiceFactory.getIUserCredentialService();
-			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper.MapGetUserCredentialByUserIdMsgEntity(userid);
+			GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity = profileServiceApiMapper
+					.MapGetUserCredentialByUserIdMsgEntity(userid);
 			userCredentialModel = userCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity);
 			if (userCredentialModel == null) {
 				httpStatus = Status.NOT_FOUND;
-				userCredentialModel=new UserCredentialModel();
+				userCredentialModel = new UserCredentialModel();
 			}
 		} catch (Exception ex) {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::getUserProfileByUserId Exception=" + ex);
 		}
 		return Response.status(httpStatus).entity(userCredentialModel).build();
 	}
@@ -114,7 +132,8 @@ public class ProfileServiceApi {
 	public void ReplaceErrorCode(Result result, String methodName) {
 		for (ResultMessage resultMessage : result.getResultMessages()) {
 			if (!KatavuccolServiceUtility.isNullOrWhitespace(resultMessage.getErrorCode())) {
-				resultMessage.setErrorCode(String.format(resultMessage.getErrorCode(), httpRequest.getMethod(), methodName));
+				resultMessage
+						.setErrorCode(String.format(resultMessage.getErrorCode(), httpRequest.getMethod(), methodName));
 			}
 		}
 	}

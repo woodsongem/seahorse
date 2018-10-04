@@ -7,6 +7,7 @@ import seahorse.internal.business.profileservice.api.datacontracts.UserCredentia
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.UpdateUserCredentialMsgEntity;
 
@@ -23,5 +24,7 @@ public interface IUserCredentialService {
 	Result updateUserCredential(UpdateUserCredentialMsgEntity updateUserCredentialMsgEntity);
 
 	UserCredentialModel getUserCredentialByUserId(GetUserCredentialByUserIdMsgEntity getUserCredentialByUserIdMsgEntity);
+
+	UserCredentialModel deleteUserProfile(DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity);
 
 }

@@ -12,6 +12,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutR
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
 
 /**
@@ -59,6 +60,13 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 		}
 
 		return outPutResponse;
+	}
+
+	@Override
+	public DeleteUserProfileMsgEntity MapDeleteUserProfileMsgEntity(String userid) {
+		DeleteUserProfileMsgEntity deleteUserProfileMsgEntity=new DeleteUserProfileMsgEntity();
+		deleteUserProfileMsgEntity.setUserId(userid);
+		return deleteUserProfileMsgEntity;
 	}
 
 }

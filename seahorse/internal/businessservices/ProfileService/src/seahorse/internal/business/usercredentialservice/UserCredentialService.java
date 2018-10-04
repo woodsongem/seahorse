@@ -102,6 +102,20 @@ public class UserCredentialService implements IUserCredentialService {
 		if (!KatavuccolServiceUtility.isValidUUID(getUserCredentialByUserIdMsgEntity.getUserId())) {
 
 		}
+		getUserCredentialByUserIdMsgEntity
+				.setParsedUserId(UUID.fromString(getUserCredentialByUserIdMsgEntity.getUserId()));
+		return baseUserCredentialService
+				.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
+	}
+
+	@Override
+	public UserCredentialModel deleteUserProfile(DeleteUserProfileMsgEntity getUserCredentialByUserIdMsgEntity) {
+		if (getUserCredentialByUserIdMsgEntity == null) {
+
+		}
+		if (!KatavuccolServiceUtility.isValidUUID(getUserCredentialByUserIdMsgEntity.getUserId())) {
+
+		}
 		getUserCredentialByUserIdMsgEntity.setParsedUserId(UUID.fromString(getUserCredentialByUserIdMsgEntity.getUserId()));
 		return baseUserCredentialService.getUserCredentialByUserId(getUserCredentialByUserIdMsgEntity.getParsedUserId());
 	}
