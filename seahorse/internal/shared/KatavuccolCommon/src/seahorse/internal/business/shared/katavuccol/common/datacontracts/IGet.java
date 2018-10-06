@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.shared.aop.datacontracts;
+package seahorse.internal.business.shared.katavuccol.common.datacontracts;
 
 import java.util.Map;
 

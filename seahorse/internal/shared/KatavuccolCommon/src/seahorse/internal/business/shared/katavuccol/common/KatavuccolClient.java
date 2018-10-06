@@ -1,13 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.shared.katavuccol;
+package seahorse.internal.business.shared.katavuccol.common;
 
-import seahorse.internal.business.shared.aop.datacontracts.IDelete;
-import seahorse.internal.business.shared.aop.datacontracts.IGet;
-import seahorse.internal.business.shared.aop.datacontracts.IPost;
-import seahorse.internal.business.shared.aop.datacontracts.IPut;
-import seahorse.internal.business.shared.aop.datacontracts.ResultResponse;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.IDelete;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.IGet;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.IPost;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.IPut;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultResponse;
 
 /**
  * @author SMJE

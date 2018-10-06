@@ -22,7 +22,7 @@ import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceU
 import seahorse.internal.business.profileservice.datacontracts.UserProfileMsgEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.aop.datacontracts.ResultResponse;
-import seahorse.internal.business.shared.katavuccol.IKatavuccolClient;
+import seahorse.internal.business.shared.katavuccol.common.IKatavuccolClient;
 
 
 /**
