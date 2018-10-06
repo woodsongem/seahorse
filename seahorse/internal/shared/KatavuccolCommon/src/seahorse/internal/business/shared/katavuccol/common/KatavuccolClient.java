@@ -22,19 +22,19 @@ public class KatavuccolClient implements IKatavuccolClient {
 	}
 
 	@Override
-	public ResultResponse Get(IPost get) {
+	public ResultResponse Post(IPost get) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultResponse Get(IPut get) {
+	public ResultResponse Put(IPut get) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultResponse Get(IDelete get) {
+	public ResultResponse Delete(IDelete get) {
 		// TODO Auto-generated method stub
 		return null;
 	}

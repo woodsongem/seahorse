@@ -10,8 +10,6 @@ import java.util.Map;
  *
  */
 public interface IGet {
-
-	void setEndpoint(String endpointName);
 	String getEndpoint();
 	String getUrl();
 	Map<String, String> getHeaders();

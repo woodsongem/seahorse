@@ -16,7 +16,8 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultR
 public interface IKatavuccolClient {
 
 	ResultResponse Get(IGet get);
-	ResultResponse Get(IPost get);
-	ResultResponse Get(IPut get);
-	ResultResponse Get(IDelete get);
+	ResultResponse Post(IPost get);
+	ResultResponse Put(IPut get);
+	ResultResponse Delete(IDelete get);
+	
 }
