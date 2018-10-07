@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialservice.rest.datacontracts;
+package seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts;
 
 import java.util.Map;
 
@@ -14,9 +14,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.IPost;
 public class CreateUserCredentialIPost implements IPost {
 	private String endPoint;
 	private Object request;
-	private String url;
 	private Map<String, String> headers;
-	
 
 	@Override
 	public String getEndPoint() {
@@ -44,19 +42,12 @@ public class CreateUserCredentialIPost implements IPost {
 
 	@Override
 	public String getUrl() {
-		return url;
+		return "profile";
 	}
 
 	@Override
 	public Map<String, String> getHeaders() {
 		return headers;
-	}
-
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	/**

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolopenapi.api;
+package seahorse.internal.business.openapi.katavuccolopenapi.api;
 
 import org.glassfish.jersey.server.ResourceConfig;
 

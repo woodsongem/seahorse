@@ -1,12 +1,12 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialservice;
+package seahorse.internal.business.openapi.usercredentialservice;
 
-import seahorse.internal.business.katavuccolopenapi.common.datacontracts.ExternalEndPoint;
-import seahorse.internal.business.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
-import seahorse.internal.business.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
-import seahorse.internal.business.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
+import seahorse.internal.business.openapi.katavuccolopenapi.common.datacontracts.ExternalEndPoint;
+import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
+import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
+import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
 
 /**
  * @author SMJE

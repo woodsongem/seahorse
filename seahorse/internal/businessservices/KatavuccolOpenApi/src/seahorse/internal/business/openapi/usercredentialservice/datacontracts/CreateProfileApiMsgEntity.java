@@ -1,13 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialservice.external.datacontracts;
+package seahorse.internal.business.openapi.usercredentialservice.datacontracts;
 
 /**
  * @author SMJE
  *
  */
-public class CreateUserCredentialApi {
+public class CreateProfileApiMsgEntity {
 	private String userName;
 	private String password;
 	private String productItemId;

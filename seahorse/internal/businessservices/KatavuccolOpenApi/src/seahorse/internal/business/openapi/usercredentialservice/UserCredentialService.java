@@ -1,17 +1,17 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialservice;
+package seahorse.internal.business.openapi.usercredentialservice;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
+import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
+import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
 import seahorse.internal.business.shared.katavuccol.common.IKatavuccolClient;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultResponse;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
-import seahorse.internal.business.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
-import seahorse.internal.business.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
-import seahorse.internal.business.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
 
 /**
  * @author SMJE
@@ -32,6 +32,9 @@ public class UserCredentialService implements IUserCredentialService {
 
 	@Override
 	public OutPutResponse createUserCredential(CreateProfileApiMsgEntity createProfileApiMsgEntity) {
+		if (createProfileApiMsgEntity == null) {
+
+		}
 		CreateUserCredentialApi createUserCredential = userCredentialServiceMapper.mapCreateUserCredentialApi(createProfileApiMsgEntity);
 		CreateUserCredentialIPost createUserCredentialIPost = userCredentialServiceMapper.mapCreateUserCredentialIPost(createUserCredential);
 		ResultResponse resultResponse = katavuccolClient.Post(createUserCredentialIPost);

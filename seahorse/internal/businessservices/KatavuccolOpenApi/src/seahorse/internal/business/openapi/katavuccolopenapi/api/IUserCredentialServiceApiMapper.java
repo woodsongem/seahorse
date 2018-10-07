@@ -1,13 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolopenapi.api;
+package seahorse.internal.business.openapi.katavuccolopenapi.api;
 
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.openapi.usercredentialapi.api.datacontracts.CreateProfileApiModel;
+import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.usercredentialapi.api.datacontracts.CreateProfileApiModel;
-import seahorse.internal.business.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
 
 /**
  * @author SMJE

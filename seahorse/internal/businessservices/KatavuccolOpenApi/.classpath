@@ -24,5 +24,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolCommonDatacontracts"/>
 	<classpathentry kind="src" path="/KatavuccolCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/KatavuccolAop"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -2,7 +2,7 @@
  * 
  */
 
-package seahorse.internal.business.katavuccolopenapi.api;
+package seahorse.internal.business.openapi.katavuccolopenapi.api;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.POST;
@@ -16,11 +16,11 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import seahorse.internal.business.openapi.usercredentialapi.api.datacontracts.CreateProfileApiModel;
+import seahorse.internal.business.openapi.usercredentialservice.IUserCredentialService;
+import seahorse.internal.business.openapi.usercredentialservice.UserCredentialServiceFactory;
+import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.usercredentialapi.api.datacontracts.CreateProfileApiModel;
-import seahorse.internal.business.usercredentialservice.IUserCredentialService;
-import seahorse.internal.business.usercredentialservice.UserCredentialServiceFactory;
-import seahorse.internal.business.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
 
 /**
  * @author SMJE

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialservice;
+package seahorse.internal.business.openapi.usercredentialservice;
 
 import java.security.GeneralSecurityException;
 
@@ -20,7 +20,7 @@ public class UserCredentialServiceModule extends AbstractModule {
 		
 		bind(IUserCredentialService.class).to(UserCredentialService.class);
 		bind(IUserCredentialServiceMapper.class).to(UserCredentialServiceMapper.class);
-		
+		//bind(IKatavuccolClient.class).to(KatavuccolClient.class);
 		
 		try {
 			DeterministicAeadConfig.init();

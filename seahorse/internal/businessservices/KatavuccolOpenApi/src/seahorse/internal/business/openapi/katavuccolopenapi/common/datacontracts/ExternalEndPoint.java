@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.katavuccolopenapi.common.datacontracts;
+package seahorse.internal.business.openapi.katavuccolopenapi.common.datacontracts;
 
 /**
  * @author SMJE

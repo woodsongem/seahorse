@@ -1,15 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.usercredentialapi.api.datacontracts;
-
-import seahorse.internal.business.katavuccolopenapi.api.datacontracts.BaseApiModel;
+package seahorse.internal.business.openapi.usercredentialservice.external.datacontracts;
 
 /**
  * @author SMJE
  *
  */
-public class CreateProfileApiModel extends BaseApiModel {
+public class CreateUserCredentialApi {
 	private String userName;
 	private String password;
 	private String productItemId;
