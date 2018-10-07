@@ -12,17 +12,22 @@ import seahorse.internal.business.usercredentialservice.rest.datacontracts.Creat
  * @author SMJE
  *
  */
-public class UserCredentialServiceMapper implements IUserCredentialServiceMapper{
+public class UserCredentialServiceMapper implements IUserCredentialServiceMapper {
 
 	@Override
 	public CreateUserCredentialApi mapCreateUserCredentialApi(CreateProfileApiMsgEntity createProfileApiMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
+		CreateUserCredentialApi createUserCredentialApi = new CreateUserCredentialApi();
+		createUserCredentialApi.setEmailAddress(createProfileApiMsgEntity.getEmailAddress());
+		createUserCredentialApi.setPassword(createProfileApiMsgEntity.getPassword());
+		createUserCredentialApi.setPhoneNumber(createProfileApiMsgEntity.getPhoneNumber());
+		createUserCredentialApi.setProductItemId(createProfileApiMsgEntity.getProductItemId());
+		createUserCredentialApi.setUserName(createProfileApiMsgEntity.getUserName());
+		return createUserCredentialApi;
 	}
 
 	@Override
 	public CreateUserCredentialIPost mapCreateUserCredentialIPost(CreateUserCredentialApi createUserCredential) {
-		CreateUserCredentialIPost createUserCredentialIPost=new CreateUserCredentialIPost();
+		CreateUserCredentialIPost createUserCredentialIPost = new CreateUserCredentialIPost();
 		createUserCredentialIPost.setEndPoint(ExternalEndPoint.ProfileService.toString());
 		createUserCredentialIPost.setRequest(createUserCredential);
 		return createUserCredentialIPost;

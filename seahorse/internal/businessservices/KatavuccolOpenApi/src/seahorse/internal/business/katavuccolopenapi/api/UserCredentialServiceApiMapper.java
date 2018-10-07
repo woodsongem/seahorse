@@ -17,8 +17,16 @@ public class UserCredentialServiceApiMapper implements IUserCredentialServiceApi
 
 	@Override
 	public CreateProfileApiMsgEntity MapCreateProfileApiMsgEntity(CreateProfileApiModel createProfileApiModel) {
-		// TODO Auto-generated method stub
-		return null;
+		if (createProfileApiModel == null) {
+			return null;
+		}
+		CreateProfileApiMsgEntity createProfileApiMsgEntity = new CreateProfileApiMsgEntity();
+		createProfileApiMsgEntity.setEmailAddress(createProfileApiModel.getEmailAddress());
+		createProfileApiMsgEntity.setPassword(createProfileApiModel.getPassword());
+		createProfileApiMsgEntity.setPhoneNumber(createProfileApiModel.getPhoneNumber());
+		createProfileApiMsgEntity.setProductItemId(createProfileApiModel.getProductItemId());
+		createProfileApiMsgEntity.setUserName(createProfileApiModel.getUserName());
+		return createProfileApiMsgEntity;
 	}
 
 	@Override

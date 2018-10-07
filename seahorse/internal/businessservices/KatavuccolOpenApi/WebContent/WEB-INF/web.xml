@@ -13,7 +13,7 @@
 		<!-- Define the ResourceConfig class -->
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>seahorse.internal.business.katavuccolservice.app.KatavuccolServiceApplication</param-value>
+			<param-value>seahorse.internal.business.katavuccolopenapi.api.KatavuccolOpenApiApplication</param-value>
 		</init-param>
 		<!-- Enable Tracing support. -->
 		<init-param>
