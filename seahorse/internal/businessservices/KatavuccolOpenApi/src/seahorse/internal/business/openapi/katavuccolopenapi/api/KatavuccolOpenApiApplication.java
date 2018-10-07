@@ -11,6 +11,6 @@ import org.glassfish.jersey.server.ResourceConfig;
  */
 public class KatavuccolOpenApiApplication extends ResourceConfig {
 	public KatavuccolOpenApiApplication() {
-		packages("seahorse.internal.business.katavuccolopenapi.api.UserCredentialServiceApi");
+		packages("seahorse.internal.business.openapi.katavuccolopenapi.api.UserCredentialServiceApi");
 	}
 }
