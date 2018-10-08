@@ -19,4 +19,6 @@ public interface IUserCredentialServiceApiMapper {
 
 	OutPutResponse MapOutPutResponse(OutPutResponse outPutResponse, CreateProfileApiMsgEntity createProfileApiMsgEntity,HttpServletRequest httpRequest);
 
+	OutPutResponse mapOutPutResponse(OutPutResponse outPutResponse,HttpServletRequest httpRequest);
+
 }

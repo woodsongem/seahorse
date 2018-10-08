@@ -5,6 +5,8 @@ package seahorse.internal.business.openapi.usercredentialservice;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.openapi.katavuccolopenapi.common.KatavuccolOpenApiErrorCode;
+import seahorse.internal.business.openapi.katavuccolopenapi.common.KatavuccolServiceOpenApiUtility;
 import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
 import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
 import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
@@ -33,7 +35,7 @@ public class UserCredentialService implements IUserCredentialService {
 	@Override
 	public OutPutResponse createUserCredential(CreateProfileApiMsgEntity createProfileApiMsgEntity) {
 		if (createProfileApiMsgEntity == null) {
-
+			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.CreateProfileApiMsgEntityIsEmpty,"CreateProfileApiMsgEntity",ResultStatus.ERROR);
 		}
 		CreateUserCredentialApi createUserCredential = userCredentialServiceMapper.mapCreateUserCredentialApi(createProfileApiMsgEntity);
 		CreateUserCredentialIPost createUserCredentialIPost = userCredentialServiceMapper.mapCreateUserCredentialIPost(createUserCredential);

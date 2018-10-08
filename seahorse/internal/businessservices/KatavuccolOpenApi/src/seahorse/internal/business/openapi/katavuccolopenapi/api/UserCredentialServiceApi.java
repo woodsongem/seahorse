@@ -29,6 +29,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutR
 @Path("/")
 public class UserCredentialServiceApi {
 	private static final Logger logger = LogManager.getLogger(UserCredentialServiceApi.class);
+	
 	@Context
 	private HttpServletRequest httpRequest;
 
@@ -49,7 +50,7 @@ public class UserCredentialServiceApi {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
 			logger.error("UserCredentialServiceApi::createUserProfile Exception=" + ex);
 		}
-		
+		userCredentialServiceApiMapper.mapOutPutResponse(outPutResponse,httpRequest);
 		return Response.status(httpStatus).entity(outPutResponse).build();
 
 	}
