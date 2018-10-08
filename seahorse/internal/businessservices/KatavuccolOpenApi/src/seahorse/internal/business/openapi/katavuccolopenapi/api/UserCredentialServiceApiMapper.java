@@ -57,7 +57,7 @@ public class UserCredentialServiceApiMapper implements IUserCredentialServiceApi
 			return outPutResponse;
 		}
 		for (ResultMessage resultMessage : outPutResponse.getResultMessages()) {
-			resultMessage.setErrorCode(MessageFormat.format(resultMessage.getErrorCode(),httpRequest.getMethod(),"CreateUserProfile"));
+			resultMessage.setErrorCode(MessageFormat.format(resultMessage.getErrorCode(),new Object[] { httpRequest.getMethod(), "CreateUserProfile" }));
 		}
 		return outPutResponse;
 	}

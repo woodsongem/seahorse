@@ -50,7 +50,7 @@ public class UserCredentialServiceApi {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
 			logger.error("UserCredentialServiceApi::createUserProfile Exception=" + ex);
 		}
-		userCredentialServiceApiMapper.mapOutPutResponse(outPutResponse,httpRequest);
+		outPutResponse=userCredentialServiceApiMapper.mapOutPutResponse(outPutResponse,httpRequest);
 		return Response.status(httpStatus).entity(outPutResponse).build();
 
 	}
