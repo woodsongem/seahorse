@@ -16,6 +16,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.IGet;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.IPost;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.IPut;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultResponse;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultStatus;
 
 /**
  * @author SMJE
@@ -39,15 +40,19 @@ public class KatavuccolClient implements IKatavuccolClient {
 	@Override
 	public ResultResponse Post(IPost post) {
 		ResultResponse resultResponse = new ResultResponse();
+		resultResponse.setResultStatus(ResultStatus.SUCCESS);
 		try {
 
 			String endpoint = readPropertiesFile.getProperties(post.getEndPoint());
 			String url = endpoint + post.getUrl();
 			Response response = client.target(url).request(MediaType.APPLICATION_JSON)
 					.post(Entity.entity(post.getRequest(), MediaType.APPLICATION_JSON));
+			String responseString = response.readEntity(String.class);
+			 response.getStatusInfo();
+			resultResponse.setResponseText(responseString);
 
 		} catch (Exception ex) {
-
+			resultResponse.setResultStatus(ResultStatus.ERROR);
 		}
 
 		return resultResponse;

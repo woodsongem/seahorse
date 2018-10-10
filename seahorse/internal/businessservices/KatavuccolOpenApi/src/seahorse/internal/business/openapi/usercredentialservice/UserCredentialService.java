@@ -35,14 +35,15 @@ public class UserCredentialService implements IUserCredentialService {
 	@Override
 	public OutPutResponse createUserCredential(CreateProfileApiMsgEntity createProfileApiMsgEntity) {
 		if (createProfileApiMsgEntity == null) {
-			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.CreateProfileApiMsgEntityIsEmpty,"CreateProfileApiMsgEntity",ResultStatus.ERROR);
+			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.CreateProfileApiMsgEntityIsEmpty, "CreateProfileApiMsgEntity",ResultStatus.ERROR);
 		}
 		CreateUserCredentialApi createUserCredential = userCredentialServiceMapper.mapCreateUserCredentialApi(createProfileApiMsgEntity);
 		CreateUserCredentialIPost createUserCredentialIPost = userCredentialServiceMapper.mapCreateUserCredentialIPost(createUserCredential);
 		ResultResponse resultResponse = katavuccolClient.Post(createUserCredentialIPost);
 		if (resultResponse.getResultStatus() != ResultStatus.SUCCESS) {
-
+			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.ErrorMakingProfileServiceExternalCall, "", ResultStatus.ERROR);
 		}
-		return null;
+		OutPutResponse exOutPutResponse = KatavuccolServiceOpenApiUtility.getGson().fromJson(resultResponse.getResponseText(), OutPutResponse.class);
+		return exOutPutResponse;
 	}
 }

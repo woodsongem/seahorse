@@ -42,7 +42,7 @@ public class CreateUserCredentialIPost implements IPost {
 
 	@Override
 	public String getUrl() {
-		return "profile";
+		return "/profile";
 	}
 
 	@Override

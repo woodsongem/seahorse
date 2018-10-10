@@ -47,8 +47,7 @@ public class UserCredentialServiceApiMapper implements IUserCredentialServiceApi
 		if (outPutResponse == null) {
 			OutPutResponse outPutResponsetemp = new OutPutResponse();
 			outPutResponsetemp.setResultStatus(ResultStatus.ERROR);
-			String errorCode = String.format(KatavuccolOpenApiErrorCode.InternalError, httpRequest.getMethod(),
-					"CreateUserProfile");
+			String errorCode = MessageFormat.format(KatavuccolOpenApiErrorCode.InternalError,new Object[] { httpRequest.getMethod(), "CreateUserProfile"});
 			outPutResponsetemp
 					.setResultMessage(KatavuccolServiceUtility.getResultMessage(errorCode, "", ResultStatus.ERROR));
 			return outPutResponsetemp;
