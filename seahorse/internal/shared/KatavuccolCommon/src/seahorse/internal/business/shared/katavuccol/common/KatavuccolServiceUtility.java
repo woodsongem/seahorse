@@ -159,4 +159,7 @@ public class KatavuccolServiceUtility {
 		Gson gson = new Gson();
 		return gson.toJson(value);
 	}
+	public static String toString(Object obj, String defaultStr) {
+	    return obj != null ? obj.toString() : defaultStr;
+	}
 }

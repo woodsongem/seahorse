@@ -13,18 +13,18 @@ public class BaseModel {
 
 	private String createdBy;
 	private String modifiedBy;
-	private Date createdDate;
-	private Date modifiedDate;
+	private String createdDate;
+	private String modifiedDate;
 	/**
 	 * @return the modifiedDate
 	 */
-	public Date getModifiedDate() {
+	public String getModifiedDate() {
 		return modifiedDate;
 	}
 	/**
 	 * @param modifiedDate the modifiedDate to set
 	 */
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 	/**
@@ -54,13 +54,13 @@ public class BaseModel {
 	/**
 	 * @return the createdDate
 	 */
-	public Date getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 	/**
 	 * @param createdDate the createdDate to set
 	 */
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 	

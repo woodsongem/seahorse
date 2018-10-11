@@ -65,9 +65,9 @@ public class UserCredentialServiceRepositoryMapper implements IUserCredentialSer
 	@Override
 	public UserCredentialModel mapUserCredentialModel(Row userCredentialDAOResult) {
 		UserCredentialModel userCredentialModel = new UserCredentialModel();
-		userCredentialModel.setCreatedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.CREATEDDATE));
+		//userCredentialModel.setCreatedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.CREATEDDATE));
 		userCredentialModel.setId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.ID));
-		userCredentialModel.setModifiedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.MODIFIEDDATE));
+		//userCredentialModel.setModifiedDate(userCredentialDAOResult.getTimestamp(UserCredentialDataBaseColumn.MODIFIEDDATE));
 		userCredentialModel.setStatus(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.STATUS));
 		userCredentialModel.setUserName(userCredentialDAOResult.getString(UserCredentialDataBaseColumn.USERNAME));
 		userCredentialModel.setProductItemId(userCredentialDAOResult.getUUID(UserCredentialDataBaseColumn.PRODUCTITEMID));

@@ -20,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
+import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.profileservice.common.ProfileServiceConstants;
@@ -70,8 +71,8 @@ public class ProfileServiceApi {
 			httpStatus = Status.INTERNAL_SERVER_ERROR;
 			logger.error("ProfileServiceApi::createUserProfile Exception=" + ex);
 		}
-		OutPutResponse response = profileServiceApiMapper.MapOutPutResponse(result, createUserProfileMsgEntity,httpRequest);
-		return Response.status(httpStatus).entity(response).build();
+		CreateProfileResponseModel createProfileResponseModel=profileServiceApiMapper.mapCreateProfileResponseModel(result, createUserProfileMsgEntity,httpRequest);
+		return Response.status(httpStatus).entity(createProfileResponseModel).build();
 	}
 
 	@PUT

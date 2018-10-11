@@ -8,7 +8,8 @@ import com.google.inject.Inject;
 import seahorse.internal.business.openapi.katavuccolopenapi.common.KatavuccolOpenApiErrorCode;
 import seahorse.internal.business.openapi.katavuccolopenapi.common.KatavuccolServiceOpenApiUtility;
 import seahorse.internal.business.openapi.usercredentialservice.datacontracts.CreateProfileApiMsgEntity;
-import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateUserCredentialApi;
+import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateProfileRequestModelApiEx;
+import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateProfileResponseModelApiEx;
 import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
 import seahorse.internal.business.shared.katavuccol.common.IKatavuccolClient;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
@@ -37,13 +38,13 @@ public class UserCredentialService implements IUserCredentialService {
 		if (createProfileApiMsgEntity == null) {
 			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.CreateProfileApiMsgEntityIsEmpty, "CreateProfileApiMsgEntity",ResultStatus.ERROR);
 		}
-		CreateUserCredentialApi createUserCredential = userCredentialServiceMapper.mapCreateUserCredentialApi(createProfileApiMsgEntity);
-		CreateUserCredentialIPost createUserCredentialIPost = userCredentialServiceMapper.mapCreateUserCredentialIPost(createUserCredential);
+		CreateProfileRequestModelApiEx createProfileRequestModelApi = userCredentialServiceMapper.mapCreateUserCredentialApi(createProfileApiMsgEntity);
+		CreateUserCredentialIPost createUserCredentialIPost = userCredentialServiceMapper.mapCreateUserCredentialIPost(createProfileRequestModelApi);
 		ResultResponse resultResponse = katavuccolClient.Post(createUserCredentialIPost);
 		if (resultResponse.getResultStatus() != ResultStatus.SUCCESS) {
 			return KatavuccolServiceOpenApiUtility.getOutPutResponse(KatavuccolOpenApiErrorCode.ErrorMakingProfileServiceExternalCall, "", ResultStatus.ERROR);
 		}
-		OutPutResponse exOutPutResponse = KatavuccolServiceOpenApiUtility.getGson().fromJson(resultResponse.getResponseText(), OutPutResponse.class);
-		return exOutPutResponse;
+		CreateProfileResponseModelApiEx createProfileResponseModelApiEx = KatavuccolServiceOpenApiUtility.getGson().fromJson(resultResponse.getResponseText(), CreateProfileResponseModelApiEx.class);
+		return userCredentialServiceMapper.mapOutPutResponse(createProfileResponseModelApiEx);
 	}
 }

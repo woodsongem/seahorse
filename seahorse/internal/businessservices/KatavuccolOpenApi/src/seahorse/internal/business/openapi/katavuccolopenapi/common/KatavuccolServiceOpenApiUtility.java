@@ -17,20 +17,21 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 public class KatavuccolServiceOpenApiUtility {
 
 	private static Gson gson_object;
-	
+
 	public static OutPutResponse getOutPutResponse(String errorCode, String paramterName, ResultStatus resultStatus) {
 		OutPutResponse outPutResponse = new OutPutResponse();
 		outPutResponse.setResultStatus(resultStatus);
 		outPutResponse.setResultMessage(KatavuccolServiceUtility.getResultMessage(errorCode, paramterName, resultStatus));
 		return outPutResponse;
 	}
-	public static Gson getGson()
-	{
-		if(gson_object==null)
-		{
-			gson_object = new GsonBuilder().create();
+
+	public static Gson getGson() {
+		if (gson_object == null) {
+			GsonBuilder gsonBuilder = new GsonBuilder();
+			// gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.);
+			gson_object = gsonBuilder.create();
 		}
-		
+
 		return gson_object;
 	}
 }

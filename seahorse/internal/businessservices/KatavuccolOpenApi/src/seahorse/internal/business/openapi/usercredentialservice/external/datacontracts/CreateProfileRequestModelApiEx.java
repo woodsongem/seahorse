@@ -7,7 +7,7 @@ package seahorse.internal.business.openapi.usercredentialservice.external.dataco
  * @author SMJE
  *
  */
-public class CreateUserCredentialApi {
+public class CreateProfileRequestModelApiEx {
 	private String userName;
 	private String password;
 	private String productItemId;
