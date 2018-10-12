@@ -85,6 +85,7 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 			String errorCode = String.format(ProfileServiceErrorCode.InternalError, httpRequest.getMethod(),
 					"CreateUserProfile");
 			List<String> errorCodes = new ArrayList<String>();
+			errorCodes.add(errorCode);
 			createProfileResponseModel.setErrorCode(errorCodes);
 			return createProfileResponseModel;
 		}
@@ -92,6 +93,9 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 			createProfileResponseModel.setId(KatavuccolServiceUtility.toString(createUserProfileMsgEntity.getId(), ""));
 		}
 		createProfileResponseModel.setStatus(result.getResultStatus().toString());
+		if (result.getResultMessages() == null || result.getResultMessages().isEmpty()) {
+			return createProfileResponseModel;
+		}
 		List<String> errorCodes = new ArrayList<String>();
 		for (ResultMessage resultMessage : result.getResultMessages()) {
 			errorCodes.add(String.format(resultMessage.getErrorCode(), httpRequest.getMethod(), "CreateUserProfile"));
