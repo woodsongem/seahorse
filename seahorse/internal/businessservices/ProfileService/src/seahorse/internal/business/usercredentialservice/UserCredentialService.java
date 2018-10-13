@@ -8,10 +8,13 @@ import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.logging.log4j.Logger;
+
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
 import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
+import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolConstant;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
@@ -29,7 +32,8 @@ public class UserCredentialService implements IUserCredentialService {
 	private final IUserCredentialServiceValidator userCredentialServiceValidator;
 	private final IUserCredentialServiceVerifier userCredentialServiceVerifier;
 	private final IBaseUserCredentialService baseUserCredentialService;
-	// @InjectLogger Logger logger;
+  
+	@InjectLogger Logger logger;
 
 	@Inject
 	public UserCredentialService(IUserCredentialServiceMapper userCredentialServiceMapper,
@@ -131,5 +135,19 @@ public class UserCredentialService implements IUserCredentialService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public UserCredentialModel getUserCredentialByUserName(
+			GetUserProfileByUserNameMsgEntity getUserProfileByUserNameMsgEntity) {
+		if (getUserProfileByUserNameMsgEntity == null) {
+			//logger.error("UserCredentialService::GetUserCredentialByUserName getUserProfileByUserNameMsgEntity is null");
+			return null;
+		}
+		if (KatavuccolServiceUtility.isNullOrWhitespace(getUserProfileByUserNameMsgEntity.getUsername())) {
+			//logger.error("UserCredentialService::GetUserCredentialByUserName username is null");
+			return null;
+		}
+		return baseUserCredentialService.getUserCredentialModelByUserName(getUserProfileByUserNameMsgEntity.getUsername());
 	}
 }

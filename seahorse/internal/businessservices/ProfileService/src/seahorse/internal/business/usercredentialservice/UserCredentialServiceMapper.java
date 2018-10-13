@@ -3,8 +3,10 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.profileservice.common.ProfileServiceConstants;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolEncryption;
+import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
@@ -62,6 +64,25 @@ public class UserCredentialServiceMapper implements IUserCredentialServiceMapper
 		userCredentialDAO.setModifiedBy(deleteUserProfileMsgEntity.getParsedUserId());
 		userCredentialDAO.setModifiedDate(deleteUserProfileMsgEntity.getModifiedDate());
 		return userCredentialDAO;
+	}
+
+	@Override
+	public UserCredentialModel MapUserCredentialModel(UserCredentialDAO resUserCredentialDAO) {
+		if (resUserCredentialDAO == null) {
+			return null;
+		}
+		UserCredentialModel userCredentialModel = new UserCredentialModel();
+		userCredentialModel.setUserName(resUserCredentialDAO.getUsername());
+		userCredentialModel.setStatus(resUserCredentialDAO.getStatus());
+		userCredentialModel.setProductItemId(resUserCredentialDAO.getProductItemId());
+		userCredentialModel.setId(resUserCredentialDAO.getId());
+		userCredentialModel.setCreatedBy(KatavuccolServiceUtility.toString(resUserCredentialDAO.getCreatedBy(), ""));
+		userCredentialModel
+				.setCreatedDate(KatavuccolServiceUtility.toString(resUserCredentialDAO.getCreatedDate(), ""));
+		userCredentialModel.setModifiedBy(KatavuccolServiceUtility.toString(resUserCredentialDAO.getModifiedBy(), ""));
+		userCredentialModel
+				.setModifiedDate(KatavuccolServiceUtility.toString(resUserCredentialDAO.getModifiedDate(), ""));
+		return userCredentialModel;
 	}
 
 }

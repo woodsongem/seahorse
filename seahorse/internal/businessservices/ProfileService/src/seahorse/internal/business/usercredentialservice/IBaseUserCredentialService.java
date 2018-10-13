@@ -18,6 +18,8 @@ import seahorse.internal.business.usercredentialservice.datacontracts.UserCreden
 public interface IBaseUserCredentialService {
 
 	UserCredentialMsgEntity getUserCredentialByUserName(String username);
+	
+	UserCredentialModel getUserCredentialModelByUserName(String username);
 
 	Result createUserCredential(CreateUserCredentialMsgEntity createUserCredentialMsgEntity);
 

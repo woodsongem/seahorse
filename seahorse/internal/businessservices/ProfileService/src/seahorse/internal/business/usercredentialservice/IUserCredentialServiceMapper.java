@@ -3,6 +3,7 @@
  */
 package seahorse.internal.business.usercredentialservice;
 
+import seahorse.internal.business.profileservice.api.datacontracts.UserCredentialModel;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
@@ -21,5 +22,7 @@ public interface IUserCredentialServiceMapper {
 	UserCredentialMsgEntity MapUserCredentialMsgEntity(UserCredentialDAO resUserCredentialDAO);
 
 	UserCredentialDAO mapUserCredentialDAO(DeleteUserProfileMsgEntity deleteUserProfileMsgEntity);
+
+	UserCredentialModel MapUserCredentialModel(UserCredentialDAO resUserCredentialDAO);
 
 }

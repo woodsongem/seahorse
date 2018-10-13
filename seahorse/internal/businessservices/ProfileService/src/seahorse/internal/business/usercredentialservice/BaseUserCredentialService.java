@@ -60,4 +60,11 @@ public class BaseUserCredentialService implements IBaseUserCredentialService {
 		return userCredentialRepository.deleteUserCredential(userCredentialDAO);
 	}
 
+	@Override
+	public UserCredentialModel getUserCredentialModelByUserName(String username) {
+		UserCredentialDAO userCredentialDAO = userCredentialServiceMapper.mapUserCredentialDAO(username);
+		UserCredentialDAO resUserCredentialDAO = userCredentialRepository.getUserCredentialByUserName(userCredentialDAO);
+		return userCredentialServiceMapper.MapUserCredentialModel(resUserCredentialDAO);
+	}
+
 }

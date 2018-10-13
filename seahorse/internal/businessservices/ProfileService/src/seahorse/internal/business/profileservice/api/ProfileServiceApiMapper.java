@@ -19,6 +19,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
 import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.GetUserProfileByUserNameMsgEntity;
 
 /**
  * @author SMJE
@@ -102,6 +103,13 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 		}
 		createProfileResponseModel.setErrorCode(errorCodes);
 		return createProfileResponseModel;
+	}
+
+	@Override
+	public GetUserProfileByUserNameMsgEntity MapGetUserProfileByUserNameMsgEntity(String username) {
+		GetUserProfileByUserNameMsgEntity getUserProfileByUserNameMsgEntity=new GetUserProfileByUserNameMsgEntity();
+		getUserProfileByUserNameMsgEntity.setUsername(username);
+		return getUserProfileByUserNameMsgEntity;
 	}
 
 }
