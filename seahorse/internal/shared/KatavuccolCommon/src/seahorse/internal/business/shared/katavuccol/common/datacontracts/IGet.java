@@ -10,7 +10,7 @@ import java.util.Map;
  *
  */
 public interface IGet {
-	String getEndpoint();
+	String getEndPoint();
 	String getUrl();
 	Map<String, String> getHeaders();
 	void setHeaders(Map<String, String> headers);

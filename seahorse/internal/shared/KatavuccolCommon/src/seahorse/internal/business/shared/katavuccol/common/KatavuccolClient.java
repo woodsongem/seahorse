@@ -33,8 +33,23 @@ public class KatavuccolClient implements IKatavuccolClient {
 
 	@Override
 	public ResultResponse Get(IGet get) {
-		// TODO Auto-generated method stub
-		return null;
+		ResultResponse resultResponse = new ResultResponse();
+		resultResponse.setResultStatus(ResultStatus.SUCCESS);
+		try {
+
+			String endpoint = readPropertiesFile.getProperties(get.getEndPoint());
+			String url = endpoint + get.getUrl();
+			Response response = client.target(url).request(MediaType.APPLICATION_JSON)
+					.get();
+			String responseString = response.readEntity(String.class);
+			 response.getStatusInfo();
+			resultResponse.setResponseText(responseString);
+
+		} catch (Exception ex) {
+			resultResponse.setResultStatus(ResultStatus.ERROR);
+		}
+		
+		return resultResponse;
 	}
 
 	@Override

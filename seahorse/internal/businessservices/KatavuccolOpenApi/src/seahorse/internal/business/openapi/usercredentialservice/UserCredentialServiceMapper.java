@@ -12,6 +12,7 @@ import seahorse.internal.business.openapi.usercredentialservice.datacontracts.Cr
 import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateProfileRequestModelApiEx;
 import seahorse.internal.business.openapi.usercredentialservice.external.datacontracts.CreateProfileResponseModelApiEx;
 import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.CreateUserCredentialIPost;
+import seahorse.internal.business.openapi.usercredentialservice.rest.datacontracts.GetUserProfileByUserNameIGet;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultMessage;
@@ -63,6 +64,14 @@ public class UserCredentialServiceMapper implements IUserCredentialServiceMapper
 		}
 		outPutResponse.setResultMessages(resultMessages);
 		return outPutResponse;
+	}
+
+	@Override
+	public GetUserProfileByUserNameIGet mapGetUserProfileByUserNameIGet(String username) {
+		GetUserProfileByUserNameIGet getUserProfileByUserNameIGet = new GetUserProfileByUserNameIGet();
+		getUserProfileByUserNameIGet.setEndPoint(ExternalEndPoint.ProfileService.toString());
+		getUserProfileByUserNameIGet.setUserName(username);
+		return getUserProfileByUserNameIGet;
 	}
 
 }
