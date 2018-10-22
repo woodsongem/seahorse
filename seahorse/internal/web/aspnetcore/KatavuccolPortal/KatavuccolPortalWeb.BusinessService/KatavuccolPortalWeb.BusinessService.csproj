@@ -9,11 +9,11 @@
     <None Remove="Services\LoginService\Base\BaseLoginServiceBusinessService.cs~RF92074d.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
+   <ItemGroup>
+    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialService\" />
     <Folder Include="DataContracts\ExternalServiceDataContracts\LoginService\" />
   </ItemGroup>
-
-  <ItemGroup>
+   <ItemGroup>
     <ProjectReference Include="..\..\..\..\shared\aspnetcore_aop\Aop\Aop.csproj" />
     <ProjectReference Include="..\..\..\..\shared\KatavuccolClient\KatavuccolClient.csproj" />
   </ItemGroup>

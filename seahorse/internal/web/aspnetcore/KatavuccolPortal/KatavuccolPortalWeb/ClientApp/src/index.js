@@ -1,6 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+
+
+import 'materialize-css/dist/css/materialize.css'
+import 'material-icons/iconfont/material-icons.css'
 import './index.css';
+import './css/katavuccolportalweb.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
