@@ -31,6 +31,18 @@ export class Register extends Component {
                     </div>
                     <div class="row">
                         <div class="input-field hoverable col s6">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="password" type="password" class="validate"></input>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="input-field hoverable col s6">
+                            <i class="material-icons prefix">replay</i>
+                            <input id="password2" type="password" class="validate"></input>
+                            <label for="password2">Retype Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field hoverable col s6">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="username" type="text" class="validate"></input>
                             <label for="username">Username</label>
@@ -43,16 +55,12 @@ export class Register extends Component {
                     </div>
                     <div class="row">
                         <div class="input-field hoverable col s6">
-                            <i class="material-icons prefix">vpn_key</i>
-                            <input id="password" type="password" class="validate"></input>
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="input-field hoverable col s6">
-                            <i class="material-icons prefix">replay</i>
-                            <input id="password2" type="password" class="validate"></input>
-                            <label for="password2">Retype Password</label>
+                            <i class="material-icons prefix">contact_phone</i>
+                            <input id="phonenumber" type="text" class="validate"></input>
+                            <label for="phonenumber">Phone Number</label>
                         </div>
                     </div>
+                    
                     <a class="waves-effect waves-light btn right hoverable">
                         <i class="large material-icons right">done</i>register
                     </a>

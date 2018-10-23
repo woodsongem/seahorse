@@ -1,9 +1,12 @@
 
 
-import 'materialize-css/dist/css/materialize.css'
-import 'material-icons/iconfont/material-icons.css'
+import 'materialize-css/dist/css/materialize.css';
+import 'material-icons/iconfont/material-icons.css';
 import './index.css';
 import './css/katavuccolportalweb.css';
+import 'prismjs/themes/prism.css';
+import 'materialize-css/dist/js/materialize.js';
+import 'prismjs/prism.js'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
