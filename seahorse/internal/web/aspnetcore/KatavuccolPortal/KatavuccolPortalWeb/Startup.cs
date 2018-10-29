@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NJsonSchema;
+using NSwag.AspNetCore;
 
 namespace KatavuccolPortalWeb
 {
@@ -27,6 +29,8 @@ namespace KatavuccolPortalWeb
             {
                 configuration.RootPath = "ClientApp/build";
             });
+             // Register the Swagger services
+            services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +49,13 @@ namespace KatavuccolPortalWeb
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            
+             // Register the Swagger generator and the Swagger UI middlewares
+            app.UseSwaggerUi3WithApiExplorer(settings =>
+            {
+                settings.GeneratorSettings.DefaultPropertyNameHandling = 
+                    PropertyNameHandling.CamelCase;
+            });
 
             app.UseMvc(routes =>
             {
@@ -62,6 +73,8 @@ namespace KatavuccolPortalWeb
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            
         }
     }
 }

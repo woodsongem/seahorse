@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Services\CredentialTypeService\Validator\CredentialTypeBusinessServiceValidator.cs~RF4c36008.TMP" />
     <None Remove="Services\LoginService\Base\BaseLoginServiceBusinessService.cs~RF92074d.TMP" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
 
    <ItemGroup>
