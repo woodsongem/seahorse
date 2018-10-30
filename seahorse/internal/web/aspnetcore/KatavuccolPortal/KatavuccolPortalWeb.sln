@@ -9,13 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aop", "..\..\..\shared\aspn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KatavuccolClient", "..\..\..\shared\KatavuccolClient\KatavuccolClient.csproj", "{795E5FCE-D61F-4901-9038-0DDAC344C80F}"
 EndProject
-<<<<<<< HEAD
+
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KatavuccolPortalWeb", "KatavuccolPortalWeb\KatavuccolPortalWeb.csproj", "{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatavuccolPortal.Shared", "KatavuccolPortal.Shared\KatavuccolPortal.Shared.csproj", "{294F4A85-E4D4-4EE9-8164-FC3BE4B6F192}"
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatavuccolPortalWeb", "KatavuccolPortalWeb\KatavuccolPortalWeb.csproj", "{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}"
->>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,7 +33,6 @@ Global
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{795E5FCE-D61F-4901-9038-0DDAC344C80F}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68C2E2C7-8FA1-4F18-9A1F-D786FDD914CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,12 +41,10 @@ Global
 		{294F4A85-E4D4-4EE9-8164-FC3BE4B6F192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{294F4A85-E4D4-4EE9-8164-FC3BE4B6F192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{294F4A85-E4D4-4EE9-8164-FC3BE4B6F192}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{366B52D2-C092-4B5B-8C28-CDD5A8CECF41}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

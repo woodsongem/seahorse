@@ -6,12 +6,11 @@ using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.PostPro
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Processor;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Validator;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier;
-<<<<<<< HEAD
+
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
-=======
->>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
+
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
 {
@@ -35,13 +34,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService
             ICredentialTypeBusinessServiceVerifier credentialTypeBusinessServiceVerifier,
             ICredentialTypeBusinessServiceProcessor credentialTypeBusinessServiceProcessor,
             ICredentialTypeBusinessServicePostProcessor credentialTypeBusinessServicePostProcessor,
-<<<<<<< HEAD
-            IBaseCredentialTypeService baseCredentialTypeService//,
-                                                                //IConfiguration configuration
-            )
-=======
             IBaseCredentialTypeService baseCredentialTypeService)
->>>>>>> 867a7270072c7696b59887a3cf984ec2084f85ba
+
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
             this.credentialTypeBusinessServiceValidator = credentialTypeBusinessServiceValidator;
