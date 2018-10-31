@@ -3,12 +3,12 @@
  */
 package seahorse.internal.business.phoneservice;
 
-import seahorse.internal.business.emailservice.IEmailServicePostProcessor;
+import seahorse.internal.business.emailservice.IEmailAddressServicePostProcessor;
 
 /**
  * @author SMJE
  *
  */
-public class PhoneServicePostProcessor implements IEmailServicePostProcessor {
+public class PhoneServicePostProcessor implements IEmailAddressServicePostProcessor {
 
 }

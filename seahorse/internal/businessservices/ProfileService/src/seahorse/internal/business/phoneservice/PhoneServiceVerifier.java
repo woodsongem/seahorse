@@ -3,12 +3,12 @@
  */
 package seahorse.internal.business.phoneservice;
 
-import seahorse.internal.business.emailservice.IEmailServiceVerifier;
+import seahorse.internal.business.emailservice.IEmailAddressServiceVerifier;
 
 /**
  * @author SMJE
  *
  */
-public class PhoneServiceVerifier implements IEmailServiceVerifier {
+public class PhoneServiceVerifier implements IEmailAddressServiceVerifier {
 
 }
