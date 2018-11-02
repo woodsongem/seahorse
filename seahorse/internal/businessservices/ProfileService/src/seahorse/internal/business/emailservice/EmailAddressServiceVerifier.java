@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 
 import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.emailservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
 import seahorse.internal.business.emailservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
@@ -38,10 +39,9 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 	}
 
 	@Override
-	public Result verifyCreateEmailAddressRequest(
-			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
+	public Result verifyCreateEmailAddressRequest(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
 		Result result;
-		result = isEmailAddressValid(createEmailAddressRequestMsgEntity);
+		result = isEmailAddressExistValid(createEmailAddressRequestMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
 			return result;
 		}
@@ -53,34 +53,100 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 
 		return new Result(ResultStatus.SUCCESS);
 	}
+	
+	@Override
+	public Result verifyUpdateEmailAddressRequest(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
+		Result result;
+		result = isUserIdValid(updateEmailAddressRequestMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isEmailAddressIdValid(updateEmailAddressRequestMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return new Result(ResultStatus.SUCCESS);
+	}
+	
+	@Override
+	public Result verifyDeleteEmailAddressId(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		Result result;
+		result = isEmailAddressIdValid(deleteEmailAddressRequestMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		result = isUserIdValid(deleteEmailAddressRequestMsgEntity);
+		if (result.getResultStatus() != ResultStatus.SUCCESS) {
+			return result;
+		}
+		return result;
+	}
 
 	@Override
-	public Result isUserIdValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
-		UserCredentialDAO userCredentialDAO = userCredentialRepository
-				.getUserCredentialByUserId(createEmailAddressRequestMsgEntity.getUserId());
-		if (userCredentialDAO != null) {
+	public Result isUserIdValid(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		UserCredentialDAO userCredentialDAO = userCredentialRepository.getUserCredentialByUserId(deleteEmailAddressRequestMsgEntity.getUserId());
+		if (userCredentialDAO == null) {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId",
 					ProfileServiceErrorCode.UserIdNotFound);
 		}
+		deleteEmailAddressRequestMsgEntity.setUserCredential(userCredentialDAO);
 		return new Result(ResultStatus.SUCCESS);
 	}
 
 	@Override
-	public Result isEmailAddressValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
+	public Result isEmailAddressIdValid(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailById(deleteEmailAddressRequestMsgEntity.getId());
+
+		if (emailAddressDAO == null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddressId",ProfileServiceErrorCode.EmailAddressIdNotFound);
+		}
+		deleteEmailAddressRequestMsgEntity.setEmailAddressDetail(emailAddressDAO);
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result isEmailAddressIdValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
+		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailById(updateEmailAddressRequestMsgEntity.getId());
+
+		if (emailAddressDAO == null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddressId",ProfileServiceErrorCode.EmailAddressIdNotFound);
+		}
+		updateEmailAddressRequestMsgEntity.setEmailAddressDetail(emailAddressDAO);
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result isUserIdValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
+		UserCredentialDAO userCredentialDAO = userCredentialRepository.getUserCredentialByUserId(updateEmailAddressRequestMsgEntity.getUserId());
+		if (userCredentialDAO == null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId",
+					ProfileServiceErrorCode.UserIdNotFound);
+		}
+		updateEmailAddressRequestMsgEntity.setUserCredential(userCredentialDAO);
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result isUserIdValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
+		UserCredentialDAO userCredentialDAO = userCredentialRepository.getUserCredentialByUserId(createEmailAddressRequestMsgEntity.getUserId());
+		if (userCredentialDAO == null) {
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "UserId",
+					ProfileServiceErrorCode.UserIdNotFound);
+		}
+		createEmailAddressRequestMsgEntity.setUserCredential(userCredentialDAO);
+		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result isEmailAddressExistValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
 		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailByEmailAddress(createEmailAddressRequestMsgEntity.getEmailAddress());
-				
+
 		if (emailAddressDAO != null) {
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddress",
-					ProfileServiceErrorCode.EmailAddressIsDuplicate);
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddress",ProfileServiceErrorCode.EmailAddressIsDuplicate);
 		}
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	@Override
-	public Result verifyUpdateEmailAddressRequest(
-			UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.ws.rs.core.Response.Status;
 
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMessageEntity;
+import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
 /**
  * @author SMJE
@@ -21,6 +22,7 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	private Status httpStatus;
 	private UUID userId;
 	private Boolean isPrimary;
+	private UserCredentialDAO userCredential;
 	
 	
 	/**
@@ -94,5 +96,17 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setIsPrimary(Boolean isPrimary) {
 		this.isPrimary = isPrimary;
+	}
+	/**
+	 * @return the userCredential
+	 */
+	public UserCredentialDAO getUserCredential() {
+		return userCredential;
+	}
+	/**
+	 * @param userCredential the userCredential to set
+	 */
+	public void setUserCredential(UserCredentialDAO userCredential) {
+		this.userCredential = userCredential;
 	}
 }

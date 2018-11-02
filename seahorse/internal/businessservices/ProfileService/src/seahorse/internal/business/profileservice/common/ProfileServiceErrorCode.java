@@ -27,6 +27,7 @@ public class ProfileServiceErrorCode {
 	public static final String UpdateEmailAddressRequestMsgEntityIsEmpty = "ProfileService.API.%1$s.%2$s.UpdateEmailAddressRequestMsgEntity.Empty";
 	public static final String EmailAddressIdIsInValid = "ProfileService.API.%1$s.%2$s.Id.InValid";
 	public static final String UserIdNotFound = "ProfileService.API.%1$s.%2$s.UserId.NotFound";
-	public static final String EmailAddressIsDuplicate = "ProfileService.API.%1$s.%2$s.EmailAddress.Duplicate";;;
+	public static final String EmailAddressIsDuplicate = "ProfileService.API.%1$s.%2$s.EmailAddress.Duplicate";
+	public static final String EmailAddressIdNotFound = "ProfileService.API.%1$s.%2$s.EmailAddressId.NotFound";
 
 }

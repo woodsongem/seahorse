@@ -137,4 +137,10 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		return null;
 	}
 
+	@Override
+	public EmailAddressDAO getEmailAddressDetailById(UUID id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

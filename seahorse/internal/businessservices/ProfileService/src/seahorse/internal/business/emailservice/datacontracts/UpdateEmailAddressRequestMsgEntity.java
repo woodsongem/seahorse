@@ -7,7 +7,9 @@ import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
+import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMessageEntity;
+import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
 /**
  * @author SMJE
@@ -19,6 +21,8 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	private Status httpStatus;
 	private Boolean isPrimary;
 	private UUID userId;
+	private UserCredentialDAO userCredential;
+	private EmailAddressDAO emailAddressDetail;
 	
 	/**
 	 * @return the id
@@ -79,5 +83,29 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setUserId(UUID userId) {
 		this.userId = userId;
+	}
+	/**
+	 * @return the userCredential
+	 */
+	public UserCredentialDAO getUserCredential() {
+		return userCredential;
+	}
+	/**
+	 * @param userCredential the userCredential to set
+	 */
+	public void setUserCredential(UserCredentialDAO userCredential) {
+		this.userCredential = userCredential;
+	}
+	/**
+	 * @return the emailAddressDetail
+	 */
+	public EmailAddressDAO getEmailAddressDetail() {
+		return emailAddressDetail;
+	}
+	/**
+	 * @param emailAddressDetail the emailAddressDetail to set
+	 */
+	public void setEmailAddressDetail(EmailAddressDAO emailAddressDetail) {
+		this.emailAddressDetail = emailAddressDetail;
 	}
 }
