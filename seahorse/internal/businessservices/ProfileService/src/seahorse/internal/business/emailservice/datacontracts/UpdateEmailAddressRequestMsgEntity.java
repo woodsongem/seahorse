@@ -14,23 +14,12 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMes
  *
  */
 public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
-
-	private String status;
 	private UUID id;
 	private String emailAddress;
 	private Status httpStatus;
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	private Boolean isPrimary;
+	private UUID userId;
+	
 	/**
 	 * @return the id
 	 */
@@ -66,5 +55,29 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setHttpStatus(Status httpStatus) {
 		this.httpStatus = httpStatus;
+	}
+	/**
+	 * @return the isPrimary
+	 */
+	public Boolean getIsPrimary() {
+		return isPrimary;
+	}
+	/**
+	 * @param isPrimary the isPrimary to set
+	 */
+	public void setIsPrimary(Boolean isPrimary) {
+		this.isPrimary = isPrimary;
+	}
+	/**
+	 * @return the userId
+	 */
+	public UUID getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(UUID userId) {
+		this.userId = userId;
 	}
 }

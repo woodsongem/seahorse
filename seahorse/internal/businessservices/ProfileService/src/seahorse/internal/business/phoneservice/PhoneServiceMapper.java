@@ -3,12 +3,12 @@
  */
 package seahorse.internal.business.phoneservice;
 
-import seahorse.internal.business.emailservice.IEmailServiceMapper;
+import seahorse.internal.business.emailservice.IEmailAddressServiceMapper;
 
 /**
  * @author SMJE
  *
  */
-public class PhoneServiceMapper implements IEmailServiceMapper {
+public class PhoneServiceMapper implements IEmailAddressServiceMapper {
 
 }

@@ -131,4 +131,10 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		return result;
 	}
 
+	@Override
+	public EmailAddressDAO getEmailAddressDetailByEmailAddress(String emailAddress) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

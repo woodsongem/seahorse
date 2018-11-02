@@ -28,7 +28,7 @@ public class KatavuccolServiceUtility {
 	}
 
 	public static boolean isNullOrWhitespace(String s) {
-		return s == null || isWhitespace(s);
+		return s == null || isWhitespace(s) || s.length() == 0;
 
 	}
 
@@ -161,5 +161,10 @@ public class KatavuccolServiceUtility {
 	}
 	public static String toString(Object obj, String defaultStr) {
 	    return obj != null ? obj.toString() : defaultStr;
+	}
+
+	public static boolean isValidEmailAddress(String emailAddress) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

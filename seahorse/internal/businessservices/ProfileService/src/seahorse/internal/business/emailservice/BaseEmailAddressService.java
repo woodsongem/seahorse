@@ -7,6 +7,6 @@ package seahorse.internal.business.emailservice;
  * @author SMJE
  *
  */
-public class EmailServiceMapper implements IEmailAddressServiceMapper {
+public class BaseEmailAddressService implements IBaseEmailAddressService {
 
 }

@@ -19,6 +19,8 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	private UUID id;
 	private String emailAddress;
 	private Status httpStatus;
+	private UUID userId;
+	private Boolean isPrimary;
 	
 	
 	/**
@@ -68,5 +70,29 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setHttpStatus(Status httpStatus) {
 		this.httpStatus = httpStatus;
+	}
+	/**
+	 * @return the userId
+	 */
+	public UUID getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(UUID userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the isPrimary
+	 */
+	public Boolean getIsPrimary() {
+		return isPrimary;
+	}
+	/**
+	 * @param isPrimary the isPrimary to set
+	 */
+	public void setIsPrimary(Boolean isPrimary) {
+		this.isPrimary = isPrimary;
 	}
 }

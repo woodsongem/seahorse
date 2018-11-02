@@ -26,4 +26,6 @@ public interface IEmailServiceRepository {
 
 	EmailAddressDAO getEmailAddressById(UUID emailAddressId);
 
+	EmailAddressDAO getEmailAddressDetailByEmailAddress(String emailAddress);
+
 }

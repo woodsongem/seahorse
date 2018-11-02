@@ -25,7 +25,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
  */
 public class EmailAddressService implements IEmailAddressService {
 
-	private IEmailServiceMapper emailServiceMapper;
+	private IEmailAddressServiceMapper emailAddressServiceMapper;
 	private IEmailAddressServiceValidator emailAddressServiceValidator;
 	private IEmailAddressServiceVerifier emailAddressServiceVerifier;
 	private IEmailAddressServiceProcessor emailAddressServiceProcessor;
@@ -35,10 +35,10 @@ public class EmailAddressService implements IEmailAddressService {
 	Logger logger;
 
 	@Inject
-	public EmailAddressService(IEmailServiceMapper emailServiceMapper, IEmailAddressServiceValidator emailAddressServiceValidator,
+	public EmailAddressService(IEmailAddressServiceMapper emailAddressServiceMapper, IEmailAddressServiceValidator emailAddressServiceValidator,
 			IEmailAddressServiceVerifier emailAddressServiceVerifier, IEmailAddressServiceProcessor emailAddressServiceProcessor,
 			IEmailAddressServicePostProcessor emailAddressServicePostProcessor) {
-		this.emailServiceMapper = emailServiceMapper;
+		this.emailAddressServiceMapper = emailAddressServiceMapper;
 		this.emailAddressServiceValidator = emailAddressServiceValidator;
 		this.emailAddressServiceVerifier = emailAddressServiceVerifier;
 		this.emailAddressServiceProcessor = emailAddressServiceProcessor;

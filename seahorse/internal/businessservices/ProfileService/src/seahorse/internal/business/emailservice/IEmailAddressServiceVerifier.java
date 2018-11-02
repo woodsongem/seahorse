@@ -17,4 +17,8 @@ public interface IEmailAddressServiceVerifier {
 
 	Result verifyUpdateEmailAddressRequest(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
 
+	Result isEmailAddressValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity);
+
+	Result isUserIdValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity);
+
 }

@@ -7,6 +7,6 @@ package seahorse.internal.business.emailservice;
  * @author SMJE
  *
  */
-public interface IEmailServiceMapper {
+public interface IEmailAddressServiceMapper {
 
 }

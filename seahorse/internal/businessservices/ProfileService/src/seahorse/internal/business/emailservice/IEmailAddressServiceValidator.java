@@ -17,4 +17,18 @@ public interface IEmailAddressServiceValidator {
 
 	Result validateUpdateEmailAddressRequest(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
 
+	Result isCreateEmailAddressRequestMsgEntityValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity);
+
+	Result isUserIdValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity);
+
+	Result isEmailAddressValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity);
+
+	Result isUpdateEmailAddressRequestMsgEntityValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
+
+	Result isEmailAddressValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
+
+	Result isEmailAddressIdValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
+
+	Result isUserIdValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity);
+
 }
