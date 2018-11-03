@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 import java.util.Date;
 
@@ -12,8 +12,9 @@ import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.emailservice.datacontracts.CreateEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolConstant;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
@@ -111,6 +112,37 @@ public class EmailAddressService implements IEmailAddressService {
 		
 		//Post Processor
 		Result postresult=emailAddressServicePostProcessor.postProcessorUpdateEmailAddress(updateEmailAddressRequestMsgEntity);
+		
+		return result;
+	}
+	
+	@Override
+	public Result deleteEmailAddress(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		deleteEmailAddressRequestMsgEntity.setModifiedDate(new Date());
+		
+		//Validator	    
+	    Result result = emailAddressServiceValidator.validDeleteEmailAddressRequest(deleteEmailAddressRequestMsgEntity);
+	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+	    	deleteEmailAddressRequestMsgEntity.setHttpStatus(Status.BAD_REQUEST);
+	    	return result;
+		}
+		
+	    //Verifier
+	    result = emailAddressServiceVerifier.verifyDeleteEmailAddressRequest(deleteEmailAddressRequestMsgEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			deleteEmailAddressRequestMsgEntity.setHttpStatus(Status.BAD_REQUEST);
+	    	return result;
+		}
+		
+		//Processor
+		result=emailAddressServiceProcessor.processorDeleteEmailAddressRequest(deleteEmailAddressRequestMsgEntity);
+		if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
+			deleteEmailAddressRequestMsgEntity.setHttpStatus(Status.FORBIDDEN);
+	    	return result;
+		}
+		
+		//Post Processor
+		Result postresult=emailAddressServicePostProcessor.postProcessorDeleteEmailAddressRequest(deleteEmailAddressRequestMsgEntity);
 		
 		return result;
 	}

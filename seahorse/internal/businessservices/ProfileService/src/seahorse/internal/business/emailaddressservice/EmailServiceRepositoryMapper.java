@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 import java.util.UUID;
 
@@ -9,7 +9,7 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 
 /**
  * @author SMJE

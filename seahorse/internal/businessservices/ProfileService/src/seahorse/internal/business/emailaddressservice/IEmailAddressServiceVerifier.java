@@ -1,11 +1,11 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
-import seahorse.internal.business.emailservice.datacontracts.CreateEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 
 /**
@@ -31,5 +31,7 @@ public interface IEmailAddressServiceVerifier {
 	Result isEmailAddressIdValid(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity);
 
 	Result isUserIdValid(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity);
+
+	Result verifyDeleteEmailAddressRequest(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity);
 
 }

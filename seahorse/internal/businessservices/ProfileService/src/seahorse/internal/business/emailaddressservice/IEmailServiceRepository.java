@@ -1,12 +1,12 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 import java.util.List;
 import java.util.UUID;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
 

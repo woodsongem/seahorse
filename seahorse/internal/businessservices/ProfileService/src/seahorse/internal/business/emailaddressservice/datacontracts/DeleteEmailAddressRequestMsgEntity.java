@@ -1,11 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice.datacontracts;
+package seahorse.internal.business.emailaddressservice.datacontracts;
 
 import java.util.UUID;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
+import javax.ws.rs.core.Response.Status;
+
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
@@ -17,6 +19,7 @@ public class DeleteEmailAddressRequestMsgEntity extends BaseMessageEntity {
 
 	private UUID id;
 	private UUID userId;
+	private Status httpStatus;
 	private EmailAddressDAO emailAddressDetail;
 	private UserCredentialDAO userCredential;
 
@@ -74,5 +77,19 @@ public class DeleteEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setUserCredential(UserCredentialDAO userCredential) {
 		this.userCredential = userCredential;
+	}
+
+	/**
+	 * @return the httpStatus
+	 */
+	public Status getHttpStatus() {
+		return httpStatus;
+	}
+
+	/**
+	 * @param httpStatus the httpStatus to set
+	 */
+	public void setHttpStatus(Status httpStatus) {
+		this.httpStatus = httpStatus;
 	}
 }

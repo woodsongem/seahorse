@@ -1,14 +1,14 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 import com.google.inject.Inject;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
-import seahorse.internal.business.emailservice.datacontracts.CreateEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
@@ -145,6 +145,13 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddress",ProfileServiceErrorCode.EmailAddressIsDuplicate);
 		}
 		return new Result(ResultStatus.SUCCESS);
+	}
+
+	@Override
+	public Result verifyDeleteEmailAddressRequest(
+			DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice.dal.datacontracts;
+package seahorse.internal.business.emailaddressservice.dal.datacontracts;
 
 /**
  * @author SMJE

@@ -3,7 +3,7 @@
  */
 package seahorse.internal.business.phoneservice;
 
-import seahorse.internal.business.emailservice.IEmailAddressServiceMapper;
+import seahorse.internal.business.emailaddressservice.IEmailAddressServiceMapper;
 
 /**
  * @author SMJE

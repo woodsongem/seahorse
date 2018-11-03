@@ -1,12 +1,13 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice.datacontracts;
+package seahorse.internal.business.emailaddressservice.datacontracts;
 
 import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
@@ -14,29 +15,15 @@ import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCr
  * @author SMJE
  *
  */
-public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
-
-	private String status;
+public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	private UUID id;
 	private String emailAddress;
 	private Status httpStatus;
-	private UUID userId;
 	private Boolean isPrimary;
+	private UUID userId;
 	private UserCredentialDAO userCredential;
+	private EmailAddressDAO emailAddressDetail;
 	
-	
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
 	/**
 	 * @return the id
 	 */
@@ -74,18 +61,6 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 		this.httpStatus = httpStatus;
 	}
 	/**
-	 * @return the userId
-	 */
-	public UUID getUserId() {
-		return userId;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(UUID userId) {
-		this.userId = userId;
-	}
-	/**
 	 * @return the isPrimary
 	 */
 	public Boolean getIsPrimary() {
@@ -98,6 +73,18 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 		this.isPrimary = isPrimary;
 	}
 	/**
+	 * @return the userId
+	 */
+	public UUID getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(UUID userId) {
+		this.userId = userId;
+	}
+	/**
 	 * @return the userCredential
 	 */
 	public UserCredentialDAO getUserCredential() {
@@ -108,5 +95,17 @@ public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setUserCredential(UserCredentialDAO userCredential) {
 		this.userCredential = userCredential;
+	}
+	/**
+	 * @return the emailAddressDetail
+	 */
+	public EmailAddressDAO getEmailAddressDetail() {
+		return emailAddressDetail;
+	}
+	/**
+	 * @param emailAddressDetail the emailAddressDetail to set
+	 */
+	public void setEmailAddressDetail(EmailAddressDAO emailAddressDetail) {
+		this.emailAddressDetail = emailAddressDetail;
 	}
 }

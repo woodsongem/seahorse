@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.google.inject.Inject;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.katavuccol.common.ICassandraConnector;
 import seahorse.internal.business.shared.katavuccol.common.IReadPropertiesFile;

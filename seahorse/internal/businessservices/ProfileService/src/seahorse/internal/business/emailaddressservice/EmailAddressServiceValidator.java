@@ -1,10 +1,11 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
-import seahorse.internal.business.emailservice.datacontracts.CreateEmailAddressRequestMsgEntity;
-import seahorse.internal.business.emailservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolServiceUtility;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
@@ -17,8 +18,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 public class EmailAddressServiceValidator implements IEmailAddressServiceValidator {
 
 	@Override
-	public Result validCreateEmailAddressRequest(
-			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
+	public Result validCreateEmailAddressRequest(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
 		Result result;
 		result = isCreateEmailAddressRequestMsgEntityValid(createEmailAddressRequestMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -39,8 +39,7 @@ public class EmailAddressServiceValidator implements IEmailAddressServiceValidat
 	}
 
 	@Override
-	public Result validateUpdateEmailAddressRequest(
-			UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
+	public Result validateUpdateEmailAddressRequest(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
 		Result result;
 		result = isUpdateEmailAddressRequestMsgEntityValid(updateEmailAddressRequestMsgEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -59,6 +58,12 @@ public class EmailAddressServiceValidator implements IEmailAddressServiceValidat
 			return result;
 		}
 		return result;
+	}
+	
+	@Override
+	public Result validDeleteEmailAddressRequest(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -132,8 +137,7 @@ public class EmailAddressServiceValidator implements IEmailAddressServiceValidat
 	}
 
 	@Override
-	public Result isCreateEmailAddressRequestMsgEntityValid(
-			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
+	public Result isCreateEmailAddressRequestMsgEntityValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
 
 		if (createEmailAddressRequestMsgEntity == null) {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "CreateEmailAddressRequestMsgEntity is null",
@@ -143,5 +147,7 @@ public class EmailAddressServiceValidator implements IEmailAddressServiceValidat
 
 		return new Result(ResultStatus.SUCCESS);
 	}
+
+	
 
 }

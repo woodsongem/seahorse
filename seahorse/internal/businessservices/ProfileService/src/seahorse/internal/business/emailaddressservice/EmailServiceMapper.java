@@ -1,7 +1,7 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice;
+package seahorse.internal.business.emailaddressservice;
 
 /**
  * @author SMJE

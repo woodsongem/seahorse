@@ -1,13 +1,12 @@
 /**
  * 
  */
-package seahorse.internal.business.emailservice.datacontracts;
+package seahorse.internal.business.emailaddressservice.datacontracts;
 
 import java.util.UUID;
 
 import javax.ws.rs.core.Response.Status;
 
-import seahorse.internal.business.emailservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseMessageEntity;
 import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCredentialDAO;
 
@@ -15,15 +14,29 @@ import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCr
  * @author SMJE
  *
  */
-public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
+public class CreateEmailAddressRequestMsgEntity extends BaseMessageEntity {
+
+	private String status;
 	private UUID id;
 	private String emailAddress;
 	private Status httpStatus;
-	private Boolean isPrimary;
 	private UUID userId;
+	private Boolean isPrimary;
 	private UserCredentialDAO userCredential;
-	private EmailAddressDAO emailAddressDetail;
 	
+	
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	/**
 	 * @return the id
 	 */
@@ -61,18 +74,6 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 		this.httpStatus = httpStatus;
 	}
 	/**
-	 * @return the isPrimary
-	 */
-	public Boolean getIsPrimary() {
-		return isPrimary;
-	}
-	/**
-	 * @param isPrimary the isPrimary to set
-	 */
-	public void setIsPrimary(Boolean isPrimary) {
-		this.isPrimary = isPrimary;
-	}
-	/**
 	 * @return the userId
 	 */
 	public UUID getUserId() {
@@ -85,6 +86,18 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 		this.userId = userId;
 	}
 	/**
+	 * @return the isPrimary
+	 */
+	public Boolean getIsPrimary() {
+		return isPrimary;
+	}
+	/**
+	 * @param isPrimary the isPrimary to set
+	 */
+	public void setIsPrimary(Boolean isPrimary) {
+		this.isPrimary = isPrimary;
+	}
+	/**
 	 * @return the userCredential
 	 */
 	public UserCredentialDAO getUserCredential() {
@@ -95,17 +108,5 @@ public class UpdateEmailAddressRequestMsgEntity extends BaseMessageEntity {
 	 */
 	public void setUserCredential(UserCredentialDAO userCredential) {
 		this.userCredential = userCredential;
-	}
-	/**
-	 * @return the emailAddressDetail
-	 */
-	public EmailAddressDAO getEmailAddressDetail() {
-		return emailAddressDetail;
-	}
-	/**
-	 * @param emailAddressDetail the emailAddressDetail to set
-	 */
-	public void setEmailAddressDetail(EmailAddressDAO emailAddressDetail) {
-		this.emailAddressDetail = emailAddressDetail;
 	}
 }
