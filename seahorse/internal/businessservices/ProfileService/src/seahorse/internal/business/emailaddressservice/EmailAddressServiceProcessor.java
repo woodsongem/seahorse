@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.inject.Inject;
 
+import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAddressDAO;
 import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
 import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
@@ -21,14 +22,19 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 public class EmailAddressServiceProcessor implements IEmailAddressServiceProcessor {
 
 	private final IBaseEmailAddressService baseEmailAddressService;
+	private final IEmailServiceRepository emailServiceRepository;
+	private final IEmailAddressServiceMapper emailAddressServiceMapper;
 
 	@InjectLogger
 	Logger logger;
 
 	@Inject
 
-	public EmailAddressServiceProcessor(IBaseEmailAddressService baseEmailAddressService) {
+	public EmailAddressServiceProcessor(IBaseEmailAddressService baseEmailAddressService,
+			IEmailServiceRepository emailServiceRepository, IEmailAddressServiceMapper emailAddressServiceMapper) {
 		this.baseEmailAddressService = baseEmailAddressService;
+		this.emailServiceRepository = emailServiceRepository;
+		this.emailAddressServiceMapper = emailAddressServiceMapper;
 	}
 
 	@Override
@@ -48,28 +54,31 @@ public class EmailAddressServiceProcessor implements IEmailAddressServiceProcess
 		}
 		return result;
 	}
+
 	@Override
 	public Result processorDeleteEmailAddressRequest(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
 		Result result = deleteEmailAddress(deleteEmailAddressRequestMsgEntity);
+		if (result.getResultStatus() != ResultStatus.ERROR) {
+			return result;
+		}
 		return result;
 	}
 
 	@Override
 	public Result deleteEmailAddress(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
-		Result result = baseEmailAddressService.deleteEmailAddress(deleteEmailAddressRequestMsgEntity);
-		return result;
+		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(deleteEmailAddressRequestMsgEntity);
+		return	emailServiceRepository.DeleteEmailAddress(emailAddressDAO);
 	}
 
 	@Override
 	public Result updateEmailAddress(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
-		Result result = baseEmailAddressService.updateEmailAddress(updateEmailAddressRequestMsgEntity);
-		return result;
+		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(updateEmailAddressRequestMsgEntity);
+		return	emailServiceRepository.updateEmailAddress(emailAddressDAO);
 	}
 
-	
 	@Override
 	public Result createEmailAddress(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
-		Result result = baseEmailAddressService.CreateEmailAddress(createEmailAddressRequestMsgEntity);
-		return result;
+		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(createEmailAddressRequestMsgEntity);
+		return	emailServiceRepository.CreateEmailAddress(emailAddressDAO);
 	}
 }

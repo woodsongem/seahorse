@@ -96,22 +96,19 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		OutPutResponse outPutResponse = new OutPutResponse();
 		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
-		PreparedStatement preparedStatement = cassandraConnector.getSession()
-				.prepare(EmailServiceQueryConstants.GET_CREATE_EMAIL_ADDRESS_QUERY);
-		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatementRequest(preparedStatement,
-				emailAddressDAO);
+		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_CREATE_EMAIL_ADDRESS_QUERY);
+		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatementRequest(preparedStatement,emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return outPutResponse;
 	}
 
 	@Override
-	public Result updateEmailId(EmailAddressDAO emailAddressDAO) {
+	public Result updateEmailAddress(EmailAddressDAO emailAddressDAO) {
 		Result result = new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
-		PreparedStatement preparedStatement = cassandraConnector.getSession()
-				.prepare(EmailServiceQueryConstants.GET_UPDATE_EMAILADDRESS_QUERY);
+		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_UPDATE_EMAILADDRESS_QUERY);
 		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatement(preparedStatement, emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
@@ -119,13 +116,12 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 	}
 
 	@Override
-	public Result DeleteEmailId(UUID emailAddressId) {
+	public Result DeleteEmailAddress(EmailAddressDAO emailAddressDAO) {
 		Result result = new Result();
 		result.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
-		PreparedStatement preparedStatement = cassandraConnector.getSession()
-				.prepare(EmailServiceQueryConstants.GET_DELETE_EMAILADDRESS_EMAILADDRESS_ID_QUERY);
-		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatement(preparedStatement, emailAddressId);
+		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_DELETE_EMAILADDRESS_EMAILADDRESS_ID_QUERY);
+		BoundStatement bound = emailServiceRepositoryMapper.mapDeleteEmailAddressBoundStatement(preparedStatement, emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return result;

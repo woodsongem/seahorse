@@ -31,4 +31,6 @@ public interface IEmailServiceRepositoryMapper {
 
 	BoundStatement mapEmailAddressByIdBoundStatement(PreparedStatement preparedStatement, UUID emailAddressId);
 
+	BoundStatement mapDeleteEmailAddressBoundStatement(PreparedStatement preparedStatement,EmailAddressDAO emailAddressDAO);
+
 }

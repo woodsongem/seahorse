@@ -20,9 +20,9 @@ public interface IEmailServiceRepository {
 
 	OutPutResponse CreateEmailAddress(EmailAddressDAO emailAddressDAO);
 
-	Result updateEmailId(EmailAddressDAO emailAddressDAO);
+	Result updateEmailAddress(EmailAddressDAO emailAddressDAO);
 
-	Result DeleteEmailId(UUID emailAddressId);
+	Result DeleteEmailAddress(EmailAddressDAO emailAddressDAO);
 
 	EmailAddressDAO getEmailAddressById(UUID emailAddressId);
 

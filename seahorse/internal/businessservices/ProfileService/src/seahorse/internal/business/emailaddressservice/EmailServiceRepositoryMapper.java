@@ -60,4 +60,10 @@ public class EmailServiceRepositoryMapper implements IEmailServiceRepositoryMapp
 		return null;
 	}
 
+	@Override
+	public BoundStatement mapDeleteEmailAddressBoundStatement(PreparedStatement preparedStatement,EmailAddressDAO emailAddressDAO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
