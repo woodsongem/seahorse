@@ -29,8 +29,8 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
  * @author SMJE
  *
  */
-public class EmailServiceRepository implements IEmailServiceRepository {
-	private final IEmailServiceRepositoryMapper emailServiceRepositoryMapper;
+public class EmailAddressServiceRepository implements IEmailAddressServiceRepository {
+	private final IEmailAddressServiceRepositoryMapper emailAddressServiceRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
 
@@ -38,9 +38,9 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 	Logger logger;
 
 	@Inject
-	public EmailServiceRepository(IEmailServiceRepositoryMapper emailServiceRepositoryMapper,
+	public EmailAddressServiceRepository(IEmailAddressServiceRepositoryMapper emailAddressServiceRepositoryMapper,
 			ICassandraConnector cassandraConnector, IReadPropertiesFile readPropertiesFile) {
-		this.emailServiceRepositoryMapper = emailServiceRepositoryMapper;
+		this.emailAddressServiceRepositoryMapper = emailAddressServiceRepositoryMapper;
 		this.cassandraConnector = cassandraConnector;
 		this.readPropertiesFile = readPropertiesFile;
 	}
@@ -52,18 +52,18 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		try {
 			cassandraConnector.connect(null, 0, null);
 			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_EMAILADDRESS_BY_USERID_QUERY);
-			BoundStatement bound = emailServiceRepositoryMapper.mapEmailAddressBoundStatement(preparedStatement,userId);
+			BoundStatement bound = emailAddressServiceRepositoryMapper.mapEmailAddressBoundStatement(preparedStatement,userId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row emailDAOResult = resultSet.one();
-				EmailAddressDAO emailAddressDAO = emailServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
+				EmailAddressDAO emailAddressDAO = emailAddressServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
 				if (KatavuccolServiceUtility.isEqual(emailAddressDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS)) {
 					emailServiceDAO.add(emailAddressDAO);
 				}
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in getEmailAddressByUserId error=" + exception);
+			logger.error("Exception in EmailServiceRepository::getEmailAddressByUserId error=" + exception);
 		}
 		return emailServiceDAO;
 	}
@@ -75,18 +75,18 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		try {
 			cassandraConnector.connect(null, 0, null);
 			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_EMAILADDRESS_BY_ID_QUERY);
-			BoundStatement bound = emailServiceRepositoryMapper.mapEmailAddressByIdBoundStatement(preparedStatement,emailAddressId);
+			BoundStatement bound = emailAddressServiceRepositoryMapper.mapEmailAddressByIdBoundStatement(preparedStatement,emailAddressId);
 			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
 			cassandraConnector.close();
 			while (!resultSet.isExhausted()) {
 				final Row emailDAOResult = resultSet.one();
-				EmailAddressDAO emailAddressDAO = emailServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
+				EmailAddressDAO emailAddressDAO = emailAddressServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
 				if (KatavuccolServiceUtility.isEqual(emailAddressDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS)) {
 					emailAddressDAO = null;
 				}
 			}
 		} catch (Exception exception) {
-			logger.error("Exception in getEmailAddressByUserId error=" + exception);
+			logger.error("Exception in EmailServiceRepository::getEmailAddressByUserId error=" + exception);
 		}
 		return emailServiceDAO;
 	}
@@ -97,7 +97,7 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		outPutResponse.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
 		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_CREATE_EMAIL_ADDRESS_QUERY);
-		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatementRequest(preparedStatement,emailAddressDAO);
+		BoundStatement bound = emailAddressServiceRepositoryMapper.mapBoundStatementRequest(preparedStatement,emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return outPutResponse;
@@ -109,7 +109,7 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		result.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
 		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_UPDATE_EMAILADDRESS_QUERY);
-		BoundStatement bound = emailServiceRepositoryMapper.mapBoundStatement(preparedStatement, emailAddressDAO);
+		BoundStatement bound = emailAddressServiceRepositoryMapper.mapBoundStatement(preparedStatement, emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return result;
@@ -121,7 +121,7 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 		result.setResultStatus(ResultStatus.SUCCESS);
 		cassandraConnector.connect(null, 0, null);
 		PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_DELETE_EMAILADDRESS_EMAILADDRESS_ID_QUERY);
-		BoundStatement bound = emailServiceRepositoryMapper.mapDeleteEmailAddressBoundStatement(preparedStatement, emailAddressDAO);
+		BoundStatement bound = emailAddressServiceRepositoryMapper.mapDeleteEmailAddressBoundStatement(preparedStatement, emailAddressDAO);
 		cassandraConnector.getSession().execute(bound);
 		cassandraConnector.close();
 		return result;
@@ -129,14 +129,48 @@ public class EmailServiceRepository implements IEmailServiceRepository {
 
 	@Override
 	public EmailAddressDAO getEmailAddressDetailByEmailAddress(String emailAddress) {
-		// TODO Auto-generated method stub
-		return null;
+		EmailAddressDAO emailServiceDAO = new EmailAddressDAO();
+
+		try {
+			cassandraConnector.connect(null, 0, null);
+			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_EMAILADDRESS_BY_EMAILADDRESS_QUERY);
+			BoundStatement bound = emailAddressServiceRepositoryMapper.mapEmailAddressDetailByEmailAddressBoundStatement(preparedStatement,emailAddress);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row emailDAOResult = resultSet.one();
+				EmailAddressDAO emailAddressDAO = emailAddressServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
+				if (KatavuccolServiceUtility.isEqual(emailAddressDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS)) {
+					emailAddressDAO = null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in EmailServiceRepository::getEmailAddressDetailByEmailAddress error=" + exception);
+		}
+		return emailServiceDAO;
 	}
 
 	@Override
 	public EmailAddressDAO getEmailAddressDetailById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		EmailAddressDAO emailServiceDAO = new EmailAddressDAO();
+
+		try {
+			cassandraConnector.connect(null, 0, null);
+			PreparedStatement preparedStatement = cassandraConnector.getSession().prepare(EmailServiceQueryConstants.GET_EMAILADDRESS_BY_EMAILADDRESS_ID_QUERY);
+			BoundStatement bound = emailAddressServiceRepositoryMapper.mapEmailAddressDetailByIdBoundStatement(preparedStatement,id);
+			final ResultSet resultSet = cassandraConnector.getSession().execute(bound);
+			cassandraConnector.close();
+			while (!resultSet.isExhausted()) {
+				final Row emailDAOResult = resultSet.one();
+				EmailAddressDAO emailAddressDAO = emailAddressServiceRepositoryMapper.mapEmailAddressDAO(emailDAOResult);
+				if (KatavuccolServiceUtility.isEqual(emailAddressDAO.getStatus(), KatavuccolConstant.ACTIVESTATUS)) {
+					emailAddressDAO = null;
+				}
+			}
+		} catch (Exception exception) {
+			logger.error("Exception in EmailServiceRepository::getEmailAddressDetailByEmailAddress error=" + exception);
+		}
+		return emailServiceDAO;
 	}
 
 }

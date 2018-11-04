@@ -19,6 +19,11 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import seahorse.internal.business.emailaddressservice.EmailAddressServiceFactory;
+import seahorse.internal.business.emailaddressservice.IEmailAddressService;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
@@ -156,6 +161,51 @@ public class ProfileServiceApi {
 		}
 		return Response.status(httpStatus).entity(userCredentialModel).build();
 
+	}
+
+	@POST
+	@Path("/profile/{userid}/emailaddress")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response createEmailAddress(CreateEmailAddressRequestModel createEmailAddressRequestModel) {
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		Result result = new Result();
+		CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity = null;
+		try {
+			IEmailAddressService emailAddressService = EmailAddressServiceFactory.getIEmailAddressService();
+			createEmailAddressRequestMsgEntity = profileServiceApiMapper
+					.MapCreateEmailAddressRequestMsgEntity(createEmailAddressRequestModel);
+			Result createEmailAddressResponse = emailAddressService
+					.CreateEmailAddress(createEmailAddressRequestMsgEntity);
+
+		} catch (Exception ex) {
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::createEmailAddress Exception=" + ex);
+		}
+		CreateEmailAddressResponseModel createEmailAddressResponseModel = profileServiceApiMapper
+				.mapCreateEmailAddressResponseModel(result, createEmailAddressRequestMsgEntity, httpRequest);
+		return Response.status(httpStatus).entity(createEmailAddressResponseModel).build();
+	}
+
+	@DELETE
+	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteEmailAddress(@PathParam("username") String username) {
+		return null;
+	}
+
+	@PUT
+	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateEmailAddress(@PathParam("username") String username) {
+		return null;
+	}
+
+	@GET
+	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getEmailAddressById(@PathParam("username") String username) {
+		return null;
 	}
 
 	public void ReplaceErrorCode(Result result, String methodName) {

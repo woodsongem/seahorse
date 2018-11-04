@@ -5,6 +5,9 @@ package seahorse.internal.business.profileservice.api;
 
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
@@ -31,5 +34,10 @@ public interface IProfileServiceApiMapper {
 	CreateProfileResponseModel mapCreateProfileResponseModel(Result result, CreateUserCredentialMsgEntity createUserProfileMsgEntity, HttpServletRequest httpRequest);
 
 	GetUserProfileByUserNameMsgEntity MapGetUserProfileByUserNameMsgEntity(String username);
+
+	CreateEmailAddressRequestMsgEntity MapCreateEmailAddressRequestMsgEntity(CreateEmailAddressRequestModel createEmailAddressRequestModel);
+
+	CreateEmailAddressResponseModel mapCreateEmailAddressResponseModel(Result result,
+			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity, HttpServletRequest httpRequest);
 
 }

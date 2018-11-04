@@ -22,16 +22,16 @@ import seahorse.internal.business.usercredentialservice.dal.datacontracts.UserCr
  */
 public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier {
 
-	private final IEmailServiceRepository emailServiceRepository;
+	private final IEmailAddressServiceRepository emailAddressServiceRepository;
 	private final IEmailAddressServiceMapper emailAddressServiceMapper;
 	private final IBaseEmailAddressService baseEmailAddressService;
 	private final IUserCredentialRepository userCredentialRepository;
 
 	@Inject
-	public EmailAddressServiceVerifier(IEmailServiceRepository emailServiceRepository,
+	public EmailAddressServiceVerifier(IEmailAddressServiceRepository emailAddressServiceRepository,
 			IEmailAddressServiceMapper emailAddressServiceMapper, IBaseEmailAddressService baseEmailAddressService,
 			IUserCredentialRepository userCredentialRepository) {
-		this.emailServiceRepository = emailServiceRepository;
+		this.emailAddressServiceRepository = emailAddressServiceRepository;
 		this.emailAddressServiceMapper = emailAddressServiceMapper;
 		this.baseEmailAddressService = baseEmailAddressService;
 		this.userCredentialRepository = userCredentialRepository;
@@ -95,7 +95,7 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 
 	@Override
 	public Result isEmailAddressIdValid(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
-		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailById(deleteEmailAddressRequestMsgEntity.getId());
+		EmailAddressDAO emailAddressDAO = emailAddressServiceRepository.getEmailAddressDetailById(deleteEmailAddressRequestMsgEntity.getId());
 
 		if (emailAddressDAO == null) {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddressId",ProfileServiceErrorCode.EmailAddressIdNotFound);
@@ -106,7 +106,7 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 
 	@Override
 	public Result isEmailAddressIdValid(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
-		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailById(updateEmailAddressRequestMsgEntity.getId());
+		EmailAddressDAO emailAddressDAO = emailAddressServiceRepository.getEmailAddressDetailById(updateEmailAddressRequestMsgEntity.getId());
 
 		if (emailAddressDAO == null) {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddressId",ProfileServiceErrorCode.EmailAddressIdNotFound);
@@ -139,7 +139,7 @@ public class EmailAddressServiceVerifier implements IEmailAddressServiceVerifier
 
 	@Override
 	public Result isEmailAddressExistValid(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
-		EmailAddressDAO emailAddressDAO = emailServiceRepository.getEmailAddressDetailByEmailAddress(createEmailAddressRequestMsgEntity.getEmailAddress());
+		EmailAddressDAO emailAddressDAO = emailAddressServiceRepository.getEmailAddressDetailByEmailAddress(createEmailAddressRequestMsgEntity.getEmailAddress());
 
 		if (emailAddressDAO != null) {
 			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "EmailAddress",ProfileServiceErrorCode.EmailAddressIsDuplicate);

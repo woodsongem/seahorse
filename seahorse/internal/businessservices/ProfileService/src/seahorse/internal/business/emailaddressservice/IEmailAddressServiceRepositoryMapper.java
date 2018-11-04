@@ -15,7 +15,7 @@ import seahorse.internal.business.emailaddressservice.dal.datacontracts.EmailAdd
  * @author SMJE
  *
  */
-public interface IEmailServiceRepositoryMapper {
+public interface IEmailAddressServiceRepositoryMapper {
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement);
 
@@ -32,5 +32,9 @@ public interface IEmailServiceRepositoryMapper {
 	BoundStatement mapEmailAddressByIdBoundStatement(PreparedStatement preparedStatement, UUID emailAddressId);
 
 	BoundStatement mapDeleteEmailAddressBoundStatement(PreparedStatement preparedStatement,EmailAddressDAO emailAddressDAO);
+
+	BoundStatement mapEmailAddressDetailByEmailAddressBoundStatement(PreparedStatement preparedStatement,String emailAddress);
+
+	BoundStatement mapEmailAddressDetailByIdBoundStatement(PreparedStatement preparedStatement, UUID id);
 
 }

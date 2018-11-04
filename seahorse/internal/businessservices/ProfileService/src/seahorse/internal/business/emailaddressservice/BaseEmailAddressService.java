@@ -19,14 +19,14 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
  */
 public class BaseEmailAddressService implements IBaseEmailAddressService {
 
-	private final IEmailServiceRepository emailServiceRepository;
+	private final IEmailAddressServiceRepository emailAddressServiceRepository;
 
 	@InjectLogger
 	Logger logger;
 
 	@Inject
-	public BaseEmailAddressService(IEmailServiceRepository emailServiceRepository) {
-		this.emailServiceRepository=emailServiceRepository;
+	public BaseEmailAddressService(IEmailAddressServiceRepository emailAddressServiceRepository) {
+		this.emailAddressServiceRepository=emailAddressServiceRepository;
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
  * @author SMJE
  *
  */
-public interface IEmailServiceRepository {
+public interface IEmailAddressServiceRepository {
 
 	List<EmailAddressDAO> getEmailAddressByUserId(UUID userId);
 

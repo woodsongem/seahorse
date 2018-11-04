@@ -22,7 +22,7 @@ import seahorse.internal.business.shared.katavuccol.common.datacontracts.ResultS
 public class EmailAddressServiceProcessor implements IEmailAddressServiceProcessor {
 
 	private final IBaseEmailAddressService baseEmailAddressService;
-	private final IEmailServiceRepository emailServiceRepository;
+	private final IEmailAddressServiceRepository emailAddressServiceRepository;
 	private final IEmailAddressServiceMapper emailAddressServiceMapper;
 
 	@InjectLogger
@@ -31,9 +31,9 @@ public class EmailAddressServiceProcessor implements IEmailAddressServiceProcess
 	@Inject
 
 	public EmailAddressServiceProcessor(IBaseEmailAddressService baseEmailAddressService,
-			IEmailServiceRepository emailServiceRepository, IEmailAddressServiceMapper emailAddressServiceMapper) {
+			IEmailAddressServiceRepository emailAddressServiceRepository, IEmailAddressServiceMapper emailAddressServiceMapper) {
 		this.baseEmailAddressService = baseEmailAddressService;
-		this.emailServiceRepository = emailServiceRepository;
+		this.emailAddressServiceRepository = emailAddressServiceRepository;
 		this.emailAddressServiceMapper = emailAddressServiceMapper;
 	}
 
@@ -67,18 +67,18 @@ public class EmailAddressServiceProcessor implements IEmailAddressServiceProcess
 	@Override
 	public Result deleteEmailAddress(DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity) {
 		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(deleteEmailAddressRequestMsgEntity);
-		return	emailServiceRepository.DeleteEmailAddress(emailAddressDAO);
+		return	emailAddressServiceRepository.DeleteEmailAddress(emailAddressDAO);
 	}
 
 	@Override
 	public Result updateEmailAddress(UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity) {
 		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(updateEmailAddressRequestMsgEntity);
-		return	emailServiceRepository.updateEmailAddress(emailAddressDAO);
+		return	emailAddressServiceRepository.updateEmailAddress(emailAddressDAO);
 	}
 
 	@Override
 	public Result createEmailAddress(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
 		EmailAddressDAO emailAddressDAO=emailAddressServiceMapper.mapEmailAddressDAO(createEmailAddressRequestMsgEntity);
-		return	emailServiceRepository.CreateEmailAddress(emailAddressDAO);
+		return	emailAddressServiceRepository.CreateEmailAddress(emailAddressDAO);
 	}
 }

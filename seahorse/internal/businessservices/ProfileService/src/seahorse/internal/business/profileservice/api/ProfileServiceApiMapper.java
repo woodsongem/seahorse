@@ -8,6 +8,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
@@ -110,6 +113,20 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 		GetUserProfileByUserNameMsgEntity getUserProfileByUserNameMsgEntity=new GetUserProfileByUserNameMsgEntity();
 		getUserProfileByUserNameMsgEntity.setUsername(username);
 		return getUserProfileByUserNameMsgEntity;
+	}
+
+	@Override
+	public CreateEmailAddressRequestMsgEntity MapCreateEmailAddressRequestMsgEntity(
+			CreateEmailAddressRequestModel createEmailAddressRequestModel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CreateEmailAddressResponseModel mapCreateEmailAddressResponseModel(Result result,
+			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity, HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

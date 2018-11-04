@@ -12,7 +12,7 @@ import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailA
  * @author SMJE
  *
  */
-public class EmailServiceMapper implements IEmailAddressServiceMapper {
+public class EmailAddressServiceMapper implements IEmailAddressServiceMapper {
 
 	@Override
 	public EmailAddressDAO mapEmailAddressDAO(CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity) {
