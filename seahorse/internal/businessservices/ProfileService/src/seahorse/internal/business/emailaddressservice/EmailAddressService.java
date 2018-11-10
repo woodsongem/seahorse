@@ -12,8 +12,10 @@ import org.apache.logging.log4j.Logger;
 import com.datastax.driver.core.utils.UUIDs;
 import com.google.inject.Inject;
 
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.EmailAddressModel;
 import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.GetEmailAddressByEmailAddressIdMsgEntity;
 import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.shared.aop.InjectLogger;
 import seahorse.internal.business.shared.katavuccol.common.KatavuccolConstant;
@@ -145,5 +147,11 @@ public class EmailAddressService implements IEmailAddressService {
 		Result postresult=emailAddressServicePostProcessor.postProcessorDeleteEmailAddressRequest(deleteEmailAddressRequestMsgEntity);
 		
 		return result;
+	}
+	
+	@Override
+	public EmailAddressModel getEmailAddressModelByEmailAddressId(GetEmailAddressByEmailAddressIdMsgEntity getEmailAddressByEmailAddressIdMsgEntity) {
+		return null;
+	
 	}
 }

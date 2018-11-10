@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
 import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressResponseModel;
 import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.GetEmailAddressByEmailAddressIdMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.profileservice.common.ProfileServiceErrorCode;
@@ -125,6 +130,33 @@ public class ProfileServiceApiMapper implements IProfileServiceApiMapper {
 	@Override
 	public CreateEmailAddressResponseModel mapCreateEmailAddressResponseModel(Result result,
 			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity, HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DeleteEmailAddressRequestMsgEntity MapDeleteEmailAddressRequestMsgEntity(String userid,
+			String emailaddressid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpdateEmailAddressRequestMsgEntity MapUpdateEmailAddressRequestMsgEntity(String userid, String emailaddressid,UpdateEmailAddressRequestModel updateEmailAddressRequestModel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpdateEmailAddressResponseModel mapUpdateEmailAddressResponseModel(Result result,
+			UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity, HttpServletRequest httpRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GetEmailAddressByEmailAddressIdMsgEntity MapGetEmailAddressByEmailAddressIdMsgEntity(String userid,
+			String emailaddressid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -23,7 +23,13 @@ import seahorse.internal.business.emailaddressservice.EmailAddressServiceFactory
 import seahorse.internal.business.emailaddressservice.IEmailAddressService;
 import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
 import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.EmailAddressModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressResponseModel;
 import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.GetEmailAddressByEmailAddressIdMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
 import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
 import seahorse.internal.business.profileservice.api.datacontracts.UpdateProfileRequestModel;
@@ -190,22 +196,76 @@ public class ProfileServiceApi {
 	@DELETE
 	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteEmailAddress(@PathParam("username") String username) {
-		return null;
+	public Response deleteEmailAddress(@PathParam("userid") String userid,
+			@PathParam("emailaddressid") String emailaddressid) {
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		Result result = new Result();
+		try {
+			IEmailAddressService emailAddressService = EmailAddressServiceFactory.getIEmailAddressService();
+			DeleteEmailAddressRequestMsgEntity deleteEmailAddressRequestMsgEntity = profileServiceApiMapper
+					.MapDeleteEmailAddressRequestMsgEntity(userid, emailaddressid);
+			result = emailAddressService.deleteEmailAddress(deleteEmailAddressRequestMsgEntity);
+			if (result == null) {
+				httpStatus = Status.NOT_FOUND;
+				result = new Result();
+			}
+		} catch (Exception ex) {
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::deleteEmailAddress Exception=" + ex);
+		}
+		return Response.status(httpStatus).entity(result).build();
 	}
 
 	@PUT
 	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateEmailAddress(@PathParam("username") String username) {
-		return null;
+	public Response updateEmailAddress(@PathParam("userid") String userid,
+			@PathParam("emailaddressid") String emailaddressid,
+			UpdateEmailAddressRequestModel updateEmailAddressRequestModel) {
+		
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		Result result = new Result();
+		UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity = null;
+		try {
+			IEmailAddressService emailAddressService = EmailAddressServiceFactory.getIEmailAddressService();
+			updateEmailAddressRequestMsgEntity = profileServiceApiMapper
+					.MapUpdateEmailAddressRequestMsgEntity(userid,emailaddressid,updateEmailAddressRequestModel);
+			Result createEmailAddressResponse = emailAddressService
+					.updateEmailAddress(updateEmailAddressRequestMsgEntity);
+
+		} catch (Exception ex) {
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::createEmailAddress Exception=" + ex);
+		}
+		UpdateEmailAddressResponseModel updateEmailAddressResponseModel = profileServiceApiMapper
+				.mapUpdateEmailAddressResponseModel(result, updateEmailAddressRequestMsgEntity, httpRequest);
+		return Response.status(httpStatus).entity(updateEmailAddressResponseModel).build();
 	}
 
 	@GET
 	@Path("/profile/{userid}/emailaddress/{emailaddressid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getEmailAddressById(@PathParam("username") String username) {
-		return null;
+	public Response getEmailAddressById(@PathParam("userid") String userid,
+			@PathParam("emailaddressid") String emailaddressid) {
+		IProfileServiceApiMapper profileServiceApiMapper = new ProfileServiceApiMapper();
+		Status httpStatus = Status.INTERNAL_SERVER_ERROR;
+		Result result = new Result();
+		EmailAddressModel emailAddressModel = null;
+		try {
+			IEmailAddressService emailAddressService = EmailAddressServiceFactory.getIEmailAddressService();
+			GetEmailAddressByEmailAddressIdMsgEntity getEmailAddressByEmailAddressIdMsgEntity = profileServiceApiMapper
+					.MapGetEmailAddressByEmailAddressIdMsgEntity(userid,emailaddressid);
+			 emailAddressModel = emailAddressService
+					.getEmailAddressModelByEmailAddressId(getEmailAddressByEmailAddressIdMsgEntity);
+
+		} catch (Exception ex) {
+			httpStatus = Status.INTERNAL_SERVER_ERROR;
+			logger.error("ProfileServiceApi::getEmailAddressById Exception=" + ex);
+		}
+		
+		return Response.status(httpStatus).entity(emailAddressModel).build();
 	}
 
 	public void ReplaceErrorCode(Result result, String methodName) {
