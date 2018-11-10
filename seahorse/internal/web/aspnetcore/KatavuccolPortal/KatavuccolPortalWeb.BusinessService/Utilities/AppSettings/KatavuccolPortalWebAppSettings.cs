@@ -1,4 +1,6 @@
-﻿namespace KatavuccolPortalWeb.BusinessService.Utilities.AppSettings
+﻿using Microsoft.Extensions.Configuration;
+
+namespace KatavuccolPortalWeb.BusinessService.Utilities.AppSettings
 {
     public class KatavuccolPortalWebAppSettings : IKatavuccolPortalWebAppSettings
     {

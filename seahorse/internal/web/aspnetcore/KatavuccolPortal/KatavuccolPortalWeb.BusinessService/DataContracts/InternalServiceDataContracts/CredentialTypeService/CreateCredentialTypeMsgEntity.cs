@@ -1,4 +1,4 @@
-﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.LoginService;
+﻿using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService;
 
 namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService
 {

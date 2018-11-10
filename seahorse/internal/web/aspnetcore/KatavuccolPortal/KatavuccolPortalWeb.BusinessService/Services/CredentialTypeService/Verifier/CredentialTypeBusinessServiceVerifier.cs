@@ -1,7 +1,7 @@
 ﻿using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.CredentialTypeService;
+using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService;
 using KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Base;
-using KatavuccolPortalWeb.BusinessService.Services.LoginService.Base;
 using KatavuccolPortalWeb.BusinessService.Utilities;
 
 namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Verifier
@@ -10,7 +10,6 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
     {
         #region Local variables
 
-        private readonly IBaseLoginServiceBusinessService baseLoginServiceBusinessService;
         private readonly IBaseCredentialTypeService baseCredentialTypeService;
 
         #endregion
@@ -18,10 +17,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
         #region Constructor
 
         public CredentialTypeBusinessServiceVerifier(
-            IBaseLoginServiceBusinessService baseLoginServiceBusinessService,
             IBaseCredentialTypeService baseCredentialTypeService)
         {
-            this.baseLoginServiceBusinessService = baseLoginServiceBusinessService;
             this.baseCredentialTypeService = baseCredentialTypeService;
         }
 
@@ -31,7 +28,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
         public Result VerifyCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            throw new NotImplementedException();
+            return new Result();
         }
 
         public Result VerifyGetCredentialTypeById(GetCredentialTypeMsgEntity getCredentialTypeMsgEntity)
@@ -45,7 +42,8 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Ver
 
         public Result IsUserIdValid(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
         {
-            var userDetail = baseLoginServiceBusinessService.getUserDetail(createCredentialTypeMsgEntity.UserId);
+            var userDetail = new UserDetailMsgEntity();
+                //baseLoginServiceBusinessService.getUserDetail(createCredentialTypeMsgEntity.UserId);
             if (userDetail == null)
             {
                 return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdInValid.ToString());

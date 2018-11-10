@@ -12,9 +12,11 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
     {
         public CreateCredentialTypeResMsgEntity MapCreateCredentialTypeResMsgEntity(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity, Result result)
         {
-            CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity = new CreateCredentialTypeResMsgEntity();
-            createCredentialTypeResMsgEntity.ResultStatus = result.ResultStatus;
-            createCredentialTypeResMsgEntity.ResultMessage = result.ResultMessage;
+            CreateCredentialTypeResMsgEntity createCredentialTypeResMsgEntity = new CreateCredentialTypeResMsgEntity
+            {
+                ResultStatus = result.ResultStatus,
+                ResultMessage = result.ResultMessage
+            };
             return createCredentialTypeResMsgEntity;
         }
 
@@ -50,10 +52,12 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
 
         public CredentialTypeRequestIPost MapCredentialTypeRequestIPost(CredentialTypeMsgEntity credentialTypeMsgEntity, CredentialTypeRequestAPI credentialTypeRequestAPI)
         {
-            CredentialTypeRequestIPost credentialTypeRequestIPost = new CredentialTypeRequestIPost();
-            credentialTypeRequestIPost.Request = credentialTypeRequestAPI;
-            credentialTypeRequestIPost.Endpoint = EndPoints.KatavuccolAPIUrl.ToString();
-            credentialTypeRequestIPost.UserId = credentialTypeMsgEntity.UserId;
+            CredentialTypeRequestIPost credentialTypeRequestIPost = new CredentialTypeRequestIPost
+            {
+                Request = credentialTypeRequestAPI,
+                Endpoint = EndPoints.KatavuccolAPIUrl.ToString(),
+                UserId = credentialTypeMsgEntity.UserId
+            };
             return credentialTypeRequestIPost;
         }
 
@@ -65,5 +69,15 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
                 CredentialTypeId = credentialTypeId
             };            
         }
+
+        public GetCredentialTypeByUserIdAndIdIGet MapGetCredentialTypeByUserIdAndIdIGet(string credentialTypeId)
+        {
+            return new GetCredentialTypeByUserIdAndIdIGet
+            {
+                Endpoint = EndPoints.KatavuccolAPIUrl.ToString(),
+                CredentialTypeId = credentialTypeId
+            };
+        }
+
     }
 }

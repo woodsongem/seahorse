@@ -45,7 +45,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
         {
             CredentialRequestIPost credentialRequestIPost = new CredentialRequestIPost();
             credentialRequestIPost.Request = credentialRequestAPI;
-            credentialRequestIPost.Endpoint = EndPoints.KatavuccolServiceUrl.ToString();
+            credentialRequestIPost.Endpoint = EndPoints.KatavuccolAPIUrl.ToString();
             credentialRequestIPost.UserId = createCredentialMsgEntity.categoryId ;
             return credentialRequestIPost;
         }

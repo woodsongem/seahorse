@@ -18,7 +18,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
         {
             if (string.IsNullOrWhiteSpace(createCredentialMsgEntity.categoryId ))
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "CategoryId is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -28,7 +28,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
         {
             if (createCredentialMsgEntity == null)
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
                     message: "CreateCredentialMsgEntity is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };

@@ -9,9 +9,13 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
     public interface IBaseCredentialTypeService
     {
         List<CredentialTypeMsgEntity> GetCredentialTypeByUserId(bool includeDefaultCredentialType = false);
+
         CredentialTypeMsgEntity GetCredentialTypeById(string credentialTypeId);
+
         List<CredentialTypeMsgEntity> GetDeafultCredentialTyps();
+
         OutPutResult CreateCredentialType(CredentialTypeMsgEntity credentialTypeMsgEntity);
+
         OutPutResult GetCredentialTypeByUserIdAndId(string userId, string credentialTypeId);
     }
 }

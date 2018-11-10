@@ -8,10 +8,17 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Map
     public interface ICredentialTypeBusinessServiceMapper
     {
         CredentialTypeMsgEntity MapCredentialTypeMsgEntity(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+
         CredentialTypeRequestIPost MapCredentialTypeRequestIPost(CredentialTypeRequestAPI credentialTypeRequestAPI);
+
         CredentialTypeRequestAPI MapCredentialTypeRequestAPI(CredentialTypeMsgEntity credentialTypeMsgEntity);
+
         CreateCredentialTypeResMsgEntity MapCreateCredentialTypeResMsgEntity(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity, Result result);
+
         CredentialTypeRequestIPost MapCredentialTypeRequestIPost(CredentialTypeMsgEntity credentialTypeMsgEntity, CredentialTypeRequestAPI credentialTypeRequestAPI);
+
         GetCredentialTypeByIdIGet MapGetCredentialTypeByIdIGet(string credentialTypeId);
+
+        GetCredentialTypeByUserIdAndIdIGet MapGetCredentialTypeByUserIdAndIdIGet(string credentialTypeId);
     }
 }

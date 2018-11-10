@@ -13,7 +13,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
         {
             if (string.IsNullOrWhiteSpace(createCredentialMsgEntity.categoryId ))
             {
-                return KatavuccolPortalWebUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "CategoryId is null");
             }
 

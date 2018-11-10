@@ -88,9 +88,10 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
 
         public OutPutResult GetCredentialTypeByUserIdAndId(string userId, string credentialTypeId)
         {
-            GetCredentialTypeByUserIdAndIdIGet getCredentialTypeByUserIdAndIdIGet = credentialTypeBusinessServiceMapper.MapGetCredentialTypeByIdIGet(credentialTypeId);
+            GetCredentialTypeByUserIdAndIdIGet getCredentialTypeByUserIdAndIdIGet = credentialTypeBusinessServiceMapper.MapGetCredentialTypeByUserIdAndIdIGet(credentialTypeId);
             RestResponse restResponse = katavuccolClient.Get(getCredentialTypeByUserIdAndIdIGet);
             CredentialTypeDetailAPI credentialTypeDetailAPI = JsonConvert.DeserializeObject<CredentialTypeDetailAPI>(restResponse.ResponseContent);
+            return new OutPutResult();
         }
 
         #endregion
