@@ -1,6 +1,9 @@
 ﻿using KatavuccolPortal.Shared.Extension;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.ExternalServiceDataContracts.Common;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 using System.Collections.Generic;
 
 namespace KatavuccolPortalWeb.BusinessService.Utilities
@@ -29,6 +32,19 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
         public static bool IsEmpty(this string value)
         {
             return string.IsNullOrWhiteSpace(value);
+        }
+
+        public static bool IsValid(this string value)
+        {
+            try
+            {
+                var obj = JToken.Parse(value);
+                return true;
+            }
+            catch (JsonReaderException)
+            {
+                return false;
+            }
         }
 
     }

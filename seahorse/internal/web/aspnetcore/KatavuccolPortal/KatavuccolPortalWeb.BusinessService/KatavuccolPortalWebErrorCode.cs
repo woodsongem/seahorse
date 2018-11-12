@@ -2,6 +2,8 @@
 {
     public static class KatavuccolPortalWebErrorCode
     {
+        public static string InValidResponseFromAPIAccountCreation => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.AccountCreation.Invalid.Response";
+        public static string UserIdIsEmptyFromAPIService => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.UserIdAPIService.Empty";
         public static string FirstNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.FirstName.Empty";
         public static string LastNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.LastName.Empty";
         public static string UserNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.UserName.Empty";
