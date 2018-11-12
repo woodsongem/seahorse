@@ -19,12 +19,17 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
             {
                 resultMessages.Add(new ResultMessage()
                 {
-                    ErrorCode= resultMessageAPI.errorCode,
-                    Message=resultMessageAPI.errorMsg
+                    ErrorCode = resultMessageAPI.errorCode,
+                    Message = resultMessageAPI.errorMsg
                 });
             }
             return resultMessages;
         }
-        
+
+        public static bool IsEmpty(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
+
     }
 }

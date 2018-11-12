@@ -6,6 +6,7 @@
   <ItemGroup>
     <None Remove="Services\CredentialTypeService\Validator\CredentialTypeBusinessServiceValidator.cs~RF4c36008.TMP" />
     <None Remove="Services\LoginService\Base\BaseLoginServiceBusinessService.cs~RF92074d.TMP" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.9.16" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
@@ -28,4 +29,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="DataContracts\InternalServiceDataContracts\ProfileService\UserDetailMsgEntity %28copy%29.cs" />
+    <Compile Remove="Utilities\KatavuccolPortalExtension %28copy%29.cs" />
+  </ItemGroup>
 </Project>

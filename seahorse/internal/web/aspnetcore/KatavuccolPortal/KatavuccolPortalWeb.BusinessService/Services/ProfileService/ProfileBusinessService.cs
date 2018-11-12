@@ -1,3 +1,5 @@
+using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
+using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Mapper;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.PostProcessor;
@@ -11,6 +13,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService
     {
 
         #region local Variables
+
         private readonly IProfileBusinessServiceMapper profileBusinessServiceMapper;
         private readonly IProfileBusinessServiceValidator profileBusinessServiceValidator;
         private readonly IProfileBusinessServiceVerifier profileBusinessServiceVerifier;
@@ -38,12 +41,61 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService
             this.profileBusinessServicePostProcessor = profileBusinessServicePostProcessor;
             this.baseProfileBusinessService = baseProfileBusinessService;
         }
+
+
         #endregion
 
         #region Operations  
 
-        
+        public Result CreateAccount(CreateAccountMessageEntity createAccountMessageEntity)
+        {
+            #region 0. Setup
 
-         #endregion 
+            #endregion
+
+            #region 1. Validate
+
+            Result result = profileBusinessServiceValidator.ValidateCreateAccount(createAccountMessageEntity);
+            if(result.ResultStatus != ResultStatus.Success )
+            {
+                return result;
+            }
+
+            #endregion
+
+            #region 2. Verifier
+
+            result = profileBusinessServiceVerifier.VerifyCreateAccount(createAccountMessageEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            #endregion
+
+            #region 2. Process
+
+            result = profileBusinessServiceProcessor.ProcessCreateAccount(createAccountMessageEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                return result;
+            }
+
+            #endregion
+
+            #region 2. PostProcess
+
+            result = profileBusinessServicePostProcessor.PostProcessCreateAccount(createAccountMessageEntity);
+            if (result.ResultStatus != ResultStatus.Success)
+            {
+                //
+            }
+
+            #endregion
+
+            return result;
+        }
+
+        #endregion
     }
 }

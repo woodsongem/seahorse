@@ -1,7 +1,19 @@
 ﻿namespace KatavuccolPortalWeb.BusinessService
 {
-    public class KatavuccolPortalWebErrorCode
+    public static class KatavuccolPortalWebErrorCode
     {
+        public static string FirstNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.FirstName.Empty";
+        public static string LastNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.LastName.Empty";
+        public static string UserNameIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.UserName.Empty";
+        public static string UserNameIsInValidFormat => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.UserName.InValidFormat";
+        public static string PasswordIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.Password.Empty";
+        public static string PasswordAndConfirmPasswordNotMatch => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.Password.NotMatch";
+        public static string PasswordIsInValidFormat => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.Password.InValidFormat";
+        public static string PhoneNumberIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.PhoneNumber.InValidFormat";
+        public static string PhoneNumberIsInValidFormat => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.PhoneNumber.InValidFormat";
+        public static string EmailAddressIsInValidFormat => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.EmailAddress.InValidFormat";
+        public static string EmailAddressIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.EmailAddress.Empty";
+        public static string CreateAccountMessageEntityIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.CreateAccountMessageEntity.Empty";
         public static string CredentialTypeIdIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.CredentialTypeId.Empty";
         public static string GetCredentialTypeMsgEntityIsEmpty => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.GetCredentialTypeMsgEntity.Empty";
         public static string InternalError => $"Katavuccol.Web.{WebMethod}.{HttpVerb}.InternalError";

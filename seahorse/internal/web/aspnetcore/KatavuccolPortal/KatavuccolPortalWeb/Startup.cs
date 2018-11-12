@@ -1,3 +1,11 @@
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Base;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Mapper;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.PostProcessor;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Validator;
+using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Verifier;
+using KatavuccolPortalWeb.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,12 +32,25 @@ namespace KatavuccolPortalWeb
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddScoped<IProfileControllerMapper, ProfileControllerMapper>();
+            services.AddScoped<IProfileBusinessService, ProfileBusinessService>();
+            services.AddScoped<IProfileBusinessServiceMapper, ProfileBusinessServiceMapper>();
+            services.AddScoped<IProfileBusinessServiceValidator, ProfileBusinessServiceValidator>();
+            services.AddScoped<IProfileBusinessServiceVerifier, ProfileBusinessServiceVerifier>();
+            services.AddScoped<IProfileBusinessServiceProcessor, ProfileBusinessServiceProcessor>();
+            services.AddScoped<IProfileBusinessServicePostProcessor, ProfileBusinessServicePostProcessor>();
+            services.AddScoped<IBaseProfileBusinessService, BaseProfileBusinessService>();
+            services.AddScoped<IBaseProfileBusinessServiceValidator, BaseProfileBusinessServiceValidator>();
+
+
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
-             // Register the Swagger services
+
+            // Register the Swagger services
             services.AddSwagger();
         }
 
@@ -49,11 +70,11 @@ namespace KatavuccolPortalWeb
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            
-             // Register the Swagger generator and the Swagger UI middlewares
+
+            // Register the Swagger generator and the Swagger UI middlewares
             app.UseSwaggerUi3WithApiExplorer(settings =>
             {
-                settings.GeneratorSettings.DefaultPropertyNameHandling = 
+                settings.GeneratorSettings.DefaultPropertyNameHandling =
                     PropertyNameHandling.CamelCase;
             });
 
@@ -74,7 +95,7 @@ namespace KatavuccolPortalWeb
                 }
             });
 
-            
+
         }
     }
 }
