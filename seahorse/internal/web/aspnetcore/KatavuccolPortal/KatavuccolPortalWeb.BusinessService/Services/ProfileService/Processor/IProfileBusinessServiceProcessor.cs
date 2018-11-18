@@ -6,5 +6,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
     public interface IProfileBusinessServiceProcessor
     {
         Result ProcessCreateAccount(CreateAccountMessageEntity createAccountMessageEntity);
+
+        Result CreateAccount(CreateAccountMessageEntity createAccountMessageEntity);
     }
 }

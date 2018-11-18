@@ -26,11 +26,24 @@ namespace KatavuccolPortalWeb.Controllers
         public ActionResult<AccountCreationResponseModel> AccountCreation(AccountCreationRequestModel accountCreationRequestModel)
         {
             AccountCreationResponseModel accountCreationResponseModel = new AccountCreationResponseModel();
-            CreateAccountMessageEntity createAccountMessageEntity = profileControllerMapper.MapCreateAccountMessageEntity(accountCreationRequestModel);
-            Result result = profileBusinessService.CreateAccount(createAccountMessageEntity);
-            accountCreationResponseModel = profileControllerMapper.MapAccountCreationResponseModel(result, createAccountMessageEntity);
+            try
+            {
 
-            return Ok(accountCreationResponseModel);
+                CreateAccountMessageEntity createAccountMessageEntity = profileControllerMapper.MapCreateAccountMessageEntity(accountCreationRequestModel);
+                Result result = profileBusinessService.CreateAccount(createAccountMessageEntity);
+                accountCreationResponseModel = profileControllerMapper.MapAccountCreationResponseModel(result, createAccountMessageEntity);
+                if (accountCreationResponseModel?.ResultStatus == ResultStatus.Success.ToString())
+                {
+                    return Ok(accountCreationResponseModel);
+                }
+
+                return BadRequest(accountCreationResponseModel);
+
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

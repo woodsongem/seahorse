@@ -1,4 +1,5 @@
 ﻿using System;
+using KatavuccolPortalWeb.BusinessService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService;
 using KatavuccolPortalWeb.Models.Profile;
@@ -10,6 +11,24 @@ namespace KatavuccolPortalWeb.Mapper
     {
         public AccountCreationResponseModel MapAccountCreationResponseModel(Result result, CreateAccountMessageEntity createAccountMessageEntity)
         {
+            if (createAccountMessageEntity == null && result == null)
+            {
+                return new AccountCreationResponseModel()
+                {
+                    ResultStatus = ResultStatus.Fail.ToString(),
+                    ResultMessage = WebUtilities.GetResultMessageApiModel(KatavuccolPortalWebErrorCode.InternalError, "getting internal error")
+                };
+            }
+
+            if (createAccountMessageEntity == null && result != null)
+            {
+                return new AccountCreationResponseModel()
+                {
+                    ResultStatus = result.ResultStatus.ToString(),
+                    ResultMessage = result.ResultMessage.ToResultMessageAPIModel()
+                };
+            }
+
             AccountCreationResponseModel accountCreationResponseModel = new AccountCreationResponseModel
             {
                 UserId = createAccountMessageEntity.UserId,
@@ -22,7 +41,7 @@ namespace KatavuccolPortalWeb.Mapper
 
         public CreateAccountMessageEntity MapCreateAccountMessageEntity(AccountCreationRequestModel accountCreationRequestModel)
         {
-            if(accountCreationRequestModel==null)
+            if (accountCreationRequestModel == null)
                 return null;
 
             return new CreateAccountMessageEntity()

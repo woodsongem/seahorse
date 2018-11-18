@@ -38,6 +38,9 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
         {
             try
             {
+                if (value.IsEmpty())
+                    return false;
+
                 var obj = JToken.Parse(value);
                 return true;
             }

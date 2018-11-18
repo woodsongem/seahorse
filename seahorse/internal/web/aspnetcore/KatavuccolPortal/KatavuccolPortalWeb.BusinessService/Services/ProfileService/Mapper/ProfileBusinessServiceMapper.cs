@@ -9,9 +9,11 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Mapper
     {
         public CreateAccountIPost MapCreateAccountIPost(CreateAccountModelAPI createAccountModelAPI, CreateAccountMessageEntity createAccountMessageEntity)
         {
-            CreateAccountIPost createAccountIPost = new CreateAccountIPost();
-            createAccountIPost.Endpoint = EndPoints.KatavuccolAPIUrl.ToString();
-            createAccountIPost.Request = createAccountModelAPI;
+            CreateAccountIPost createAccountIPost = new CreateAccountIPost
+            {
+                Endpoint = EndPoints.KatavuccolAPIUrl.ToString(),
+                Request = createAccountModelAPI
+            };
             return createAccountIPost;
         }
 

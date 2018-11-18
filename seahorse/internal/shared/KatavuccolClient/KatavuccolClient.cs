@@ -13,6 +13,7 @@ namespace KatavuccolClient
     {
         private readonly IConfiguration configuration;
 
+
         public KatavuccolClient(IConfiguration configuration)
         {
             this.configuration = configuration;
@@ -21,7 +22,7 @@ namespace KatavuccolClient
         public RestResponse Delete(IDelete delete)
         {
             RestResponse restResponse = new RestResponse();
-            using (HttpClient httpClient = GetHttpClient(delete.Headers, delete.Endpoint))
+            using (HttpClient httpClient = GetHttpClient(delete.Headers))
             {
                 var response = httpClient.DeleteAsync(delete.Url).Result;
                 restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
@@ -33,7 +34,7 @@ namespace KatavuccolClient
         public RestResponse Get(IGet get)
         {
             RestResponse restResponse = new RestResponse();
-            using (HttpClient httpClient = GetHttpClient(get.Headers, get.Endpoint))
+            using (HttpClient httpClient = GetHttpClient(get.Headers))
             {
                 var response = httpClient.GetAsync(get.Url).Result;
                 restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
@@ -45,11 +46,22 @@ namespace KatavuccolClient
         public RestResponse Post(IPost post)
         {
             RestResponse restResponse = new RestResponse();
-            using (HttpClient httpClient = GetHttpClient(post.Headers, post.Endpoint))
+            try
             {
-                var response = httpClient.PostAsync(post.Url, new StringContent(JsonConvert.SerializeObject(post.Request), Encoding.UTF8, "application/json")).Result;
-                restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
-                restResponse.ResponseContent = response.Content.ReadAsStringAsync().Result;
+                using (HttpClient httpClient = GetHttpClient(post.Headers))
+                {
+                    string endpointUrl = configuration["ExternalUrl:" + post.Endpoint];
+                    httpClient.BaseAddress = new Uri(endpointUrl);
+                    var response = httpClient.PostAsync(endpointUrl + post.Url, new StringContent(JsonConvert.SerializeObject(post.Request), Encoding.UTF8, "application/json")).Result;
+                    restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
+                    restResponse.ResponseContent = response.Content.ReadAsStringAsync().Result;
+                }
+            }
+            catch (Exception ex)
+            {
+                restResponse.ResponseContent = "Getting exception during external call";
+                restResponse.ResultStatus = RestResultStatus.Fail;
+
             }
             return restResponse;
         }
@@ -57,7 +69,7 @@ namespace KatavuccolClient
         public RestResponse Put(IPut put)
         {
             RestResponse restResponse = new RestResponse();
-            using (HttpClient httpClient = GetHttpClient(put.Headers, put.Endpoint))
+            using (HttpClient httpClient = GetHttpClient(put.Headers))
             {
                 var response = httpClient.PutAsync(put.Url, new StringContent(JsonConvert.SerializeObject(put.Request), Encoding.UTF8, "application/json")).Result;
                 restResponse.ResultStatus = response.IsSuccessStatusCode ? RestResultStatus.Success : RestResultStatus.Fail;
@@ -66,11 +78,11 @@ namespace KatavuccolClient
             return restResponse;
         }
 
-        public HttpClient GetHttpClient(List<KeyValuePir> headers, string endPoint)
+        public HttpClient GetHttpClient(List<KeyValuePir> headers)
         {
-            var httpClient = new HttpClient();           
-            httpClient.BaseAddress = new Uri(configuration[endPoint]);
-            if(!headers.AnyWithNullCheck())
+            var httpClient = new HttpClient();
+
+            if (!headers.AnyWithNullCheck())
             {
                 return httpClient;
             }

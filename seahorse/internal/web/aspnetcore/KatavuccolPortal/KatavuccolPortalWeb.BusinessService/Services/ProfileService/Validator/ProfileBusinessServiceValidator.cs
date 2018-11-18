@@ -61,6 +61,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Validator
 
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
         public Result IsPhoneValid(CreateAccountMessageEntity createAccountMessageEntity)
         {
             if (createAccountMessageEntity.PhoneNumber.IsEmpty())
@@ -74,6 +75,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Validator
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
         public Result IsPasswordValid(CreateAccountMessageEntity createAccountMessageEntity)
         {
             if (createAccountMessageEntity.Password.IsEmpty())
@@ -92,6 +94,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Validator
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
         public Result IsUserNameValid(CreateAccountMessageEntity createAccountMessageEntity)
         {
             if (createAccountMessageEntity.UserName.IsEmpty())
@@ -105,6 +108,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Validator
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
         public Result IsNameValid(CreateAccountMessageEntity createAccountMessageEntity)
         {
             if (createAccountMessageEntity.FirstName.IsEmpty())

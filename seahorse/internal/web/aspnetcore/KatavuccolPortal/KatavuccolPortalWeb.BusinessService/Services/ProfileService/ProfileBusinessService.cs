@@ -73,7 +73,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService
 
             #endregion
 
-            #region 2. Process
+            #region 3. Process
 
             result = profileBusinessServiceProcessor.ProcessCreateAccount(createAccountMessageEntity);
             if (result.ResultStatus != ResultStatus.Success)
@@ -83,12 +83,12 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService
 
             #endregion
 
-            #region 2. PostProcess
+            #region 4. PostProcess
 
-            result = profileBusinessServicePostProcessor.PostProcessCreateAccount(createAccountMessageEntity);
-            if (result.ResultStatus != ResultStatus.Success)
+            Result postResult = profileBusinessServicePostProcessor.PostProcessCreateAccount(createAccountMessageEntity);
+            if (postResult.ResultStatus != ResultStatus.Success)
             {
-                //
+                //TODO:log response
             }
 
             #endregion

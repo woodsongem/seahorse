@@ -7,7 +7,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.PostProces
     {
         public Result PostProcessCreateAccount(CreateAccountMessageEntity createAccountMessageEntity)
         {
-            throw new System.NotImplementedException();
+            return new Result() { ResultStatus = ResultStatus.Success };
         }
     }
 }

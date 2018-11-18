@@ -10,7 +10,7 @@ namespace KatavuccolPortalWeb.Utilities
     {
         public static List<ResultMessageApiModel> ToResultMessageAPIModel(this List<ResultMessage> value)
         {
-            if (value.AnyWithNullCheck())
+            if (!value.AnyWithNullCheck())
             {
                 return null;
             }
@@ -23,6 +23,19 @@ namespace KatavuccolPortalWeb.Utilities
                     Message = resultMessage.Message
                 });
             }
+            return resultMessageApiModel;
+        }
+
+        public static List<ResultMessageApiModel> GetResultMessageApiModel(string errorCode, string message)
+        {
+            List<ResultMessageApiModel> resultMessageApiModel = new List<ResultMessageApiModel>
+            {
+                new ResultMessageApiModel() {
+                     ErrorCode=errorCode,
+                    Message=message
+                }
+            };
+
             return resultMessageApiModel;
         }
     }

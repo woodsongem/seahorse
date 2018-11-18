@@ -12,14 +12,24 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
 {
     public class ProfileBusinessServiceProcessor : IProfileBusinessServiceProcessor
     {
+        #region Local variables
+
         private readonly IProfileBusinessServiceMapper profileBusinessServiceMapper;
         private readonly IKatavuccolClient katavuccolClient;
+
+        #endregion
+
+        #region Construtor
 
         public ProfileBusinessServiceProcessor(IProfileBusinessServiceMapper profileBusinessServiceMapper, IKatavuccolClient katavuccolClient)
         {
             this.profileBusinessServiceMapper = profileBusinessServiceMapper;
             this.katavuccolClient = katavuccolClient;
         }
+
+        #endregion
+
+        #region Processor executor
 
         public Result ProcessCreateAccount(CreateAccountMessageEntity createAccountMessageEntity)
         {
@@ -28,6 +38,10 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
                 return result;
             return result;
         }
+
+        #endregion
+
+        #region Processor
 
         public Result CreateAccount(CreateAccountMessageEntity createAccountMessageEntity)
         {
@@ -45,9 +59,11 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
             }
             else
             {
-                KatavuccolPortalUtility.GetResult(ResultStatus.Fail, KatavuccolPortalWebErrorCode.InValidResponseFromAPIAccountCreation, KatavuccolPortalWebConstants.InValidResponseFromAPIAccountCreation);
+                return KatavuccolPortalUtility.GetResult(ResultStatus.Fail, KatavuccolPortalWebErrorCode.InValidResponseFromAPIAccountCreation, KatavuccolPortalWebConstants.InValidResponseFromAPIAccountCreation);
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }
+
+        #endregion
     }
 }

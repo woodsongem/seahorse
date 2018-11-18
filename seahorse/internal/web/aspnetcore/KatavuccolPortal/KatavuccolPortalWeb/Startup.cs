@@ -1,3 +1,4 @@
+using KatavuccolClient;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Mapper;
@@ -41,8 +42,8 @@ namespace KatavuccolPortalWeb
             services.AddScoped<IProfileBusinessServicePostProcessor, ProfileBusinessServicePostProcessor>();
             services.AddScoped<IBaseProfileBusinessService, BaseProfileBusinessService>();
             services.AddScoped<IBaseProfileBusinessServiceValidator, BaseProfileBusinessServiceValidator>();
-
-
+            services.AddScoped<IBaseProfileBusinessServiceVerifier, BaseProfileBusinessServiceVerifier>();
+            services.AddScoped<IKatavuccolClient, KatavuccolClient.KatavuccolClient>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
