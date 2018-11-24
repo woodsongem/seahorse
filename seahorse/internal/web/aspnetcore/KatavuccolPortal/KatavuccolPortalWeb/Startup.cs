@@ -52,7 +52,7 @@ namespace KatavuccolPortalWeb
             });
 
             // Register the Swagger services
-            services.AddSwagger();
+            //services.AddSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,11 +73,11 @@ namespace KatavuccolPortalWeb
             app.UseSpaStaticFiles();
 
             // Register the Swagger generator and the Swagger UI middlewares
-            app.UseSwaggerUi3WithApiExplorer(settings =>
-            {
-                settings.GeneratorSettings.DefaultPropertyNameHandling =
-                    PropertyNameHandling.CamelCase;
-            });
+          //  app.UseSwaggerUi3WithApiExplorer(settings =>
+          //  {
+              //  settings.GeneratorSettings.DefaultPropertyNameHandling =
+                 //   PropertyNameHandling.CamelCase;
+           // });
 
             app.UseMvc(routes =>
             {

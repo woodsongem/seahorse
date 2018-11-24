@@ -72,43 +72,43 @@ export class Register extends Component {
                             <div className="row">
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">contacts</i>
-                                    <input id="firstname" name="firstname" type="text" className="validate" value={this.state.firstname} onChange={this.handleInputChange}></input>
-                                    <label htmlFor="firstname">First Name</label>
+                                    <input id="firstname" name="firstname" type="text" className="validate" value={this.state.firstname} onChange={this.handleInputChange} required></input>
+                                    <label htmlFor="firstname" >First Name</label>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">contacts</i>
-                                    <input id="lastname" name="lastname" type="text" className="validate" value={this.state.lastname} onChange={this.handleInputChange}></input>
+                                    <input id="lastname" name="lastname" type="text" className="validate" value={this.state.lastname} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="lastname">Last Name</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">vpn_key</i>
-                                    <input id="password" name="password" type="password" className="validate" value={this.state.password} onChange={this.handleInputChange}></input>
+                                    <input id="password" name="password" type="password" className="validate" value={this.state.password} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="password">Password</label>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">replay</i>
-                                    <input id="confirmpassword" name="confirmpassword" type="password" className="validate" value={this.state.confirmpassword} onChange={this.handleInputChange}></input>
+                                    <input id="confirmpassword" name="confirmpassword" type="password" className="validate" value={this.state.confirmpassword} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="confirmpassword">Retype Password</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">account_circle</i>
-                                    <input id="username" name="username" type="text" className="validate" value={this.state.username} onChange={this.handleInputChange}></input>
+                                    <input id="username" name="username" type="text" className="validate" value={this.state.username} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="username">Username</label>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">email</i>
-                                    <input id="emailaddress" name="emailaddress" type="email" className="validate" value={this.state.emailaddress} onChange={this.handleInputChange}></input>
+                                    <input id="emailaddress" name="emailaddress" type="email" className="validate" value={this.state.emailaddress} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="emailaddress">Email</label>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">contact_phone</i>
-                                    <input id="phonenumber" name="phonenumber" type="text" className="validate" value={this.state.phonenumber} onChange={this.handleInputChange}></input>
+                                    <input id="phonenumber" name="phonenumber" type="text" className="validate" value={this.state.phonenumber} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="phonenumber">Phone Number</label>
                                 </div>
                             </div>
