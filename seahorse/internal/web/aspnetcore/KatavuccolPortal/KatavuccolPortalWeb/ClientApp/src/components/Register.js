@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-
+const $ = window.$;
 
 export class Register extends Component {
     constructor(props) {
@@ -21,6 +21,36 @@ export class Register extends Component {
 
     validateRegField(){
 
+        if(this.state.firstname === null || this.state.firstname === undefined
+        || this.state.firstname.trim() === "" || this.state.firstname.length >= 50)
+        {
+            $("#txt_firstname").addClass("invalid");
+        }
+
+        if(this.state.lastname === null || this.state.lastname === undefined
+        || this.state.lastname.length >=50)
+        {
+            
+        }
+
+
+
+        if(this.state.password === null || this.state.password === undefined
+        || this.state.password.length > 15 || this.state.password.length < 8)
+        {
+            
+        }
+
+        if(this.state.confirmpassword === null)
+        {
+            
+        }
+
+        if(this.state.confirmpassword !== this.state.password)
+        {
+            
+        }
+        return true;
     }
 
     handleInputChange(event) {
@@ -35,7 +65,8 @@ export class Register extends Component {
 
     registerSubmit(event) {
         event.preventDefault();
-
+        if(!this.validateRegField())
+            return false;
         const data = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -79,13 +110,13 @@ export class Register extends Component {
                                     <i className="material-icons prefix">contacts</i>
                                     <input id="txt_firstname" name="firstname" type="text" className="validate" value={this.state.firstname} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_firstname" >First Name</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">contacts</i>
                                     <input id="txt_lastname" name="lastname" type="text" className="validate" value={this.state.lastname} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_lastname">Last Name</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                             </div>
                             <div className="row">
@@ -93,13 +124,13 @@ export class Register extends Component {
                                     <i className="material-icons prefix">vpn_key</i>
                                     <input id="txt_password" name="password" type="password" className="validate" value={this.state.password} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_password">Password</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">replay</i>
                                     <input id="txt_confirmpassword" name="confirmpassword" type="password" className="validate" value={this.state.confirmpassword} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_confirmpassword">Retype Password</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                             </div>
                             <div className="row">
@@ -107,13 +138,13 @@ export class Register extends Component {
                                     <i className="material-icons prefix">account_circle</i>
                                     <input id="txt_username" name="username" type="text" className="validate" value={this.state.username} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_username">Username</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                                 <div className="input-field hoverable col s6">
                                     <i className="material-icons prefix">email</i>
                                     <input id="txt_emailaddress" name="emailaddress" type="email" className="validate" value={this.state.emailaddress} onChange={this.handleInputChange} required></input>
                                     <label htmlFor="txt_emailaddress">Email</label>
-                                    <span class="helper-text" data-error="Required field"></span>
+                                    <span className="helper-text" data-error="Required field"></span>
                                 </div>
                             </div>
                             <div className="row">
