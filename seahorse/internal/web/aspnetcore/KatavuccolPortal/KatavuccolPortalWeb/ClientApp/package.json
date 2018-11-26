@@ -5,9 +5,10 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.3.1",
+    "jquery-validation": "^1.18.0",
     "material-icons": "^0.2.3",
     "materialize-css": "^1.0.0",
-    "materialize-stepper": "^2.1.4",
+    "materialize-stepper": "^3.0.0-beta.1.0.1",
     "prismjs": "^1.15.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
@@ -22,5 +23,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
+import { $ } from 'jquery'; 
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
