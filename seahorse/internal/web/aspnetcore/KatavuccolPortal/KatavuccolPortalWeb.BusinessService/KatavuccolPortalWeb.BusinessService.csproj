@@ -15,6 +15,20 @@
     <Folder Include="DataContracts\ExternalServiceDataContracts\ProfileService\" />
     <Folder Include="DataContracts\InternalServiceDataContracts\ProfileService\ApiDataContracts\" />
     <Folder Include="DataContracts\ExternalServiceDataContracts\ProfileService\KatavuccolClientRequest\" />
+    <Folder Include="Services\EmailService\" />
+    <Folder Include="Services\PhoneService\" />
+    <Folder Include="Services\EmailService\Base\" />
+    <Folder Include="Services\EmailService\Validator\" />
+    <Folder Include="Services\EmailService\PostProcessor\" />
+    <Folder Include="Services\EmailService\Mapper\" />
+    <Folder Include="Services\EmailService\Processor\" />
+    <Folder Include="Services\EmailService\Verifier\" />
+    <Folder Include="Services\PhoneService\Base\" />
+    <Folder Include="Services\PhoneService\Mapper\" />
+    <Folder Include="Services\PhoneService\PostProcessor\" />
+    <Folder Include="Services\PhoneService\Processor\" />
+    <Folder Include="Services\PhoneService\Validator\" />
+    <Folder Include="Services\PhoneService\Verifier\" />
   </ItemGroup>
    <ItemGroup>
     <ProjectReference Include="..\..\..\..\shared\aspnetcore_aop\Aop\Aop.csproj" />
@@ -36,5 +50,7 @@
     <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28another copy%29.cs" />
     <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28copy%29.cs" />
     <Compile Remove="Utilities\ProfileServiceConstant.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28another copy%29.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28copy%29.cs" />
   </ItemGroup>
 </Project>
