@@ -9,6 +9,13 @@ namespace KatavuccolPortalWeb.Mapper
 {
     public class ProfileControllerMapper : IProfileControllerMapper
     {
+        private readonly IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode;
+
+        public ProfileControllerMapper(IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode)
+        {
+            this.katavuccolPortalWebErrorCode = katavuccolPortalWebErrorCode;
+        }
+
         public AccountCreationResponseModel MapAccountCreationResponseModel(Result result, CreateAccountMessageEntity createAccountMessageEntity)
         {
             if (createAccountMessageEntity == null && result == null)
@@ -16,7 +23,7 @@ namespace KatavuccolPortalWeb.Mapper
                 return new AccountCreationResponseModel()
                 {
                     ResultStatus = ResultStatus.Fail.ToString(),
-                    ResultMessage = WebUtilities.GetResultMessageApiModel(KatavuccolPortalWebErrorCode.InternalError, "getting internal error")
+                    ResultMessage = WebUtilities.GetResultMessageApiModel(katavuccolPortalWebErrorCode.InternalError, "getting internal error")
                 };
             }
 

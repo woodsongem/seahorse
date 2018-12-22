@@ -16,15 +16,20 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
 
         private readonly IProfileBusinessServiceMapper profileBusinessServiceMapper;
         private readonly IKatavuccolClient katavuccolClient;
+        private readonly IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode;
 
         #endregion
 
         #region Construtor
 
-        public ProfileBusinessServiceProcessor(IProfileBusinessServiceMapper profileBusinessServiceMapper, IKatavuccolClient katavuccolClient)
+        public ProfileBusinessServiceProcessor(
+        IProfileBusinessServiceMapper profileBusinessServiceMapper, 
+        IKatavuccolClient katavuccolClient,
+        IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode)
         {
             this.profileBusinessServiceMapper = profileBusinessServiceMapper;
             this.katavuccolClient = katavuccolClient;
+            this.katavuccolPortalWebErrorCode = katavuccolPortalWebErrorCode;
         }
 
         #endregion
@@ -53,13 +58,13 @@ namespace KatavuccolPortalWeb.BusinessService.Services.ProfileService.Processor
                 CreateAccountResponseModelAPI createAccountResponseModelAPI = JsonConvert.DeserializeObject<CreateAccountResponseModelAPI>(restResponse.ResponseContent);
                 if (createAccountResponseModelAPI.userId.IsEmpty())
                 {
-                    KatavuccolPortalUtility.GetResult(ResultStatus.Fail, KatavuccolPortalWebErrorCode.UserIdIsEmptyFromAPIService, KatavuccolPortalWebConstants.UserIdIsEmptyFromAPIService);
+                    KatavuccolPortalUtility.GetResult(ResultStatus.Fail, katavuccolPortalWebErrorCode.UserIdIsEmptyFromAPIService, KatavuccolPortalWebConstants.UserIdIsEmptyFromAPIService);
                 }
                 createAccountMessageEntity.UserId = createAccountResponseModelAPI.userId;
             }
             else
             {
-                return KatavuccolPortalUtility.GetResult(ResultStatus.Fail, KatavuccolPortalWebErrorCode.InValidResponseFromAPIAccountCreation, KatavuccolPortalWebConstants.InValidResponseFromAPIAccountCreation);
+                return KatavuccolPortalUtility.GetResult(ResultStatus.Fail, katavuccolPortalWebErrorCode.InValidResponseFromAPIAccountCreation, KatavuccolPortalWebConstants.InValidResponseFromAPIAccountCreation);
             }
             return new Result() { ResultStatus = ResultStatus.Success };
         }

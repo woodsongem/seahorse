@@ -1,4 +1,19 @@
 using KatavuccolClient;
+using KatavuccolPortalWeb.BusinessService;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.Base;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.Mapper;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.PostProcessor;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.Processor;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.Validator;
+using KatavuccolPortalWeb.BusinessService.Services.EmailService.Verifier;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.Base;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.Mapper;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.PostProcessor;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.Processor;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.Validator;
+using KatavuccolPortalWeb.BusinessService.Services.PhoneService.Verifier;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Base;
 using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Mapper;
@@ -16,6 +31,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NJsonSchema;
 using NSwag.AspNetCore;
+using PhoneNumbers;
 
 namespace KatavuccolPortalWeb
 {
@@ -43,6 +59,33 @@ namespace KatavuccolPortalWeb
             services.AddScoped<IBaseProfileBusinessService, BaseProfileBusinessService>();
             services.AddScoped<IBaseProfileBusinessServiceValidator, BaseProfileBusinessServiceValidator>();
             services.AddScoped<IBaseProfileBusinessServiceVerifier, BaseProfileBusinessServiceVerifier>();
+
+
+            services.AddScoped<IEmailBusinessService, EmailBusinessService>();
+            services.AddScoped<IEmailBusinessServiceMapper, EmailBusinessServiceMapper>();
+            services.AddScoped<IEmailBusinessServiceValidator, EmailBusinessServiceValidator>();
+            services.AddScoped<IEmailBusinessServiceVerifier, EmailBusinessServiceVerifier>();
+            services.AddScoped<IEmailBusinessServiceProcessor, EmailBusinessServiceProcessor>();
+            services.AddScoped<IEmailBusinessServicePostProcessor, EmailBusinessServicePostProcessor>();
+            services.AddScoped<IBaseEmailBusinessService, BaseEmailBusinessService>();
+            services.AddScoped<IBaseEmailBusinessServiceValidator, BaseEmailBusinessServiceValidator>();
+            services.AddScoped<IBaseEmailBusinessServiceVerifier, BaseEmailBusinessServiceVerifier>();
+
+          
+            services.AddScoped<IPhoneBusinessService, PhoneBusinessService>();
+            services.AddScoped<IPhoneBusinessServiceMapper, PhoneBusinessServiceMapper>();
+            services.AddScoped<IPhoneBusinessServiceValidator, PhoneBusinessServiceValidator>();
+            services.AddScoped<IPhoneBusinessServiceVerifier, PhoneBusinessServiceVerifier>();
+            services.AddScoped<IPhoneBusinessServiceProcessor, PhoneBusinessServiceProcessor>();
+            services.AddScoped<IPhoneBusinessServicePostProcessor, PhoneBusinessServicePostProcessor>();
+            services.AddScoped<IBasePhoneBusinessService, BasePhoneBusinessService>();
+            services.AddScoped<IBasePhoneBusinessServiceValidator, BasePhoneBusinessServiceValidator>();
+            services.AddScoped<IBasePhoneBusinessServiceVerifier, BasePhoneBusinessServiceVerifier>();
+
+            services.AddScoped<IKatavuccolPortalWebErrorCode, KatavuccolPortalWebErrorCode>();
+
+            services.AddScoped<PhoneNumberUtil>(x => PhoneNumberUtil.GetInstance());
+
             services.AddScoped<IKatavuccolClient, KatavuccolClient.KatavuccolClient>();
 
             // In production, the React files will be served from this directory

@@ -20,6 +20,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
 
         private readonly ICredentialTypeBusinessServiceMapper credentialTypeBusinessServiceMapper;
         private readonly IKatavuccolClient katavuccolClient;
+        private readonly IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode;
 
         #endregion
 
@@ -28,11 +29,13 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
 
         public BaseCredentialTypeService(
             ICredentialTypeBusinessServiceMapper credentialTypeBusinessServiceMapper,
-            IKatavuccolClient katavuccolClient
+            IKatavuccolClient katavuccolClient,
+            IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode
             )
         {
             this.credentialTypeBusinessServiceMapper = credentialTypeBusinessServiceMapper;
             this.katavuccolClient = katavuccolClient;
+            this.katavuccolPortalWebErrorCode = katavuccolPortalWebErrorCode;
         }
 
         #endregion
@@ -71,7 +74,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Bas
                 outPutResult.ResultStatus = ResultStatus.Fail;
                 outPutResult.ResultMessage = new List<ResultMessage>
                 {
-                    new ResultMessage() { ErrorCode = KatavuccolPortalWebErrorCode.InternalError }
+                    new ResultMessage() { ErrorCode = katavuccolPortalWebErrorCode.InternalError }
                 };
                 return outPutResult;
             }

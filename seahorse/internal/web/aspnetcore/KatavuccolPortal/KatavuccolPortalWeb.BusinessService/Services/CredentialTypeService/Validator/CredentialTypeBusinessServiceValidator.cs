@@ -7,6 +7,24 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
 {
     public class CredentialTypeBusinessServiceValidator : ICredentialTypeBusinessServiceValidator
     {
+
+        #region Local variables
+
+        private readonly IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode;
+
+        #endregion
+
+        #region Constructor
+
+        public CredentialTypeBusinessServiceValidator(
+            IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode
+            )
+        {
+            this.katavuccolPortalWebErrorCode = katavuccolPortalWebErrorCode;
+        }
+
+        #endregion
+
         #region Validator executor
 
         public Result ValidatorCreateCredentialType(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity)
@@ -47,7 +65,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (createCredentialTypeMsgEntity == null)
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.CreateCredentialTypeMsgEntityIsEmpty.ToString(),
                     message: "CreateCredentialTypeMsgEntity is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -56,7 +74,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (string.IsNullOrWhiteSpace(createCredentialTypeMsgEntity.UserId))
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.UserIdIsEmpty.ToString(),
                     message: "UserId is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -65,7 +83,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (string.IsNullOrWhiteSpace(createCredentialTypeMsgEntity.Name))
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "Name is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -74,7 +92,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (string.IsNullOrWhiteSpace(getCredentialTypeMsgEntity.CredentialTypeId))
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.CredentialTypeIdIsEmpty,
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.CredentialTypeIdIsEmpty,
                     message: "CredentialTypeId is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -83,7 +101,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (string.IsNullOrWhiteSpace(getCredentialTypeMsgEntity.UserId))
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.UserIdIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.UserIdIsEmpty.ToString(),
                     message: "UserId is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };
@@ -92,7 +110,7 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialTypeService.Val
         {
             if (getCredentialTypeMsgEntity == null)
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.GetCredentialTypeMsgEntityIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.GetCredentialTypeMsgEntityIsEmpty.ToString(),
                     message: "GetCredentialTypeMsgEntity is null");
             }
             return new Result() { ResultStatus = ResultStatus.Success };

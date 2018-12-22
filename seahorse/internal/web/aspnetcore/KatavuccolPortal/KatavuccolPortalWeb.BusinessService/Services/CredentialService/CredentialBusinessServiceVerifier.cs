@@ -9,11 +9,18 @@ namespace KatavuccolPortalWeb.BusinessService.Services.CredentialService
 {
     public class CredentialBusinessServiceVerifier : ICategoryBusinessServiceVerifier
     {
+        private readonly IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode;
+
+        public CredentialBusinessServiceVerifier(IKatavuccolPortalWebErrorCode katavuccolPortalWebErrorCode)
+        {
+            this.katavuccolPortalWebErrorCode = katavuccolPortalWebErrorCode;
+        }
+
         public Result IsCategoryIdValid(CreateCredentialMsgEntity createCredentialMsgEntity)
         {
             if (string.IsNullOrWhiteSpace(createCredentialMsgEntity.categoryId ))
             {
-                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: KatavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
+                return KatavuccolPortalUtility.GetResult(resultStatus: ResultStatus.Fail, errorCode: katavuccolPortalWebErrorCode.NameIsEmpty.ToString(),
                     message: "CategoryId is null");
             }
 

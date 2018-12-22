@@ -1,4 +1,6 @@
-﻿namespace KatavuccolPortalWeb.BusinessService
+﻿using System.Runtime.Serialization;
+
+namespace KatavuccolPortalWeb.BusinessService
 {
     public static class KatavuccolPortalWebConstants
     {
@@ -18,5 +20,7 @@
         public const string LastNameIsEmpty = "Last name is empty";
         public const string UserIdIsEmptyFromAPIService = "UserId is empty from API Service";
         public const string InValidResponseFromAPIAccountCreation = "Account creation response is invalid from API service";
+        public const string UserNameRegularExpression = "^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$";
+        public const string PasswordRegularExpression = "^(?=.*[a-z].*[a-z])(?=.*[A-Z].*[A-Z])(?=.*\\d.*\\d)(?=.*\\W.*\\W)[a-zA-Z0-9\\S]{9,}$";
     }
 }

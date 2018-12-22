@@ -20,12 +20,14 @@ namespace KatavuccolPortalWeb.BusinessService.Utilities
         }
         public static List<ResultMessage> GetResultMessages(string errorCode = null, string message = null)
         {
-            List<ResultMessage> resultMessages = new List<ResultMessage>();
-            resultMessages.Add(new ResultMessage()
+            List<ResultMessage> resultMessages = new List<ResultMessage>
             {
-                ErrorCode = errorCode,
-                Message = message
-            });
+                new ResultMessage()
+                {
+                    ErrorCode = errorCode,
+                    Message = message
+                }
+            };
             return resultMessages;
         }
 

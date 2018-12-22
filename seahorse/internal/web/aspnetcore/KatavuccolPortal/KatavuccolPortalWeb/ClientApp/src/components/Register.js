@@ -36,7 +36,23 @@ export class Register extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.registerSubmit = this.registerSubmit.bind(this);
     }
+    processRegistrationResponse(responseData)
+    {
+        let errordetail=this.state.errorsmsg;
+        let errorflag=this.state.errorsflag; 
 
+        if(responseData==null)
+        {
+
+        }
+        else
+        {
+
+        }
+
+        let max=10;
+        let min=100;
+    }
     validateRegField(){
         let errordetail=this.state.errorsmsg;
         let errorflag=this.state.errorsflag;
@@ -137,7 +153,8 @@ export class Register extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                this.setState({ forecasts: data, loading: false });
+                this.processRegistrationResponse(data);
+                //this.setState({ forecasts: data, loading: false });
             });
     }
 

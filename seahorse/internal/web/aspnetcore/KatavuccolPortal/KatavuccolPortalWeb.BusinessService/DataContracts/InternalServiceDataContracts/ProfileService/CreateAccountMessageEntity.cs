@@ -1,4 +1,6 @@
-﻿namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService
+﻿using PhoneNumbers;
+
+namespace KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService
 {
     public class CreateAccountMessageEntity : BaseMsgEntity
     {
@@ -11,5 +13,6 @@
         public string PhoneNumber { get; set; }
         public string UserId { get; set; }
         public string ProductItemId { get; set; }
+        public PhoneNumber ParsedPhoneNumber { get;  set; }
     }
 }
