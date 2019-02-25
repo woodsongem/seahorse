@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import * as KatavuccolPortalWebConstants from '../KatavuccolPortalWebConstants';
 
 export class Register extends Component {
     constructor(props) {
@@ -47,12 +48,16 @@ export class Register extends Component {
         }
         else
         {
-
+           // if(responseData.resultStatus== KatavuccolPortalWebConstants.Fail)
+           // {
+              //  responseData.resultMessage;
+           // }
         }
 
         let max=10;
         let min=100;
     }
+
     validateRegField(){
         let errordetail=this.state.errorsmsg;
         let errorflag=this.state.errorsflag;

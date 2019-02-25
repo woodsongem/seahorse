@@ -24,6 +24,7 @@ using KatavuccolPortalWeb.BusinessService.Services.ProfileService.Verifier;
 using KatavuccolPortalWeb.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -81,7 +82,7 @@ namespace KatavuccolPortalWeb
             services.AddScoped<IBasePhoneBusinessService, BasePhoneBusinessService>();
             services.AddScoped<IBasePhoneBusinessServiceValidator, BasePhoneBusinessServiceValidator>();
             services.AddScoped<IBasePhoneBusinessServiceVerifier, BasePhoneBusinessServiceVerifier>();
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IKatavuccolPortalWebErrorCode, KatavuccolPortalWebErrorCode>();
 
             services.AddScoped<PhoneNumberUtil>(x => PhoneNumberUtil.GetInstance());

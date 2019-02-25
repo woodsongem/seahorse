@@ -1,5 +1,4 @@
-﻿using System;
-using KatavuccolPortalWeb.BusinessService;
+﻿using KatavuccolPortalWeb.BusinessService;
 using KatavuccolPortalWeb.BusinessService.DataContracts.Commons;
 using KatavuccolPortalWeb.BusinessService.DataContracts.InternalServiceDataContracts.ProfileService;
 using KatavuccolPortalWeb.Models.Profile;
