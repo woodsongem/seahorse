@@ -1,22 +1,29 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
 using ColdFishServiceOpenApi.AuthenticationService.Services;
+using ColdFishServiceOpenApiWebApi.Mappers;
+using ColdFishServiceOpenApiWebApiModel.AuthenticationService;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ColdFishServiceOpenApiWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     public class AuthenticationServiceController : Controller
     {
         private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationServiceApiMapper authenticationServiceApiMapper;
 
-        public AuthenticationServiceController(IAuthenticationService authenticationService)
+
+        public AuthenticationServiceController(IAuthenticationService authenticationService,
+            IAuthenticationServiceApiMapper authenticationServiceApiMapper)
         {
             this.authenticationService = authenticationService;
+            this.authenticationServiceApiMapper = authenticationServiceApiMapper;
         }
 
         // GET: api/values
@@ -35,8 +42,18 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Route("/Authentication")]
+        public void Post([FromBody]AuthenticationModel authenticationModel)
         {
+            try
+            {
+                AuthenticationReqMsgEntity authenticationMsgEntity= authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
+                AuthenticationResMsgEntity authenticationResMsgEntity= authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         // PUT api/values/5

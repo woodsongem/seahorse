@@ -1,4 +1,5 @@
 using System;
+using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
 using ColdFishServiceOpenApi.AuthenticationService.Mappers;
 using ColdFishServiceOpenApi.AuthenticationService.PostProcessors;
 using ColdFishServiceOpenApi.AuthenticationService.Processors;
@@ -34,6 +35,17 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Services
             this.authenticationServiceVerifier = authenticationServiceVerifier;
         }
 
+
         #endregion
+
+        #region Operations
+
+        public AuthenticationResMsgEntity GetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
     }
 }

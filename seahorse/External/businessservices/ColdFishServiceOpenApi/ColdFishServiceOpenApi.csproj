@@ -21,5 +21,6 @@
     <Folder Include="Commons\" />
     <Folder Include="Commons\DataContracts\" />
     <Folder Include="AuthenticationService\DataContracts\Daos\" />
+    <Folder Include="AuthenticationService\DataContracts\MessageEntities\" />
   </ItemGroup>
 </Project>

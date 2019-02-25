@@ -5,6 +5,7 @@ using ColdFishServiceOpenApi.AuthenticationService.Repository;
 using ColdFishServiceOpenApi.AuthenticationService.Services;
 using ColdFishServiceOpenApi.AuthenticationService.Validators;
 using ColdFishServiceOpenApi.AuthenticationService.Verifiers;
+using ColdFishServiceOpenApiWebApi.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace ColdFishServiceOpenApiWebApi
             // Register the Swagger services
             services.AddSwaggerDocument();
 
+
             #region Authentication Service
 
             services.AddSingleton<IAuthenticationServiceMapper, AuthenticationServiceMapper>();
@@ -39,6 +41,7 @@ namespace ColdFishServiceOpenApiWebApi
             services.AddSingleton<IAuthenticationServiceValidator, AuthenticationServiceValidator>();
             services.AddSingleton<IAuthenticationServiceVerifier, AuthenticationServiceVerifier>();
             services.AddSingleton<IAuthenticationServiceRepository, AuthenticationServiceRepository>();
+            services.AddSingleton<IAuthenticationServiceApiMapper, AuthenticationServiceApiMapper>();
 
             #endregion
         }

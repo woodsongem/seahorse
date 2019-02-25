@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AuthenticationService\" />
+    <Folder Include="Commons\" />
   </ItemGroup>
 </Project>
