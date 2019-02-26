@@ -5,6 +5,7 @@ using ColdFishServiceOpenApi.AuthenticationService.PostProcessors;
 using ColdFishServiceOpenApi.AuthenticationService.Processors;
 using ColdFishServiceOpenApi.AuthenticationService.Validators;
 using ColdFishServiceOpenApi.AuthenticationService.Verifiers;
+using ColdFishServiceOpenApi.Commons.DataContracts;
 
 namespace ColdFishServiceOpenApi.AuthenticationService.Services
 {
@@ -40,9 +41,39 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Services
 
         #region Operations
 
-        public AuthenticationResMsgEntity GetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity)
+        public ResultMessageEntity GetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity)
         {
-            throw new NotImplementedException();
+            ResultMessageEntity resultMessageEntity;
+            //Set up
+
+            //Validator
+            resultMessageEntity = authenticationServiceValidator.ValidGetAuthenticationDetail(authenticationMsgEntity);
+            if(resultMessageEntity.ResultStatus!=ResultStatus.Success)
+            {
+                return resultMessageEntity;
+            }
+
+            //Verifier
+            resultMessageEntity = authenticationServiceVerifier.VerifyGetAuthenticationDetail(authenticationMsgEntity);
+            if (resultMessageEntity.ResultStatus != ResultStatus.Success)
+            {
+                return resultMessageEntity;
+            }
+            //Processor
+            resultMessageEntity = authenticationServiceProcessors.ProcessorGetAuthenticationDetail(authenticationMsgEntity);
+            if (resultMessageEntity.ResultStatus != ResultStatus.Success)
+            {
+                return resultMessageEntity;
+            }
+
+            //PostProcessor
+            ResultMessageEntity postResultMessageEntity = authenticationServicePostProcessors.PostProcessorGetAuthenticationDetail(authenticationMsgEntity);
+            if (postResultMessageEntity.ResultStatus != ResultStatus.Success)
+            {
+                return resultMessageEntity;
+            }
+
+            return resultMessageEntity;
         }
 
         #endregion

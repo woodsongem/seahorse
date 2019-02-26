@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
 using ColdFishServiceOpenApi.AuthenticationService.Services;
+using ColdFishServiceOpenApi.Commons.DataContracts;
 using ColdFishServiceOpenApiWebApi.Mappers;
 using ColdFishServiceOpenApiWebApiModel.AuthenticationService;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,8 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
             try
             {
                 AuthenticationReqMsgEntity authenticationMsgEntity= authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
-                AuthenticationResMsgEntity authenticationResMsgEntity= authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
+                ResultMessageEntity resultMessageEntity = authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
+                AuthenticationResModel authenticationResModel = authenticationServiceApiMapper.MapAuthenticationModel(resultMessageEntity, authenticationMsgEntity);
             }
             catch(Exception ex)
             {
