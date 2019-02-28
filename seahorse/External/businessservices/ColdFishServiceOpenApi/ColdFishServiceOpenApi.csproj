@@ -23,4 +23,9 @@
     <Folder Include="AuthenticationService\DataContracts\Daos\" />
     <Folder Include="AuthenticationService\DataContracts\MessageEntities\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="4.0.4" />
+    <PackageReference Include="Dapper" Version="1.50.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+  </ItemGroup>
 </Project>

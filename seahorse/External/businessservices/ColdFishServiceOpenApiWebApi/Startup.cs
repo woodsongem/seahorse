@@ -42,8 +42,13 @@ namespace ColdFishServiceOpenApiWebApi
             services.AddSingleton<IAuthenticationServiceVerifier, AuthenticationServiceVerifier>();
             services.AddSingleton<IAuthenticationServiceRepository, AuthenticationServiceRepository>();
             services.AddSingleton<IAuthenticationServiceApiMapper, AuthenticationServiceApiMapper>();
+            services.AddSingleton<IAuthenticationServiceRepositoryMapper, AuthenticationServiceRepositoryMapper>();
+
 
             #endregion
+
+            services.AddSingleton<IConfiguration>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
