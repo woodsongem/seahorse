@@ -5,9 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="AuthenticationService\" />
     <Folder Include="AuthenticationService\Validators\" />
     <Folder Include="AuthenticationService\Verifiers\" />
@@ -22,10 +19,20 @@
     <Folder Include="Commons\DataContracts\" />
     <Folder Include="AuthenticationService\DataContracts\Daos\" />
     <Folder Include="AuthenticationService\DataContracts\MessageEntities\" />
+    <Folder Include="Framework\" />
+    <Folder Include="Framework\ParallelExecution\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="4.0.4" />
-    <PackageReference Include="Dapper" Version="1.50.7" />
+    <PackageReference Include="Npgsql" Version="4.0.5" />
+    <PackageReference Include="Dapper" Version="1.60.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.3.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

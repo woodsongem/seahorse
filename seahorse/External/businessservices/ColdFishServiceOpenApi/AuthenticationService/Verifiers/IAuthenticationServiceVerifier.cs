@@ -6,6 +6,8 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Verifiers
 {
     public interface IAuthenticationServiceVerifier
     {
+        ResultMessageEntity IsPartnerValid(AuthenticationReqMsgEntity authenticationReqMsgEntity);
+
         ResultMessageEntity VerifyGetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity);
     }
 }

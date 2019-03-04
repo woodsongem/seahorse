@@ -1,11 +1,12 @@
 using System;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.Daos;
 using ColdFishServiceOpenApi.Commons.DataContracts;
+using Dapper;
 
 namespace ColdFishServiceOpenApi.AuthenticationService.Repository
 {
     public interface IAuthenticationServiceRepositoryMapper
     {
-        ResultMessageEntity ValidateAuthentication(PartnerKeyDetailsDAO partnerKeyDetailsDAO);
+        DynamicParameters MapDyParasValidateAuthentication(PartnerKeyDetailsDAO partnerKeyDetailsDAO);
     }
 }

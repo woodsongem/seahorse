@@ -1,8 +1,12 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using ColdFishServiceOpenApi.Commons;
+using ColdFishServiceOpenApi.Commons.DataContracts;
+
 namespace ColdFishServiceOpenApi.AuthenticationService.Utilities
 {
-    public class AuthenticationServiceUtility
+    public static class AuthenticationServiceUtility
     {
-
+       
     }
 }

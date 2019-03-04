@@ -14,7 +14,13 @@ namespace ColdFishServiceOpenApiWebApi.Mappers
 
         public AuthenticationReqMsgEntity MapAuthenticationMsgEntity(AuthenticationModel authenticationModel)
         {
-            throw new NotImplementedException();
+            AuthenticationReqMsgEntity authenticationReqMsgEntity = new AuthenticationReqMsgEntity
+            {
+                Password = authenticationModel.Password,
+                PartnerKey = authenticationModel.PartnerKey,
+                Username = authenticationModel.Username
+            };
+            return authenticationReqMsgEntity;
         }
     }
 }

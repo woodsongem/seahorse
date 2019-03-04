@@ -7,5 +7,7 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Processors
     public interface IAuthenticationServiceProcessors
     {
         ResultMessageEntity ProcessorGetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity);
+
+        ResultMessageEntity GenerateToken(AuthenticationReqMsgEntity authenticationMsgEntity);
     }
 }

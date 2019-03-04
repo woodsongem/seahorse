@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Data;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.Daos;
 using ColdFishServiceOpenApi.Commons.DataContracts;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 
@@ -9,38 +10,13 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Repository
 {
     public class AuthenticationServiceRepositoryMapper : IAuthenticationServiceRepositoryMapper
     {
-        #region Local Variables
-
-        private readonly IAuthenticationServiceRepositoryMapper authenticationServiceRepositoryMapper;
-        private readonly IConfiguration configuration;
-
-        #endregion
-
-
-        #region Constructors
-
-        public AuthenticationServiceRepositoryMapper(IAuthenticationServiceRepositoryMapper authenticationServiceRepositoryMapper,
-            IConfiguration configuration)
+        public DynamicParameters MapDyParasValidateAuthentication(PartnerKeyDetailsDAO partnerKeyDetailsDAO)
         {
-            this.authenticationServiceRepositoryMapper = authenticationServiceRepositoryMapper;
-            this.configuration = configuration;
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("@partnerusername", partnerKeyDetailsDAO.username);
+            dynamicParameters.Add("@partnerpassword", partnerKeyDetailsDAO.password);
+            dynamicParameters.Add("@partnerkeyname", partnerKeyDetailsDAO.partnerkey);
+            return dynamicParameters;
         }
-
-        #endregion
-
-
-
-        #region Public Repository methods
-
-        public ResultMessageEntity ValidateAuthentication(PartnerKeyDetailsDAO partnerKeyDetailsDAO)
-        {
-            using (IDbConnection dbConnection = new NpgsqlConnection(configuration.GetConnectionString("DefaultConnection"))
-            {
-
-            }
-            return new ResultMessageEntity();
-        }
-
-        #endregion
     }
 }

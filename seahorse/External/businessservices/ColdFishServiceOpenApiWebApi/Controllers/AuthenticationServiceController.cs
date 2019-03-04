@@ -48,9 +48,11 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
         {
             try
             {
+              
                 AuthenticationReqMsgEntity authenticationMsgEntity= authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
                 ResultMessageEntity resultMessageEntity = authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
                 AuthenticationResModel authenticationResModel = authenticationServiceApiMapper.MapAuthenticationModel(resultMessageEntity, authenticationMsgEntity);
+
             }
             catch(Exception ex)
             {
