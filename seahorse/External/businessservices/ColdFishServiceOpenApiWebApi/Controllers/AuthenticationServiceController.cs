@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ColdFishServiceOpenApiWebApi.Controllers
 {
-    [Route("api")]
+    [Route("api/AuthenticationService")]
     public class AuthenticationServiceController : Controller
     {
         private readonly IAuthenticationService authenticationService;
@@ -43,7 +43,6 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        [Route("/Authentication")]
         public void Post([FromBody]AuthenticationModel authenticationModel)
         {
             try

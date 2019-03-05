@@ -3,11 +3,14 @@ using ColdFishServiceOpenApi.AuthenticationService.PostProcessors;
 using ColdFishServiceOpenApi.AuthenticationService.Processors;
 using ColdFishServiceOpenApi.AuthenticationService.Repository;
 using ColdFishServiceOpenApi.AuthenticationService.Services;
+using ColdFishServiceOpenApi.AuthenticationService.Utilities;
 using ColdFishServiceOpenApi.AuthenticationService.Validators;
 using ColdFishServiceOpenApi.AuthenticationService.Verifiers;
+using ColdFishServiceOpenApi.Framework.ParallelExecution;
 using ColdFishServiceOpenApiWebApi.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +46,15 @@ namespace ColdFishServiceOpenApiWebApi
             services.AddSingleton<IAuthenticationServiceRepository, AuthenticationServiceRepository>();
             services.AddSingleton<IAuthenticationServiceApiMapper, AuthenticationServiceApiMapper>();
             services.AddSingleton<IAuthenticationServiceRepositoryMapper, AuthenticationServiceRepositoryMapper>();
+            services.AddSingleton<IAuthenticationServiceErrorCodes, AuthenticationServiceErrorCodes>();
 
+
+
+            #endregion
+
+            #region Framework
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             #endregion
 
