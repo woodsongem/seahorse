@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+package seahorse.internal.business.profileservice.api;
+
+import javax.servlet.http.HttpServletRequest;
+
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.CreateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressRequestModel;
+import seahorse.internal.business.emailaddressservice.api.datatcontracts.UpdateEmailAddressResponseModel;
+import seahorse.internal.business.emailaddressservice.datacontracts.CreateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.DeleteEmailAddressRequestMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.GetEmailAddressByEmailAddressIdMsgEntity;
+import seahorse.internal.business.emailaddressservice.datacontracts.UpdateEmailAddressRequestMsgEntity;
+import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileRequestModel;
+import seahorse.internal.business.profileservice.api.datacontracts.CreateProfileResponseModel;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.OutPutResponse;
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.Result;
+import seahorse.internal.business.usercredentialservice.datacontracts.CreateUserCredentialMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.DeleteUserProfileMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.GetUserCredentialByUserIdMsgEntity;
+import seahorse.internal.business.usercredentialservice.datacontracts.GetUserProfileByUserNameMsgEntity;
+
+/**
+ * @author SMJE
+ *
+ */
+public interface IProfileServiceApiMapper {
+
+	CreateUserCredentialMsgEntity MapCreateUserCredentialMsgEntity(CreateProfileRequestModel createProfileRequestModel);
+
+	GetUserCredentialByUserIdMsgEntity MapGetUserCredentialByUserIdMsgEntity(String userid);
+
+	OutPutResponse MapOutPutResponse(Result result, CreateUserCredentialMsgEntity createUserProfileMsgEntity, HttpServletRequest httpRequest);
+
+	DeleteUserProfileMsgEntity MapDeleteUserProfileMsgEntity(String userid);
+
+	CreateProfileResponseModel mapCreateProfileResponseModel(Result result, CreateUserCredentialMsgEntity createUserProfileMsgEntity, HttpServletRequest httpRequest);
+
+	GetUserProfileByUserNameMsgEntity MapGetUserProfileByUserNameMsgEntity(String username);
+
+	CreateEmailAddressRequestMsgEntity MapCreateEmailAddressRequestMsgEntity(CreateEmailAddressRequestModel createEmailAddressRequestModel);
+
+	CreateEmailAddressResponseModel mapCreateEmailAddressResponseModel(Result result,
+			CreateEmailAddressRequestMsgEntity createEmailAddressRequestMsgEntity, HttpServletRequest httpRequest);
+
+	DeleteEmailAddressRequestMsgEntity MapDeleteEmailAddressRequestMsgEntity(String userid, String emailaddressid);
+
+	UpdateEmailAddressRequestMsgEntity MapUpdateEmailAddressRequestMsgEntity(String userid, String emailaddressid, UpdateEmailAddressRequestModel updateEmailAddressRequestModel);
+
+	UpdateEmailAddressResponseModel mapUpdateEmailAddressResponseModel(Result result,
+			UpdateEmailAddressRequestMsgEntity updateEmailAddressRequestMsgEntity, HttpServletRequest httpRequest);
+
+	GetEmailAddressByEmailAddressIdMsgEntity MapGetEmailAddressByEmailAddressIdMsgEntity(String userid,
+			String emailaddressid);
+
+}

@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Services\CredentialTypeService\Validator\CredentialTypeBusinessServiceValidator.cs~RF4c36008.TMP" />
+    <None Remove="Services\LoginService\Base\BaseLoginServiceBusinessService.cs~RF92074d.TMP" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.10.5" />
+  </ItemGroup>
+
+   <ItemGroup>
+    <Folder Include="DataContracts\ExternalServiceDataContracts\CredentialService\" />
+    <Folder Include="DataContracts\ExternalServiceDataContracts\ProfileService\" />
+    <Folder Include="DataContracts\InternalServiceDataContracts\ProfileService\ApiDataContracts\" />
+    <Folder Include="DataContracts\ExternalServiceDataContracts\ProfileService\KatavuccolClientRequest\" />
+    <Folder Include="Services\EmailService\" />
+    <Folder Include="Services\PhoneService\" />
+    <Folder Include="Services\EmailService\Base\" />
+    <Folder Include="Services\EmailService\Validator\" />
+    <Folder Include="Services\EmailService\PostProcessor\" />
+    <Folder Include="Services\EmailService\Mapper\" />
+    <Folder Include="Services\EmailService\Processor\" />
+    <Folder Include="Services\EmailService\Verifier\" />
+    <Folder Include="Services\PhoneService\Base\" />
+    <Folder Include="Services\PhoneService\Mapper\" />
+    <Folder Include="Services\PhoneService\PostProcessor\" />
+    <Folder Include="Services\PhoneService\Processor\" />
+    <Folder Include="Services\PhoneService\Validator\" />
+    <Folder Include="Services\PhoneService\Verifier\" />
+    <Folder Include="Services\ErrorService\" />
+    <Folder Include="Services\ErrorService\Processor\" />
+    <Folder Include="Services\ErrorService\Mapper\" />
+  </ItemGroup>
+   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\shared\aspnetcore_aop\Aop\Aop.csproj" />
+    <ProjectReference Include="..\..\..\..\shared\KatavuccolClient\KatavuccolClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.http.abstractions\2.1.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.configuration.abstractions\2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataContracts\InternalServiceDataContracts\ProfileService\UserDetailMsgEntity %28copy%29.cs" />
+    <Compile Remove="Utilities\KatavuccolPortalExtension %28copy%29.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28another copy%29.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28copy%29.cs" />
+    <Compile Remove="Utilities\ProfileServiceConstant.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28another copy%29.cs" />
+    <Compile Remove="Services\ProfileService\Validator\IProfileBusinessServiceValidator %28copy%29.cs" />
+  </ItemGroup>
+</Project>

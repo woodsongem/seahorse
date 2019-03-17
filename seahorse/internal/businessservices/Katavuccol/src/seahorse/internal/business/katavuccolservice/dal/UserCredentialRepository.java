@@ -3,24 +3,6 @@
  */
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.apache.logging.log4j.Logger;
-import com.datastax.driver.core.BoundStatement;
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Row;
-import com.google.inject.Inject;
-import seahorse.internal.business.katavuccolservice.common.ICassandraConnector;
-import seahorse.internal.business.katavuccolservice.common.IReadPropertiesFile;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.UserCredentialDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.utilities.KatavuccolServiceUtility;
-import seahorse.internal.business.shared.aop.InjectLogger;
-
 /**
  * @author sajanmje
  *
@@ -28,7 +10,7 @@ import seahorse.internal.business.shared.aop.InjectLogger;
 
 public class UserCredentialRepository implements IUserCredentialRepository {
 	
-	private final IUserCredentialRepositoryMapper userCredentialRepositoryMapper;
+	/*private final IUserCredentialRepositoryMapper userCredentialRepositoryMapper;
 	private final ICassandraConnector cassandraConnector;
 	private final IReadPropertiesFile readPropertiesFile;
 
@@ -68,5 +50,5 @@ public class UserCredentialRepository implements IUserCredentialRepository {
 		}
 		return userCredentialDAO;
 	}
-
+*/
 }

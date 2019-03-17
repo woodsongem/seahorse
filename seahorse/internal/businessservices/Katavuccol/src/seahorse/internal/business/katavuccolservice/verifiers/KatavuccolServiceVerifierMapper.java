@@ -3,23 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.verifiers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifierMapper {
 
-	@Override
+	/*@Override
 	public CategoryMessageEntity mapCategoryMessageEntity(CategoryDAO categoryDAO) {
 		CategoryMessageEntity categoryMessageEntity=new CategoryMessageEntity();
 		categoryMessageEntity.setCreatedBy(categoryDAO.getCreatedBy());
@@ -36,8 +26,7 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 
 	@Override
 	public CredentialTypeMessageEntity mapCredentialTypeDAOMessageEntity(CredentialTypeDAO typeDAO) {
-		CredentialTypeMessageEntity credentialTypeMessageEntity=new CredentialTypeMessageEntity();
-		credentialTypeMessageEntity.setCategoryId(typeDAO.getCategoryId());
+		CredentialTypeMessageEntity credentialTypeMessageEntity=new CredentialTypeMessageEntity();		
 		credentialTypeMessageEntity.setCreatedBy(typeDAO.getCreatedBy());
 		credentialTypeMessageEntity.setCreatedDate(typeDAO.getCreatedDate());
 		credentialTypeMessageEntity.setDescription(typeDAO.getDescription());
@@ -97,5 +86,5 @@ public class KatavuccolServiceVerifierMapper implements IKatavuccolServiceVerifi
 		credentialMessageEntity.setEncryptKey(credentialDAO.getEncryptKey());
 		return credentialMessageEntity;
 	}
-
+*/
 }

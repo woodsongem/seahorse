@@ -3,13 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.api.datacontracts;
 
-
+import seahorse.internal.business.shared.katavuccol.common.datacontracts.BaseModel;
 
 /**
  * @author sajanmje
  *
  */
-public class Category extends Base {
+public class Category extends BaseModel {
 
 	private String id;
 	private String name;

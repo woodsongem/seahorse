@@ -3,44 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.processors;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.datastax.driver.core.utils.UUIDs;
-import com.google.common.collect.FluentIterable;
-import com.google.inject.Inject;
-
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.OutPutResponse;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.utilities.KatavuccolEncryption;
-
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	
-	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
+	/*private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	private final IKatavuccolServiceRepository katavuccolServiceRepository;
 	private final IKatavuccolServiceProcessorMapper katavuccolServiceProcessorMapper;
 	
@@ -66,7 +35,7 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 	}
 
 	@Override
-	public Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		OutPutResponse outPutResponse=katavuccolServiceRepository.deleteCredential(deleteCredentialMessageEntity);
 		if(outPutResponse.getResultStatus() != ResultStatus.SUCCESS)
 		{
@@ -233,6 +202,6 @@ public class KatavuccolServiceProcessor implements IKatavuccolServiceProcessor {
 		
 			getCredentialValueMessageEntity.getCredential().setDecryptValue(decryptCredentialValue);
 		return new Result(ResultStatus.SUCCESS);
-	}
+	}*/
 	
 }

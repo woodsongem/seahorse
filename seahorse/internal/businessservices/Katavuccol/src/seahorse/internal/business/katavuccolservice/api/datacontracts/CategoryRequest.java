@@ -3,8 +3,6 @@
  */
 package seahorse.internal.business.katavuccolservice.api.datacontracts;
 
-import java.util.UUID;
-
 /**
  * @author sajanmje
  *

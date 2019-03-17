@@ -3,40 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
-import java.util.List;
-
-import javax.ws.rs.core.Response.Status;
-
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialValueDetail;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialsMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryResponseMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialResponseMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceMapper {
 
-	CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result, Status badRequest);
+	/*CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result, Status badRequest);
 
 	CredentialResponseMessageEntity mapCredentialResponseMessageEntity(Result result,CredentialRequestMessageEntity credentialRequestMessageEntity);
 
@@ -44,10 +17,10 @@ public interface IKatavuccolServiceMapper {
 
 	List<Credential> mapCredentials(Result result, GetCredentialMessageEntity getCredentialMessageEntity);
 
-	DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result, Status badRequest);
+	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result, Status badRequest);
 
-	DeleteCredentialResponseMessageEntity mapDeleteCredentialResponseMessageEntity(Result result,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	DeleteCredentialResMsgEntity mapDeleteCredentialResponseMessageEntity(Result result,
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	UpdateCredentialResponseMessageEntity mapUpdateCredentialResponseMessageEntity(Result result, Status badRequest);
 
@@ -78,5 +51,5 @@ public interface IKatavuccolServiceMapper {
 	Credential mapCategory(Result result, GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 
 	CredentialValueDetail mapCredentialValueDetail(Result result,GetCredentialValueMessageEntity getCredentialValueMessageEntity);	
-
+*/
 }

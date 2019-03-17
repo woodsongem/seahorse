@@ -1,0 +1,8 @@
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/bin/Debug/netcoreapp2.2/ColdFishServiceOpenApi.deps.json
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/bin/Debug/netcoreapp2.2/ColdFishServiceOpenApi.dll
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/bin/Debug/netcoreapp2.2/ColdFishServiceOpenApi.pdb
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/obj/Debug/netcoreapp2.2/ColdFishServiceOpenApi.csproj.CoreCompileInputs.cache
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/obj/Debug/netcoreapp2.2/ColdFishServiceOpenApi.AssemblyInfoInputs.cache
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/obj/Debug/netcoreapp2.2/ColdFishServiceOpenApi.AssemblyInfo.cs
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/obj/Debug/netcoreapp2.2/ColdFishServiceOpenApi.dll
+/Users/SMJE/Documents/GitHub/seahorse/seahorse/External/businessservices/ColdFishServiceOpenApi/obj/Debug/netcoreapp2.2/ColdFishServiceOpenApi.pdb

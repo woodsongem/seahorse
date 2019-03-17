@@ -4,38 +4,13 @@
 
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.sql.Timestamp;
-import java.text.MessageFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-import com.datastax.driver.core.BoundStatement;
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.Row;
-
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.utilities.KatavuccolEncryption;
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepositoryMapper {
 
-	@Override
+	/*@Override
 	public String getCategoryDetailByIdQuery(UUID categoryId,UUID userId) {
 		Object[] args = { categoryId,userId };
 		return new MessageFormat(QueryConstants.GET_CATEGORY_DETAIL_BY_ID_QUERY).format(args);
@@ -177,7 +152,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());
@@ -186,7 +161,7 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 
 	@Override
 	public BoundStatement mapBoundStatement(PreparedStatement preparedStatement,
-			DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+			DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		BoundStatement bound = preparedStatement.bind();		
 		bound.setUUID(DataBaseColumn.USERID,deleteCredentialMessageEntity.getParsedUserId());
 		bound.setUUID(DataBaseColumn.ID,deleteCredentialMessageEntity.getParsedCredentialId());
@@ -258,5 +233,5 @@ public class KatavuccolServiceRepositoryMapper implements IKatavuccolServiceRepo
 		bound.setUUID(DataBaseColumn.MODIFIEDBY,updateCategoryMessageEntity.getModifiedBy());
 		bound.setTimestamp(DataBaseColumn.MODIFIEDDATE,updateCategoryMessageEntity.getModifiedDate());		
 		return bound;
-	}	
+	}	*/
 }

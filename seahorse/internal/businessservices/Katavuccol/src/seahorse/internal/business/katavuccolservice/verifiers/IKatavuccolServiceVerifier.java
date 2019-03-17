@@ -3,25 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.verifiers;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceVerifier {
 
-	Result verifyCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	/*Result verifyCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
 	Result isCredentialTypeIdValid(CredentialRequestMessageEntity credentialRequestMessageEntity);
 	
@@ -39,11 +27,11 @@ public interface IKatavuccolServiceVerifier {
 	
 	Result isCredentialValid(GetCredentialMessageEntity getCredentialMessageEntity);
 
-	Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 	
-	Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result verifyUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 	
@@ -93,5 +81,5 @@ public interface IKatavuccolServiceVerifier {
 	
 	Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 	
-	Result isCredentialValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	Result isCredentialValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity);*/
 }

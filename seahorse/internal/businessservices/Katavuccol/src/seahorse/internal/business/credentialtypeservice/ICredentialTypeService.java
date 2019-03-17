@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+package seahorse.internal.business.credentialtypeservice;
+
+import java.util.List;
+import java.util.UUID;
+
+import seahorse.internal.business.credentialservice.datacontracts.UpdateCredentialResponseMessageEntity;
+import seahorse.internal.business.credentialtypeservice.api.datacontracts.CredentialTypeModel;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CreateCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeByUserIdMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.CredentialTypeMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeReqMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.DeleteCredentialTypeResMsgEntity;
+import seahorse.internal.business.credentialtypeservice.datacontracts.UpdateCredentialTypeMessageEntity;
+
+/**
+ * @author admin
+ *
+ */
+public interface ICredentialTypeService {
+
+	List<CredentialTypeModel> getCredentialTypeByUserId(CredentialTypeByUserIdMsgEntity credentialTypeByUserId);
+	
+	CredentialTypeMsgEntity getCredentialTypeById(CredentialTypeByIdMsgEntity credentialTypeByIdMsgEntity);
+	
+	CreateCredentialTypeResMsgEntity Create(CreateCredentialTypeMsgEntity createCredentialTypeMsgEntity);
+
+	CredentialTypeModel getCredentialTypeByUserIdAndId(CredentialTypeByUserIdMsgEntity credentialTypeByUserIdMsgEntity);
+
+	UpdateCredentialResponseMessageEntity updateCredentialType(UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
+
+	DeleteCredentialTypeResMsgEntity deleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
+
+	CredentialTypeMsgEntity getCredentialTypeById(UUID parsedCredentialTypeId, UUID parsedUserId);
+
+}

@@ -3,33 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.validators;
 
-import java.util.UUID;
-import org.apache.commons.lang3.StringUtils;
-import com.google.inject.Inject;
-
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	
-	private final IBaseValidator baseValidator;
+	/*private final IBaseValidator baseValidator;
 	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	
 	@Inject
@@ -240,7 +220,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 	}
 
 	@Override
-	public Result validateDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result validateDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 		result = isDeleteCredentialRequestMessageEntityValid(deleteCredentialMessageEntity);
 		if (result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -258,7 +238,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		
 		if(StringUtils.isEmpty(deleteCredentialMessageEntity.getCredentialId()))
 		{
@@ -275,7 +255,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		}		
 	}
 
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;		
 		
 		result = isUserIdValid(deleteCredentialMessageEntity.getUserId(),
@@ -290,7 +270,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		return result;
 	}
 
-	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isDeleteCredentialRequestMessageEntityValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result=new Result(ResultStatus.SUCCESS);		
 		
 		if(deleteCredentialMessageEntity==null)
@@ -500,7 +480,7 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 		
 		if(categoryRequestMessageEntity==null)
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.categoryRequestMessageEntityIsEmptyErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryRequestMessageEntity is null","CategoryRequestMessageEntity",katavuccolServiceErrorCode.createCredentialTypeMsgEntityIsEmpty());
 		}
 		
 		return result;
@@ -773,5 +753,5 @@ public class KatavuccolServiceValidator implements IKatavuccolServiceValidator {
 			return KatavuccolServiceUtility.getResult(ResultStatus.SUCCESS,"","","");
 		}
 		return KatavuccolServiceUtility.getResult(ResultStatus.ERROR,"CategoryId is inValid","CategoryId",katavuccolServiceErrorCode.getCredentialValueCategoryIdInValidErrorCode());
-	}
+	}*/
 }

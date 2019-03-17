@@ -3,24 +3,19 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
-
-import java.util.List;
-
-import seahorse.internal.business.katavuccolservice.api.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.datacontracts.*;
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolService {
 
-	CredentialResponseMessageEntity createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	//CredentialResponseMessageEntity createCredential(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	List<Credential> getCredentials(GetCredentialMessageEntity getCredentialMessageEntity);
+	//List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity);
 
-	UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
+	/*UpdateCredentialResponseMessageEntity updateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
-	DeleteCredentialResponseMessageEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	CategoryResponseMessageEntity createCategory(CategoryRequestMessageEntity categoryMessageEntity);
 
@@ -34,10 +29,11 @@ public interface IKatavuccolService {
 	UpdateCredentialResponseMessageEntity updateCredentialType(
 			UpdateCredentialTypeMessageEntity updateCredentialTypeMessageEntity);
 
-	DeleteCredentialResponseMessageEntity deleteCredentialType(
-			DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity);
+	DeleteCredentialResMsgEntity deleteCredentialType(
+			DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity);
 
 	List<Category> getCategory(GetCategoryMessageEntity getCategoryMessageEntity);
 
-	CredentialValueDetail getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	CredentialValueDetail getCredentialValueByCredentialId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	*/
 }

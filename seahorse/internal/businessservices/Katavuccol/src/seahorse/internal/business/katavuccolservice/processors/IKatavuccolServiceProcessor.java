@@ -3,27 +3,15 @@
  */
 package seahorse.internal.business.katavuccolservice.processors;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceProcessor {
 
-	Result processorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	/*Result processorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	Result processorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result processorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result processorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 	
@@ -49,5 +37,5 @@ public interface IKatavuccolServiceProcessor {
 
 	Result processorGetCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
 	
-	Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity);
+	Result getDecryptCredentialValue(GetCredentialValueMessageEntity getCredentialValueMessageEntity);*/
 }

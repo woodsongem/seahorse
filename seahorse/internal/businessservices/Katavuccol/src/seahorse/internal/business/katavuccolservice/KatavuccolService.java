@@ -3,32 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.ws.rs.core.Response.Status;
-import org.apache.logging.log4j.Logger;
-import com.datastax.driver.core.utils.UUIDs;
-import com.google.inject.Inject;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Category;
-import seahorse.internal.business.katavuccolservice.api.datacontracts.Credential;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.datacontracts.*;
-import seahorse.internal.business.katavuccolservice.postprocessors.IKatavuccolServicePostProcessor;
-import seahorse.internal.business.katavuccolservice.processors.IKatavuccolServiceProcessor;
-import seahorse.internal.business.katavuccolservice.validators.IKatavuccolServiceValidator;
-import seahorse.internal.business.katavuccolservice.verifiers.IKatavuccolServiceVerifier;
-import seahorse.internal.business.shared.aop.InjectLogger;
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolService implements IKatavuccolService {
 
-	private IKatavuccolServiceMapper katavuccolServiceMapper;
+	/*private IKatavuccolServiceMapper katavuccolServiceMapper;
 	private IKatavuccolServiceVerifier katavuccolServiceVerifier;
 	private IKatavuccolServiceValidator katavuccolServiceValidator;
 	private IKatavuccolServiceProcessor katavuccolServiceProcessor;
@@ -84,7 +65,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public List<Credential> getCredentials(GetCredentialMessageEntity getCredentialMessageEntity) {
+	public List<Credential> getCredentialsByCategoryId(GetCredentialMessageEntity getCredentialMessageEntity) {
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateGetCredentials(getCredentialMessageEntity);
 	    if (result == null || result.getResultStatus() != ResultStatus.SUCCESS) {
@@ -130,7 +111,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity deleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		//Set
 		deleteCredentialMessageEntity.setStatus(KatavuccolConstant.INACTIVESTATUS);
 		deleteCredentialMessageEntity.setModifiedDate(new Date());
@@ -287,7 +268,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public DeleteCredentialResponseMessageEntity deleteCredentialType(DeleteCredentialTypeRequestMessageEntity deleteCredentialTypeRequestMessageEntity) {
+	public DeleteCredentialResMsgEntity deleteCredentialType(DeleteCredentialTypeReqMsgEntity deleteCredentialTypeRequestMessageEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -316,7 +297,7 @@ public class KatavuccolService implements IKatavuccolService {
 	}
 
 	@Override
-	public CredentialValueDetail getCredentialValueByUserId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
+	public CredentialValueDetail getCredentialValueByCredentialId(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 
 		//Validator	    
 	    Result result = katavuccolServiceValidator.validateGetCredentialValueByUserId(getCredentialValueMessageEntity);
@@ -337,5 +318,6 @@ public class KatavuccolService implements IKatavuccolService {
 		}
 		
 		return katavuccolServiceMapper.mapCredentialValueDetail(result, getCredentialValueMessageEntity);
-	}
+	}	*/
+	
 }

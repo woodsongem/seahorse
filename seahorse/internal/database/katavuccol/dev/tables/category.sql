@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 CREATE TABLE category (
     userid timeuuid,
     id timeuuid,

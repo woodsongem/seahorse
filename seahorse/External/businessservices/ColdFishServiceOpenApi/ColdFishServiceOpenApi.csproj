@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AuthenticationService\" />
+    <Folder Include="AuthenticationService\Validators\" />
+    <Folder Include="AuthenticationService\Verifiers\" />
+    <Folder Include="AuthenticationService\Processors\" />
+    <Folder Include="AuthenticationService\PostProcessors\" />
+    <Folder Include="AuthenticationService\Mappers\" />
+    <Folder Include="AuthenticationService\Services\" />
+    <Folder Include="AuthenticationService\Utilities\" />
+    <Folder Include="AuthenticationService\Repository\" />
+    <Folder Include="AuthenticationService\DataContracts\" />
+    <Folder Include="Commons\" />
+    <Folder Include="Commons\DataContracts\" />
+    <Folder Include="AuthenticationService\DataContracts\Daos\" />
+    <Folder Include="AuthenticationService\DataContracts\MessageEntities\" />
+    <Folder Include="Framework\" />
+    <Folder Include="Framework\ParallelExecution\" />
+    <Folder Include="CustomerService\" />
+    <Folder Include="CustomerService\DataContracts\" />
+    <Folder Include="CustomerService\Mappers\" />
+    <Folder Include="CustomerService\PostProcessors\" />
+    <Folder Include="CustomerService\Processors\" />
+    <Folder Include="CustomerService\Repository\" />
+    <Folder Include="CustomerService\Services\" />
+    <Folder Include="CustomerService\Utilities\" />
+    <Folder Include="CustomerService\Validators\" />
+    <Folder Include="CustomerService\Verifiers\" />
+    <Folder Include="JobService\" />
+    <Folder Include="JobService\DataContracts\" />
+    <Folder Include="JobService\Mappers\" />
+    <Folder Include="JobService\PostProcessors\" />
+    <Folder Include="JobService\Processors\" />
+    <Folder Include="JobService\Repository\" />
+    <Folder Include="JobService\Services\" />
+    <Folder Include="JobService\Utilities\" />
+    <Folder Include="JobService\Validators\" />
+    <Folder Include="JobService\Verifiers\" />
+    <Folder Include="CustomerService\DataContracts\MessageEntities\" />
+    <Folder Include="CustomerService\DataContracts\External\" />
+    <Folder Include="CustomerService\DataContracts\External\RestDataContracts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="4.0.5" />
+    <PackageReference Include="Dapper" Version="1.60.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.3.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ColdFishServiceOpenApiWebApiModel\ColdFishServiceOpenApiWebApiModel.csproj" />
+    <ProjectReference Include="..\..\..\internal\shared\KatavuccolClient\KatavuccolClient.csproj" />
+  </ItemGroup>
+</Project>

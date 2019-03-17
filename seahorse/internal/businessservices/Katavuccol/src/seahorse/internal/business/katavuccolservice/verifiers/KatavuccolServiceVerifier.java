@@ -3,48 +3,13 @@
  */
 package seahorse.internal.business.katavuccolservice.verifiers;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import com.google.common.collect.FluentIterable;
-import com.google.gson.Gson;
-import com.google.inject.Inject;
-
-import jersey.repackaged.com.google.common.collect.Collections2;
-import seahorse.internal.business.katavuccolservice.IUserCredentialService;
-import seahorse.internal.business.katavuccolservice.common.IKatavuccolServiceErrorCode;
-import seahorse.internal.business.katavuccolservice.common.Ikatavuccolredis;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolConstant;
-import seahorse.internal.business.katavuccolservice.common.KatavuccolServiceUtility;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.common.datacontracts.ResultStatus;
-import seahorse.internal.business.katavuccolservice.dal.IKatavuccolServiceRepository;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.GetCredentialValueMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UserCredentialMessageEntity;
-
-
 /**
  * @author sajanmje
  *
  */
 public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	
-	private final IBaseVerifier baseVerifier;	
+	/*private final IBaseVerifier baseVerifier;	
 	private final IKatavuccolServiceVerifierMapper katavuccolServiceVerifierMapper;
 	private final IKatavuccolServiceErrorCode katavuccolServiceErrorCode;
 	private final IKatavuccolServiceRepository katavuccolServiceRepository;
@@ -265,7 +230,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 
 
 	@Override
-	public Result verifyDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result verifyDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		Result result;
 
 		result = isUserIdValid(deleteCredentialMessageEntity);
@@ -280,7 +245,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isCredentialIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isCredentialIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		CredentialDAO  credentialDAO=katavuccolServiceRepository.getCredentialById(deleteCredentialMessageEntity);
 		if(credentialDAO == null)
 		{
@@ -292,7 +257,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	}
 
 
-	public Result isUserIdValid(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity) {
+	public Result isUserIdValid(DeleteCredentialMessageEntity deleteCredentialMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
 
@@ -432,7 +397,7 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 										.toList();
 		if(filterCategoryDAOs == null || filterCategoryDAOs.isEmpty())
 		{
-			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.credentialTypeDuplicateErrorCode());
+			return KatavuccolServiceUtility.getResult(ResultStatus.ERROR, "Duplicate credential Name is is not allowed", "Name", katavuccolServiceErrorCode.nameDuplicatedNotAllowed());
 		}
 		return new Result(ResultStatus.SUCCESS);
 	}
@@ -638,5 +603,5 @@ public class KatavuccolServiceVerifier implements IKatavuccolServiceVerifier {
 	public Result isUserIdValid(GetCredentialValueMessageEntity getCredentialValueMessageEntity) {
 		return new Result(ResultStatus.SUCCESS);
 	}
-
+*/
 }

@@ -4,28 +4,13 @@
 
 package seahorse.internal.business.katavuccolservice.dal;
 
-import java.util.UUID;
-import com.datastax.driver.core.BoundStatement;
-import com.datastax.driver.core.PreparedStatement;
-import com.datastax.driver.core.Row;
-
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CategoryDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialDAO;
-import seahorse.internal.business.katavuccolservice.dal.datacontracts.CredentialTypeDAO;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServiceRepositoryMapper {
 	
-	String getCategoryDetailByIdQuery(UUID categoryId,UUID userId);
+	/*String getCategoryDetailByIdQuery(UUID categoryId,UUID userId);
 
 	CategoryDAO mapCategoryDAO(Row categoryDAOResult);
 
@@ -53,9 +38,9 @@ public interface IKatavuccolServiceRepositoryMapper {
 
 	BoundStatement mapCredentialBoundStatement(PreparedStatement preparedStatement, UUID userId);
 
-	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	BoundStatement mapGetCredentialByIdBoundStatement(PreparedStatement preparedStatement,DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
-	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
@@ -68,4 +53,5 @@ public interface IKatavuccolServiceRepositoryMapper {
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
 	BoundStatement mapBoundStatement(PreparedStatement preparedStatement,UpdateCategoryMessageEntity updateCategoryMessageEntity);	
+*/
 }

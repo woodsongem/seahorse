@@ -3,25 +3,15 @@
  */
 package seahorse.internal.business.katavuccolservice.postprocessors;
 
-import seahorse.internal.business.katavuccolservice.common.datacontracts.Result;
-import seahorse.internal.business.katavuccolservice.datacontracts.CategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.CredentialTypeRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCategoryRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.DeleteCredentialRequestMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCategoryMessageEntity;
-import seahorse.internal.business.katavuccolservice.datacontracts.UpdateCredentialMessageEntity;
-
-
 /**
  * @author sajanmje
  *
  */
 public interface IKatavuccolServicePostProcessor {
 
-	Result postProcessorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
+	/*Result postProcessorCreateCredentials(CredentialRequestMessageEntity credentialRequestMessageEntity);
 
-	Result postProcessorDeleteCredential(DeleteCredentialRequestMessageEntity deleteCredentialMessageEntity);
+	Result postProcessorDeleteCredential(DeleteCredentialMessageEntity deleteCredentialMessageEntity);
 
 	Result postProcessorUpdateCredential(UpdateCredentialMessageEntity updateCredentialMessageEntity);
 
@@ -31,6 +21,6 @@ public interface IKatavuccolServicePostProcessor {
 
 	Result postProcessorDeleteCategory(DeleteCategoryRequestMessageEntity deleteCategoryRequestMessageEntity);
 
-	Result postProcessorUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);
+	Result postProcessorUpdateCategory(UpdateCategoryMessageEntity updateCategoryMessageEntity);*/
 
 }
