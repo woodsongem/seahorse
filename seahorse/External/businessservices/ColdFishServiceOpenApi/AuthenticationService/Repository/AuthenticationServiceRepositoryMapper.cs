@@ -13,9 +13,9 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Repository
         public DynamicParameters MapDyParasValidateAuthentication(PartnerKeyDetailsDAO partnerKeyDetailsDAO)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@partnerusername", partnerKeyDetailsDAO.username);
-            dynamicParameters.Add("@partnerpassword", partnerKeyDetailsDAO.password);
-            dynamicParameters.Add("@partnerkeyname", partnerKeyDetailsDAO.partnerkey);
+            dynamicParameters.Add("@partnerusername", partnerKeyDetailsDAO.username,DbType.String);
+            dynamicParameters.Add("@partnerpassword", partnerKeyDetailsDAO.password, DbType.String);
+            dynamicParameters.Add("@partneridkey", partnerKeyDetailsDAO.partnerkey, DbType.String);
             return dynamicParameters;
         }
     }

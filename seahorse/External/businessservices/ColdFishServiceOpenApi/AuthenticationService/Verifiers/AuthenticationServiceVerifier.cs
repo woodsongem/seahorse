@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.Daos;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
 using ColdFishServiceOpenApi.AuthenticationService.Mappers;
@@ -12,7 +13,7 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Verifiers
 {
     public class AuthenticationServiceVerifier : IAuthenticationServiceVerifier
     {
-        #region MyRegion
+        #region local veriables
 
         private readonly IAuthenticationServiceRepository authenticationServiceRepository;
         private readonly IAuthenticationServiceMapper authenticationServiceMapper;
@@ -49,10 +50,14 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Verifiers
         public ResultMessageEntity IsPartnerValid(AuthenticationReqMsgEntity authenticationReqMsgEntity)
         {
             PartnerKeyDetailsDAO partnerKeyDetailsDAO = authenticationServiceMapper.MapPartnerKeyDetailsDAO(authenticationReqMsgEntity);
-            ResultMessageEntity resultMessageEntity = authenticationServiceRepository.ValidateAuthentication(partnerKeyDetailsDAO);
-            if (resultMessageEntity == null || resultMessageEntity.ResultStatus != ResultStatus.Success)
+            List<PartnerKeyDetailsDAO> validPartnerKeyDetailsDAO = authenticationServiceRepository.GetPartnerDetail(partnerKeyDetailsDAO);
+            if (!validPartnerKeyDetailsDAO.AnyWithNullCheck())
             {
-                return ColdFishServiceOpenApiUtility.GetResultMessageEntity(ResultStatus.Fail, "Partner is Invalid", authenticationServiceErrorCodes.PartnerIsInValid);
+                return ColdFishServiceOpenApiUtility.GetResultMessageEntity(ResultStatus.Fail, "Partner is Invalid", authenticationServiceErrorCodes.PartnerNotFound);
+            }
+            if (validPartnerKeyDetailsDAO.Count > 1)
+            {
+                return ColdFishServiceOpenApiUtility.GetResultMessageEntity(ResultStatus.Fail, "To Many partners", authenticationServiceErrorCodes.PartnerNotFound);
             }
             return new ResultMessageEntity { ResultStatus = ResultStatus.Success };
         }

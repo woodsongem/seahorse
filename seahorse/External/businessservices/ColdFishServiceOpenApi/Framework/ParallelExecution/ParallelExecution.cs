@@ -69,10 +69,18 @@ namespace ColdFishServiceOpenApi.Framework.ParallelExecution
             }
 
             var failedresultMessageEntities = outPutResultMessageEntities.Where(x => x.ResultStatus == ResultStatus.Fail);
-            var resultMessageEntities = new ResultMessageEntity() { ResultStatus = ResultStatus.Fail, MessageEntity = new List<MessageEntity>() };
+            var resultMessageEntities = new ResultMessageEntity { ResultStatus = ResultStatus.Fail, MessageEntity = new ConcurrentBag<MessageEntity>() };
             foreach (var failedresultMessageEntity in failedresultMessageEntities)
             {
-                resultMessageEntities.MessageEntity.AddRange(failedresultMessageEntity.MessageEntity);
+                if (failedresultMessageEntity == null || !failedresultMessageEntity.MessageEntity.AnyWithNullCheck())
+                {
+                    continue;
+                }
+                foreach (MessageEntity messageEntity in failedresultMessageEntity.MessageEntity)
+                {
+                    resultMessageEntities.MessageEntity.Add(messageEntity);
+                }
+
             }
 
             return resultMessageEntities;

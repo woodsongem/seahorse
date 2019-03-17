@@ -31,7 +31,11 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Utilities
 
         public string PartnerKeyIsEmpty => $"OpenAPI.AuthenticationService.{HttpVerb}.{WebMethod}.PartnerKey.Empty";
 
-        public string PartnerIsInValid => $"OpenAPI.AuthenticationService.{HttpVerb}.{WebMethod}.Partner.InValid";
+        public string PartnerNotFound => $"OpenAPI.AuthenticationService.{HttpVerb}.{WebMethod}.Partner.NotFound";
+
+        public string ToManyPartners => $"OpenAPI.AuthenticationService.{HttpVerb}.{WebMethod}.Partner.ToMany";
+
+        public string TokenGenerationUnexpectedError => $"OpenAPI.AuthenticationService.{HttpVerb}.{WebMethod}.TokenGeneration.UnexpectedError";
 
         #endregion
 
@@ -46,7 +50,7 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Utilities
             }
         }
 
-      
+
     }
    
 }

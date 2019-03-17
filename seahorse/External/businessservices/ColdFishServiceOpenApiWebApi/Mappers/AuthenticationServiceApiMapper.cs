@@ -1,5 +1,6 @@
 using System;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
+using ColdFishServiceOpenApi.Commons;
 using ColdFishServiceOpenApi.Commons.DataContracts;
 using ColdFishServiceOpenApiWebApiModel.AuthenticationService;
 
@@ -9,7 +10,12 @@ namespace ColdFishServiceOpenApiWebApi.Mappers
     {
         public AuthenticationResModel MapAuthenticationModel(ResultMessageEntity resultMessageEntity, AuthenticationReqMsgEntity authenticationMsgEntity)
         {
-            throw new NotImplementedException();
+            AuthenticationResModel authenticationResModel = new AuthenticationResModel
+            {
+                Token = authenticationMsgEntity.TokenDetail,
+                ResultMessage = resultMessageEntity.MessageEntity.ToResultMessageModel()
+            };
+            return authenticationResModel;
         }
 
         public AuthenticationReqMsgEntity MapAuthenticationMsgEntity(AuthenticationModel authenticationModel)

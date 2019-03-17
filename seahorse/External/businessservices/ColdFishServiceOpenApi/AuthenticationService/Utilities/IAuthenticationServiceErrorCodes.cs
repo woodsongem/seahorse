@@ -11,6 +11,10 @@ namespace ColdFishServiceOpenApi.AuthenticationService.Utilities
 
         string PartnerKeyIsEmpty { get; }
 
-        string PartnerIsInValid { get;  }
+        string PartnerNotFound { get;  }
+
+        string ToManyPartners { get; }
+
+        string TokenGenerationUnexpectedError { get; }
     }
 }

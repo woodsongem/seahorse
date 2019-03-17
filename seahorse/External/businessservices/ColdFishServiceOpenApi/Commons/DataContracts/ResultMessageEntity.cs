@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace ColdFishServiceOpenApi.Commons.DataContracts
@@ -7,6 +8,6 @@ namespace ColdFishServiceOpenApi.Commons.DataContracts
     {
         public ResultStatus ResultStatus { get; set; }
 
-        public List<MessageEntity> MessageEntity { get; set; }
+        public ConcurrentBag<MessageEntity> MessageEntity { get; set; }
     }
 }

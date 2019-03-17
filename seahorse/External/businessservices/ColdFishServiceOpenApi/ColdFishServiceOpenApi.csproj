@@ -21,6 +21,27 @@
     <Folder Include="AuthenticationService\DataContracts\MessageEntities\" />
     <Folder Include="Framework\" />
     <Folder Include="Framework\ParallelExecution\" />
+    <Folder Include="CustomerService\" />
+    <Folder Include="CustomerService\DataContracts\" />
+    <Folder Include="CustomerService\Mappers\" />
+    <Folder Include="CustomerService\PostProcessors\" />
+    <Folder Include="CustomerService\Processors\" />
+    <Folder Include="CustomerService\Repository\" />
+    <Folder Include="CustomerService\Services\" />
+    <Folder Include="CustomerService\Utilities\" />
+    <Folder Include="CustomerService\Validators\" />
+    <Folder Include="CustomerService\Verifiers\" />
+    <Folder Include="JobService\" />
+    <Folder Include="JobService\DataContracts\" />
+    <Folder Include="JobService\Mappers\" />
+    <Folder Include="JobService\PostProcessors\" />
+    <Folder Include="JobService\Processors\" />
+    <Folder Include="JobService\Repository\" />
+    <Folder Include="JobService\Services\" />
+    <Folder Include="JobService\Utilities\" />
+    <Folder Include="JobService\Validators\" />
+    <Folder Include="JobService\Verifiers\" />
+    <Folder Include="CustomerService\DataContracts\MessageEntities\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="4.0.5" />
@@ -34,5 +55,8 @@
     <Reference Include="System.IdentityModel.Tokens.Jwt">
       <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.3.0\lib\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ColdFishServiceOpenApiWebApiModel\ColdFishServiceOpenApiWebApiModel.csproj" />
   </ItemGroup>
 </Project>

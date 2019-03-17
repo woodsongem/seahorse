@@ -8,7 +8,7 @@ namespace ColdFishServiceOpenApi.AuthenticationService.PostProcessors
     {
         public ResultMessageEntity PostProcessorGetAuthenticationDetail(AuthenticationReqMsgEntity authenticationMsgEntity)
         {
-            throw new NotImplementedException();
+            return new ResultMessageEntity();
         }
     }
 }
