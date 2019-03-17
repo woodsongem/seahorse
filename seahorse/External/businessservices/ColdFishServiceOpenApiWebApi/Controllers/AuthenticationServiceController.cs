@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ColdFishServiceOpenApi.AuthenticationService.DataContracts.MessageEntities;
 using ColdFishServiceOpenApi.AuthenticationService.Services;
@@ -43,20 +45,23 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]AuthenticationModel authenticationModel)
+        public ActionResult Post([FromBody]AuthenticationModel authenticationModel)
         {
+            AuthenticationResModel authenticationResModel = null;
             try
             {
               
                 AuthenticationReqMsgEntity authenticationMsgEntity= authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
                 ResultMessageEntity resultMessageEntity = authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
-                AuthenticationResModel authenticationResModel = authenticationServiceApiMapper.MapAuthenticationModel(resultMessageEntity, authenticationMsgEntity);
+                authenticationResModel = authenticationServiceApiMapper.MapAuthenticationModel(resultMessageEntity, authenticationMsgEntity);
 
             }
             catch(Exception ex)
             {
 
             }
+
+            return StatusCode((int)HttpStatusCode.OK, authenticationResModel);
         }
 
         // PUT api/values/5
