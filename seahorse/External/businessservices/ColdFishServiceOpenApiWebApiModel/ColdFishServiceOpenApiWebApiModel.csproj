@@ -10,5 +10,6 @@
   <ItemGroup>
     <Folder Include="AuthenticationService\" />
     <Folder Include="Commons\" />
+    <Folder Include="CustomerService\" />
   </ItemGroup>
 </Project>

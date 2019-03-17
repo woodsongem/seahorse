@@ -42,6 +42,8 @@
     <Folder Include="JobService\Validators\" />
     <Folder Include="JobService\Verifiers\" />
     <Folder Include="CustomerService\DataContracts\MessageEntities\" />
+    <Folder Include="CustomerService\DataContracts\External\" />
+    <Folder Include="CustomerService\DataContracts\External\RestDataContracts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="4.0.5" />
@@ -58,5 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ColdFishServiceOpenApiWebApiModel\ColdFishServiceOpenApiWebApiModel.csproj" />
+    <ProjectReference Include="..\..\..\internal\shared\KatavuccolClient\KatavuccolClient.csproj" />
   </ItemGroup>
 </Project>

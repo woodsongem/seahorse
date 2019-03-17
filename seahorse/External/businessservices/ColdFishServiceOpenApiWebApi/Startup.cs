@@ -6,7 +6,6 @@ using ColdFishServiceOpenApi.AuthenticationService.Services;
 using ColdFishServiceOpenApi.AuthenticationService.Utilities;
 using ColdFishServiceOpenApi.AuthenticationService.Validators;
 using ColdFishServiceOpenApi.AuthenticationService.Verifiers;
-using ColdFishServiceOpenApi.Framework.ParallelExecution;
 using ColdFishServiceOpenApiWebApi.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -18,9 +18,15 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
     [Route("api/AuthenticationService")]
     public class AuthenticationServiceController : Controller
     {
+        #region Local variables
+
         private readonly IAuthenticationService authenticationService;
         private readonly IAuthenticationServiceApiMapper authenticationServiceApiMapper;
 
+        #endregion
+
+
+        #region Constructors
 
         public AuthenticationServiceController(IAuthenticationService authenticationService,
             IAuthenticationServiceApiMapper authenticationServiceApiMapper)
@@ -29,19 +35,9 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
             this.authenticationServiceApiMapper = authenticationServiceApiMapper;
         }
 
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        #endregion
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        #region Actions
 
         // POST api/values
         [HttpPost]
@@ -50,13 +46,13 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
             AuthenticationResModel authenticationResModel = null;
             try
             {
-              
-                AuthenticationReqMsgEntity authenticationMsgEntity= authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
+
+                AuthenticationReqMsgEntity authenticationMsgEntity = authenticationServiceApiMapper.MapAuthenticationMsgEntity(authenticationModel);
                 ResultMessageEntity resultMessageEntity = authenticationService.GetAuthenticationDetail(authenticationMsgEntity);
                 authenticationResModel = authenticationServiceApiMapper.MapAuthenticationModel(resultMessageEntity, authenticationMsgEntity);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -64,16 +60,8 @@ namespace ColdFishServiceOpenApiWebApi.Controllers
             return StatusCode((int)HttpStatusCode.OK, authenticationResModel);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        #endregion
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+
     }
 }

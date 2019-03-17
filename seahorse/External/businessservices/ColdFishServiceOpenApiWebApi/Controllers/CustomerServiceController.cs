@@ -2,45 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ColdFishServiceOpenApi.Commons.DataContracts;
+using ColdFishServiceOpenApi.CustomerService.DataContracts.MessageEntities;
+using ColdFishServiceOpenApi.CustomerService.Services;
+using ColdFishServiceOpenApiWebApi.Mappers;
+using ColdFishServiceOpenApiWebApiModel.CustomerService;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ColdFishServiceOpenApiWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class CustomerServiceController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        #region Local variables
+
+        private readonly ICustomerService customerService;
+        private readonly ICustomerServiceApiMapper customerServiceApiMapper;
+
+        #endregion
+
+        #region Constructors
+
+        public CustomerServiceController(ICustomerService customerService,
+            ICustomerServiceApiMapper customerServiceApiMapper)
         {
-            return new string[] { "value1", "value2" };
+            this.customerService = customerService;
+            this.customerServiceApiMapper = customerServiceApiMapper;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        #endregion
+
+        #region Actions
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        [Route("api/customer")]
+        public void CreateCustomer(CreateCustomerRequestModel createCustomerRequestModel)
         {
+            try
+            {
+                CreateUserMessageEntity createUserMessageEntity= customerServiceApiMapper.MapCreateUserMessageEntity(createCustomerRequestModel);
+                ResultMessageEntity resultMessageEntity = customerService.CreateUser(createUserMessageEntity);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        #endregion
     }
 }
