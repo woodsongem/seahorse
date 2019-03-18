@@ -43,7 +43,8 @@
     <Folder Include="JobService\Verifiers\" />
     <Folder Include="CustomerService\DataContracts\MessageEntities\" />
     <Folder Include="CustomerService\DataContracts\External\" />
-    <Folder Include="CustomerService\DataContracts\External\RestDataContracts\" />
+    <Folder Include="CustomerService\DataContracts\External\InCustomerService\" />
+    <Folder Include="CustomerService\DataContracts\External\InCustomerService\RestDataContracts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="4.0.5" />

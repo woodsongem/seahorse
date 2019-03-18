@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomerService\" />
+    <Folder Include="CustomerService\DataContracts\" />
+    <Folder Include="CustomerService\Mappers\" />
+    <Folder Include="CustomerService\PostProcessors\" />
+    <Folder Include="CustomerService\Processors\" />
+    <Folder Include="CustomerService\Repository\" />
+    <Folder Include="CustomerService\Services\" />
+    <Folder Include="CustomerService\Utilities\" />
+    <Folder Include="CustomerService\Validators\" />
+    <Folder Include="CustomerService\Verifiers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.1" />
+    <PackageReference Include="Npgsql" Version="4.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+  </ItemGroup>
+</Project>
